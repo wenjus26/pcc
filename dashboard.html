@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html class="light" lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Tableau de Bord - PCC</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#33a50d",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#152210",
+                    },
+                    fontFamily: { "display": ["Inter", "sans-serif"] },
+                },
+            },
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; min-height: 100dvh; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display flex flex-col min-h-screen">
+
+    <header id="main-header"></header>
+
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Sidebar -->
+            <div class="lg:w-1/4">
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-primary/10 shadow-sm sticky top-24">
+                    <div class="flex flex-col items-center mb-8">
+                        <div class="size-24 rounded-full border-4 border-primary/20 overflow-hidden mb-4">
+                            <img alt="Profil" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4mI1zFctYFth-a1zv02Ig1825AQ40GdYUnfXD0DnazFuTTQrbCqQOscFMiAQy04B9Tp_klsBvH_iIzJtumbCDJ_Y8DntgzPjjI5gDMz6h98wznSjfvb4sa2y2sHRbIAPqsmPepTCESTeCnkAi9CCMtUbGQZhjMnGOxDWbB6vz9K00U2MOZY1THI1Af4SxTziGO_SRZtDy_xBS65QLL-hpfyQeju3VcQhou5DeKmm34FR30pywoUU7mPkrTkgNClGCN9CfhlZHXJQ"/>
+                        </div>
+                        <h2 class="text-xl font-black">Koffi Kouamé</h2>
+                        <p class="text-slate-500 text-sm font-medium">Développeur Fullstack</p>
+                    </div>
+
+                    <nav class="space-y-4">
+                        <a href="dashboard.html" class="flex items-center gap-3 p-3 bg-primary/10 text-primary rounded-xl font-bold">
+                            <i class="fas fa-th-large"></i> Dashboard
+                        </a>
+                        <a href="profile.html" class="flex items-center gap-3 p-3 hover:bg-primary/5 text-slate-600 dark:text-slate-400 rounded-xl font-bold transition-all">
+                            <i class="fas fa-user-circle"></i> Profil
+                        </a>
+                        <a href="skills.html" class="flex items-center gap-3 p-3 hover:bg-primary/5 text-slate-600 dark:text-slate-400 rounded-xl font-bold transition-all">
+                            <i class="fas fa-code"></i> Mes Compétences
+                        </a>
+                        <a href="opportunities.html" class="flex items-center gap-3 p-3 hover:bg-primary/5 text-slate-600 dark:text-slate-400 rounded-xl font-bold transition-all">
+                            <i class="fas fa-briefcase"></i> Opportunités
+                        </a>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="lg:w-3/4 space-y-8">
+                <!-- Welcome -->
+                <div class="bg-primary/10 p-8 rounded-3xl border border-primary/20 shadow-sm">
+                    <h2 class="text-slate-900 dark:text-slate-100 text-3xl font-black mb-2">Bonjour, Koffi 👋</h2>
+                    <p class="text-slate-600 dark:text-slate-400 font-medium">Heureux de vous revoir ! Votre profil est complété à <span class="text-primary font-bold">65%</span>. Finalisez-le pour attirer plus de recruteurs.</p>
+                    <div class="w-full bg-white/50 rounded-full h-3 mt-6">
+                        <div class="bg-primary h-3 rounded-full shadow-lg shadow-primary/20" style="width: 65%;"></div>
+                    </div>
+                </div>
+
+                <!-- Suggested -->
+                <div>
+                    <div class="flex items-center justify-between mb-6 px-2">
+                        <h3 class="text-xl font-black">Opportunités suggérées</h3>
+                        <a class="text-primary font-bold text-sm hover:underline" href="opportunities.html">Tout voir</a>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-primary/10 group shadow-sm hover:shadow-md transition-all">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="p-3 bg-primary/10 text-primary rounded-2xl group-hover:scale-110 transition-transform">
+                                    <i class="fas fa-code text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Développeur Fullstack</h4>
+                                    <p class="text-xs text-slate-400">E-Tech Benin • Cotonou</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center mt-6">
+                                <span class="text-lg font-black text-primary">600k CFA</span>
+                                <button class="bg-primary text-white font-bold px-6 py-2 rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">Postuler</button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-primary/10 group shadow-sm hover:shadow-md transition-all">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="p-3 bg-orange-100 text-orange-600 rounded-2xl group-hover:scale-110 transition-transform">
+                                    <i class="fas fa-palette text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">UI/UX Designer</h4>
+                                    <p class="text-xs text-slate-400">Gov Digital • Porto-Novo</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center mt-6">
+                                <span class="text-lg font-black text-primary">Freelance</span>
+                                <button class="bg-primary text-white font-bold px-6 py-2 rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">Postuler</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activities -->
+                <div>
+                    <h3 class="text-xl font-black mb-6 px-2">Activités récentes</h3>
+                    <div class="space-y-4">
+                        <div class="flex gap-4 items-center p-5 bg-white dark:bg-slate-800 rounded-3xl border border-primary/5 hover:border-primary/20 transition-all shadow-sm">
+                            <div class="size-12 flex items-center justify-center bg-primary/10 text-primary rounded-2xl shrink-0">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-bold">Candidature envoyée</p>
+                                <p class="text-xs text-slate-500">Poste de Développeur chez E-Tech</p>
+                            </div>
+                            <span class="text-xs font-bold text-slate-400">Il y a 2h</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="main-footer"></footer>
+    <script src="assets/js/layout.js"></script>
+</body>
+</html>

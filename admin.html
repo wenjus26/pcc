@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html class="light" lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>PCC Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#33a50d",
+                        "accent": "#ffb800",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#152210",
+                    },
+                    fontFamily: { "display": ["Inter", "sans-serif"] },
+                },
+            },
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; min-height: 100dvh; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display flex flex-col min-h-screen">
+
+    <header id="main-header"></header>
+
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 py-8">
+        <div class="flex items-center justify-between mb-8">
+            <h1 class="text-3xl font-black">Admin Dashboard</h1>
+            <button class="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-2xl flex items-center gap-2 shadow-lg shadow-primary/20 transition-all">
+                <i class="fas fa-plus-circle"></i>
+                Publier une offre
+            </button>
+        </div>
+
+        <!-- Stats Grid -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-primary/5 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-slate-500 font-bold text-xs uppercase tracking-widest">Total Utilisateurs</span>
+                    <i class="fas fa-users text-primary"></i>
+                </div>
+                <p class="text-3xl font-black">1,240</p>
+                <div class="flex items-center gap-1 text-xs text-primary font-bold mt-2">
+                    <i class="fas fa-arrow-up text-sm"></i> +12% ce mois
+                </div>
+            </div>
+            
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-primary/5 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-slate-500 font-bold text-xs uppercase tracking-widest">Compétences en attente</span>
+                    <i class="fas fa-user-check text-accent"></i>
+                </div>
+                <p class="text-3xl font-black text-accent">42</p>
+                <div class="flex items-center gap-1 text-xs text-accent font-bold mt-2">
+                    <i class="fas fa-clock text-sm"></i> Action requise
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-primary/5 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-slate-500 font-bold text-xs uppercase tracking-widest">Offres Actives</span>
+                    <i class="fas fa-briefcase text-primary"></i>
+                </div>
+                <p class="text-3xl font-black">156</p>
+                <div class="flex items-center gap-1 text-xs text-red-500 font-bold mt-2">
+                    <i class="fas fa-arrow-down text-sm"></i> -2% vs semaine dernière
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Area -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Pending Approvals -->
+            <section class="bg-white dark:bg-slate-800 p-8 rounded-3xl border border-primary/5 shadow-sm">
+                <h2 class="text-xl font-black mb-6 flex items-center gap-2">
+                    <i class="fas fa-check-circle text-primary"></i> Vérifications en attente
+                </h2>
+                <div class="space-y-6">
+                    <!-- User 1 -->
+                    <div class="flex items-center gap-4 p-4 border border-primary/5 rounded-2xl hover:bg-primary/5 transition-all">
+                        <img class="size-16 rounded-xl object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-IzUKUfLDq3aneWccL_0BVGV5MRrscm75VGKol4lVGs_v93k3wMFTq6IYkh_a2OpT9QrNY3MSFOdPKEVO6AsVIvdddgSx4hI3KrxG4tLP2alHPc0TqpWrUnyPvBHDuGi7he_F15NCmQX38fGgPqy4pZxqx-uHqOrbIei8BNrrNSEe05WdLxHNwj-nwTR-zrcNRsmCHACvHDi8Xsm5ZDeKE4QWCkG7Ksl1UaiWT-45ilAnRNGvP2hrdBQzqjLBywOTUA60zF150iI"/>
+                        <div class="flex-grow">
+                            <h4 class="font-black">Sarah Jenkins</h4>
+                            <p class="text-xs text-slate-500">Project Management (Lvl 3)</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="size-10 flex items-center justify-center bg-primary text-white rounded-xl shadow-lg shadow-primary/20"><i class="fas fa-check"></i></button>
+                            <button class="size-10 flex items-center justify-center bg-slate-100 dark:bg-slate-700 text-slate-400 rounded-xl"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer id="main-footer"></footer>
+    <script src="assets/js/layout.js"></script>
+</body>
+</html>

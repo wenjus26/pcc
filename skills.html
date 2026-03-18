@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html class="light" lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Gérer mes compétences - PCC</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#33a50d",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#152210",
+                    },
+                    fontFamily: { "display": ["Inter", "sans-serif"] },
+                },
+            },
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; min-height: 100dvh; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display flex flex-col min-h-screen">
+
+    <header id="main-header"></header>
+
+    <main class="flex-grow max-w-4xl mx-auto w-full px-4 py-12">
+        <div class="flex items-center justify-between mb-8">
+            <h1 class="text-3xl font-black">Mes Compétences</h1>
+            <button class="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-2xl flex items-center gap-2 shadow-lg shadow-primary/20 transition-all">
+                <i class="fas fa-plus-circle"></i>
+                Ajouter
+            </button>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 border border-primary/10 shadow-sm space-y-12">
+            <!-- Technical Skills -->
+            <section>
+                <h3 class="text-xl font-black mb-6 flex items-center gap-2">
+                    <i class="fas fa-terminal text-primary"></i> Compétences Techniques
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Skill 1 -->
+                    <div class="flex items-center gap-4 p-4 border border-primary/5 rounded-2xl hover:bg-primary/5 transition-all group">
+                        <div class="size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-code text-3xl"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-black">JavaScript</h4>
+                                <span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded uppercase">Expert</span>
+                            </div>
+                            <div class="w-full bg-primary/10 h-2 rounded-full overflow-hidden">
+                                <div class="bg-primary h-full rounded-full shadow-lg shadow-primary/20" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 2 -->
+                    <div class="flex items-center gap-4 p-4 border border-primary/5 rounded-2xl hover:bg-primary/5 transition-all group">
+                        <div class="size-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-database text-3xl"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-black">PostgreSQL</h4>
+                                <span class="bg-slate-100 dark:bg-slate-700 text-slate-500 text-[10px] font-bold px-2 py-0.5 rounded uppercase">Intermédiaire</span>
+                            </div>
+                            <div class="w-full bg-primary/10 h-2 rounded-full overflow-hidden">
+                                <div class="bg-primary h-full rounded-full shadow-lg shadow-primary/20" style="width: 65%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Soft Skills -->
+            <section>
+                <h3 class="text-xl font-black mb-6 flex items-center gap-2">
+                    <i class="fas fa-brain text-primary"></i> Soft Skills
+                </h3>
+                <div class="flex flex-wrap gap-3">
+                    <span class="flex items-center gap-2 px-6 py-3 bg-primary/10 text-primary font-bold rounded-2xl border border-primary/20">Gestion d'équipe <i class="fas fa-times text-xs cursor-pointer opacity-50 hover:opacity-100"></i></span>
+                    <span class="flex items-center gap-2 px-6 py-3 bg-primary/10 text-primary font-bold rounded-2xl border border-primary/20">Communication <i class="fas fa-times text-xs cursor-pointer opacity-50 hover:opacity-100"></i></span>
+                    <span class="flex items-center gap-2 px-6 py-3 bg-primary/10 text-primary font-bold rounded-2xl border border-primary/20">Adaptabilité <i class="fas fa-times text-xs cursor-pointer opacity-50 hover:opacity-100"></i></span>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer id="main-footer"></footer>
+    <script src="assets/js/layout.js"></script>
+</body>
+</html>

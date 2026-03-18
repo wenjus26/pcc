@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html class="light" lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Explorer les Talents - PCC</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#33a50d",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#152210",
+                    },
+                    fontFamily: { "display": ["Inter", "sans-serif"] },
+                },
+            },
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; min-height: 100dvh; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display flex flex-col min-h-screen">
+
+    <header id="main-header"></header>
+
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 py-8">
+        <!-- Search & Filter Header -->
+        <div class="mb-12">
+            <h1 class="text-3xl font-black mb-6">Explorer les talents</h1>
+            <div class="flex flex-col md:flex-row gap-4">
+                <div class="flex-grow relative">
+                    <div class="flex items-center absolute left-0 top-1/2 -translate-y-1/2 pl-4 text-primary">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <input class="w-full h-14 pl-12 pr-4 rounded-2xl border border-primary/10 bg-white dark:bg-slate-800 shadow-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none" placeholder="RECHERCHER : Nom, compétence, ville..."/>
+                </div>
+                <div class="flex gap-2 overflow-x-auto no-scrollbar pb-2 md:pb-0">
+                    <button class="shrink-0 h-14 px-6 rounded-2xl bg-white dark:bg-slate-800 border border-primary/10 font-bold flex items-center gap-2 hover:bg-primary/5">
+                        Catégorie <i class="fas fa-chevron-down text-[10px] ml-1"></i>
+                    </button>
+                    <button class="shrink-0 h-14 px-6 rounded-2xl bg-white dark:bg-slate-800 border border-primary/10 font-bold flex items-center gap-2 hover:bg-primary/5">
+                        Ville <i class="fas fa-chevron-down text-[10px] ml-1"></i>
+                    </button>
+                    <button class="bg-primary text-white p-3 rounded-2xl flex items-center justify-center shadow-lg shadow-primary/20">
+                        <i class="fas fa-sliders-h"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-between mb-8">
+            <h3 class="text-xl font-bold">Talents disponibles <span class="text-primary ml-2">124</span></h3>
+            <div class="flex items-center gap-2 text-sm font-medium text-slate-500">
+                Trier par : <span class="text-primary font-bold cursor-pointer">Pertinence</span>
+            </div>
+        </div>
+
+        <!-- Talent Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Talent Card 1 -->
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-sm border border-primary/5 hover:border-primary/20 transition-all group">
+                <div class="flex gap-4 items-start mb-6">
+                    <div class="size-20 rounded-2xl overflow-hidden shrink-0 ring-4 ring-primary/5 group-hover:ring-primary/20 transition-all">
+                        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpTHxZ7XAWHQtOlVilkmuuXz_kzk-XBUGg_73jxhBGFM7pxv9lD4Xv6-W5BSvFygfALpVbrSdyrKvJDpcXYzBfp13neMBl9URqXgqhWZY34MRGflAzVejVtRK5fCu4SvClZ7uPY9IXhJBI-Cm5vk1IRWYY1PcvmRWq5KIBufVwAPilEMrZsUawC29ZAv-eAOqRCudmgEQAQA6u8_8wKiPobG9eTHcQnllGwFaQfOuWIku3lkh7amL8qYTXmxedM8FvWyt18sCgOs"/>
+                    </div>
+                    <div class="flex-1 min-w-0 pt-2">
+                        <h4 class="text-slate-900 dark:text-slate-100 font-black text-xl truncate mb-1">Marie Lefebvre</h4>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-2 py-0.5 rounded">Expert</span>
+                            <span class="text-slate-400 text-xs flex items-center gap-1">
+                                <i class="fas fa-map-marker-alt text-[12px] mr-1 opacity-50"></i> Paris
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="px-3 py-1 bg-background-light dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-bold rounded-full">Gestion de projet</span>
+                    <span class="px-3 py-1 bg-background-light dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-bold rounded-full">Design UX/UI</span>
+                </div>
+                <button class="w-full py-4 bg-primary text-white font-bold rounded-2xl shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
+                    Voir le profil
+                </button>
+            </div>
+
+            <!-- Talent Card 2 -->
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-sm border border-primary/5 hover:border-primary/20 transition-all group">
+                <div class="flex gap-4 items-start mb-6">
+                    <div class="size-20 rounded-2xl overflow-hidden shrink-0 ring-4 ring-primary/5 group-hover:ring-primary/20 transition-all">
+                        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIQGomTclvBBy0RFgvtkPzdXI-cR-Mt4W8RNwiumszoTeHPtDXHv7YxEa1QFln8oiZfhKaLjMqRZhwk2MRnkzdx2NSXo7DNAyS-Nnci0b-_tlsdUmf7nusG72Whu63JezYP2NHSRaxX02taK2oxuIIQgNYanzoHxugE42MrL78Lm9OSZyY4MOhTcVl0FA-DmNvBd6Rv5WttvyzV_rJF7m8N3eoo2aCjrUpMjROznWgfL9rGpPwqFGV7foRsZtzymlffz1PjzmuWfs"/>
+                    </div>
+                    <div class="flex-1 min-w-0 pt-2">
+                        <h4 class="text-slate-900 dark:text-slate-100 font-black text-xl truncate mb-1">Thomas Dubois</h4>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-2 py-0.5 rounded">Senior</span>
+                            <span class="text-slate-400 text-xs flex items-center gap-1">
+                                <i class="fas fa-map-marker-alt text-[12px] mr-1 opacity-50"></i> Lyon
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="px-3 py-1 bg-background-light dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-bold rounded-full">Cloud Architect</span>
+                    <span class="px-3 py-1 bg-background-light dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-bold rounded-full">Python</span>
+                </div>
+                <button class="w-full py-4 bg-primary text-white font-bold rounded-2xl shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
+                    Voir le profil
+                </button>
+            </div>
+
+            <!-- More cards could go here -->
+        </div>
+    </main>
+
+    <footer id="main-footer"></footer>
+    <script src="assets/js/layout.js"></script>
+</body>
+</html>

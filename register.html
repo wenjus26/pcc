@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html class="light" lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>S'inscrire - PCC</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#33a50d",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#152210",
+                    },
+                    fontFamily: { "display": ["Inter", "sans-serif"] },
+                },
+            },
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; min-height: 100dvh; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display flex flex-col min-h-screen">
+
+    <header id="main-header"></header>
+
+    <main class="flex-grow flex items-center justify-center px-4 py-12">
+        <div class="max-w-md w-full bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-xl border border-primary/5">
+            <div class="flex items-center justify-between mb-8">
+                <button class="bg-white dark:bg-slate-800 p-2 rounded-full border border-slate-200 dark:border-slate-700 text-slate-400 hover:text-primary transition-colors">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <div class="flex gap-1">
+                    <div class="h-1.5 w-8 rounded-full bg-primary"></div>
+                    <div class="h-1.5 w-8 rounded-full bg-primary/20"></div>
+                    <div class="h-1.5 w-8 rounded-full bg-primary/20"></div>
+                </div>
+            </div>
+
+            <h2 class="text-3xl font-black mb-2">Créez votre compte</h2>
+            <p class="text-slate-500 mb-8 font-medium">Étape 1 sur 3 : Informations de base</p>
+
+            <form class="space-y-6">
+                <!-- Name -->
+                <div class="space-y-2">
+                    <label class="text-sm font-bold ml-1">Nom Complet</label>
+                    <div class="relative">
+                        <input class="w-full h-12 pl-12 pr-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-transparent focus:ring-2 focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 placeholder:text-slate-400" placeholder="Ex: Koffi Kouamé" type="text"/>
+                        <div class="absolute left-4 top-1/2 -translate-y-1/2 text-primary">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="space-y-2">
+                    <label class="text-sm font-bold ml-1">Email</label>
+                    <div class="relative">
+                        <input class="w-full h-12 pl-12 pr-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-transparent focus:ring-2 focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 placeholder:text-slate-400" placeholder="koffi@exemple.com" type="email"/>
+                        <div class="absolute left-4 top-1/2 -translate-y-1/2 text-primary">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="space-y-2">
+                    <label class="text-sm font-bold ml-1">Mot de passe</label>
+                    <div class="relative">
+                        <input class="w-full h-12 pl-12 pr-12 rounded-xl border border-slate-200 dark:border-slate-700 bg-transparent focus:ring-2 focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 placeholder:text-slate-400" placeholder="••••••••" type="password"/>
+                        <div class="absolute left-4 top-1/2 -translate-y-1/2 text-primary">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <button class="absolute right-4 text-slate-400 hover:text-primary" type="button">
+                            <i class="fas fa-eye text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="pt-4">
+                    <button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20" type="submit">
+                        Continuer
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </form>
+
+            <p class="text-center mt-8 text-sm font-medium text-slate-500">
+                Vous avez déjà un compte ? 
+                <a class="text-primary font-bold hover:underline" href="login.html">Se connecter</a>
+            </p>
+        </div>
+    </main>
+
+    <footer id="main-footer"></footer>
+    <script src="assets/js/layout.js"></script>
+</body>
+</html>

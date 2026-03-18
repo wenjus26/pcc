@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html class="light" lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>PCC - Plate-Forme Citoyenne des Compétences</title>
+    
+    <!-- Scripts & Styles -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#33a50d",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#152210",
+                        "accent-yellow": "#facc15",
+                        "accent-red": "#ef4444",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; min-height: 100dvh; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display flex flex-col min-h-screen">
+
+    <!-- Header will be injected here -->
+    <header id="main-header"></header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <header class="relative overflow-hidden pt-12 pb-20 px-4">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="z-10">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold mb-6 border border-primary/20">
+                        <span class="flex h-2 w-2 rounded-full bg-primary"></span>
+                        FIERTÉ NATIONALE DU BÉNIN
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-black leading-tight mb-6 text-slate-900 dark:text-slate-50">
+                        Valorisez vos compétences, <br/>
+                        <span class="text-primary">contribuez au développement</span> du Bénin
+                    </h1>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 mb-8 max-w-xl leading-relaxed">
+                        Plate-Forme Citoyenne des Compétences (PCC) : La vitrine digitale des talents béninois du monde entier pour bâtir la nation.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="px-8 py-4 bg-primary text-white font-bold rounded-lg shadow-lg shadow-primary/30 hover:scale-[1.02] transition-transform flex items-center gap-2">
+                            Rejoindre la communauté
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <a href="explore.html" class="px-8 py-4 border-2 border-primary/30 text-primary font-bold rounded-lg hover:bg-primary/5 transition-colors flex items-center justify-center">
+                            Découvrir les talents
+                        </a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute -top-20 -right-20 w-64 h-64 bg-accent-yellow/20 rounded-full blur-3xl"></div>
+                    <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-primary/20 rounded-full blur-3xl"></div>
+                    <div class="rounded-2xl overflow-hidden shadow-2xl border-4 border-white dark:border-slate-800 rotate-1">
+                        <div class="aspect-video bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCb2RtvwERWHH9LVQ49LLa_NDHO38MhD8DoCDAGSBAAp5w8hSPXfSsju7KLlKahhZSuq5Kv0dzBj5MidGUfAmN5I-ePCLOors0gecExR_vLwdw4zAk-pscwzH79HqBYizlVfu1Ynq40Y6WqlXJy_upJrmQbtmU0uFKCq11fdyJhthV_DSAD1XOUqVX27XR9v3I4pedlpWDyDfeff0eEvPrFnFBi0PDcw3uLLijhaBYBHC1CABxRZOXCxjAwpl6ZXL68j3Ympol63qM')"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- How it Works -->
+        <section class="py-20 bg-white dark:bg-slate-900/50">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <h2 class="text-3xl font-extrabold mb-4">Comment ça marche ?</h2>
+                <p class="text-slate-600 dark:text-slate-400 mb-12">Trois étapes simples pour transformer votre talent en impact.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="p-8 rounded-xl bg-background-light dark:bg-background-dark border border-primary/5 hover:border-primary/20 transition-all group">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6 mx-auto group-hover:scale-110 transition-transform">
+                            <i class="fas fa-user-plus text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">S'inscrire</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Créez votre profil citoyen en quelques clics et rejoignez le réseau national.</p>
+                    </div>
+                    <div class="p-8 rounded-xl bg-background-light dark:bg-background-dark border border-primary/5 hover:border-primary/20 transition-all group">
+                        <div class="w-16 h-16 bg-accent-yellow/10 rounded-full flex items-center justify-center text-accent-yellow mb-6 mx-auto group-hover:scale-110 transition-transform">
+                            <i class="fas fa-award text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Ajouter des compétences</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Listez vos diplômes, expertises et expériences pour valoriser votre savoir-faire.</p>
+                    </div>
+                    <div class="p-8 rounded-xl bg-background-light dark:bg-background-dark border border-primary/5 hover:border-primary/20 transition-all group">
+                        <div class="w-16 h-16 bg-accent-red/10 rounded-full flex items-center justify-center text-accent-red mb-6 mx-auto group-hover:scale-110 transition-transform">
+                            <i class="fas fa-rocket text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Trouver des opportunités</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Soyez sollicité pour des projets stratégiques et contribuez au développement du pays.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="py-20 px-4">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-16 items-center">
+                <div class="w-full md:w-1/2">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="aspect-square bg-cover bg-center rounded-lg shadow-md" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBpm3FKJWHEWisubuwH1RECBLlfYcigvXZILzLHw2opFdm6qvsKkkwpJIJKp15NYXHEOwyxhIZRr-i1slMzhN65K8LAShQek4U6YKhi7JvInNHessu_bx7-lDBhJZ5dnLf3qPuagEjs5NWm2TZslYrAawjsM6acivq17pnW50GzmglUOeUXB390Yvm50nIPHkT3njzOOj7YlIe0hwTbQQVE2dcvAog055W31GtlnJmTz2durHlMmlWLeN0hue0rtr9zRnRB1P1JQOc')"></div>
+                        <div class="aspect-square bg-cover bg-center rounded-lg shadow-md mt-8" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAFBcDhwf-J1MMDsp5RymDLPVsdOJis2zdGCiE761mTnQ1BbXQd7SZNakzM25_aZUkIw7vx3IX4a8OX8WVimHC-QM0Ic88dxE13BtvzdozNA4brlsMGMyEbDb0gzUnzk2e9Up0wnGH2hV2EircU5vkzIOJClDj3CCzmof2iZfWZkEgM_Ax3RxS2k8nYVUXvQsrxj7KZXCWELP51ZYQ3EXBdYEJyODIYjFlVPnV7nAdkQnpRgeS18cNI_ClR2hV_IsMuEFhGZamSCHA')"></div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-3xl font-extrabold mb-8">Pourquoi rejoindre PCC ?</h2>
+                    <div class="space-y-8">
+                        <div class="flex gap-4">
+                            <div class="mt-1 bg-primary/10 p-2 rounded-lg h-fit">
+                                <i class="fas fa-chart-line text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold mb-1">Croissance Professionnelle</h4>
+                                <p class="text-slate-500 text-sm">Accédez à des formations exclusives et à un réseau d'experts pour booster votre carrière.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="mt-1 bg-primary/10 p-2 rounded-lg h-fit">
+                                <i class="fas fa-eye text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold mb-1">Visibilité Maximale</h4>
+                                <p class="text-slate-500 text-sm">Votre profil est visible par les institutions publiques et les grandes entreprises privées.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="mt-1 bg-primary/10 p-2 rounded-lg h-fit">
+                                <i class="fas fa-globe text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold mb-1">Impact National</h4>
+                                <p class="text-slate-500 text-sm">Participez directement à la transformation socio-economic du Bénin par votre expertise.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Talents -->
+        <section class="py-20 bg-background-light dark:bg-background-dark/30 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex justify-between items-end mb-12">
+                    <div>
+                        <h2 class="text-3xl font-extrabold mb-2">Talents à la une</h2>
+                        <p class="text-slate-500">Découvrez les experts qui font bouger les lignes.</p>
+                    </div>
+                    <a href="explore.html" class="text-primary font-bold flex items-center gap-1 hover:underline">
+                        Tout voir <i class="fas fa-external-link-alt text-xs"></i>
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Talent Card 1 -->
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
+                        <img class="w-full h-48 object-cover rounded-lg mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_SoPdOkrB1T5TWWD-ogrJ9DOCmssoqcvD6l1ZybylDnANvc4MTrPaj-FrgQrhLv8hM8XB_3AKGzI-Vsts7ddUl-mUNm9J68jn7EH8C_SelqJC9joc6ejwbnkb1mB8YpaetLvkqDGRYyyoukDuSic903D5rz5vdkQ9g6k13iRAbh7qekWeNURPDvVwvTV3k6N8VlGzcK3EOZKMRgcoVHvVrBAc-9cd_zmGFyCaia1-wcVtSAXMPLclCb3ZkxKdvwLOUMJqpMh3krA"/>
+                        <h4 class="font-bold text-lg mb-1">Moussa Soglo</h4>
+                        <p class="text-primary text-sm font-medium mb-3">Ingénieur Cloud / DevOps</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-[10px] font-bold rounded">AWS</span>
+                            <span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-[10px] font-bold rounded">Docker</span>
+                        </div>
+                    </div>
+                    <!-- Talent Card 2 -->
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
+                        <img class="w-full h-48 object-cover rounded-lg mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHLJ0IZGBtZAxVyEWAOmW3ucnkZTTin2J2NxYVQ9FN95ANPg3AnS9HfO3bjujPFp3CJt0w7J1UWvvMaYPt55MMzhJ-R84Z7rKDA7fJ897xRziVF1Qhx5EqCJ-dlbjlmiNrw0pIYKP-uU2hLUHgLVx_QYexz3Y-mYN79saQjt0vcWGz9APTfxRHTxNFrQ7dce6Q8LQfsDNGMJ-BKrKZYBmOLMK4afPQIOH4Tt8Cu8cC1ViMoIHFtMhyM0oOkOJPTEIVvOYSFvrmTm8"/>
+                        <h4 class="font-bold text-lg mb-1">Yasmine Kodjo</h4>
+                        <p class="text-primary text-sm font-medium mb-3">Architecte d'intérieur</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-[10px] font-bold rounded">AutoCAD</span>
+                        </div>
+                    </div>
+                    <!-- ... more talents ... -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer will be injected here -->
+    <footer id="main-footer"></footer>
+
+    <!-- Layout scripts -->
+    <script src="assets/js/layout.js"></script>
+</body>
+</html>

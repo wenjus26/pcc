@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html class="light" lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Mon Profil - PCC</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#33a50d",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#152210",
+                    },
+                    fontFamily: { "display": ["Inter", "sans-serif"] },
+                },
+            },
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; min-height: 100dvh; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display flex flex-col min-h-screen">
+
+    <header id="main-header"></header>
+
+    <main class="flex-grow max-w-4xl mx-auto w-full px-4 py-12">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-xl overflow-hidden border border-primary/10">
+            <!-- Cover / Header -->
+            <div class="h-48 bg-gradient-to-r from-primary to-primary/60 relative">
+                <button class="absolute top-6 right-6 p-3 bg-white/20 hover:bg-white/40 text-white rounded-full backdrop-blur-md transition-all">
+                    <i class="fas fa-edit"></i>
+                </button>
+            </div>
+            
+            <div class="px-8 pb-12 -mt-16 relative">
+                <div class="flex flex-col md:flex-row gap-8 items-end mb-8">
+                    <div class="relative group">
+                        <div class="size-40 rounded-3xl border-8 border-white dark:border-slate-800 overflow-hidden shadow-2xl">
+                            <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuRj68CB3t6Ro8deoGcQI8WjfjN20lPYRHur6UIRgkMzvzCPWIGiR-iY6OXxM9SuxmNfe7sDMBASz5rtWalt-spiS-SUZZl4KMQ-mwpbywmVNmx_cmBtL7oS-R0RQdZpK_lGFI1ArQs_QfgKkXj6l3JY_2snPzLXn8hKT4g9KLeNywaFZYw_ZVtGWviyFn5JSWrCgHt641aRwz6cq5LXFHr2M7lkKSWPnLFRODhHpAnaf70PKWnz6ARfxLZxmt9p2xQzlBlUqK5rE"/>
+                        </div>
+                        <button class="absolute bottom-2 right-2 bg-primary text-white p-2 rounded-xl shadow-lg border-2 border-white dark:border-slate-800">
+                            <i class="fas fa-camera text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="flex-grow pb-2">
+                        <h2 class="text-3xl font-black mb-1">Jean Dupont</h2>
+                        <p class="text-primary font-bold text-lg mb-2">Architecte d'intérieur & Consultant</p>
+                        <div class="flex items-center gap-4 text-sm font-medium text-slate-400">
+                            <span class="flex items-center gap-1"><i class="fas fa-map-marker-alt text-sm"></i> Cotonou, Bénin</span>
+                            <span class="flex items-center gap-1"><i class="fas fa-check-circle text-sm"></i> Expert Vérifié</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <button class="px-8 py-3 bg-primary text-white font-bold rounded-2xl shadow-lg shadow-primary/20 hover:scale-[1.02] transition-all">Contacter</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                    <div class="lg:col-span-2 space-y-12">
+                        <!-- About -->
+                        <section>
+                            <h3 class="text-xl font-black mb-4 flex items-center gap-2">
+                                <i class="fas fa-user text-primary"></i> À propos
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-lg">
+                                Passionné par l'éco-design et l'aménagement d'espaces durables. Plus de 10 ans d'expérience dans la gestion de projets complexes et l'innovation citoyenne au service du développement métropolitain.
+                            </p>
+                        </section>
+
+                        <!-- Experience -->
+                        <section>
+                            <h3 class="text-xl font-black mb-6 flex items-center gap-2">
+                                <i class="fas fa-briefcase text-primary"></i> Expériences & Projets
+                            </h3>
+                            <div class="space-y-8">
+                                <div class="flex gap-6">
+                                    <div class="size-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                                        <i class="fas fa-pencil-ruler text-3xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-black">Rénovation Éco-Citoyenne</h4>
+                                        <p class="text-primary font-bold text-sm mb-2">Architecte Principal • 2022 - Présent</p>
+                                        <p class="text-slate-500 text-sm">Conception d'un centre communautaire utilisant des matériaux locaux et des techniques d'isolation passive pour minimiser l'empreinte carbone.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="lg:col-span-1 space-y-8">
+                        <section>
+                            <h3 class="font-black mb-4 flex items-center gap-2 uppercase tracking-widest text-xs text-slate-400">Compétences</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-primary/10 text-primary px-4 py-2 rounded-xl text-sm font-bold border border-primary/20">Eco-Design</span>
+                                <span class="bg-primary/10 text-primary px-4 py-2 rounded-xl text-sm font-bold border border-primary/20">Urbanisme</span>
+                                <span class="bg-primary/10 text-primary px-4 py-2 rounded-xl text-sm font-bold border border-primary/20">Consulting</span>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="main-footer"></footer>
+    <script src="assets/js/layout.js"></script>
+</body>
+</html>
