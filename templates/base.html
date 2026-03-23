@@ -1,0 +1,279 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html class="light" lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>{% block title %}PCC - Plate-Forme Citoyenne des Compétences{% endblock %}</title>
+    
+    <!-- Scripts & Styles -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#33a50d",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#152210",
+                        "accent-yellow": "#facc15",
+                        "accent-red": "#ef4444",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; min-height: 100dvh; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-primary/10 px-4 py-3">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <a href="{% url 'core:home' %}" class="flex items-center gap-2 group">
+                    <div class="bg-primary p-2 rounded-lg flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                        <i class="fas fa-star text-lg"></i>
+                    </div>
+                    <h1 class="text-xl font-extrabold tracking-tight text-primary">PCC</h1>
+                </a>
+            </div>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-bold uppercase tracking-widest">
+                <a class="{% if request.resolver_match.app_name == 'core' %}text-primary font-black{% else %}text-slate-600 dark:text-slate-400 hover:text-primary{% endif %} transition-colors" href="{% url 'core:home' %}">{% trans "Accueil" %}</a>
+                <a class="{% if request.resolver_match.app_name == 'citizens' %}text-primary font-black{% else %}text-slate-600 dark:text-slate-400 hover:text-primary{% endif %} transition-colors" href="{% url 'citizens:talent_list' %}">{% trans "Talents" %}</a>
+                <a class="{% if request.resolver_match.app_name == 'institutions' %}text-primary font-black{% else %}text-slate-600 dark:text-slate-400 hover:text-primary{% endif %} transition-colors" href="{% url 'institutions:opportunity_list' %}">{% trans "Opportunités" %}</a>
+                <a class="{% if request.resolver_match.app_name == 'content' and 'blog' in request.path %}text-primary font-black{% else %}text-slate-600 dark:text-slate-400 hover:text-primary{% endif %} transition-colors" href="{% url 'content:post_list' %}">{% trans "Blog" %}</a>
+                <a class="{% if request.resolver_match.app_name == 'content' and 'events' in request.path %}text-primary font-black{% else %}text-slate-600 dark:text-slate-400 hover:text-primary{% endif %} transition-colors" href="{% url 'content:event_list' %}">{% trans "Événements" %}</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <button class="p-2 text-slate-600 dark:text-slate-400 hover:bg-primary/10 rounded-full transition-colors">
+                    <i class="fas fa-search"></i>
+                </button>
+                
+                <div class="hidden sm:flex items-center gap-2">
+                    {% if user.is_authenticated %}
+                        <div class="flex items-center gap-4">
+                            <a href="#" class="text-slate-600 dark:text-slate-400 font-bold text-sm">{% trans "Mon Espace" %}</a>
+                            <form action="{% url 'accounts:logout' %}" method="post" class="inline">
+                                {% csrf_token %}
+                                <button type="submit" class="px-5 py-2 text-sm font-bold text-accent-red hover:bg-accent-red/10 rounded-xl transition-all">{% trans "Déconnexion" %}</button>
+                            </form>
+                        </div>
+                    {% else %}
+                        <a href="{% url 'accounts:login' %}" class="px-5 py-2 text-sm font-bold text-primary hover:bg-primary/10 rounded-xl transition-all">{% trans "Connexion" %}</a>
+                        <a href="#" class="px-5 py-2 text-sm font-bold bg-primary text-white rounded-xl shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">{% trans "Rejoindre" %}</a>
+                    {% endif %}
+                </div>
+                
+                <!-- Language Switcher -->
+                <div class="ml-2">
+                    <form action="{% url 'set_language' %}" method="post" class="flex items-center">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ request.get_full_path }}">
+                        <select name="language" onchange="this.form.submit()" class="bg-transparent border-none text-xs font-bold text-slate-600 dark:text-slate-400 outline-none cursor-pointer">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% for lang in LANGUAGES %}
+                                <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %}selected{% endif %}>
+                                    {{ lang.0|upper }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                </div>
+
+                <button id="mobile-menu-toggle" class="md:hidden p-2 text-slate-600 dark:text-slate-400 hover:bg-primary/10 rounded-full">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Compact Card Style) -->
+        <div id="mobile-menu" class="hidden absolute top-16 right-4 z-[60] w-64 bg-white/95 dark:bg-background-dark/95 backdrop-blur-md rounded-2xl shadow-2xl border border-primary/10 overflow-hidden transform origin-top-right transition-all duration-300 scale-95 opacity-0">
+            <div class="p-6 flex flex-col gap-4">
+                <nav class="flex flex-col gap-2 font-bold text-sm">
+                    <p class="text-[10px] uppercase tracking-[0.2em] text-slate-400 mb-2">{% trans "Navigation" %}</p>
+                    <a class="flex items-center justify-between p-3 rounded-xl {% if request.resolver_match.url_name == 'home' %}bg-primary/10 text-primary{% else %}hover:bg-primary/5 text-slate-600 dark:text-slate-400{% endif %}" href="{% url 'core:home' %}">
+                        {% trans "Accueil" %}
+                        <i class="fas fa-chevron-right text-[10px] opacity-30"></i>
+                    </a>
+                    <a class="flex items-center justify-between p-3 rounded-xl {% if request.resolver_match.app_name == 'citizens' %}bg-primary/10 text-primary{% else %}hover:bg-primary/5 text-slate-600 dark:text-slate-400{% endif %}" href="{% url 'citizens:talent_list' %}">
+                        {% trans "Talents" %}
+                        <i class="fas fa-chevron-right text-[10px] opacity-30"></i>
+                    </a>
+                    <a class="flex items-center justify-between p-3 rounded-xl {% if request.resolver_match.app_name == 'institutions' %}bg-primary/10 text-primary{% else %}hover:bg-primary/5 text-slate-600 dark:text-slate-400{% endif %}" href="{% url 'institutions:opportunity_list' %}">
+                        {% trans "Opportunités" %}
+                        <i class="fas fa-chevron-right text-[10px] opacity-30"></i>
+                    </a>
+                    <a class="flex items-center justify-between p-3 rounded-xl {% if request.resolver_match.app_name == 'content' and 'blog' in request.path %}bg-primary/10 text-primary{% else %}hover:bg-primary/5 text-slate-600 dark:text-slate-400{% endif %}" href="{% url 'content:post_list' %}">
+                        {% trans "Blog" %}
+                        <i class="fas fa-chevron-right text-[10px] opacity-30"></i>
+                    </a>
+                    <a class="flex items-center justify-between p-3 rounded-xl {% if request.resolver_match.app_name == 'content' and 'events' in request.path %}bg-primary/10 text-primary{% else %}hover:bg-primary/5 text-slate-600 dark:text-slate-400{% endif %}" href="{% url 'content:event_list' %}">
+                        {% trans "Événements" %}
+                        <i class="fas fa-chevron-right text-[10px] opacity-30"></i>
+                    </a>
+                </nav>
+
+                <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2">
+                    {% if user.is_authenticated %}
+                         <form action="{% url 'accounts:logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="w-full flex items-center justify-between p-3 text-accent-red font-bold text-sm rounded-xl hover:bg-accent-red/5">
+                                {% trans "Déconnexion" %}
+                                <i class="fas fa-sign-out-alt text-[10px] opacity-50"></i>
+                            </button>
+                        </form>
+                    {% else %}
+                        <a href="{% url 'accounts:login' %}" class="flex items-center justify-center p-3 border border-primary/20 text-primary rounded-xl text-sm font-bold hover:bg-primary/5 transition-colors">{% trans "Connexion" %}</a>
+                        <a href="#" class="flex items-center justify-center p-3 bg-primary text-white rounded-xl text-sm font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">{% trans "Rejoindre" %}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        {% if messages %}
+            <div class="max-w-7xl mx-auto px-4 mt-4">
+                {% for message in messages %}
+                    <div class="p-4 rounded-lg {% if message.tags == 'success' %}bg-green-100 text-green-700{% elif message.tags == 'error' %}bg-red-100 text-red-700{% else %}bg-blue-100 text-blue-700{% endif %} mb-4">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white pt-20 pb-10 px-4 mt-auto">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-16 border-b border-slate-800 pb-16">
+                <div class="col-span-1">
+                    <div class="flex items-center gap-2 mb-8">
+                        <div class="bg-primary p-2 rounded-xl flex items-center justify-center text-white scale-110">
+                            <i class="fas fa-star text-lg"></i>
+                        </div>
+                        <h1 class="text-2xl font-black tracking-tight">PCC</h1>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-8">
+                        {% trans "La Plate-Forme Citoyenne des Compétences est une initiative du Gouvernement pour valoriser les talents béninois." %}
+                    </p>
+                    <div class="flex gap-4">
+                        <a class="size-11 rounded-xl bg-slate-800 flex items-center justify-center hover:bg-primary hover:-translate-y-1 transition-all" href="#">
+                            <i class="fab fa-facebook-f text-lg"></i>
+                        </a>
+                        <a class="size-11 rounded-xl bg-slate-800 flex items-center justify-center hover:bg-primary hover:-translate-y-1 transition-all" href="#">
+                            <i class="fab fa-twitter text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h6 class="font-black mb-8 text-primary uppercase text-xs tracking-[0.2em]">{% trans "Plateforme" %}</h6>
+                    <ul class="space-y-5 text-sm font-bold text-slate-400">
+                        <li><a class="hover:text-white transition-colors" href="#">{% trans "Comment ça marche" %}</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">{% trans "Talents à la une" %}</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">{% trans "Offres d'emploi" %}</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="font-black mb-8 text-primary uppercase text-xs tracking-[0.2em]">{% trans "Support" %}</h6>
+                    <ul class="space-y-5 text-sm font-bold text-slate-400">
+                        <li><a class="hover:text-white transition-colors" href="#">{% trans "Aide & FAQ" %}</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">{% trans "Contact" %}</a></li>
+                    </ul>
+                </div>
+                <div class="bg-slate-800/50 p-8 rounded-3xl border border-slate-700">
+                    <h6 class="font-black mb-4 text-white uppercase text-xs tracking-[0.2em]">{% trans "Newsletter" %}</h6>
+                    <p class="text-xs text-slate-400 mb-6 font-medium">{% trans "Restez informé des dernières opportunités nationales." %}</p>
+                    <div class="flex gap-2">
+                        <input class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 text-xs font-medium focus:ring-1 focus:ring-primary outline-none" placeholder="Email"/>
+                        <button class="bg-primary p-3 rounded-xl text-white hover:bg-primary/90 transition-colors">
+                            <i class="fas fa-paper-plane text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center text-[10px] font-bold uppercase tracking-widest text-slate-500 gap-8">
+                <p>© 2024 PCC. {% trans "Tous droits réservés." %}</p>
+                <div class="flex gap-8 items-center">
+                    <a href="#" class="hover:text-white transition-colors">{% trans "Confidentialité" %}</a>
+                    <a href="#" class="hover:text-white transition-colors">{% trans "Cookies" %}</a>
+                    <div class="flex items-center gap-3 bg-slate-800 px-4 py-2 rounded-full border border-slate-700">
+                        <img alt="Drapeau du Bénin" class="rounded-sm shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEwnTrapCO6lQo9FMQP6i2RlQMe6q1f2rUpN0KHg5D6g9CnDUy_ZaHsu_Tjv6Q515lDeM7LCUZv0xoh_12Cy5NH9zZZUm_GpWToYDfULHdJWPeAFH6fXfOtqT2lv7cd17Ja-aa-ZZi_7SLgY56oi_GRZ8gnqjh_q8oM00SejcIW01aP05nPAUIsU1_jT2mwLwMf5LmpR0NbTI2beS6jq8c43urLSQsgo9h9Jt9sAT2t10wAm2z9ZpTIOGodoDh9a6MnBAbMl_J5c0" width="22"/>
+                        <span class="text-xs">{% trans "République du Bénin" %}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Layout scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('mobile-menu-toggle');
+            const menu = document.getElementById('mobile-menu');
+            const icon = toggle.querySelector('i');
+
+            toggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isHidden = menu.classList.contains('hidden');
+                
+                if (isHidden) {
+                    menu.classList.remove('hidden');
+                    // Trigger reflow for animation
+                    menu.offsetHeight;
+                    menu.classList.remove('scale-95', 'opacity-0');
+                    menu.classList.add('scale-100', 'opacity-100');
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    closeMenu();
+                }
+            });
+
+            function closeMenu() {
+                menu.classList.add('scale-95', 'opacity-0');
+                menu.classList.remove('scale-100', 'opacity-100');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                setTimeout(() => {
+                    menu.classList.add('hidden');
+                }, 300);
+            }
+
+            // Close on outside click
+            document.addEventListener('click', (e) => {
+                if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+                    if (!menu.classList.contains('hidden')) {
+                        closeMenu();
+                    }
+                }
+            });
+        });
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

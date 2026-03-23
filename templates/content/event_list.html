@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans "Événements & Masterclasses" %} - PCC{% endblock %}
+
+{% block content %}
+<main class="flex-grow max-w-7xl mx-auto w-full px-4 py-12 md:py-20">
+    <div class="mb-20 text-center max-w-3xl mx-auto">
+        <h1 class="text-4xl md:text-6xl font-black text-slate-900 dark:text-white tracking-tight mb-6">
+            {% trans "Forums &" %} <span class="text-primary italic">{% trans "Masterclasses" %}</span>
+        </h1>
+        <p class="text-slate-500 dark:text-slate-400 text-lg font-medium leading-relaxed">
+            {% trans "Rejoignez nos sessions exclusives de formation expert et nos forums de discussion thématiques pour booster votre impact." %}
+        </p>
+    </div>
+
+    <!-- Events Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        {% for event in events %}
+        <div class="group bg-white dark:bg-slate-800 rounded-[3rem] p-4 flex flex-col h-full border border-primary/5 hover:border-primary/20 hover:shadow-2xl hover:-translate-y-2 transition-all">
+            <div class="h-64 rounded-[2.5rem] overflow-hidden relative mb-8">
+                {% if event.image %}
+                    <img src="{{ event.image.url }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="{{ event.title }}">
+                {% else %}
+                    <div class="w-full h-full bg-slate-100 dark:bg-slate-900 flex items-center justify-center text-primary/10">
+                        <i class="fas fa-calendar-star text-5xl"></i>
+                    </div>
+                {% endif %}
+                <div class="absolute top-6 left-6">
+                    <span class="px-5 py-3 bg-white/90 dark:bg-slate-800/90 backdrop-blur-xl rounded-2xl text-[10px] font-black uppercase tracking-widest text-primary shadow-2xl">
+                        {{ event.get_event_type_display }}
+                    </span>
+                </div>
+            </div>
+            
+            <div class="px-6 pb-8 flex-grow flex flex-col">
+                <div class="flex items-center gap-4 text-xs font-black text-slate-400 uppercase tracking-widest mb-4">
+                    <span class="flex items-center gap-2"><i class="fas fa-calendar-alt text-primary/40"></i> {{ event.date|date:"d M Y" }}</span>
+                    <span class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-primary/40"></i> {{ event.location }}</span>
+                </div>
+                
+                <h4 class="text-2xl font-black text-slate-900 dark:text-white mb-6 group-hover:text-primary transition-colors leading-tight">{{ event.title }}</h4>
+                <p class="text-slate-500 dark:text-slate-400 font-medium line-clamp-3 mb-10 leading-relaxed italic">
+                    {{ event.description }}
+                </p>
+                
+                <button class="w-full py-5 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20 hover:scale-[1.05] transition-all mt-auto flex items-center justify-center gap-3">
+                    {% trans "S'inscrire à l'événement" %}
+                    <i class="fas fa-paper-plane text-xs opacity-60"></i>
+                </button>
+            </div>
+        </div>
+        {% empty %}
+            <div class="col-span-full py-20 text-center">
+                <p class="text-slate-400 italic">{% trans "Aucun événement prévu pour le moment." %}</p>
+            </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}

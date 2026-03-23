@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static i18n widget_tweaks %}
+
+{% block title %}{% trans "Connexion" %} - PCC{% endblock %}
+
+{% block content %}
+    <div class="flex-grow flex items-center justify-center p-4 sm:p-8">
+        <div class="w-full max-w-md">
+            <div class="mb-8 text-center">
+                <a class="inline-flex items-center text-primary font-medium hover:opacity-80 transition-opacity" href="{% url 'core:home' %}">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    {% trans "Retour à l'accueil" %}
+                </a>
+            </div>
+            <div class="bg-white dark:bg-background-dark/50 p-8 rounded-2xl shadow-xl border border-primary/10">
+                <div class="mb-8 text-center">
+                    <h1 class="text-slate-900 dark:text-slate-100 text-3xl font-black leading-tight mb-2">{% trans "Bon retour !" %}</h1>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm">{% trans "Connectez-vous à votre espace PCC" %}</p>
+                </div>
+                
+                <form method="post" class="space-y-5">
+                    {% csrf_token %}
+                    
+                    {% if form.non_field_errors %}
+                        <div class="p-3 rounded-lg bg-red-100 text-red-700 text-sm">
+                            {% for error in form.non_field_errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <div class="flex flex-col gap-2">
+                        <label class="text-slate-900 dark:text-slate-100 text-sm font-semibold">{% trans "Nom d'utilisateur" %}</label>
+                        {% render_field form.username class="w-full h-12 px-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-transparent focus:ring-2 focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 placeholder:text-slate-400" placeholder="Username" %}
+                        {% if form.username.errors %}
+                            <p class="text-red-500 text-xs">{{ form.username.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <div class="flex justify-between items-center">
+                            <label class="text-slate-900 dark:text-slate-100 text-sm font-semibold">{% trans "Mot de passe" %}</label>
+                            <a class="text-primary text-xs font-semibold hover:underline" href="#">{% trans "Oublié ?" %}</a>
+                        </div>
+                        <div class="relative flex items-center">
+                            {% render_field form.password class="w-full h-12 pl-12 pr-12 rounded-xl border border-slate-200 dark:border-slate-700 bg-transparent focus:ring-2 focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 placeholder:text-slate-400" placeholder="••••••••" %}
+                            <div class="absolute left-4 top-1/2 -translate-y-1/2 text-primary">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                        </div>
+                        {% if form.password.errors %}
+                            <p class="text-red-500 text-xs">{{ form.password.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-primary/20" type="submit">
+                        {% trans "Se connecter" %}
+                    </button>
+                    
+                    <input type="hidden" name="next" value="{{ next }}">
+                </form>
+                
+                <div class="relative my-8">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-slate-200 dark:border-slate-700"></div>
+                    </div>
+                    <div class="relative flex justify-center text-xs uppercase">
+                        <span class="bg-white dark:bg-background-dark px-2 text-slate-500">{% trans "Ou" %}</span>
+                    </div>
+                </div>
+                
+                <p class="text-center text-slate-600 dark:text-slate-400 text-sm">
+                    {% trans "Pas encore de compte ?" %} 
+                    <a class="text-primary font-bold hover:underline" href="#">{% trans "S'inscrire" %}</a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

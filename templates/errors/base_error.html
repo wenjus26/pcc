@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ code }} - PCC{% endblock %}
+
+{% block content %}
+<div class="flex-grow flex items-center justify-center p-8 bg-slate-50 dark:bg-background-dark/20">
+    <div class="max-w-md w-full text-center">
+        <div class="mb-10 relative">
+            <h1 class="text-[120px] font-black text-primary/10 select-none">{{ code }}</h1>
+            <div class="absolute inset-0 flex items-center justify-center">
+                <i class="fas {{ icon }} text-6xl text-primary drop-shadow-lg"></i>
+            </div>
+        </div>
+        
+        <h2 class="text-3xl font-black text-slate-900 dark:text-slate-50 mb-4">{{ title }}</h2>
+        <p class="text-slate-600 dark:text-slate-400 mb-10 leading-relaxed font-medium">
+            {{ message }}
+        </p>
+        
+        <a href="{% url 'core:home' %}" class="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20 hover:scale-105 transition-all">
+            <i class="fas fa-home"></i>
+            {% trans "Retour à l'accueil" %}
+        </a>
+    </div>
+</div>
+{% endblock %}

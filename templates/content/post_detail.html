@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block title %}{{ post.title }} - Blog PCC{% endblock %}
+
+{% block content %}
+<main class="flex-grow">
+    <!-- Hero Header -->
+    <header class="relative h-[400px] md:h-[600px] overflow-hidden">
+        {% if post.image %}
+            <img src="{{ post.image.url }}" class="absolute inset-0 w-full h-full object-cover" alt="{{ post.title }}">
+        {% else %}
+            <div class="absolute inset-0 bg-gradient-to-br from-primary to-primary/60"></div>
+        {% endif %}
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+        
+        <div class="max-w-5xl mx-auto px-4 h-full flex flex-col justify-end pb-16 relative z-10">
+            <div class="mb-8">
+                <a href="{% url 'content:post_list' %}" class="inline-flex items-center gap-3 px-6 py-3 bg-white/20 hover:bg-white/40 text-white rounded-2xl backdrop-blur-xl transition-all shadow-xl font-bold text-sm">
+                    <i class="fas fa-arrow-left"></i>
+                    {% trans "Retour au blog" %}
+                </a>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-white leading-tight mb-8 drop-shadow-lg">{{ post.title }}</h1>
+            <div class="flex flex-wrap items-center gap-10 text-white/80 font-bold text-sm">
+                <div class="flex items-center gap-3">
+                    <div class="size-10 bg-primary rounded-xl flex items-center justify-center text-white">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span>{{ post.author.get_full_name|default:post.author.username }}</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-calendar-alt text-primary"></i>
+                    <span>{{ post.created_at|date:"d F Y" }}</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <section class="max-w-4xl mx-auto px-4 py-16 md:py-24">
+        <div class="bg-white dark:bg-slate-800 rounded-[3rem] p-10 md:p-16 border border-primary/5 shadow-2xl shadow-primary/5 -mt-32 relative z-20">
+            <article class="prose prose-lg dark:prose-invert max-w-none prose-img:rounded-3xl prose-headings:font-black prose-headings:tracking-tight prose-a:text-primary prose-a:font-black">
+                {{ post.content|safe }}
+            </article>
+            
+            <div class="mt-16 pt-16 border-t border-slate-100 dark:border-slate-700 flex flex-wrap justify-between items-center gap-10">
+                <div class="flex items-center gap-4">
+                    <p class="text-sm font-black text-slate-400 uppercase tracking-widest">{% trans "Partager" %}</p>
+                    <div class="flex gap-2">
+                        <button class="size-14 rounded-2xl bg-slate-50 dark:bg-slate-900 flex items-center justify-center text-slate-400 hover:text-primary transition-all">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </button>
+                        <button class="size-14 rounded-2xl bg-slate-50 dark:bg-slate-900 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-primary transition-all">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-10">
+                    <button class="text-sm font-black text-slate-400 hover:text-primary transition-all flex items-center gap-2">
+                        <i class="fas fa-bookmark"></i>
+                        {% trans "Sauvegarder" %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

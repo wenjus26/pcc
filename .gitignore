@@ -1,0 +1,39 @@
+# --- System & IDE ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# --- Python & Django ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+db.sqlite3
+media/
+staticfiles/
+
+# --- Environment Secrets (NEVER COMMIT THESE) ---
+.env
+.env.local
+.env.*
+
+# --- Docker & SSL ---
+certs/
+certbot-www/
+/nginx/certs/
+/nginx/certbot-www/
+mysql_data/
+/data/

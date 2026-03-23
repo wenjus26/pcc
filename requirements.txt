@@ -1,0 +1,12 @@
+django>=5.1,<5.2
+django-environ
+django-extensions
+dj-database-url
+mysqlclient
+psycopg2-binary
+Pillow
+django-modeltranslation
+django-widget-tweaks
+whiteNoise
+gunicorn
+python-dotenv

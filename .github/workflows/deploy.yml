@@ -1,0 +1,47 @@
+name: Producion Deployment
+
+on:
+  push:
+    branches: [ "main" ] # Assumes your production branch is 'main'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to VPS via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          passphrase: ${{ secrets.VPS_SSH_PASSPHRASE }} # If any
+          script: |
+            # 1. Create site directory and SSL folders
+            sudo mkdir -p /var/www/pcc/certs /var/www/pcc/certbot-www
+            sudo chown -R $USER:$USER /var/www/pcc
+            
+            # 2. Enter site directory
+            cd /var/www/pcc
+            
+            # 3. Pull latest code or clone
+            if [ -d ".git" ]; then
+              git pull origin main
+            else
+              git clone git@github.com:wenjus26/pcc.git .
+            fi
+            
+            # 4. Rebuild and restart services
+            docker compose -f docker-compose.yml up -d --build
+            
+            # 5. Health Check
+            echo "Waiting for health check..."
+            sleep 10
+            curl -f http://localhost/health/ || (echo "❌ Health check failed" && exit 1)
+            
+            # 6. Clean up unused images
+            docker image prune -f
+            
+            echo "✅ PCC (pcc.beninsoya.com) Deployment Successfully Completed!"
