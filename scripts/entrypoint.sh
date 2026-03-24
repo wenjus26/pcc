@@ -20,5 +20,5 @@ echo "Starting Gunicorn server..."
 exec gunicorn pcc.wsgi:application \
     --bind 0.0.0.0:8013 \
     --workers 3 \
-    --access-logdev - \
+    --access-logfile - \
     --error-logfile -
