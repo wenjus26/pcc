@@ -39,7 +39,7 @@ jobs:
             # 5. Health Check
             echo "Waiting for health check..."
             sleep 10
-            curl -f http://localhost/health/ || (echo "❌ Health check failed" && exit 1)
+            curl -f http://127.0.0.1:8013/health/ || (echo "❌ Health check failed" && exit 1)
             
             # 6. Clean up unused images
             docker image prune -f

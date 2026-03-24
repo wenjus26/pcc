@@ -34,4 +34,6 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 # RUN useradd -u 1000 django
 # USER django
 
+EXPOSE 8013
+
 ENTRYPOINT ["entrypoint.sh"]

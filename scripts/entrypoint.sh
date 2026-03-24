@@ -18,7 +18,7 @@ python manage.py compilemessages || true
 echo "Starting Gunicorn server..."
 # Using gunicorn for production
 exec gunicorn pcc.wsgi:application \
-    --bind 0.0.0.0:8000 \
+    --bind 0.0.0.0:8013 \
     --workers 3 \
     --access-logdev - \
     --error-logfile -
