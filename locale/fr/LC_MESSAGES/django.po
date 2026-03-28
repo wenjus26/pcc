@@ -1,0 +1,789 @@
+# PCC French Translations
+# Copyright (C) 2026
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PCC 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-24 13:35+0100\n"
+"PO-Revision-Date: 2026-03-24 13:35+0100\n"
+"Last-Translator: PCC Team\n"
+"Language-Team: French\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: .\apps\accounts\models.py:11
+msgid "Citoyen / Membre"
+msgstr ""
+
+#: .\apps\accounts\models.py:12
+msgid "Institution / Entreprise"
+msgstr ""
+
+#: .\apps\accounts\models.py:13
+msgid "Administrateur"
+msgstr ""
+
+#: .\apps\accounts\models.py:29
+msgid "Utilisateur"
+msgstr ""
+
+#: .\apps\accounts\models.py:30
+msgid "Utilisateurs"
+msgstr ""
+
+#: .\apps\citizens\models.py:12
+msgid "Catégorie"
+msgstr ""
+
+#: .\apps\citizens\models.py:13
+msgid "Catégories"
+msgstr ""
+
+#: .\apps\citizens\models.py:23 .\templates\citizens\talent_list.html:28
+msgid "Compétence"
+msgstr ""
+
+#: .\apps\citizens\models.py:24
+msgid "Compétences"
+msgstr ""
+
+#: .\apps\citizens\models.py:48
+msgid "Profil Citoyen"
+msgstr ""
+
+#: .\apps\citizens\models.py:49
+msgid "Profils Citoyens"
+msgstr ""
+
+#: .\apps\citizens\models.py:64
+msgid "Expérience"
+msgstr ""
+
+#: .\apps\citizens\models.py:65
+msgid "Expériences"
+msgstr ""
+
+#: .\apps\citizens\models.py:79
+msgid "Éducation"
+msgstr ""
+
+#: .\apps\citizens\models.py:80
+msgid "Éducations"
+msgstr ""
+
+#: .\apps\citizens\models.py:92
+msgid "Curriculum Vitae"
+msgstr ""
+
+#: .\apps\citizens\models.py:93
+msgid "Diplôme"
+msgstr ""
+
+#: .\apps\citizens\models.py:94
+msgid "Certificat"
+msgstr ""
+
+#: .\apps\citizens\models.py:95
+msgid "Autre"
+msgstr ""
+
+#: .\apps\citizens\models.py:106
+msgid "Document"
+msgstr ""
+
+#: .\apps\citizens\models.py:107
+msgid "Documents"
+msgstr ""
+
+#: .\apps\content\models.py:17 .\templates\content\post_list.html:57
+msgid "Article"
+msgstr ""
+
+#: .\apps\content\models.py:18
+msgid "Articles"
+msgstr ""
+
+#: .\apps\content\models.py:29
+msgid "Forum"
+msgstr ""
+
+#: .\apps\content\models.py:30
+msgid "Masterclass"
+msgstr ""
+
+#: .\apps\content\models.py:31
+msgid "Conférence"
+msgstr ""
+
+#: .\apps\content\models.py:44
+msgid "Événement"
+msgstr ""
+
+#: .\apps\content\models.py:45 .\templates\base.html:63
+#: .\templates\base.html:131
+msgid "Événements"
+msgstr ""
+
+#: .\apps\content\models.py:58
+msgid "Ressource"
+msgstr ""
+
+#: .\apps\content\models.py:59
+msgid "Ressources"
+msgstr ""
+
+#: .\apps\institutions\models.py:21
+msgid "Profil Institutionnel"
+msgstr ""
+
+#: .\apps\institutions\models.py:22
+msgid "Profils Institutionnels"
+msgstr ""
+
+#: .\apps\institutions\models.py:33
+msgid "Brouillon"
+msgstr ""
+
+#: .\apps\institutions\models.py:34
+#: .\templates\institutions\opportunity_list.html:30
+msgid "Ouvert"
+msgstr ""
+
+#: .\apps\institutions\models.py:35
+msgid "Clôturé"
+msgstr ""
+
+#: .\apps\institutions\models.py:53
+msgid "Opportunité / Projet"
+msgstr ""
+
+#: .\apps\institutions\models.py:54
+msgid "Opportunités / Projets"
+msgstr ""
+
+#: .\apps\matching\models.py:13
+msgid "En attente"
+msgstr ""
+
+#: .\apps\matching\models.py:14
+msgid "Acceptée"
+msgstr ""
+
+#: .\apps\matching\models.py:15
+msgid "Refusée"
+msgstr ""
+
+#: .\apps\matching\models.py:28
+msgid "Candidature"
+msgstr ""
+
+#: .\apps\matching\models.py:29
+#: .\templates\institutions\opportunity_detail.html:100
+msgid "Candidatures"
+msgstr ""
+
+#: .\apps\matching\models.py:44
+msgid "Match"
+msgstr ""
+
+#: .\apps\matching\models.py:45
+msgid "Matchs"
+msgstr ""
+
+#: .\templates\accounts\login.html:4 .\templates\base.html:81
+#: .\templates\base.html:146
+msgid "Connexion"
+msgstr ""
+
+#: .\templates\accounts\login.html:12
+msgid "Retour à l'accueil"
+msgstr ""
+
+#: .\templates\accounts\login.html:17
+msgid "Bon retour !"
+msgstr ""
+
+#: .\templates\accounts\login.html:18
+msgid "Connectez-vous à votre espace PCC"
+msgstr ""
+
+#: .\templates\accounts\login.html:33
+msgid "Nom d'utilisateur"
+msgstr ""
+
+#: .\templates\accounts\login.html:42
+msgid "Mot de passe"
+msgstr ""
+
+#: .\templates\accounts\login.html:43
+msgid "Oublié ?"
+msgstr ""
+
+#: .\templates\accounts\login.html:57
+msgid "Se connecter"
+msgstr ""
+
+#: .\templates\accounts\login.html:68
+msgid "Ou"
+msgstr ""
+
+#: .\templates\accounts\login.html:73
+msgid "Pas encore de compte ?"
+msgstr ""
+
+#: .\templates\accounts\login.html:74
+msgid "S'inscrire"
+msgstr ""
+
+#: .\templates\base.html:59 .\templates\base.html:115
+msgid "Accueil"
+msgstr ""
+
+#: .\templates\base.html:60 .\templates\base.html:119
+msgid "Talents"
+msgstr ""
+
+#: .\templates\base.html:61 .\templates\base.html:123
+#: .\templates\institutions\opportunity_list.html:4
+msgid "Opportunités"
+msgstr ""
+
+#: .\templates\base.html:62 .\templates\base.html:127
+msgid "Blog"
+msgstr ""
+
+#: .\templates\base.html:74
+msgid "Mon Espace"
+msgstr ""
+
+#: .\templates\base.html:77 .\templates\base.html:141
+msgid "Déconnexion"
+msgstr ""
+
+#: .\templates\base.html:82 .\templates\base.html:147
+msgid "Rejoindre"
+msgstr ""
+
+#: .\templates\base.html:113
+msgid "Navigation"
+msgstr ""
+
+#: .\templates\base.html:178
+msgid ""
+"La Plate-Forme Citoyenne des Compétences est une initiative citoyenne un Think Tank Citoyen "
+"pour valoriser les talents béninois."
+msgstr ""
+
+#: .\templates\base.html:190
+msgid "Plateforme"
+msgstr ""
+
+#: .\templates\base.html:192
+msgid "Comment ça marche"
+msgstr ""
+
+#: .\templates\base.html:193
+msgid "Talents à la une"
+msgstr ""
+
+#: .\templates\base.html:194
+msgid "Offres d'emploi"
+msgstr ""
+
+#: .\templates\base.html:198
+msgid "Support"
+msgstr ""
+
+#: .\templates\base.html:200
+msgid "Aide & FAQ"
+msgstr ""
+
+#: .\templates\base.html:201
+msgid "Contact"
+msgstr ""
+
+#: .\templates\base.html:205
+msgid "Newsletter"
+msgstr ""
+
+#: .\templates\base.html:206
+msgid "Restez informé des dernières opportunités nationales."
+msgstr ""
+
+#: .\templates\base.html:216
+msgid "Tous droits réservés."
+msgstr ""
+
+#: .\templates\base.html:218
+msgid "Confidentialité"
+msgstr ""
+
+#: .\templates\base.html:219
+msgid "Cookies"
+msgstr ""
+
+#: .\templates\base.html:222
+msgid "République du Bénin"
+msgstr ""
+
+#: .\templates\citizens\profile_detail.html:14
+#: .\templates\citizens\profile_form.html:4
+msgid "Modifier mon profil"
+msgstr ""
+
+#: .\templates\citizens\profile_detail.html:30
+msgid "Profil Vérifié"
+msgstr ""
+
+#: .\templates\citizens\profile_detail.html:35
+msgid "Profession non spécifiée"
+msgstr ""
+
+#: .\templates\citizens\profile_detail.html:37
+#: .\templates\citizens\talent_list.html:69
+#: .\templates\institutions\opportunity_detail.html:24
+#: .\templates\institutions\opportunity_list.html:68
+msgid "Bénin"
+msgstr ""
+
+#: .\templates\citizens\profile_detail.html:38
+msgid "ans d'expérience"
+msgstr ""
+
+#: .\templates\citizens\profile_detail.html:39
+msgid "Disponible"
+msgstr ""
+
+#: .\templates\citizens\profile_detail.html:46
+msgid "Contacter"
+msgstr ""
+
+#: .\templates\citizens\profile_detail.html:61
+msgid "Biographie & Objectifs"
+msgstr ""
+
+#: .\templates\citizens\profile_detail.html:64
+msgid "Aucune biographie disponible pour le moment."
+msgstr ""
+
+#: .\templates\citizens\profile_detail.html:74
+msgid "Expériences & Projets"
+msgstr ""
+
+#: .\templates\citizens\profile_detail.html:84
+msgid "Présent"
+msgstr ""
+
+#: .\templates\citizens\profile_detail.html:89
+msgid "Aucune expérience renseignée."
+msgstr ""
+
+#: .\templates\citizens\profile_detail.html:100
+msgid "Formation Académique"
+msgstr ""
+
+#: .\templates\citizens\profile_detail.html:110
+msgid "Aucun diplôme renseigné."
+msgstr ""
+
+#: .\templates\citizens\profile_detail.html:121
+msgid "Expertise & Compétences"
+msgstr ""
+
+#: .\templates\citizens\profile_detail.html:134
+msgid "Aucune compétence listée."
+msgstr ""
+
+#: .\templates\citizens\profile_detail.html:142
+msgid "Documents vérifiés"
+msgstr ""
+
+#: .\templates\citizens\profile_detail.html:155
+msgid "Document Vérifié"
+msgstr ""
+
+#: .\templates\citizens\profile_detail.html:159
+msgid "Aucun document partagé."
+msgstr ""
+
+#: .\templates\citizens\profile_form.html:11
+msgid "Retour au profil"
+msgstr ""
+
+#: .\templates\citizens\profile_form.html:18
+msgid "Paramètres du Profil"
+msgstr ""
+
+#: .\templates\citizens\profile_form.html:28
+msgid "Biographie professionnelle"
+msgstr ""
+
+#: .\templates\citizens\profile_form.html:29
+msgid "Parlez-nous de votre parcours et de vos ambitions..."
+msgstr ""
+
+#: .\templates\citizens\profile_form.html:37
+msgid "Intitulé du poste actuel"
+msgstr ""
+
+#: .\templates\citizens\profile_form.html:46
+msgid "Localisation"
+msgstr ""
+
+#: .\templates\citizens\profile_form.html:47
+msgid "Ville, Pays"
+msgstr ""
+
+#: .\templates\citizens\profile_form.html:55
+msgid "Années d'expérience"
+msgstr ""
+
+#: .\templates\citizens\profile_form.html:64
+msgid "Disponibilité"
+msgstr ""
+
+#: .\templates\citizens\profile_form.html:65
+msgid "Immédiate, 1 mois..."
+msgstr ""
+
+#: .\templates\citizens\profile_form.html:74
+msgid "Visibilité publique"
+msgstr ""
+
+#: .\templates\citizens\profile_form.html:75
+msgid "Votre profil sera visible par les recruteurs et institutions."
+msgstr ""
+
+#: .\templates\citizens\profile_form.html:85
+msgid "Annuler"
+msgstr ""
+
+#: .\templates\citizens\profile_form.html:87
+msgid "Enregistrer les modifications"
+msgstr ""
+
+#: .\templates\citizens\talent_list.html:4
+msgid "Explorer les Talents"
+msgstr ""
+
+#: .\templates\citizens\talent_list.html:10
+msgid "Explorer les talents"
+msgstr ""
+
+#: .\templates\citizens\talent_list.html:17
+msgid "Nom, rôle, biographie..."
+msgstr ""
+
+#: .\templates\citizens\talent_list.html:23
+msgid "Ville / Pays"
+msgstr ""
+
+#: .\templates\citizens\talent_list.html:33
+msgid "Actualiser"
+msgstr ""
+
+#: .\templates\citizens\talent_list.html:42
+msgid "Talents disponibles"
+msgstr ""
+
+#: .\templates\citizens\talent_list.html:47
+msgid "Trier par"
+msgstr ""
+
+#: .\templates\citizens\talent_list.html:48
+msgid "Pertinence"
+msgstr ""
+
+#: .\templates\citizens\talent_list.html:50
+msgid "Nouveauté"
+msgstr ""
+
+#: .\templates\citizens\talent_list.html:66
+msgid "Expert"
+msgstr ""
+
+#: .\templates\citizens\talent_list.html:66
+msgid "Senior"
+msgstr ""
+
+#: .\templates\citizens\talent_list.html:76
+msgid "Consultant Indépendant"
+msgstr ""
+
+#: .\templates\citizens\talent_list.html:88
+msgid "Voir le profil"
+msgstr ""
+
+#: .\templates\citizens\talent_list.html:97
+msgid "Aucun talent trouvé"
+msgstr ""
+
+#: .\templates\citizens\talent_list.html:98
+msgid "Essayez d'ajuster vos filtres de recherche."
+msgstr ""
+
+#: .\templates\content\event_list.html:4
+msgid "Événements & Masterclasses"
+msgstr ""
+
+#: .\templates\content\event_list.html:10
+msgid "Forums &"
+msgstr ""
+
+#: .\templates\content\event_list.html:10
+msgid "Masterclasses"
+msgstr ""
+
+#: .\templates\content\event_list.html:13
+msgid ""
+"Rejoignez nos sessions exclusives de formation expert et nos forums de "
+"discussion thématiques pour booster votre impact."
+msgstr ""
+
+#: .\templates\content\event_list.html:48
+msgid "S'inscrire à l'événement"
+msgstr ""
+
+#: .\templates\content\event_list.html:55
+msgid "Aucun événement prévu pour le moment."
+msgstr ""
+
+#: .\templates\content\post_detail.html:21
+msgid "Retour au blog"
+msgstr ""
+
+#: .\templates\content\post_detail.html:49
+#: .\templates\institutions\opportunity_detail.html:123
+msgid "Partager"
+msgstr ""
+
+#: .\templates\content\post_detail.html:63
+msgid "Sauvegarder"
+msgstr ""
+
+#: .\templates\content\post_list.html:4
+msgid "Blog & Actualités"
+msgstr ""
+
+#: .\templates\content\post_list.html:10
+msgid "Explorez nos"
+msgstr ""
+
+#: .\templates\content\post_list.html:10
+msgid "Actualités"
+msgstr ""
+
+#: .\templates\content\post_list.html:13
+msgid ""
+"Restez informé des dernières tendances du marché, des innovations citoyennes "
+"et des succès de la plateforme PCC."
+msgstr ""
+
+#: .\templates\content\post_list.html:29
+msgid "À la une"
+msgstr ""
+
+#: .\templates\content\post_list.html:36 .\templates\core\home.html:175
+msgid "Lire l'article"
+msgstr ""
+
+#: .\templates\content\post_list.html:84
+msgid "Aucun article publié pour le moment."
+msgstr ""
+
+#: .\templates\core\home.html:14
+msgid "Plateforme Citoyenne de Compétences"
+msgstr ""
+
+#: .\templates\core\home.html:17
+msgid "Propulsez votre"
+msgstr ""
+
+#: .\templates\core\home.html:18
+msgid "expertise"
+msgstr ""
+
+#: .\templates\core\home.html:18
+msgid "béninoise"
+msgstr ""
+
+#: .\templates\core\home.html:21
+msgid ""
+"La vitrine digitale des talents pour bâtir l'avenir du Bénin. Connectez-vous "
+"aux projets stratégiques de la nation."
+msgstr ""
+
+#: .\templates\core\home.html:25
+msgid "S'inscrire gratuitement"
+msgstr ""
+
+#: .\templates\core\home.html:29
+msgid "Découvrir les talents"
+msgstr ""
+
+#: .\templates\core\home.html:40
+msgid "Experts déjà inscrits"
+msgstr ""
+
+#: .\templates\core\home.html:55
+msgid "Satisfaction Client"
+msgstr ""
+
+#: .\templates\core\home.html:66
+msgid "Profils vérifiés par les instances nationales"
+msgstr ""
+
+#: .\templates\core\home.html:79
+msgid "Impact Direct"
+msgstr ""
+
+#: .\templates\core\home.html:80
+msgid "Dernières Opportunités Nationales"
+msgstr ""
+
+#: .\templates\core\home.html:81
+msgid ""
+"Répondez aux appels à projets stratégiques du gouvernement et des "
+"institutions."
+msgstr ""
+
+#: .\templates\core\home.html:84
+msgid "Voir tout"
+msgstr ""
+
+#: .\templates\core\home.html:109
+msgid "Chargement des opportunités..."
+msgstr ""
+
+#: .\templates\core\home.html:119
+msgid "Élite Béninoise"
+msgstr ""
+
+#: .\templates\core\home.html:120
+msgid "Portraits d'Experts"
+msgstr ""
+
+#: .\templates\core\home.html:133
+msgid "Consultant"
+msgstr ""
+
+#: .\templates\core\home.html:140
+msgid "Profil complet"
+msgstr ""
+
+#: .\templates\core\home.html:155
+msgid "L'Actualité du Talent"
+msgstr ""
+
+#: .\templates\core\home.html:157
+msgid "Toute l'actualité"
+msgstr ""
+
+#: .\templates\core\home.html:182
+msgid "News"
+msgstr ""
+
+#: .\templates\core\home.html:201
+msgid "Prêt à contribuer à l'essor"
+msgstr ""
+
+#: .\templates\core\home.html:201
+msgid "du Bénin ?"
+msgstr ""
+
+#: .\templates\core\home.html:205
+msgid "Rejoindre maintenant"
+msgstr ""
+
+#: .\templates\core\home.html:208
+msgid "En savoir plus"
+msgstr ""
+
+#: .\templates\errors\base_error.html:1
+msgid "Retour Ã  l'accueil"
+msgstr ""
+
+#: .\templates\institutions\opportunity_detail.html:14
+msgid "Appel à expertise"
+msgstr ""
+
+#: .\templates\institutions\opportunity_detail.html:44
+msgid "Description du Projet"
+msgstr ""
+
+#: .\templates\institutions\opportunity_detail.html:57
+msgid "Exigences & Compétences"
+msgstr ""
+
+#: .\templates\institutions\opportunity_detail.html:65
+msgid "Domaines prioritaires"
+msgstr ""
+
+#: .\templates\institutions\opportunity_detail.html:90
+msgid "Date limite"
+msgstr ""
+
+#: .\templates\institutions\opportunity_detail.html:101
+msgid "expertises"
+msgstr ""
+
+#: .\templates\institutions\opportunity_detail.html:110
+msgid "Déposer ma candidature"
+msgstr ""
+
+#: .\templates\institutions\opportunity_detail.html:114
+msgid "Réservé aux profils citoyens."
+msgstr ""
+
+#: .\templates\institutions\opportunity_detail.html:117
+msgid "Se connecter pour postuler"
+msgstr ""
+
+#: .\templates\institutions\opportunity_list.html:9
+msgid "Dernières Opportunités"
+msgstr ""
+
+#: .\templates\institutions\opportunity_list.html:10
+msgid ""
+"Découvrez les projets stratégiques et appels à expertise des institutions du "
+"Bénin."
+msgstr ""
+
+#: .\templates\institutions\opportunity_list.html:21
+msgid "Filtrer"
+msgstr ""
+
+#: .\templates\institutions\opportunity_list.html:26
+msgid "Statut du projet"
+msgstr ""
+
+#: .\templates\institutions\opportunity_list.html:34
+msgid "À venir"
+msgstr ""
+
+#: .\templates\institutions\opportunity_list.html:40
+msgid "Appliquer les filtres"
+msgstr ""
+
+#: .\templates\institutions\opportunity_list.html:81
+msgid "Clôture"
+msgstr ""
+
+#: .\templates\institutions\opportunity_list.html:82
+msgid "candidats"
+msgstr ""
+
+#: .\templates\institutions\opportunity_list.html:88
+msgid "Consulter & Postuler"
+msgstr ""
+
+#: .\templates\institutions\opportunity_list.html:98
+msgid "Aucune opportunité disponible"
+msgstr ""
+
+#: .\templates\institutions\opportunity_list.html:99
+msgid "Revenez bientôt pour de nouveaux projets."
+msgstr ""

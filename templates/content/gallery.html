@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans "Galerie d'Images" %} - PCC{% endblock %}
+
+{% block content %}
+<main class="flex-grow max-w-7xl mx-auto w-full px-4 py-12 md:py-20">
+    <div class="mb-16 text-center max-w-3xl mx-auto">
+        <h1 class="text-4xl md:text-6xl font-black text-slate-900 dark:text-white tracking-tight mb-6">
+            {% trans "Galerie" %} <span class="text-primary italic">{% trans "Officielle" %}</span>
+        </h1>
+        <p class="text-slate-500 dark:text-slate-400 text-lg font-medium leading-relaxed">
+            {% trans "Revivez les moments forts de nos activités, forums et master classes en images." %}
+        </p>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+        {% for image in images %}
+        <div class="break-inside-avoid relative group rounded-[2rem] overflow-hidden shadow-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer">
+            <img src="{{ image.image.url }}" alt="{{ image.title }}" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                <h3 class="text-white font-black text-lg truncate">{{ image.title }}</h3>
+                {% if image.description %}
+                    <p class="text-slate-300 text-sm mt-2 line-clamp-2">{{ image.description }}</p>
+                {% endif %}
+            </div>
+            <!-- Zoom Icon -->
+            <div class="absolute top-4 right-4 bg-white/10 backdrop-blur-md rounded-full size-10 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all border border-white/20 hover:bg-primary hover:border-primary">
+                <i class="fas fa-search-plus"></i>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-span-full py-32 text-center bg-slate-50 dark:bg-slate-900/50 rounded-[3rem] border-2 border-dashed border-slate-200 dark:border-slate-800 opacity-60">
+            <i class="fas fa-images text-5xl text-slate-400 mb-4"></i>
+            <p class="text-slate-500 dark:text-slate-400 italic">{% trans "Aucune image publiée pour le moment." %}</p>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}

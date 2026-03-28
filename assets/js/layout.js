@@ -123,7 +123,7 @@ function renderFooter() {
                         <h1 class="text-2xl font-black tracking-tight">PCC</h1>
                     </div>
                     <p class="text-slate-400 text-sm leading-relaxed mb-8">
-                        La Plate-Forme Citoyenne des Compétences est une initiative du Gouvernement pour valoriser les talents béninois.
+                        La Plate-Forme Citoyenne des Compétences est une initiative citoyenne un Think Tank Citoyen pour valoriser les talents béninois.
                     </p>
                     <div class="flex gap-4">
                         <a class="size-11 rounded-xl bg-slate-800 flex items-center justify-center hover:bg-primary hover:-translate-y-1 transition-all" href="#">

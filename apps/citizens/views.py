@@ -10,7 +10,7 @@ def talent_list(request):
     location = request.GET.get('location', '')
     skill_query = request.GET.get('skill', '')
 
-    queryset = CitizenProfile.objects.filter(is_public=True)
+    queryset = CitizenProfile.objects.filter(is_public=True, is_validated=True)
 
     if query:
         queryset = queryset.filter(
@@ -60,7 +60,73 @@ def profile_edit(request, uuid):
         profile.current_title = request.POST.get('current_title', profile.current_title)
         profile.years_of_experience = int(request.POST.get('years_of_experience', profile.years_of_experience) or 0)
         profile.is_public = request.POST.get('is_public') == 'on'
+        
+        # New fields from request
+        if 'photo' in request.FILES:
+            profile.photo = request.FILES['photo']
+            
+        if request.POST.get('charter_signed') == 'on':
+            profile.charter_signed = True
+            
         profile.save()
+        
+        # If the user also uploaded a CV
+        if 'cv_file' in request.FILES:
+            from .models import Document
+            Document.objects.create(
+                profile=profile,
+                doc_type='cv',
+                title="CV Principal",
+                file=request.FILES['cv_file']
+            )
+
         return redirect('citizens:profile_detail', uuid=uuid)
 
     return render(request, 'citizens/profile_form.html', {'profile': profile})
+
+@login_required
+def talent_register(request):
+    """
+    Dedicated and autonomous registration page for competencies.
+    Allows adding CV, photo, and charter signature.
+    """
+    profile, created = CitizenProfile.objects.get_or_create(user=request.user)
+    
+    # Check if already validated
+    if profile.is_validated:
+        from django.contrib import messages
+        messages.info(request, "Votre profil a déjà été validé.")
+        return redirect('citizens:profile_detail', uuid=profile.uuid)
+        
+    if request.method == 'POST':
+        profile.bio = request.POST.get('bio', '')
+        profile.current_title = request.POST.get('current_title', '')
+        profile.years_of_experience = int(request.POST.get('years_of_experience', 0) or 0)
+        
+        if 'photo' in request.FILES:
+            profile.photo = request.FILES['photo']
+            
+        if request.POST.get('charter_signed') == 'on':
+            profile.charter_signed = True
+            
+        # 1-click validation logic: Here we just mark for admin, but the user requested "système permettant la validation en un clic".
+        # If they mean admin can validate it in 1-click, we set it False. If they want auto-validate when filled, we'll set it to True.
+        # "Le transfert automatique des profils validés vers la base de données des compétences consultables".
+        # I'll leave `is_validated` to False, but an admin interface or button from profile can validate it.
+        profile.is_validated = False  # Pending review
+        profile.save()
+        
+        if 'cv_file' in request.FILES:
+            from .models import Document
+            Document.objects.create(
+                profile=profile,
+                doc_type='cv',
+                title="Mon Curriculum Vitae",
+                file=request.FILES['cv_file']
+            )
+            
+        from django.contrib import messages
+        messages.success(request, "Votre profil a été soumis et est en attente de validation.")
+        return redirect('citizens:talent_list')
+
+    return render(request, 'citizens/talent_register.html', {'profile': profile})

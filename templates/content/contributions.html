@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans "Contributions & Sponsoring" %} - PCC{% endblock %}
+
+{% block content %}
+<main class="flex-grow w-full bg-slate-50 dark:bg-slate-900/50">
+    
+    <!-- Hero Header -->
+    <section class="max-w-7xl mx-auto px-4 py-16 md:py-24 text-center">
+        <span class="inline-block px-5 py-2 bg-primary/10 text-primary rounded-full text-xs font-black uppercase tracking-widest shadow-sm mb-6">
+            {% trans "Ensemble, Bâtissons l'Avenir" %}
+        </span>
+        <h1 class="text-4xl md:text-6xl font-black text-slate-900 dark:text-white tracking-tight mb-8">
+            {% trans "Vos Idées & Votre" %} <span class="text-primary italic">{% trans "Soutien" %}</span>
+        </h1>
+        <p class="text-xl text-slate-500 dark:text-slate-400 font-medium max-w-3xl mx-auto leading-relaxed">
+            {% trans "Que ce soit par vos suggestions innovantes ou votre soutien financier, chaque contribution compte pour la réalisation du projet de société 2026-2033." %}
+        </p>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-4 pb-24 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
+        
+        <!-- Suggestions Form -->
+        <section class="bg-white dark:bg-slate-800 p-8 md:p-12 rounded-[3rem] shadow-2xl border border-slate-100 dark:border-slate-700 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[80px]"></div>
+            
+            <h2 class="text-3xl font-black text-slate-900 dark:text-white mb-4 relative z-10 flex items-center gap-4">
+                <i class="fas fa-lightbulb text-primary"></i> {% trans "Boîte à Suggestions" %}
+            </h2>
+            <p class="text-slate-500 dark:text-slate-400 font-medium mb-10 relative z-10">
+                {% trans "Avez-vous une proposition pour améliorer notre plateforme ou enrichir notre programme ? N'hésitez pas à nous la soumettre." %}
+            </p>
+
+            <form method="POST" class="space-y-6 relative z-10">
+                {% csrf_token %}
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">{% trans "Nom (Optionnel)" %}</label>
+                        <input type="text" name="name" class="w-full h-14 px-5 rounded-2xl border-0 bg-slate-50 dark:bg-slate-900 focus:ring-4 focus:ring-primary/10 text-slate-900 dark:text-white font-medium transition-all" placeholder="Votre nom">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">{% trans "Email" %}</label>
+                        <input type="email" name="email" required class="w-full h-14 px-5 rounded-2xl border-0 bg-slate-50 dark:bg-slate-900 focus:ring-4 focus:ring-primary/10 text-slate-900 dark:text-white font-medium transition-all" placeholder="Votre adresse email">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">{% trans "Thématique" %}</label>
+                    <select name="topic" class="w-full h-14 px-5 rounded-2xl border-0 bg-slate-50 dark:bg-slate-900 focus:ring-4 focus:ring-primary/10 text-slate-900 dark:text-white font-medium transition-all cursor-pointer">
+                        <option value="programme">Programme de société</option>
+                        <option value="plateforme">Amélioration de la plateforme</option>
+                        <option value="evenement">Proposition d'événement</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">{% trans "Votre Suggestion" %}</label>
+                    <textarea name="message" required rows="6" class="w-full p-5 rounded-2xl border-0 bg-slate-50 dark:bg-slate-900 focus:ring-4 focus:ring-primary/10 text-slate-900 dark:text-white font-medium transition-all resize-none" placeholder="Détaillez votre idée ici..."></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-5 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20 hover:scale-[1.02] transition-transform flex items-center justify-center gap-3">
+                    {% trans "Soumettre ma proposition" %}
+                    <i class="fas fa-paper-plane text-xs"></i>
+                </button>
+            </form>
+        </section>
+
+        <!-- Sponsoring -->
+        <section class="flex flex-col">
+            <h2 class="text-3xl font-black text-slate-900 dark:text-white mb-4 flex items-center gap-4">
+                <i class="fas fa-hand-holding-heart text-accent-yellow"></i> {% trans "Soutenir la Dynamique" %}
+            </h2>
+            <p class="text-slate-500 dark:text-slate-400 font-medium mb-12">
+                {% trans "Vos contributions financières et dons en nature sont essentiels pour mener à bien nos actions sur le terrain." %}
+            </p>
+
+            <!-- Mobile Money Accounts -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12 flex-grow">
+                
+                <!-- MTN MoMo -->
+                <div class="bg-yellow-400 p-8 rounded-[2rem] shadow-lg text-slate-900 flex flex-col justify-between hover:-translate-y-2 transition-transform cursor-pointer group">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-black text-xl uppercase tracking-widest">MTN MoMo</h3>
+                            <i class="fas fa-mobile-alt text-2xl opacity-50"></i>
+                        </div>
+                        <p class="font-bold text-sm opacity-80 uppercase tracking-widest mb-1">{% trans "Numéro de compte" %}</p>
+                        <p class="font-black text-3xl tracking-wider">00 00 00 00</p>
+                        <p class="font-bold text-sm mt-2 opacity-80">Nom : PCC BENIN</p>
+                    </div>
+                </div>
+
+                <!-- MOOV -->
+                <div class="bg-blue-600 p-8 rounded-[2rem] shadow-lg text-white flex flex-col justify-between hover:-translate-y-2 transition-transform cursor-pointer group">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-black text-xl uppercase tracking-widest">MOOV Africa</h3>
+                            <i class="fas fa-mobile-alt text-2xl opacity-50"></i>
+                        </div>
+                        <p class="font-bold text-sm opacity-80 uppercase tracking-widest mb-1">{% trans "Numéro de compte" %}</p>
+                        <p class="font-black text-3xl tracking-wider">00 00 00 00</p>
+                        <p class="font-bold text-sm mt-2 opacity-80">Nom : PCC BENIN</p>
+                    </div>
+                </div>
+
+                <!-- CELTIIS -->
+                <div class="bg-green-500 p-8 rounded-[2rem] shadow-lg text-white flex flex-col justify-between hover:-translate-y-2 transition-transform cursor-pointer group">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-black text-xl uppercase tracking-widest">CELTIIS Cash</h3>
+                            <i class="fas fa-mobile-alt text-2xl opacity-50"></i>
+                        </div>
+                        <p class="font-bold text-sm opacity-80 uppercase tracking-widest mb-1">{% trans "Numéro de compte" %}</p>
+                        <p class="font-black text-3xl tracking-wider">00 00 00 00</p>
+                        <p class="font-bold text-sm mt-2 opacity-80">Nom : PCC BENIN</p>
+                    </div>
+                </div>
+
+                <!-- XPRESS -->
+                <div class="bg-slate-800 p-8 rounded-[2rem] shadow-lg text-white flex flex-col justify-between hover:-translate-y-2 transition-transform cursor-pointer group border border-slate-700">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-black text-xl uppercase tracking-widest">XPRESS</h3>
+                            <i class="fas fa-university text-2xl opacity-50"></i>
+                        </div>
+                        <p class="font-bold text-sm opacity-80 uppercase tracking-widest mb-1">{% trans "Numéro de compte" %}</p>
+                        <p class="font-black text-xl tracking-wider break-all">BJ00 0000 0000 0000</p>
+                        <p class="font-bold text-sm mt-2 opacity-80">Nom : PCC BENIN</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Official Contact -->
+            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl border border-primary/20 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+                <div>
+                    <h4 class="font-black text-slate-900 dark:text-white text-lg">{% trans "Dons en Nature & Partenariats" %}</h4>
+                    <p class="text-sm text-slate-500 font-medium mt-1">{% trans "Pour tout autre type de contribution, veuillez contacter la coordination." %}</p>
+                </div>
+                <a href="mailto:contact@pcc-benin.com" class="shrink-0 px-6 py-3 bg-slate-100 dark:bg-slate-900 text-primary font-bold rounded-xl hover:bg-primary hover:text-white transition-colors">
+                    {% trans "Nous Contacter" %}
+                </a>
+            </div>
+
+        </section>
+
+    </div>
+</main>
+{% endblock %}

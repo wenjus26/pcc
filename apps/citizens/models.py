@@ -38,8 +38,14 @@ class CitizenProfile(models.Model):
     skills = models.ManyToManyField(Skill, related_name='citizens', blank=True)
     
     # Career summary
+    # Career summary
     current_title = models.CharField(max_length=255, blank=True)
     years_of_experience = models.PositiveIntegerField(default=0)
+    
+    # Validation & Charter
+    photo = models.ImageField(upload_to='citizen_photos/', null=True, blank=True)
+    charter_signed = models.BooleanField(default=False, verbose_name=_("Charte d'éthique signée"))
+    is_validated = models.BooleanField(default=False, verbose_name=_("Profil Validé"))
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

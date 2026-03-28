@@ -60,3 +60,16 @@ class Resource(models.Model):
 
     def __str__(self):
         return self.title
+
+class GalleryImage(models.Model):
+    title = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='gallery/')
+    description = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _('Image Galerie')
+        verbose_name_plural = _('Images Galerie')
+
+    def __str__(self):
+        return self.title

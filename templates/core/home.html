@@ -2,213 +2,207 @@
 {% load static i18n %}
 
 {% block content %}
-    <!-- Hero Section -->
-    <header class="relative overflow-hidden pt-16 pb-24 px-4 bg-slate-50 dark:bg-slate-930">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div class="z-10 text-center lg:text-left">
-                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-primary/10 text-primary text-[10px] font-black tracking-[0.2em] mb-10 border border-primary/20 uppercase shadow-sm">
-                    <span class="relative flex h-3 w-3">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
-                    </span>
-                    {% trans "Plateforme Nationale de Compétences" %}
-                </div>
-                <h1 class="text-5xl md:text-7xl font-black leading-[1.1] mb-8 text-slate-900 dark:text-white tracking-tight">
-                    {% trans "Propulsez votre" %} <br/>
-                    <span class="text-primary italic">{% trans "expertise" %}</span> {% trans "béninoise" %}
-                </h1>
-                <p class="text-xl text-slate-500 dark:text-slate-400 mb-10 max-w-xl leading-relaxed mx-auto lg:mx-0 font-medium italic">
-                    {% trans "La vitrine digitale des talents pour bâtir l'avenir du Bénin. Connectez-vous aux projets stratégiques de la nation." %}
-                </p>
-                <div class="flex flex-wrap gap-5 justify-center lg:justify-start">
-                    <a href="#" class="px-10 py-5 bg-primary text-white font-black rounded-[2rem] shadow-2xl shadow-primary/40 hover:scale-[1.05] active:scale-95 transition-all flex items-center gap-3">
-                        {% trans "S'inscrire gratuitement" %}
-                        <i class="fas fa-arrow-right text-xs"></i>
-                    </a>
-                    <a href="{% url 'citizens:talent_list' %}" class="px-10 py-5 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-black rounded-[2rem] shadow-xl border border-slate-100 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-900 transition-all">
-                        {% trans "Découvrir les talents" %}
-                    </a>
-                </div>
-                
-                <div class="mt-12 flex items-center justify-center lg:justify-start gap-3">
-                    <div class="flex -space-x-4">
-                        <img class="size-10 rounded-full border-4 border-white dark:border-slate-900" src="https://i.pravatar.cc/100?u=1" alt="">
-                        <img class="size-10 rounded-full border-4 border-white dark:border-slate-900" src="https://i.pravatar.cc/100?u=2" alt="">
-                        <img class="size-10 rounded-full border-4 border-white dark:border-slate-900" src="https://i.pravatar.cc/100?u=3" alt="">
-                        <div class="size-10 rounded-full border-4 border-white dark:border-slate-900 bg-primary flex items-center justify-center text-[10px] font-black text-white">+5k</div>
-                    </div>
-                    <p class="text-[11px] font-black text-slate-400 uppercase tracking-widest">{% trans "Experts déjà inscrits" %}</p>
-                </div>
+<!-- Hero Section -->
+<header class="relative overflow-hidden pt-16 pb-24 px-4 bg-slate-50 dark:bg-slate-930">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="z-10 text-center lg:text-left">
+            <div
+                class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-primary/10 text-primary text-[10px] font-black tracking-[0.2em] mb-10 border border-primary/20 uppercase shadow-sm">
+                <span class="relative flex h-3 w-3">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+                </span>
+                {% trans "Plateforme Citoyenne de Compétences" %}
             </div>
-            
-            <div class="relative group">
-                <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-[100px] group-hover:bg-primary/20 transition-all duration-700"></div>
-                <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-accent-yellow/10 rounded-full blur-[100px]"></div>
-                
-                <div class="relative z-10 grid grid-cols-2 gap-6 rotate-2 transform-gpu transition-all duration-700 group-hover:rotate-0">
-                    <div class="space-y-6">
-                        <div class="bg-white dark:bg-slate-800 p-4 rounded-3xl shadow-2xl border border-primary/5">
-                            <img class="rounded-2xl" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600" alt="">
-                        </div>
-                        <div class="bg-primary p-8 rounded-3xl shadow-2xl text-white">
-                            <p class="text-4xl font-black mb-1">98%</p>
-                            <p class="text-[10px] font-black uppercase tracking-widest opacity-80">{% trans "Satisfaction Client" %}</p>
-                        </div>
+            <h1
+                class="text-5xl md:text-7xl font-black leading-[1.1] mb-8 text-slate-900 dark:text-white tracking-tight">
+                {% trans "Propulsez votre" %} <br />
+                <span class="text-primary italic">{% trans "expertise" %}</span> {% trans "béninoise" %}
+            </h1>
+            <p
+                class="text-xl text-slate-500 dark:text-slate-400 mb-10 max-w-xl leading-relaxed mx-auto lg:mx-0 font-medium italic">
+                {% trans "La vitrine digitale des talents pour bâtir l'avenir du Bénin. Connectez-vous aux projets stratégiques de la nation." %}
+            </p>
+            <div class="flex flex-wrap gap-5 justify-center lg:justify-start">
+                <a href="{% url 'accounts:register' %}"
+                    class="px-10 py-5 bg-primary text-white font-black rounded-[2rem] shadow-2xl shadow-primary/40 hover:scale-[1.05] active:scale-95 transition-all flex items-center gap-3">
+                    {% trans "S'inscrire gratuitement" %}
+                    <i class="fas fa-arrow-right text-xs"></i>
+                </a>
+                <a href="{% url 'citizens:talent_list' %}"
+                    class="px-10 py-5 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-black rounded-[2rem] shadow-xl border border-slate-100 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-900 transition-all">
+                    {% trans "Découvrir les talents" %}
+                </a>
+            </div>
+
+            <div class="mt-12 flex items-center justify-center lg:justify-start gap-3">
+                <div class="flex -space-x-4">
+                    <img class="size-10 rounded-full border-4 border-white dark:border-slate-900"
+                        src="https://i.pravatar.cc/100?u=1" alt="">
+                    <img class="size-10 rounded-full border-4 border-white dark:border-slate-900"
+                        src="https://i.pravatar.cc/100?u=2" alt="">
+                    <img class="size-10 rounded-full border-4 border-white dark:border-slate-900"
+                        src="https://i.pravatar.cc/100?u=3" alt="">
+                    <div
+                        class="size-10 rounded-full border-4 border-white dark:border-slate-900 bg-primary flex items-center justify-center text-[10px] font-black text-white">
+                        +5k</div>
+                </div>
+                <p class="text-[11px] font-black text-slate-400 uppercase tracking-widest">{% trans "Experts déjà inscrits" %}</p>
+            </div>
+        </div>
+
+        <div class="relative group">
+            <div
+                class="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-[100px] group-hover:bg-primary/20 transition-all duration-700">
+            </div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-accent-yellow/10 rounded-full blur-[100px]"></div>
+
+            <div
+                class="relative z-10 grid grid-cols-2 gap-6 rotate-2 transform-gpu transition-all duration-700 group-hover:rotate-0">
+                <div class="space-y-6">
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-3xl shadow-2xl border border-primary/5">
+                        <img class="rounded-2xl"
+                            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600" alt="">
                     </div>
-                    <div class="space-y-6 pt-12">
-                        <div class="bg-white dark:bg-slate-800 p-4 rounded-3xl shadow-2xl border border-primary/5">
-                            <img class="rounded-2xl" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600" alt="">
+                    <div class="bg-primary p-8 rounded-3xl shadow-2xl text-white">
+                        <p class="text-4xl font-black mb-1">98%</p>
+                        <p class="text-[10px] font-black uppercase tracking-widest opacity-80">{% trans "Satisfaction Client" %}</p>
+                    </div>
+                </div>
+                <div class="space-y-6 pt-12">
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-3xl shadow-2xl border border-primary/5">
+                        <img class="rounded-2xl"
+                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600" alt="">
+                    </div>
+                    <div class="bg-slate-900 p-8 rounded-3xl shadow-2xl text-white">
+                        <div class="size-10 bg-primary/20 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-check text-primary"></i>
                         </div>
-                        <div class="bg-slate-900 p-8 rounded-3xl shadow-2xl text-white">
-                            <div class="size-10 bg-primary/20 rounded-xl flex items-center justify-center mb-4">
-                                <i class="fas fa-check text-primary"></i>
-                            </div>
-                            <p class="text-xs font-black leading-relaxed">{% trans "Profils vérifiés par les instances nationales" %}</p>
-                        </div>
+                        <p class="text-xs font-black leading-relaxed">{% trans "Profils vérifiés par les instances nationales" %}</p>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+</header>
 
-    <!-- Latest Opportunities Section -->
-    <section class="py-24 px-4 bg-white dark:bg-slate-900 overflow-hidden relative">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
-                <div class="max-w-xl">
-                    <div class="text-primary font-black text-[11px] mb-4 uppercase tracking-[0.3em]">{% trans "Impact Direct" %}</div>
-                    <h2 class="text-4xl font-black tracking-tight mb-4">{% trans "Dernières Opportunités Nationales" %}</h2>
-                    <p class="text-slate-500 font-medium italic">{% trans "Répondez aux appels à projets stratégiques du gouvernement et des institutions." %}</p>
-                </div>
-                <a href="{% url 'institutions:opportunity_list' %}" class="px-8 py-4 border-2 border-slate-100 dark:border-slate-800 font-black text-sm rounded-2xl hover:border-primary hover:text-primary transition-all flex items-center gap-3 group">
-                    {% trans "Voir tout" %}
-                    <i class="fas fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
-                </a>
+<!-- Latest Opportunities Section -->
+<section class="py-24 px-4 bg-white dark:bg-slate-900 overflow-hidden relative">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
+            <div class="max-w-xl">
+                <div class="text-primary font-black text-[11px] mb-4 uppercase tracking-[0.3em]">{% trans "Impact Direct" %}</div>
+                <h2 class="text-4xl font-black tracking-tight mb-4">{% trans "Dernières Opportunités Nationales" %}</h2>
+                <p class="text-slate-500 font-medium italic">{% trans "Répondez aux appels à projets stratégiques du gouvernement et des institutions." %}</p>
             </div>
+            <a href="{% url 'institutions:opportunity_list' %}"
+                class="px-8 py-4 border-2 border-slate-100 dark:border-slate-800 font-black text-sm rounded-2xl hover:border-primary hover:text-primary transition-all flex items-center gap-3 group">
+                {% trans "Voir tout" %}
+                <i class="fas fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+            </a>
+        </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {% for opportunity in latest_opportunities %}
-                <div class="bg-slate-50 dark:bg-slate-800/40 p-8 rounded-[2.5rem] border border-transparent hover:border-primary/20 hover:bg-white dark:hover:bg-slate-800 hover:shadow-2xl transition-all group h-full flex flex-col">
-                    <div class="size-16 rounded-2xl bg-white dark:bg-slate-700 shadow-xl flex items-center justify-center text-primary mb-8 group-hover:scale-110 group-hover:rotate-6 transition-all">
-                        <i class="fas fa-briefcase text-2xl"></i>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {% for opportunity in latest_opportunities %}
+            <div
+                class="bg-slate-50 dark:bg-slate-800/40 p-8 rounded-[2.5rem] border border-transparent hover:border-primary/20 hover:bg-white dark:hover:bg-slate-800 hover:shadow-2xl transition-all group h-full flex flex-col">
+                <div
+                    class="size-16 rounded-2xl bg-white dark:bg-slate-700 shadow-xl flex items-center justify-center text-primary mb-8 group-hover:scale-110 group-hover:rotate-6 transition-all">
+                    <i class="fas fa-briefcase text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-black mb-4 group-hover:text-primary transition-colors">{{ opportunity.title }}
+                </h3>
+                <p class="text-slate-500 dark:text-slate-400 font-medium text-sm line-clamp-3 mb-8 flex-grow">
+                    {{ opportunity.description }}
+                </p>
+                <div class="pt-8 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                    <div class="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                        {{ opportunity.institution.name }}
                     </div>
-                    <h3 class="text-2xl font-black mb-4 group-hover:text-primary transition-colors">{{ opportunity.title }}</h3>
-                    <p class="text-slate-500 dark:text-slate-400 font-medium text-sm line-clamp-3 mb-8 flex-grow">
-                        {{ opportunity.description }}
-                    </p>
-                    <div class="pt-8 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between">
-                        <div class="text-[10px] font-black uppercase tracking-widest text-slate-400">
-                            {{ opportunity.institution.name }}
+                    <a href="{% url 'institutions:opportunity_detail' opportunity.uuid %}"
+                        class="size-12 bg-primary text-white rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 hover:scale-110 transition-transform">
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-full py-20 text-center opacity-50 italic">{% trans "Chargement des opportunités..." %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Featured Talents -->
+<section class="py-24 px-4 bg-slate-50 dark:bg-slate-930">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-20">
+            <div class="text-primary font-black text-[11px] mb-4 uppercase tracking-[0.3em]">{% trans "Élite Béninoise" %}</div>
+            <h2 class="text-4xl md:text-5xl font-black mb-6 tracking-tight">{% trans "Portraits d'Experts" %}</h2>
+            <div class="h-1.5 w-24 bg-primary mx-auto rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {% for talent in featured_talents %}
+            <div class="relative group">
+                <div
+                    class="bg-white dark:bg-slate-800 p-8 rounded-[3rem] shadow-xl border border-primary/5 relative z-10 hover:-translate-y-4 transition-all duration-500">
+                    <div
+                        class="size-32 rounded-[2.5rem] overflow-hidden mb-8 ring-8 ring-slate-50 dark:ring-slate-900 group-hover:ring-primary/10 transition-all mx-auto shadow-2xl">
+                        <img class="w-full h-full object-cover"
+                            src="https://ui-avatars.com/api/?name={{ talent.user.get_full_name|urlencode }}&background=33a50d&color=fff&size=512"
+                            alt="">
+                    </div>
+                    <div class="text-center">
+                        <h4 class="text-2xl font-black mb-2 group-hover:text-primary transition-colors">{{
+                            talent.user.get_full_name|default:talent.user.username }}</h4>
+                        <p class="text-primary font-black text-[11px] uppercase tracking-widest mb-6 italic opacity-80">
+                            {{ talent.current_title|default:_("Consultant") }}</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-8">
+                            {% for skill in talent.skills.all|slice:":2" %}
+                            <span
+                                class="px-4 py-1.5 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700 rounded-full text-[10px] font-black text-slate-400 lowercase">{{
+                                skill.name }}</span>
+                            {% endfor %}
                         </div>
-                        <a href="{% url 'institutions:opportunity_detail' opportunity.uuid %}" class="size-12 bg-primary text-white rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 hover:scale-110 transition-transform">
-                            <i class="fas fa-arrow-right text-xs"></i>
+                        <a href="{% url 'citizens:profile_detail' talent.uuid %}"
+                            class="w-full py-4 bg-slate-900 dark:bg-slate-930 text-white font-black rounded-2xl hover:bg-primary transition-all flex items-center justify-center gap-3 group/btn shadow-xl">
+                            {% trans "Profil complet" %}
+                            <i class="fas fa-eye text-xs group-hover/btn:scale-125 transition-transform"></i>
                         </a>
                     </div>
                 </div>
-                {% empty %}
-                <div class="col-span-full py-20 text-center opacity-50 italic">{% trans "Chargement des opportunités..." %}</div>
-                {% endfor %}
             </div>
+            {% endfor %}
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Featured Talents -->
-    <section class="py-24 px-4 bg-slate-50 dark:bg-slate-930">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-20">
-                <div class="text-primary font-black text-[11px] mb-4 uppercase tracking-[0.3em]">{% trans "Élite Béninoise" %}</div>
-                <h2 class="text-4xl md:text-5xl font-black mb-6 tracking-tight">{% trans "Portraits d'Experts" %}</h2>
-                <div class="h-1.5 w-24 bg-primary mx-auto rounded-full"></div>
+
+
+<!-- Call to action -->
+<section class="py-24 px-4 bg-slate-50 dark:bg-slate-930 overflow-hidden">
+    <div class="max-w-7xl mx-auto">
+        <div
+            class="bg-primary rounded-[4rem] p-12 md:p-24 text-center text-white relative shadow-[0_50px_100px_-20px_rgba(51,165,13,0.3)]">
+            <div class="absolute top-0 right-0 p-12 opacity-10">
+                <i class="fas fa-quote-right text-[10rem]"></i>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                {% for talent in featured_talents %}
-                <div class="relative group">
-                    <div class="bg-white dark:bg-slate-800 p-8 rounded-[3rem] shadow-xl border border-primary/5 relative z-10 hover:-translate-y-4 transition-all duration-500">
-                        <div class="size-32 rounded-[2.5rem] overflow-hidden mb-8 ring-8 ring-slate-50 dark:ring-slate-900 group-hover:ring-primary/10 transition-all mx-auto shadow-2xl">
-                            <img class="w-full h-full object-cover" src="https://ui-avatars.com/api/?name={{ talent.user.get_full_name|urlencode }}&background=33a50d&color=fff&size=512" alt="">
-                        </div>
-                        <div class="text-center">
-                            <h4 class="text-2xl font-black mb-2 group-hover:text-primary transition-colors">{{ talent.user.get_full_name|default:talent.user.username }}</h4>
-                            <p class="text-primary font-black text-[11px] uppercase tracking-widest mb-6 italic opacity-80">{{ talent.current_title|default:_("Consultant") }}</p>
-                            <div class="flex flex-wrap justify-center gap-2 mb-8">
-                                {% for skill in talent.skills.all|slice:":2" %}
-                                <span class="px-4 py-1.5 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700 rounded-full text-[10px] font-black text-slate-400 lowercase">{{ skill.name }}</span>
-                                {% endfor %}
-                            </div>
-                            <a href="{% url 'citizens:profile_detail' talent.uuid %}" class="w-full py-4 bg-slate-900 dark:bg-slate-930 text-white font-black rounded-2xl hover:bg-primary transition-all flex items-center justify-center gap-3 group/btn shadow-xl">
-                                {% trans "Profil complet" %}
-                                <i class="fas fa-eye text-xs group-hover/btn:scale-125 transition-transform"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
-
-    <!-- Recent Blog Posts -->
-    <section class="py-24 px-4 bg-white dark:bg-slate-900">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row items-center justify-between mb-16 gap-6">
-                <h2 class="text-4xl font-black tracking-tight">{% trans "L'Actualité du Talent" %}</h2>
-                <a href="{% url 'content:post_list' %}" class="text-sm font-black text-primary hover:underline underline-offset-8 flex items-center gap-3 group">
-                    {% trans "Toute l'actualité" %}
-                    <i class="fas fa-long-arrow-alt-right group-hover:translate-x-2 transition-transform"></i>
+            <h2 class="text-4xl md:text-6xl font-black mb-10 leading-tight">
+                {% trans "Prêt à contribuer à l'essor" %} <br /> {% trans "du Bénin ?" %}
+            </h2>
+            <div class="flex flex-wrap gap-6 justify-center">
+                <a href="{% url 'accounts:register' %}"
+                    class="px-12 py-6 bg-white text-primary font-black rounded-[2rem] shadow-2xl hover:scale-110 transition-transform">
+                    {% trans "Rejoindre maintenant" %}
+                </a>
+                <a href="#"
+                    class="px-12 py-6 bg-slate-900/20 backdrop-blur-xl border-2 border-white/30 text-white font-black rounded-[2rem] hover:bg-white/10 transition-all">
+                    {% trans "En savoir plus" %}
                 </a>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-                {% for post in recent_posts %}
-                <article class="group cursor-pointer">
-                    <div class="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden mb-8 shadow-2xl">
-                        {% if post.featured_image %}
-                            <img src="{{ post.featured_image.url }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="">
-                        {% else %}
-                            <div class="w-full h-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
-                                <i class="fas fa-image text-slate-300 text-6xl"></i>
-                            </div>
-                        {% endif %}
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
-                           <a href="{% url 'content:post_detail' post.slug %}" class="text-white font-black flex items-center gap-3">
-                               {% trans "Lire l'article" %}
-                               <i class="fas fa-plus"></i>
-                           </a>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-4 mb-4">
-                            <span class="text-[10px] font-black text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-lg">{{ post.category.name|default:_("News") }}</span>
-                            <span class="text-[10px] font-bold text-slate-400">{{ post.created_at|date:"d M Y" }}</span>
-                        </div>
-                        <h4 class="text-2xl font-black mb-3 leading-tight group-hover:text-primary transition-colors line-clamp-2">{{ post.title }}</h4>
-                    </div>
-                </article>
-                {% endfor %}
-            </div>
         </div>
-    </section>
-
-    <!-- Call to action -->
-    <section class="py-24 px-4 bg-slate-50 dark:bg-slate-930 overflow-hidden">
-        <div class="max-w-7xl mx-auto">
-            <div class="bg-primary rounded-[4rem] p-12 md:p-24 text-center text-white relative shadow-[0_50px_100px_-20px_rgba(51,165,13,0.3)]">
-                <div class="absolute top-0 right-0 p-12 opacity-10">
-                    <i class="fas fa-quote-right text-[10rem]"></i>
-                </div>
-                <h2 class="text-4xl md:text-6xl font-black mb-10 leading-tight">
-                    {% trans "Prêt à contribuer à l'essor" %} <br/> {% trans "du Bénin ?" %}
-                </h2>
-                <div class="flex flex-wrap gap-6 justify-center">
-                    <a href="#" class="px-12 py-6 bg-white text-primary font-black rounded-[2rem] shadow-2xl hover:scale-110 transition-transform">
-                        {% trans "Rejoindre maintenant" %}
-                    </a>
-                    <a href="#" class="px-12 py-6 bg-slate-900/20 backdrop-blur-xl border-2 border-white/30 text-white font-black rounded-[2rem] hover:bg-white/10 transition-all">
-                        {% trans "En savoir plus" %}
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
+</section>
 {% endblock %}
