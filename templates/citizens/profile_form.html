@@ -6,7 +6,7 @@
 {% block content %}
 <main class="flex-grow max-w-4xl mx-auto w-full px-4 py-12">
     <div class="mb-12">
-        <a href="{% url 'citizens:profile_detail' profile.pk %}" class="inline-flex items-center text-primary font-black hover:opacity-70 transition-opacity gap-2 group">
+        <a href="{% url 'citizens:profile_detail' profile.uuid %}" class="inline-flex items-center text-primary font-black hover:opacity-70 transition-opacity gap-2 group">
             <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
             {% trans "Retour au profil" %}
         </a>
@@ -26,7 +26,8 @@
                 <!-- Bio -->
                 <div class="md:col-span-2 space-y-3">
                     <label class="text-sm font-black uppercase tracking-widest text-slate-400">{% trans "Biographie professionnelle" %}</label>
-                    {% render_field form.bio class="w-full h-40 p-6 rounded-3xl border-2 border-slate-100 dark:border-slate-700 bg-transparent focus:ring-4 focus:ring-primary/10 focus:border-primary text-slate-900 dark:text-white placeholder:text-slate-300 transition-all font-medium" placeholder=_("Parlez-nous de votre parcours et de vos ambitions...") %}
+                    {% trans "Parlez-nous de votre parcours et de vos ambitions..." as bio_placeholder %}
+                    {% render_field form.bio class="w-full h-40 p-6 rounded-3xl border-2 border-slate-100 dark:border-slate-700 bg-transparent focus:ring-4 focus:ring-primary/10 focus:border-primary text-slate-900 dark:text-white placeholder:text-slate-300 transition-all font-medium" placeholder=bio_placeholder %}
                     {% if form.bio.errors %}
                         <p class="text-accent-red text-xs font-bold">{{ form.bio.errors.0 }}</p>
                     {% endif %}
@@ -44,7 +45,8 @@
                 <!-- Location -->
                 <div class="space-y-3">
                     <label class="text-sm font-black uppercase tracking-widest text-slate-400">{% trans "Localisation" %}</label>
-                    {% render_field form.location class="w-full h-14 px-6 rounded-2xl border-2 border-slate-100 dark:border-slate-700 bg-transparent focus:ring-4 focus:ring-primary/10 focus:border-primary text-slate-900 dark:text-white transition-all font-bold" placeholder=_("Ville, Pays") %}
+                    {% trans "Ville, Pays" as loc_placeholder %}
+                    {% render_field form.location class="w-full h-14 px-6 rounded-2xl border-2 border-slate-100 dark:border-slate-700 bg-transparent focus:ring-4 focus:ring-primary/10 focus:border-primary text-slate-900 dark:text-white transition-all font-bold" placeholder=loc_placeholder %}
                     {% if form.location.errors %}
                         <p class="text-accent-red text-xs font-bold">{{ form.location.errors.0 }}</p>
                     {% endif %}
@@ -62,7 +64,8 @@
                 <!-- Availability -->
                 <div class="space-y-3">
                     <label class="text-sm font-black uppercase tracking-widest text-slate-400">{% trans "Disponibilité" %}</label>
-                    {% render_field form.availability class="w-full h-14 px-6 rounded-2xl border-2 border-slate-100 dark:border-slate-700 bg-transparent focus:ring-4 focus:ring-primary/10 focus:border-primary text-slate-900 dark:text-white transition-all font-bold" placeholder=_("Immédiate, 1 mois...") %}
+                    {% trans "Immédiate, 1 mois..." as avail_placeholder %}
+                    {% render_field form.availability class="w-full h-14 px-6 rounded-2xl border-2 border-slate-100 dark:border-slate-700 bg-transparent focus:ring-4 focus:ring-primary/10 focus:border-primary text-slate-900 dark:text-white transition-all font-bold" placeholder=avail_placeholder %}
                     {% if form.availability.errors %}
                         <p class="text-accent-red text-xs font-bold">{{ form.availability.errors.0 }}</p>
                     {% endif %}
@@ -82,7 +85,7 @@
             </div>
 
             <div class="pt-8 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-4">
-                <a href="{% url 'citizens:profile_detail' profile.pk %}" class="px-8 py-4 text-slate-400 font-black hover:text-slate-600 transition-colors">{% trans "Annuler" %}</a>
+                <a href="{% url 'citizens:profile_detail' profile.uuid %}" class="px-8 py-4 text-slate-400 font-black hover:text-slate-600 transition-colors">{% trans "Annuler" %}</a>
                 <button type="submit" class="px-12 py-4 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20 hover:scale-[1.05] transition-all">
                     {% trans "Enregistrer les modifications" %}
                 </button>

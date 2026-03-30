@@ -1,0 +1,122 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block content %}
+<div id="content-admin-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; align-items: start;">
+    <!-- Apps (Column 1 & 2) -->
+    <div id="apps-container" style="grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 35px; align-items: start;">
+        {% if app_list %}
+            {% for app in app_list %}
+                <div class="module" id="app_{{ app.app_label }}" style="margin-bottom: 0;">
+                    <h2 class="module-header-green" style="display: flex; justify-content: space-between; align-items: center;">
+                        <a href="{{ app.app_url }}" class="section" title="{% blocktranslate with name=app.name %}Models in the {{ name }} application{% endblocktranslate %}">{{ app.name }}</a>
+                        <i class="fas fa-layer-group opacity-10"></i>
+                    </h2>
+                    <table>
+                        {% for model in app.models %}
+                            <tr class="model-{{ model.object_name|lower }}">
+                                {% if model.admin_url %}
+                                    <th scope="row" style="padding-left: 30px;"><a href="{{ model.admin_url }}">{{ model.name }}</a></th>
+                                {% else %}
+                                    <th scope="row" style="padding-left: 30px;">{{ model.name }}</th>
+                                {% endif %}
+
+                                <td style="text-align: right; padding-right: 30px;">
+                                    {% if model.add_url %}
+                                        <a href="{{ model.add_url }}" class="addlink" style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--primary);"><i class="fas fa-plus mr-1"></i> {% translate 'Add' %}</a>
+                                    {% endif %}
+                                    {% if model.admin_url %}
+                                        <a href="{{ model.admin_url }}" class="changelink ml-3" style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase;"><i class="fas fa-edit mr-1"></i> {% translate 'Change' %}</a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>{% translate "You don't have permission to view or edit anything." %}</p>
+        {% endif %}
+    </div>
+
+    <!-- Recent Actions & History (Column 3) -->
+    <div id="content-related" style="grid-column: span 1;">
+        <div class="module" id="recent-actions-module" style="margin-bottom: 0;">
+            <h2 class="module-header-green">
+                <i class="fas fa-history mr-2 opacity-50"></i>
+                {% translate 'Recent actions' %}
+            </h2>
+            <div style="padding: 25px;">
+                <h3 style="margin-top: 0; font-weight: 900; color: var(--primary); text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 20px; border-bottom: 1px solid #f1f5f9; padding-bottom: 10px;">{% translate 'My actions' %}</h3>
+                {% load log %}
+                {% get_admin_log 12 as admin_log for_user user %}
+                {% if not admin_log %}
+                    <p class="help">{% translate 'None available' %}</p>
+                {% else %}
+                    <ul class="actionlist" style="list-style: none; padding: 0; margin: 0;">
+                    {% for entry in admin_log %}
+                        <li class="{% if entry.is_addition %}addlink{% endif %}{% if entry.is_change %}changelink{% endif %}{% if entry.is_deletion %}deletelink{% endif %}" style="padding: 12px 0; border-bottom: 1px solid #f8fafc; position: relative; padding-left: 20px;">
+                            <div class="log-indicator {% if entry.is_addition %}log-add{% elif entry.is_deletion %}log-del{% else %}log-mod{% endif %}"></div>
+                            
+                            <div style="display: flex; flex-direction: column;">
+                                {% if entry.is_deletion or not entry.get_admin_url %}
+                                    <span style="font-weight: 700; color: #1e293b; font-size: 0.85rem;">{{ entry.object_repr }}</span>
+                                {% else %}
+                                    <a href="{{ entry.get_admin_url }}" class="admin-log-link" style="font-weight: 700; color: #1e293b; font-size: 0.85rem; text-decoration: none;">{{ entry.object_repr }}</a>
+                                {% endif %}
+                                
+                                <span class="quiet" style="font-size: 0.7rem; font-weight: 600; text-transform: uppercase; color: #94a3b8; margin-top: 2px;">
+                                    {% filter capfirst %}{{ entry.content_type.name }}{% endfilter %}
+                                </span>
+                            </div>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .module-header-green {
+        background: var(--primary) !important;
+        color: #fff !important;
+    }
+    
+    .log-indicator {
+        position: absolute; 
+        left: 0; 
+        top: 18px; 
+        width: 8px; 
+        height: 8px; 
+        border-radius: 50%;
+    }
+    .log-add { background: #33a50d; }
+    .log-del { background: #ef4444; }
+    .log-mod { background: #facc15; }
+
+    .admin-log-link:hover {
+        color: var(--primary) !important;
+    }
+
+    /* Responsive behavior for the 3-column layout */
+    @media (max-width: 1400px) {
+        #content-admin-grid {
+            grid-template-columns: 1fr 1fr !important;
+        }
+        #apps-container {
+            grid-column: span 1 !important;
+            grid-template-columns: 1fr !important;
+        }
+        #content-related {
+            grid-column: span 1 !important;
+        }
+    }
+    @media (max-width: 900px) {
+        #content-admin-grid {
+            grid-template-columns: 1fr !important;
+        }
+    }
+</style>
+{% endblock %}

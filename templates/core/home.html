@@ -157,8 +157,9 @@
                     <div class="text-center">
                         <h4 class="text-2xl font-black mb-2 group-hover:text-primary transition-colors">{{
                             talent.user.get_full_name|default:talent.user.username }}</h4>
+                        {% trans "Consultant" as default_title %}
                         <p class="text-primary font-black text-[11px] uppercase tracking-widest mb-6 italic opacity-80">
-                            {{ talent.current_title|default:_("Consultant") }}</p>
+                            {{ talent.current_title|default:default_title }}</p>
                         <div class="flex flex-wrap justify-center gap-2 mb-8">
                             {% for skill in talent.skills.all|slice:":2" %}
                             <span
@@ -180,6 +181,68 @@
 </section>
 
 
+
+<!-- Interactive Talent Map -->
+<section class="py-24 px-4 bg-white dark:bg-slate-900 overflow-hidden relative">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <div class="text-primary font-black text-[11px] mb-4 uppercase tracking-[0.3em]">{% trans "Impact Géographique" %}</div>
+            <h2 class="text-4xl font-black mb-4">{% trans "Où sont nos experts ?" %}</h2>
+            <p class="text-slate-500 font-medium italic">{% trans "Visualisez la répartition des compétences citoyennes sur tout le territoire national." %}</p>
+        </div>
+        
+        <div class="relative">
+            <div id="talent-map" class="w-full h-[500px] md:h-[600px] rounded-[3rem] border-8 border-slate-50 dark:border-slate-800 shadow-2xl z-10 relative"></div>
+            <div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-accent-yellow/10 rounded-full blur-3xl"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Leaflet Assets -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const map = L.map('talent-map', {
+            scrollWheelZoom: false
+        }).setView([9.3077, 2.3158], 7);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 20
+        }).addTo(map);
+
+        fetch('{% url "core:talent_locations" %}')
+            .then(response => response.json())
+            .then(data => {
+                const markers = L.featureGroup();
+                data.forEach(talent => {
+                    const marker = L.circleMarker([talent.lat, talent.lng], {
+                        radius: 8,
+                        fillColor: "#33a50d",
+                        color: "#fff",
+                        weight: 2,
+                        opacity: 1,
+                        fillOpacity: 0.8
+                    }).addTo(map);
+                    
+                    marker.bindPopup(`
+                        <div class="p-2">
+                            <h5 class="font-black text-slate-900">${talent.name}</h5>
+                            <p class="text-xs text-primary font-bold">${talent.title}</p>
+                        </div>
+                    `);
+                    markers.addLayer(marker);
+                });
+                if (data.length > 0) {
+                    map.fitBounds(markers.getBounds().pad(0.1));
+                }
+            });
+    });
+</script>
 
 <!-- Call to action -->
 <section class="py-24 px-4 bg-slate-50 dark:bg-slate-930 overflow-hidden">

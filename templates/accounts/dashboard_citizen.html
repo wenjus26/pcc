@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans "Tableau de Bord Citoyen" %} - PCC{% endblock %}
+
+{% block content %}
+<main class="flex-grow max-w-7xl mx-auto w-full px-4 py-12">
+    
+    <!-- Header Section -->
+    <div class="flex flex-col md:flex-row items-center justify-between gap-8 mb-16">
+        <div class="flex items-center gap-8 text-center md:text-left">
+            <div class="size-24 md:size-32 rounded-[2.5rem] overflow-hidden ring-8 ring-primary/10 shadow-2xl">
+                <img src="https://ui-avatars.com/api/?name={{ user.get_full_name|urlencode }}&background=33a50d&color=fff&size=512" alt="{{ user.get_full_name }}" class="w-full h-full object-cover">
+            </div>
+            <div>
+                <h1 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-2 leading-tight">
+                    {% trans "Bienvenue," %} {{ user.first_name }} !
+                </h1>
+                <p class="text-slate-500 font-bold italic">
+                    {% if profile.current_title %}{{ profile.current_title }}{% else %}{% trans "Citoyen Expert" %}{% endif %}
+                </p>
+                <div class="flex gap-2 mt-4">
+                    {% if profile.is_validated %}
+                        <span class="px-4 py-1.5 bg-green-500/10 text-green-600 text-[10px] font-black uppercase tracking-widest rounded-full border border-green-500/20 flex items-center gap-2">
+                            <i class="fas fa-check-circle"></i> {% trans "Profil Validé" %}
+                        </span>
+                    {% else %}
+                        <span class="px-4 py-1.5 bg-accent-red/10 text-accent-red text-[10px] font-black uppercase tracking-widest rounded-full border border-accent-red/20 flex items-center gap-2">
+                            <i class="fas fa-clock"></i> {% trans "En attente de validation" %}
+                        </span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="flex gap-4">
+            <a href="{% url 'citizens:profile_edit' profile.uuid %}" class="px-8 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-black rounded-2xl shadow-xl hover:bg-slate-50 dark:hover:bg-slate-900 transition-all text-sm flex items-center gap-2">
+                <i class="fas fa-edit text-primary"></i> {% trans "Modifier le profil" %}
+            </a>
+            <a href="{% url 'citizens:profile_detail' profile.uuid %}" class="px-8 py-4 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20 hover:scale-[1.05] transition-all text-sm flex items-center gap-2">
+                <i class="fas fa-eye"></i> {% trans "Voir mon profil public" %}
+            </a>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        
+        <!-- Left Column: Tasks & Matches -->
+        <div class="lg:col-span-2 space-y-12">
+            
+            <!-- Suggested Opportunities (Matches) -->
+            <section>
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-4">
+                        <i class="fas fa-sparkles text-accent-yellow"></i> {% trans "Suggestions pour vous" %}
+                    </h2>
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">{% trans "Basé sur vos compétences" %}</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {% for match in matches %}
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-[2.5rem] border border-primary/10 shadow-xl hover:-translate-y-2 transition-all group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-4">
+                            <span class="text-[10px] font-black text-primary bg-primary/10 px-3 py-1 rounded-full">{{ match.score|floatformat:0 }}% Match</span>
+                        </div>
+                        <h3 class="text-xl font-black mb-4 group-hover:text-primary transition-colors">{{ match.opportunity.title }}</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-8 line-clamp-2 italic font-medium">
+                            {{ match.opportunity.description }}
+                        </p>
+                        <div class="flex items-center justify-between pt-6 border-t border-slate-100 dark:border-slate-700">
+                            <span class="text-[10px] font-black uppercase text-slate-400">{{ match.opportunity.institution.name }}</span>
+                            <a href="{% url 'institutions:opportunity_detail' match.opportunity.uuid %}" class="size-10 bg-primary text-white rounded-xl flex items-center justify-center shadow-lg hover:scale-110 transition-all">
+                                <i class="fas fa-arrow-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col-span-full py-12 text-center bg-slate-50 dark:bg-slate-900 rounded-[2.5rem] border-2 border-dashed border-slate-200 dark:border-slate-700">
+                        <p class="text-slate-400 font-bold italic">{% trans "Aucune suggestion pour le moment. Complétez vos compétences !" %}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <!-- Recent Applications -->
+            <section>
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-4">
+                        <i class="fas fa-paper-plane text-primary"></i> {% trans "Mes Candidatures" %}
+                    </h2>
+                    <a href="#" class="text-xs font-black text-primary uppercase tracking-widest hover:underline">{% trans "Voir tout" %}</a>
+                </div>
+                <div class="bg-white dark:bg-slate-800 rounded-[2.5rem] shadow-xl overflow-hidden border border-slate-100 dark:border-slate-700">
+                    <table class="w-full text-left">
+                        <thead class="bg-slate-50 dark:bg-slate-900/50">
+                            <tr class="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                                <th class="px-8 py-4">{% trans "Projet / Opportunité" %}</th>
+                                <th class="px-8 py-4">{% trans "Date" %}</th>
+                                <th class="px-8 py-4 text-center">{% trans "Statut" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
+                            {% for app in applications %}
+                            <tr class="group hover:bg-slate-50/50 dark:hover:bg-slate-900/20 transition-colors">
+                                <td class="px-8 py-6">
+                                    <p class="font-black text-slate-900 dark:text-white group-hover:text-primary transition-colors">{{ app.opportunity.title }}</p>
+                                    <p class="text-xs text-slate-500">{{ app.opportunity.institution.name }}</p>
+                                </td>
+                                <td class="px-8 py-6 text-sm text-slate-500 font-medium">
+                                    {{ app.created_at|date:"d M Y" }}
+                                </td>
+                                <td class="px-8 py-6">
+                                    <div class="flex justify-center">
+                                        {% if app.status == 'pending' %}
+                                            <span class="px-4 py-1 bg-amber-500/10 text-amber-600 text-[10px] font-black uppercase tracking-widest rounded-full border border-amber-500/20">{% trans "En attente" %}</span>
+                                        {% elif app.status == 'accepted' %}
+                                            <span class="px-4 py-1 bg-green-500/10 text-green-600 text-[10px] font-black uppercase tracking-widest rounded-full border border-green-500/20">{% trans "Acceptée" %}</span>
+                                        {% else %}
+                                            <span class="px-4 py-1 bg-slate-500/10 text-slate-600 text-[10px] font-black uppercase tracking-widest rounded-full border border-slate-500/20">{% trans "Refusée" %}</span>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="3" class="px-8 py-20 text-center opacity-40 font-bold italic">
+                                    {% trans "Vous n'avez pas encore postulé à des projets." %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <!-- Right Column: Skills & Stats -->
+        <div class="space-y-12">
+            
+            <!-- Skills Summary -->
+            <section class="bg-white dark:bg-slate-800 p-10 rounded-[2.5rem] shadow-xl border border-slate-100 dark:border-slate-700">
+                <h3 class="text-xl font-black text-slate-900 dark:text-white mb-8 border-b border-slate-100 dark:border-slate-700 pb-4 flex items-center justify-between">
+                    {% trans "Mes Skills" %}
+                    <i class="fas fa-bolt text-primary opacity-50"></i>
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                    {% for skill in profile.skills.all %}
+                        <span class="px-4 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700 rounded-2xl text-[10px] font-black text-slate-600 dark:text-slate-400 lowercase hover:border-primary hover:text-primary transition-all">
+                            {{ skill.name }}
+                        </span>
+                    {% endfor %}
+                </div>
+                <a href="{% url 'citizens:profile_edit' profile.uuid %}" class="w-full mt-10 py-4 bg-primary/10 text-primary font-black rounded-2xl hover:bg-primary hover:text-white transition-all text-xs flex items-center justify-center gap-2">
+                    <i class="fas fa-plus"></i> {% trans "Gérer mes compétences" %}
+                </a>
+            </section>
+
+            <!-- Stats Card -->
+            <section class="bg-slate-900 text-white p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden group">
+                <div class="absolute -bottom-10 -right-10 text-9xl opacity-10 group-hover:scale-125 transition-transform duration-700">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="text-xl font-black mb-10 relative z-10 uppercase tracking-widest text-primary text-sm">{% trans "Impact" %}</h3>
+                <div class="grid grid-cols-2 gap-8 relative z-10">
+                    <div>
+                        <p class="text-4xl font-black mb-1">{{ matches.count }}</p>
+                        <p class="text-[10px] font-black uppercase opacity-50 tracking-widest">{% trans "Matches AI" %}</p>
+                    </div>
+                    <div>
+                        <p class="text-4xl font-black mb-1">{{ applications.count }}</p>
+                        <p class="text-[10px] font-black uppercase opacity-50 tracking-widest">{% trans "Postes visés" %}</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Next Events -->
+            <section class="bg-primary p-10 rounded-[2.5rem] shadow-2xl text-white">
+                <h3 class="text-xl font-black mb-8 border-b border-white/20 pb-4">{% trans "Dernière Info" %}</h3>
+                <div class="space-y-6">
+                    <p class="text-sm font-medium italic opacity-90 leading-relaxed">
+                        "Prenez part au Sommet National des Compétences du 15 Juin. Votre présence est attendue."
+                    </p>
+                    <a href="{% url 'content:event_list' %}" class="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest hover:translate-x-2 transition-transform">
+                        {% trans "Agenda" %} <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</main>
+{% endblock %}

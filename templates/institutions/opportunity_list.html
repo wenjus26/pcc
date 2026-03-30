@@ -65,7 +65,8 @@
                                 <p class="text-slate-500 dark:text-slate-400 font-bold flex items-center gap-2">
                                     <span class="text-primary italic">{{ opportunity.institution.name }}</span>
                                     <span class="size-1 rounded-full bg-slate-300"></span>
-                                    <span>{{ opportunity.institution.location|default:_("Bénin") }}</span>
+                                    {% trans "Bénin" as default_loc %}
+                                    <span>{{ opportunity.institution.location|default:default_loc }}</span>
                                 </p>
                             </div>
                             <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest border border-primary/10">

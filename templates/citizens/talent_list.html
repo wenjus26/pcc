@@ -78,14 +78,16 @@
                             {% if talent.years_of_experience > 5 %}{% trans "Expert" %}{% else %}{% trans "Senior" %}{% endif %}
                         </span>
                         <span class="text-slate-400 text-xs font-bold flex items-center gap-2">
-                            <i class="fas fa-map-marker-alt text-primary/40"></i> {{ talent.location|default:_("Bénin") }}
+                            {% trans "Bénin" as default_loc %}
+                            <i class="fas fa-map-marker-alt text-primary/40"></i> {{ talent.location|default:default_loc }}
                         </span>
                     </div>
                 </div>
             </div>
             
+            {% trans "Consultant Indépendant" as default_title %}
             <p class="text-slate-500 dark:text-slate-400 text-sm font-medium line-clamp-3 mb-8 leading-relaxed italic">
-                {{ talent.current_title|default:_("Consultant Indépendant") }}
+                {{ talent.current_title|default:default_title }}
             </p>
 
             <div class="flex flex-wrap gap-2 mb-10 mt-auto">

@@ -32,11 +32,14 @@
                             </span>
                         {% endif %}
                     </div>
-                    <p class="text-primary font-black text-xl mb-4 italic opacity-90">{{ profile.current_title|default:_("Profession non spécifiée") }}</p>
+                    {% trans "Profession non spécifiée" as default_title %}
+                    <p class="text-primary font-black text-xl mb-4 italic opacity-90">{{ profile.current_title|default:default_title }}</p>
                     <div class="flex flex-wrap items-center gap-6 text-sm font-bold text-slate-500">
-                        <span class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-primary/60"></i> {{ profile.location|default:_("Bénin") }}</span>
+                        {% trans "Bénin" as default_loc %}
+                        <span class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-primary/60"></i> {{ profile.location|default:default_loc }}</span>
                         <span class="flex items-center gap-2"><i class="fas fa-clock text-primary/60"></i> {{ profile.years_of_experience }} {% trans "ans d'expérience" %}</span>
-                        <span class="flex items-center gap-2"><i class="fas fa-calendar-check text-primary/60"></i> {{ profile.availability|default:_("Disponible") }}</span>
+                        {% trans "Disponible" as default_avail %}
+                        <span class="flex items-center gap-2"><i class="fas fa-calendar-check text-primary/60"></i> {{ profile.availability|default:default_avail }}</span>
                     </div>
                 </div>
                 {% if user != profile.user %}
@@ -60,8 +63,9 @@
                             </div>
                             {% trans "Biographie & Objectifs" %}
                         </h3>
+                        {% trans "Aucune biographie disponible pour le moment." as default_bio %}
                         <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-lg font-medium">
-                            {{ profile.bio|default:_("Aucune biographie disponible pour le moment.") }}
+                            {{ profile.bio|default:default_bio }}
                         </p>
                     </section>
 

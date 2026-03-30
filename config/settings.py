@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'apps.matching',
     'apps.institutions',
     'apps.content',
+    'apps.evaluations',
 ]
 
 MIDDLEWARE = [

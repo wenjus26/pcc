@@ -26,8 +26,8 @@ class DocumentInline(admin.TabularInline):
 
 @admin.register(CitizenProfile)
 class CitizenProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'current_title', 'location', 'is_public')
-    list_filter = ('is_public', 'location')
+    list_display = ('user', 'current_title', 'location', 'is_public', 'is_validated', 'charter_signed')
+    list_filter = ('is_public', 'is_validated', 'location', 'charter_signed')
     search_fields = ('user__username', 'user__first_name', 'user__last_name', 'current_title')
     inlines = [ExperienceInline, EducationInline, DocumentInline]
     filter_horizontal = ('skills',)

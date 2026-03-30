@@ -6,6 +6,13 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>{% block title %}PCC - Plate-Forme Citoyenne des Compétences{% endblock %}</title>
+    {% block meta %}
+    <meta name="description" content="Plateforme Citoyenne de Compétences - La vitrine digitale des talents pour bâtir l'avenir du Bénin.">
+    <meta property="og:title" content="PCC - Plateforme Citoyenne de Compétences">
+    <meta property="og:description" content="Connectez-vous aux projets stratégiques du Bénin.">
+    <meta property="og:image" content="{% static 'images/logo.jpeg' %}">
+    <meta property="og:type" content="website">
+    {% endblock %}
 
     <!-- Scripts & Styles -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -47,6 +54,48 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+
+        /* Form Visibility Improvements */
+        input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]), 
+        select, 
+        textarea {
+            border: 1px solid #d1d5db !important; /* slate-300 */
+            transition: all 0.2s ease;
+        }
+
+        .dark input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]), 
+        .dark select, 
+        .dark textarea {
+            border: 1px solid #334155 !important; /* slate-700 */
+            background-color: transparent;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: theme('colors.primary') !important;
+            box-shadow: 0 0 0 2px rgba(51, 165, 13, 0.1) !important;
+        }
+
+        /* Card Visibility Improvements */
+        [class*="shadow-"] {
+            border: 1px solid rgba(0, 0, 0, 0.05) !important;
+        }
+
+        .dark [class*="shadow-"] {
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+        }
+
+        /* Specific fix for cards using border-transparent or border-primary/5 */
+        .hover\:border-primary\/20:not(:hover), 
+        .border-primary\/5, 
+        .border-primary\/10 {
+            border-color: #e2e8f0 !important; /* slate-200 */
+        }
+
+        .dark .hover\:border-primary\/20:not(:hover), 
+        .dark .border-primary\/5, 
+        .dark .border-primary\/10 {
+            border-color: #1e293b !important; /* slate-800 */
+        }
     </style>
     {% block extra_head %}{% endblock %}
 </head>
@@ -77,19 +126,93 @@
             </div>
 
             <!-- Desktop Nav -->
-            <nav class="hidden lg:flex items-center gap-8 text-sm font-bold uppercase tracking-widest">
-                <a class="{% if request.resolver_match.app_name == 'core' and request.path == '/' %}text-primary font-black{% else %}text-slate-600 dark:text-slate-400 hover:text-primary{% endif %} transition-colors"
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center gap-8 text-[11px] font-black uppercase tracking-[0.2em]">
+                <a class="{% if request.resolver_match.app_name == 'core' and request.path == '/' %}text-primary{% else %}text-slate-500 dark:text-slate-400 hover:text-primary{% endif %} transition-colors"
                     href="{% url 'core:home' %}">{% trans "Accueil" %}</a>
-                <a class="{% if request.resolver_match.url_name == 'programme_societe' %}text-primary font-black{% else %}text-slate-600 dark:text-slate-400 hover:text-primary{% endif %} transition-colors"
-                    href="{% url 'content:programme_societe' %}">{% trans "Projet" %}</a>
-                <a class="{% if request.resolver_match.app_name == 'citizens' %}text-primary font-black{% else %}text-slate-600 dark:text-slate-400 hover:text-primary{% endif %} transition-colors"
-                    href="{% url 'citizens:talent_list' %}">{% trans "Talents" %}</a>
-                <a class="{% if request.resolver_match.app_name == 'institutions' %}text-primary font-black{% else %}text-slate-600 dark:text-slate-400 hover:text-primary{% endif %} transition-colors"
-                    href="{% url 'institutions:opportunity_list' %}">{% trans "Opportunités" %}</a>
-                <a class="{% if request.resolver_match.app_name == 'content' and 'events' in request.path %}text-primary font-black{% else %}text-slate-600 dark:text-slate-400 hover:text-primary{% endif %} transition-colors"
-                    href="{% url 'content:event_list' %}">{% trans "Événements" %}</a>
-                <a class="{% if request.resolver_match.url_name == 'gallery' %}text-primary font-black{% else %}text-slate-600 dark:text-slate-400 hover:text-primary{% endif %} transition-colors"
-                    href="{% url 'content:gallery' %}">{% trans "Galerie" %}</a>
+
+                <!-- Compétences -->
+                <div class="relative group">
+                    <button class="flex items-center gap-2 group {% if request.resolver_match.app_name == 'citizens' %}text-primary{% else %}text-slate-500 dark:text-slate-400 hover:text-primary{% endif %} transition-colors uppercase">
+                        {% trans "Compétences" %}
+                        <i class="fas fa-chevron-down text-[9px] opacity-40 group-hover:rotate-180 transition-transform"></i>
+                    </button>
+                    <div class="absolute top-full -left-4 mt-2 w-56 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-700 rounded-2xl shadow-2xl py-3 opacity-0 translate-y-2 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-300 z-[60]">
+                        <a href="{% url 'citizens:talent_list' %}" class="flex items-center gap-3 px-5 py-3 hover:bg-primary/10 hover:text-primary transition-colors group/item">
+                            <i class="fas fa-search text-xs opacity-50 group-hover/item:opacity-100"></i>
+                            {% trans "Explorer les talents" %}
+                        </a>
+                        <a href="#" class="flex items-center gap-3 px-5 py-3 opacity-40 cursor-not-allowed">
+                            <i class="fas fa-map-marked-alt text-xs"></i>
+                            {% trans "Carte des compétences" %}
+                        </a>
+                        <a href="#" class="flex items-center gap-3 px-5 py-3 opacity-40 cursor-not-allowed">
+                            <i class="fas fa-tasks text-xs"></i>
+                            {% trans "Évaluations" %}
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Projets -->
+                <div class="relative group">
+                    <button class="flex items-center gap-2 group {% if request.resolver_match.app_name == 'institutions' %}text-primary{% else %}text-slate-500 dark:text-slate-400 hover:text-primary{% endif %} transition-colors uppercase">
+                        {% trans "Projets" %}
+                        <i class="fas fa-chevron-down text-[9px] opacity-40 group-hover:rotate-180 transition-transform"></i>
+                    </button>
+                    <div class="absolute top-full -left-4 mt-2 w-56 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-700 rounded-2xl shadow-2xl py-3 opacity-0 translate-y-2 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-300 z-[60]">
+                        <a href="{% url 'institutions:opportunity_list' %}" class="flex items-center gap-3 px-5 py-3 hover:bg-primary/10 hover:text-primary transition-colors group/item">
+                            <i class="fas fa-briefcase text-xs opacity-50 group-hover/item:opacity-100"></i>
+                            {% trans "Opportunités & Appels" %}
+                        </a>
+                        <a href="{% url 'content:contributions' %}" class="flex items-center gap-3 px-5 py-3 hover:bg-primary/10 hover:text-primary transition-colors group/item">
+                            <i class="fas fa-users-cog text-xs opacity-50 group-hover/item:opacity-100"></i>
+                            {% trans "Initiatives Citoyennes" %}
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Ressources -->
+                <div class="relative group">
+                    <button class="flex items-center gap-2 group text-slate-500 dark:text-slate-400 hover:text-primary transition-colors uppercase">
+                        {% trans "Ressources" %}
+                        <i class="fas fa-chevron-down text-[9px] opacity-40 group-hover:rotate-180 transition-transform"></i>
+                    </button>
+                    <div class="absolute top-full -left-4 mt-2 w-56 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-700 rounded-2xl shadow-2xl py-3 opacity-0 translate-y-2 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-300 z-[60]">
+                        <a href="#" class="flex items-center gap-3 px-5 py-3 opacity-40 cursor-not-allowed">
+                            <i class="fas fa-graduation-cap text-xs"></i>
+                            {% trans "Formations (MOOCs)" %}
+                        </a>
+                        <a href="#" class="flex items-center gap-3 px-5 py-3 opacity-40 cursor-not-allowed">
+                            <i class="fas fa-book-open text-xs"></i>
+                            {% trans "Guides & Publications" %}
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Communauté -->
+                <div class="relative group">
+                    <button class="flex items-center gap-2 group text-slate-500 dark:text-slate-400 hover:text-primary transition-colors uppercase">
+                        {% trans "Réseau" %}
+                        <i class="fas fa-chevron-down text-[9px] opacity-40 group-hover:rotate-180 transition-transform"></i>
+                    </button>
+                    <div class="absolute top-full -left-4 mt-2 w-56 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-700 rounded-2xl shadow-2xl py-3 opacity-0 translate-y-2 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-300 z-[60]">
+                        <a href="{% url 'content:event_list' %}" class="flex items-center gap-3 px-5 py-3 hover:bg-primary/10 hover:text-primary transition-colors group/item">
+                            <i class="fas fa-calendar-alt text-xs opacity-50 group-hover/item:opacity-100"></i>
+                            {% trans "Événements" %}
+                        </a>
+                        <a href="{% url 'content:gallery' %}" class="flex items-center gap-3 px-5 py-3 hover:bg-primary/10 hover:text-primary transition-colors group/item">
+                            <i class="fas fa-images text-xs opacity-50 group-hover/item:opacity-100"></i>
+                            {% trans "Galerie" %}
+                        </a>
+                        <a href="#" class="flex items-center gap-3 px-5 py-3 opacity-40 cursor-not-allowed">
+                            <i class="fas fa-comments text-xs"></i>
+                            {% trans "Forums / Groupes" %}
+                        </a>
+                    </div>
+                </div>
+
+                <a class="{% if request.resolver_match.url_name == 'biography' %}text-primary{% else %}text-slate-500 dark:text-slate-400 hover:text-primary{% endif %} transition-colors"
+                    href="{% url 'content:biography' %}">{% trans "À propos" %}</a>
             </nav>
 
             <div class="flex items-center gap-3">
@@ -101,7 +224,7 @@
                 <div class="hidden sm:flex items-center gap-2">
                     {% if user.is_authenticated %}
                     <div class="flex items-center gap-4">
-                        <a href="#" class="text-slate-600 dark:text-slate-400 font-bold text-sm">{% trans "Mon Espace" %}</a>
+                        <a href="{% url 'accounts:dashboard' %}" class="text-slate-600 dark:text-slate-400 font-bold text-sm hover:text-primary transition-colors">{% trans "Mon Espace" %}</a>
                         <form action="{% url 'accounts:logout' %}" method="post" class="inline">
                             {% csrf_token %}
                             <button type="submit"
@@ -146,32 +269,54 @@
         <div id="mobile-menu"
             class="hidden absolute top-16 right-4 z-[60] w-64 bg-white/95 dark:bg-background-dark/95 backdrop-blur-md rounded-2xl shadow-2xl border border-primary/10 overflow-hidden transform origin-top-right transition-all duration-300 scale-95 opacity-0">
             <div class="p-6 flex flex-col gap-4">
-                <nav class="flex flex-col gap-2 font-bold text-sm">
-                    <p class="text-[10px] uppercase tracking-[0.2em] text-slate-400 mb-2">{% trans "Navigation" %}</p>
+                <nav class="flex flex-col gap-1 font-bold text-sm">
+                    <!-- Home -->
                     <a class="flex items-center justify-between p-3 rounded-xl {% if request.resolver_match.url_name == 'home' %}bg-primary/10 text-primary{% else %}hover:bg-primary/5 text-slate-600 dark:text-slate-400{% endif %}"
                         href="{% url 'core:home' %}">
                         {% trans "Accueil" %}
-                        <i class="fas fa-chevron-right text-[10px] opacity-30"></i>
+                        <i class="fas fa-home text-[10px] opacity-30"></i>
                     </a>
-                    <a class="flex items-center justify-between p-3 rounded-xl {% if request.resolver_match.app_name == 'citizens' %}bg-primary/10 text-primary{% else %}hover:bg-primary/5 text-slate-600 dark:text-slate-400{% endif %}"
+
+                    <!-- Compétences -->
+                    <p class="text-[9px] uppercase tracking-[0.2em] text-slate-400 mt-4 mb-1 pl-3">{% trans "Compétences" %}</p>
+                    <a class="flex items-center justify-between p-3 rounded-xl hover:bg-primary/5 text-slate-600 dark:text-slate-400 text-xs"
                         href="{% url 'citizens:talent_list' %}">
-                        {% trans "Talents" %}
-                        <i class="fas fa-chevron-right text-[10px] opacity-30"></i>
+                        {% trans "Explorer les talents" %}
+                        <i class="fas fa-search text-[10px] opacity-30"></i>
                     </a>
-                    <a class="flex items-center justify-between p-3 rounded-xl {% if request.resolver_match.app_name == 'institutions' %}bg-primary/10 text-primary{% else %}hover:bg-primary/5 text-slate-600 dark:text-slate-400{% endif %}"
+
+                    <!-- Projets -->
+                    <p class="text-[9px] uppercase tracking-[0.2em] text-slate-400 mt-4 mb-1 pl-3">{% trans "Projets" %}</p>
+                    <a class="flex items-center justify-between p-3 rounded-xl hover:bg-primary/5 text-slate-600 dark:text-slate-400 text-xs"
                         href="{% url 'institutions:opportunity_list' %}">
                         {% trans "Opportunités" %}
-                        <i class="fas fa-chevron-right text-[10px] opacity-30"></i>
+                        <i class="fas fa-briefcase text-[10px] opacity-30"></i>
                     </a>
-                    <a class="flex items-center justify-between p-3 rounded-xl {% if request.resolver_match.app_name == 'content' and 'events' in request.path %}bg-primary/10 text-primary{% else %}hover:bg-primary/5 text-slate-600 dark:text-slate-400{% endif %}"
+                    <a class="flex items-center justify-between p-3 rounded-xl hover:bg-primary/5 text-slate-600 dark:text-slate-400 text-xs"
+                        href="{% url 'content:contributions' %}">
+                        {% trans "Initiatives Citoyennes" %}
+                        <i class="fas fa-users-cog text-[10px] opacity-30"></i>
+                    </a>
+
+                    <!-- Réseau & Communauté -->
+                    <p class="text-[9px] uppercase tracking-[0.2em] text-slate-400 mt-4 mb-1 pl-3">{% trans "Réseau" %}</p>
+                    <a class="flex items-center justify-between p-3 rounded-xl hover:bg-primary/5 text-slate-600 dark:text-slate-400 text-xs"
                         href="{% url 'content:event_list' %}">
                         {% trans "Événements" %}
-                        <i class="fas fa-chevron-right text-[10px] opacity-30"></i>
+                        <i class="fas fa-calendar-alt text-[10px] opacity-30"></i>
                     </a>
-                    <a class="flex items-center justify-between p-3 rounded-xl {% if request.resolver_match.url_name == 'gallery' %}bg-primary/10 text-primary{% else %}hover:bg-primary/5 text-slate-600 dark:text-slate-400{% endif %}"
+                    <a class="flex items-center justify-between p-3 rounded-xl hover:bg-primary/5 text-slate-600 dark:text-slate-400 text-xs"
                         href="{% url 'content:gallery' %}">
                         {% trans "Galerie" %}
-                        <i class="fas fa-chevron-right text-[10px] opacity-30"></i>
+                        <i class="fas fa-images text-[10px] opacity-30"></i>
+                    </a>
+
+                    <!-- About -->
+                    <p class="text-[9px] uppercase tracking-[0.2em] text-slate-400 mt-4 mb-1 pl-3">{% trans "Info" %}</p>
+                    <a class="flex items-center justify-between p-3 rounded-xl hover:bg-primary/5 text-slate-600 dark:text-slate-400 text-xs"
+                        href="{% url 'content:biography' %}">
+                        {% trans "À propos" %}
+                        <i class="fas fa-info-circle text-[10px] opacity-30"></i>
                     </a>
                 </nav>
 
