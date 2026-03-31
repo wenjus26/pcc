@@ -48,8 +48,16 @@ class Event(models.Model):
         return f"{self.get_event_type_display()} - {self.title}"
 
 class Resource(models.Model):
+    RESOURCE_TYPES = [
+        ('file', _('Fichier')),
+        ('video', _('Vidéo (URL)')),
+        ('link', _('Lien Externe')),
+    ]
     title = models.CharField(max_length=255)
-    file = models.FileField(upload_to='resources/')
+    resource_type = models.CharField(max_length=10, choices=RESOURCE_TYPES, default='file')
+    file = models.FileField(upload_to='resources/', null=True, blank=True)
+    video_url = models.URLField(blank=True, help_text="Lien YouTube ou Vimeo")
+    external_link = models.URLField(blank=True)
     description = models.TextField(blank=True)
     
     created_at = models.DateTimeField(auto_now_add=True)
@@ -59,7 +67,41 @@ class Resource(models.Model):
         verbose_name_plural = _('Ressources')
 
     def __str__(self):
+        return f"[{self.get_resource_type_display()}] {self.title}"
+
+class Course(models.Model):
+    title = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True)
+    thumbnail = models.ImageField(upload_to='course_thumbnails/', blank=True, null=True)
+    description = models.TextField()
+    instructor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    
+    is_published = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _('Cours / MOOC')
+        verbose_name_plural = _('Cours / MOOCs')
+
+    def __str__(self):
         return self.title
+
+class Lesson(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='lessons')
+    title = models.CharField(max_length=255)
+    order = models.PositiveIntegerField(default=0)
+    video_url = models.URLField(blank=True)
+    content = models.TextField(blank=True)
+    resources = models.ManyToManyField(Resource, blank=True)
+    
+    class Meta:
+        verbose_name = _('Leçon')
+        verbose_name_plural = _('Leçons')
+        ordering = ['order']
+
+    def __str__(self):
+        return f"{self.course.title} - {self.title}"
 
 class GalleryImage(models.Model):
     title = models.CharField(max_length=255)

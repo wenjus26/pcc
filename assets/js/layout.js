@@ -164,7 +164,7 @@ function renderFooter() {
                 </div>
             </div>
             <div class="flex flex-col md:flex-row justify-between items-center text-[10px] font-bold uppercase tracking-widest text-slate-500 gap-8">
-                <p>© 2024 PCC. Tous droits réservés.</p>
+                <p>© 2026 PCC. Tous droits réservés.</p>
                 <div class="flex gap-8 items-center">
                     <a href="#" class="hover:text-white transition-colors">Confidentialité</a>
                     <a href="#" class="hover:text-white transition-colors">Cookies</a>

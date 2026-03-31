@@ -31,11 +31,26 @@ class CitizenProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='citizen_profile')
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     bio = models.TextField(blank=True)
-    location = models.CharField(max_length=255, blank=True)
+    DEPARTMENTS = [
+        ('alibori', 'Alibori'),
+        ('atacora', 'Atacora'),
+        ('atlantique', 'Atlantique'),
+        ('borgou', 'Borgou'),
+        ('collines', 'Collines'),
+        ('couffo', 'Couffo'),
+        ('donga', 'Donga'),
+        ('littoral', 'Littoral'),
+        ('mono', 'Mono'),
+        ('oueme', 'Ouémé'),
+        ('plateau', 'Plateau'),
+        ('zou', 'Zou'),
+    ]
+    location = models.CharField(max_length=50, choices=DEPARTMENTS, blank=True)
     availability = models.CharField(max_length=100, blank=True)
     is_public = models.BooleanField(default=True)
     
     skills = models.ManyToManyField(Skill, related_name='citizens', blank=True)
+    interests = models.ManyToManyField(Category, related_name='interested_citizens', blank=True, verbose_name=_("Domaines d'intérêt"))
     
     # Career summary
     # Career summary

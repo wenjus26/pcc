@@ -16,6 +16,8 @@ urlpatterns += i18n_patterns(
     path('institutions/', include('apps.institutions.urls')),
     path('matching/', include('apps.matching.urls')),
     path('content/', include('apps.content.urls')),
+    path('evaluations/', include('apps.evaluations.urls')),
+    path('community/', include('apps.community.urls')),
 )
 
 handler400 = 'apps.core.views.error_400'

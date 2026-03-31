@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Centre de Notifications" %} - PCC{% endblock %}
+
+{% block content %}
+<div class="bg-gray-50 min-h-screen py-16">
+    <div class="container mx-auto px-4 max-w-2xl">
+        <div class="mb-12 flex justify-between items-center">
+            <h1 class="text-3xl font-extrabold text-gray-900 flex items-center">
+                <i class="fas fa-bell text-green-500 mr-4"></i> {% trans "Notifications" %}
+            </h1>
+            <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">{{ notifications.count }} {% trans "alertes" %}</span>
+        </div>
+
+        <div class="space-y-4">
+            {% for notif in notifications %}
+            <div class="bg-white rounded-2xl p-6 shadow-sm border-l-4 {% if notif.is_read %}border-gray-100{% else %}border-green-600{% endif %} hover:shadow-md transition-shadow">
+                <div class="flex justify-between items-start">
+                    <h3 class="font-bold text-gray-900 mb-1">{{ notif.title }}</h3>
+                    <span class="text-[10px] text-gray-400 font-bold uppercase tracking-widest whitespace-nowrap">{{ notif.created_at|timesince }}</span>
+                </div>
+                <p class="text-gray-500 text-sm leading-normal mb-4">{{ notif.message }}</p>
+                {% if notif.link %}
+                <a href="{{ notif.link }}" class="text-xs font-black text-green-600 hover:underline uppercase tracking-widest">
+                    {% trans "Consulter" %} <i class="fas fa-external-link-alt ml-1"></i>
+                </a>
+                {% endif %}
+            </div>
+            {% empty %}
+            <div class="bg-white rounded-3xl p-16 text-center shadow-xl border border-gray-100">
+                <div class="text-gray-100 text-8xl mb-8">
+                    <i class="fas fa-bell-slash"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-400">{% trans "Rien à signaler pour le moment." %}</h3>
+                <p class="text-gray-400 mt-4 leading-relaxed">{% trans "Nous vous avertirons dès qu'une nouvelle opportunité ou interaction vous concernera." %}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

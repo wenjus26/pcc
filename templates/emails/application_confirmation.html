@@ -1,0 +1,14 @@
+{% extends "emails/base_email.html" %}
+
+{% block content %}
+<h2>Confirmation de votre candidature</h2>
+<p>Bonjour {{ user.username }},</p>
+<p>Nous vous confirmons avoir bien reçu votre candidature pour l'opportunité suivante : <strong>{{ opportunity.title }}</strong>.</p>
+<p>Votre profil est en cours d'examen par l'institution concernée. Vous recevrez une notification dès qu'une décision sera prise ou si des informations complémentaires sont nécessaires.</p>
+<p>Vous pouvez consulter l'état de vos candidatures à tout moment depuis votre tableau de bord personnel.</p>
+<div style="text-align: center;">
+    <a href="http://127.0.0.1:8000/accounts/dashboard/" class="button">Voir mes candidatures</a>
+</div>
+<p style="margin-top: 30px;">Nous vous souhaitons pleine réussite dans votre démarche.</p>
+<p>L'équipe PCC</p>
+{% endblock %}

@@ -27,6 +27,19 @@ def apply_to_opportunity(request, uuid):
             opportunity=opportunity,
             status='pending'
         )
+
+        # Send application confirmation email
+        from apps.core.utils import send_pcc_email
+        send_pcc_email(
+            subject=f"Confirmation de candidature : {opportunity.title}",
+            template_name='emails/application_confirmation.html',
+            context={
+                'user': request.user,
+                'opportunity': opportunity
+            },
+            recipient_list=[request.user.email],
+        )
+
         messages.success(request, f"Votre candidature pour '{opportunity.title}' a été envoyée avec succès !")
     
     return redirect('accounts:dashboard')

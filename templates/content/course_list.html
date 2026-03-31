@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Formations et MOOCs" %} - PCC{% endblock %}
+
+{% block content %}
+<div class="bg-gradient-to-b from-white to-gray-50 min-h-screen py-16">
+    <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center mb-16">
+            <h1 class="text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">
+                {% trans "Développez votre Potentiel" %}
+            </h1>
+            <p class="text-xl text-gray-600">
+                {% trans "Accédez à des parcours de formation structurés pour renforcer vos compétences techniques et professionnelles." %}
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {% for course in courses %}
+            <div class="group bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                <div class="relative h-56 overflow-hidden">
+                    {% if course.thumbnail %}
+                    <img src="{{ course.thumbnail.url }}" alt="{{ course.title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    {% else %}
+                    <div class="w-full h-full bg-green-600 flex items-center justify-center text-white text-6xl">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    {% endif %}
+                    <div class="absolute inset-0 bg-black bg-opacity-20 transition-opacity duration-300 opacity-0 group-hover:opacity-100 flex items-center justify-center">
+                        <span class="bg-white text-green-600 font-bold px-6 py-2 rounded-full shadow-lg">{% trans "Voir le cours" %}</span>
+                    </div>
+                </div>
+                
+                <div class="p-8">
+                    <div class="flex items-center text-xs font-bold text-green-500 uppercase tracking-widest mb-3">
+                        <i class="fas fa-book-open mr-2"></i> {{ course.lessons.count }} {% trans "Leçons" %}
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">{{ course.title }}</h3>
+                    <p class="text-gray-600 mb-8 line-clamp-3">
+                        {{ course.description|truncatewords:25 }}
+                    </p>
+
+                    <div class="flex items-center justify-between pt-6 border-t border-gray-50">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-gray-200 mr-3 flex items-center justify-center overflow-hidden">
+                                <i class="fas fa-user text-gray-400"></i>
+                            </div>
+                            <span class="text-sm font-medium text-gray-700">{{ course.instructor.get_full_name|default:course.instructor.username }}</span>
+                        </div>
+                        <a href="{% url 'content:course_detail' course.slug %}" class="text-green-600 hover:text-green-700">
+                            <i class="fas fa-arrow-right text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-full py-20 text-center">
+                <h3 class="text-2xl text-gray-500">{% trans "Bientôt de nouveaux cours..." %}</h3>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

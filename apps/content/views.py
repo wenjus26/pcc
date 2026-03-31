@@ -1,5 +1,26 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Event
+from .models import Event, Course, Lesson
+
+def course_list(request):
+    courses = Course.objects.filter(is_published=True).order_by('-created_at')
+    return render(request, 'content/course_list.html', {'courses': courses})
+
+def course_detail(request, slug):
+    course = get_object_or_404(Course, slug=slug, is_published=True)
+    lessons = course.lessons.all()
+    
+    # Simple logic for current lesson
+    lesson_id = request.GET.get('lesson')
+    if lesson_id:
+        current_lesson = get_object_or_404(Lesson, id=lesson_id, course=course)
+    else:
+        current_lesson = lessons.first()
+        
+    return render(request, 'content/course_detail.html', {
+        'course': course,
+        'lessons': lessons,
+        'current_lesson': current_lesson
+    })
 
 def event_list(request):
     events = Event.objects.filter(is_active=True).order_by('date')

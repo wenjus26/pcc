@@ -1,9 +1,27 @@
 import uuid
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.core.paginator import Paginator
 from .models import CitizenProfile, Skill
+from .forms import CitizenProfileForm, ExperienceFormSet, EducationFormSet
+
+def skill_map(request):
+    """
+    Displays the geographic distribution of talents across Benin's departments.
+    """
+    stats = CitizenProfile.objects.filter(is_validated=True).values('location').annotate(total=Count('location'))
+    
+    # Map the results to a dictionary for easier access in the template
+    location_data = {item['location']: item['total'] for item in stats if item['location']}
+    
+    import json
+    context = {
+        'location_data': location_data,
+        'location_data_json': json.dumps(location_data),
+        'departments': CitizenProfile.DEPARTMENTS,
+    }
+    return render(request, 'citizens/skill_map.html', context)
 
 def talent_list(request):
     query = request.GET.get('q', '')
@@ -47,42 +65,55 @@ def profile_detail(request, uuid):
 def profile_edit(request, uuid):
     profile = get_object_or_404(CitizenProfile, uuid=uuid)
     
-    # Check if the current user is the owner of the profile
     if profile.user != request.user:
         return redirect('citizens:profile_detail', uuid=uuid)
 
     if request.method == 'POST':
-        # Simple processing for the form without using complex forms.ModelForm first for demonstration, 
-        # but in real usage we'd use ModelForm.
-        profile.bio = request.POST.get('bio', profile.bio)
-        profile.location = request.POST.get('location', profile.location)
-        profile.availability = request.POST.get('availability', profile.availability)
-        profile.current_title = request.POST.get('current_title', profile.current_title)
-        profile.years_of_experience = int(request.POST.get('years_of_experience', profile.years_of_experience) or 0)
-        profile.is_public = request.POST.get('is_public') == 'on'
+        form = CitizenProfileForm(request.POST, request.FILES, instance=profile)
+        experience_formset = ExperienceFormSet(request.POST, request.FILES, instance=profile)
+        education_formset = EducationFormSet(request.POST, request.FILES, instance=profile)
         
-        # New fields from request
-        if 'photo' in request.FILES:
-            profile.photo = request.FILES['photo']
+        if form.is_valid() and experience_formset.is_valid() and education_formset.is_valid():
+            # Automatically require re-validation when sensitive info matches
+            profile = form.save(commit=False)
+            profile.is_validated = False  # Set to unvalidated upon modification
+            profile.save()
             
-        if request.POST.get('charter_signed') == 'on':
-            profile.charter_signed = True
+            experience_formset.save()
+            education_formset.save()
             
-        profile.save()
-        
-        # If the user also uploaded a CV
-        if 'cv_file' in request.FILES:
-            from .models import Document
-            Document.objects.create(
-                profile=profile,
-                doc_type='cv',
-                title="CV Principal",
-                file=request.FILES['cv_file']
-            )
+            if 'photo' in request.FILES:
+                profile.photo = request.FILES['photo']
+                profile.save()
+                
+            if request.POST.get('charter_signed') == 'on':
+                profile.charter_signed = True
+                profile.save()
 
-        return redirect('citizens:profile_detail', uuid=uuid)
+            if 'cv_file' in request.FILES:
+                from .models import Document
+                Document.objects.create(
+                    profile=profile,
+                    doc_type='cv',
+                    title="CV Principal",
+                    file=request.FILES['cv_file']
+                )
 
-    return render(request, 'citizens/profile_form.html', {'profile': profile})
+            from django.contrib import messages
+            messages.success(request, "Profil mis à jour avec succès. Il a été soumis pour re-validation.")
+            return redirect('citizens:profile_detail', uuid=uuid)
+    else:
+        form = CitizenProfileForm(instance=profile)
+        experience_formset = ExperienceFormSet(instance=profile)
+        education_formset = EducationFormSet(instance=profile)
+
+    context = {
+        'profile': profile,
+        'form': form,
+        'experience_formset': experience_formset,
+        'education_formset': education_formset
+    }
+    return render(request, 'citizens/profile_form.html', context)
 
 @login_required
 def talent_register(request):

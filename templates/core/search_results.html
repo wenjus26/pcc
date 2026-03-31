@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Résultats de recherche" %} - PCC{% endblock %}
+
+{% block content %}
+<div class="bg-gray-50 min-h-screen py-16">
+    <div class="container mx-auto px-4 max-w-6xl">
+        <div class="mb-12">
+            <h1 class="text-3xl font-extrabold text-gray-900 mb-2">{% trans "Recherche pour" %} : <span class="text-green-600">"{{ query }}"</span></h1>
+            <p class="text-gray-500 font-bold uppercase tracking-widest text-sm">
+                {{ talents.count|add:opportunities.count }} {% trans "résultats trouvés" %}
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <!-- Talents Column -->
+            <div class="lg:col-span-2 space-y-8">
+                <section>
+                    <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-users text-green-500 mr-3"></i> {% trans "Experts & Talents" %}
+                    </h2>
+                    <div class="space-y-4">
+                        {% for talent in talents %}
+                        <a href="{% url 'citizens:talent_detail' talent.uuid %}" class="block bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center text-green-600 font-bold mr-4">
+                                    {{ talent.user.username.0|upper }}
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-900">{{ talent.user.get_full_name|default:talent.user.username }}</h3>
+                                    <p class="text-sm text-gray-500">{{ talent.current_title }}</p>
+                                </div>
+                            </div>
+                        </a>
+                        {% empty %}
+                        <p class="text-gray-400 italic">{% trans "Aucun talent trouvé." %}</p>
+                        {% endfor %}
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center pt-8">
+                        <i class="fas fa-briefcase text-green-500 mr-3"></i> {% trans "Opportunités" %}
+                    </h2>
+                    <div class="space-y-4">
+                        {% for opp in opportunities %}
+                        <a href="{% url 'institutions:opportunity_detail' opp.id %}" class="block bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                            <h3 class="font-bold text-gray-900 mb-1">{{ opp.title }}</h3>
+                            <p class="text-xs text-gray-400 font-bold">{% trans "Par" %} {{ opp.institution.name }}</p>
+                        </a>
+                        {% empty %}
+                        <p class="text-gray-400 italic">{% trans "Aucune opportunité trouvée." %}</p>
+                        {% endfor %}
+                    </div>
+                </section>
+            </div>
+
+            <!-- Sidebar / Filter info -->
+            <div class="space-y-6">
+                <div class="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm">
+                    <h3 class="font-bold text-gray-800 mb-4">{% trans "Affiner votre recherche" %}</h3>
+                    <form action="{% url 'core:search' %}" method="GET">
+                        <div class="relative">
+                            <input type="text" name="q" value="{{ query }}" class="w-full pl-4 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:border-green-500 outline-none transition-all">
+                            <button type="submit" class="absolute right-2 top-2 p-1.5 text-green-600">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

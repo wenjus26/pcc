@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Résultat" %} : {{ result.evaluation.title }} - PCC{% endblock %}
+
+{% block content %}
+<div class="bg-gray-50 min-h-screen py-12">
+    <div class="container mx-auto px-4 max-w-2xl">
+        <div class="bg-white rounded-3xl shadow-2xl p-12 text-center border border-gray-100">
+            {% if result.passed %}
+            <div class="text-green-500 text-8xl mb-6 animate-bounce">
+                <i class="fas fa-award"></i>
+            </div>
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-2">{% trans "Félicitations !" %}</h1>
+            <p class="text-xl text-gray-600 mb-8">
+                {% trans "Vous avez réussi l'évaluation" %} <strong>{{ result.evaluation.title }}</strong>. 
+                {% trans "Votre expertise en" %} {{ result.evaluation.skill.name }} {% trans "est maintenant certifiée." %}
+            </p>
+            {% else %}
+            <div class="text-yellow-500 text-8xl mb-6">
+                <i class="fas fa-redo-alt"></i>
+            </div>
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-2">{% trans "Presque !" %}</h1>
+            <p class="text-xl text-gray-600 mb-8">
+                {% trans "Vous n'avez pas atteint le score minimum de" %} {{ result.evaluation.passing_score }}%. 
+                {% trans "N'hésitez pas à réviser et à retenter l'évaluation." %}
+            </p>
+            {% endif %}
+
+            <div class="bg-gray-50 rounded-2xl p-8 mb-12">
+                <div class="grid grid-cols-2 gap-8 text-left">
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">{% trans "Votre Score" %}</p>
+                        <p class="text-3xl font-extrabold {% if result.passed %}text-green-600{% else %}text-yellow-600{% endif %}">{{ result.score|floatformat:1 }}%</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">{% trans "Date" %}</p>
+                        <p class="text-xl font-bold text-gray-800">{{ result.completed_at|date:"d/m/Y" }}</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">{% trans "Statut" %}</p>
+                        <p class="text-xl font-bold {% if result.passed %}text-green-600{% else %}text-yellow-600{% endif %}">
+                            {% if result.passed %}{% trans "RÉUSSI" %}{% else %}{% trans "ÉCHEC" %}{% endif %}
+                        </p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">{% trans "Badge Obtenu" %}</p>
+                        <p class="text-xl font-bold text-gray-800">
+                            {% if result.passed and result.evaluation.badge %}
+                            <i class="{{ result.evaluation.badge.icon }} text-green-500"></i> {{ result.evaluation.badge.name }}
+                            {% else %}
+                            -
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{% url 'evaluations:evaluation_list' %}" class="bg-green-600 text-white font-bold px-8 py-3 rounded-xl hover:bg-green-700 transition-colors shadow-lg">
+                    {% trans "Retourner à la liste" %}
+                </a>
+                {% if not result.passed %}
+                <a href="{% url 'evaluations:take_evaluation' result.evaluation.uuid %}" class="bg-white text-green-600 border-2 border-green-600 font-bold px-8 py-3 rounded-xl hover:bg-green-50 transition-colors">
+                    {% trans "Réessayer" %}
+                </a>
+                {% endif %}
+                <a href="{% url 'accounts:dashboard' %}" class="bg-gray-100 text-gray-600 font-bold px-8 py-3 rounded-xl hover:bg-gray-200 transition-colors">
+                    {% trans "Mon Tableau de Bord" %}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

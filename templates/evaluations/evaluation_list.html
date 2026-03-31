@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "évaluations des Compétences" %} - PCC{% endblock %}
+
+{% block content %}
+<div class="bg-gray-50 min-h-screen py-12">
+    <div class="container mx-auto px-4">
+        <div class="mb-12 text-center">
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-4">{% trans "Certifiez vos Compétences" %}</h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                {% trans "Passez nos tests d'évaluation pour valider votre expertise et obtenir des badges de reconnaissance sur votre profil." %}
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for evaluation in evaluations %}
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-shadow duration-300">
+                <div class="p-8">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-bold uppercase tracking-wider">
+                            {{ evaluation.skill.category.name }}
+                        </span>
+                        <div class="text-gray-400">
+                            <i class="fas fa-clock mr-1"></i> {{ evaluation.duration_minutes }} min
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">{{ evaluation.title }}</h3>
+                    <p class="text-gray-600 mb-6 line-clamp-2">
+                        {% trans "Validez vos connaissances en" %} {{ evaluation.skill.name }}. 
+                        {% trans "Score requis" %} : {{ evaluation.passing_score }}%
+                    </p>
+
+                    <div class="flex items-center justify-between">
+                        {% if evaluation.id in passed_evals %}
+                        <div class="flex items-center text-green-600 font-bold">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            {% trans "Réussi" %} ({{ passed_evals.evaluation.id.score|floatformat:0 }}%)
+                        </div>
+                        <a href="{% url 'evaluations:take_evaluation' evaluation.uuid %}" class="text-sm text-gray-500 hover:underline">
+                            {% trans "Repasser" %}
+                        </a>
+                        {% else %}
+                        <a href="{% url 'evaluations:take_evaluation' evaluation.uuid %}" class="w-full text-center bg-green-600 text-white font-bold py-3 rounded-xl hover:bg-green-700 transition-colors">
+                            {% trans "Commencer le test" %}
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-full py-20 text-center">
+                <div class="text-gray-400 text-6xl mb-4">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <h3 class="text-xl font-medium text-gray-600">{% trans "Aucune évaluation disponible pour le moment." %}</h3>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

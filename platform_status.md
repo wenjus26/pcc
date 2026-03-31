@@ -14,10 +14,10 @@ Ce document résume l'état actuel des fonctionnalités de la plateforme et prop
 | **Recherche** | ✅ Partiel | Icône présente, portée à affiner. |
 | **Reconnaissance** | ✅ Partiel | Upload de diplômes/certificats, vérification admin. |
 | **Notifications** | ✅ Partiel | Modèle `Match` en place, interface à développer. |
-| **Carte des Compétences** | ❌ Manquant | Pas de visualisation géographique. |
-| **Évaluation (Tests)** | ❌ Manquant | Pas de moteur de quiz/évaluation. |
-| **MOOCs / Formations** | ❌ Manquant | Ressources simples uniquement. |
-| **Forums / Groupes** | ❌ Manquant | Pas d'espace communautaire interactif. |
+| **Carte des Compétences** | ✅ Existe | Visualisation Leaflet.js par département. |
+| **Évaluation (Tests)** | ✅ Existe | Moteur de quiz interactif avec badges. |
+| **MOOCs / Formations** | ✅ Existe | Parcours de formation (Cours & Leçons) avec vidéos. |
+| **Forums / Groupes** | ✅ Existe | Espace communautaire (Discussions & Commentaires). |
 
 ---
 

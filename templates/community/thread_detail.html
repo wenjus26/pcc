@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{{ thread.title }} - PCC{% endblock %}
+
+{% block content %}
+<div class="bg-gray-50 min-h-screen py-12">
+    <div class="container mx-auto px-4 max-w-4xl">
+        <div class="mb-12">
+            <a href="{% url 'community:thread_list' thread.category.id %}" class="text-green-600 hover:underline flex items-center mb-6">
+                <i class="fas fa-chevron-left mr-2"></i> {% trans "Toutes les discussions en" %} {{ thread.category.name }}
+            </a>
+            <div class="flex flex-col md:flex-row justify-between items-start gap-4">
+                <h1 class="text-4xl font-extrabold text-gray-900 leading-tight">{{ thread.title }}</h1>
+                <div class="flex items-center text-xs font-bold text-gray-400 uppercase tracking-widest whitespace-nowrap">
+                    <i class="fas fa-calendar-alt mr-2"></i> {{ thread.created_at|date:"d M Y" }}
+                </div>
+            </div>
+            <div class="flex items-center mt-6">
+                <div class="w-12 h-12 rounded-2xl bg-green-100 flex items-center justify-center text-green-600 text-xl font-bold mr-4">
+                    {{ thread.author.username.0|upper }}
+                </div>
+                <div class="text-sm">
+                    <p class="font-bold text-gray-800">{{ thread.author.get_full_name|default:thread.author.username }}</p>
+                    <p class="text-gray-400">{% trans "Auteur de la discussion" %}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-12">
+            <!-- Original Post -->
+            <div class="bg-white rounded-3xl shadow-xl p-12 border border-gray-100 relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 opacity-5">
+                    <i class="fas fa-quote-right text-8xl"></i>
+                </div>
+                <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed font-medium">
+                    {{ thread.content|linebreaks }}
+                </div>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="space-y-8">
+                <h3 class="text-2xl font-extrabold text-gray-900 flex items-center">
+                    <i class="fas fa-reply text-green-500 mr-4"></i> {{ thread.comments.count }} {% trans "Réponses" %}
+                </h3>
+
+                <div class="space-y-8">
+                    {% for comment in thread.comments.all %}
+                    <div class="flex gap-6 group">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-gray-100 flex items-center justify-center text-gray-400 font-bold text-lg group-hover:bg-green-50 group-hover:text-green-600 transition-colors">
+                            {{ comment.author.username.0|upper }}
+                        </div>
+                        <div class="flex-1 bg-white rounded-3xl p-8 shadow-sm border border-gray-100 group-hover:shadow-md transition-shadow relative">
+                            <div class="flex justify-between items-center mb-6">
+                                <h4 class="font-extrabold text-gray-800">{{ comment.author.get_full_name|default:comment.author.username }}</h4>
+                                <span class="text-xs text-gray-400 font-bold uppercase tracking-widest">{{ comment.created_at|timesince }}</span>
+                            </div>
+                            <div class="text-gray-600 leading-relaxed">
+                                {{ comment.content|linebreaks }}
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="py-12 text-center text-gray-400">
+                        <p>{% trans "Soyez le premier à répondre à cette discussion !" %}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Add Comment Form -->
+                <div class="mt-16 bg-white rounded-3xl shadow-xl p-12 border-2 border-green-50">
+                    <h3 class="text-xl font-bold text-gray-800 mb-8">{% trans "Ajouter une réponse" %}</h3>
+                    <form method="POST" class="space-y-6">
+                        {% csrf_token %}
+                        <div class="relative">
+                            <textarea name="content" rows="6" class="w-full p-6 bg-gray-50 border-2 border-gray-50 rounded-2xl focus:border-green-500 focus:bg-white outline-none transition-all" placeholder="{% trans 'Contribuez au débat...' %}" required></textarea>
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="submit" class="bg-green-600 text-white font-bold px-12 py-4 rounded-2xl hover:bg-green-700 transition-all shadow-lg hover:shadow-2xl hover:-translate-y-1">
+                                {% trans "Envoyer ma réponse" %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

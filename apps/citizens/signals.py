@@ -5,5 +5,6 @@ from .models import CitizenProfile
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_citizen_profile(sender, instance, created, **kwargs):
-    if created and instance.role == 'CITIZEN':
-        CitizenProfile.objects.get_or_create(user=instance)
+    if created:
+        if instance.role == 'CITIZEN' or instance.is_superuser:
+            CitizenProfile.objects.get_or_create(user=instance)

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Communauté et Forum" %} - PCC{% endblock %}
+
+{% block content %}
+<div class="bg-gray-50 min-h-screen py-12">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-12">
+            <div>
+                <h1 class="text-4xl font-extrabold text-gray-900">{% trans "Espace Communautaire" %}</h1>
+                <p class="text-gray-600 mt-2">{% trans "Échangez avec d'autres experts par domaine de compétence." %}</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Categories List -->
+            <div class="lg:col-span-2">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {% for category in categories %}
+                    <a href="{% url 'community:thread_list' category.id %}" class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:border-green-300 transition-all group">
+                        <div class="w-14 h-14 bg-green-50 rounded-2xl flex items-center justify-center text-green-600 text-2xl mb-6 group-hover:bg-green-600 group-hover:text-white transition-colors">
+                            <i class="fas {{ category.icon|default:'fa-comments' }}"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">{{ category.name }}</h3>
+                        <p class="text-gray-500 text-sm mb-4">{{ category.description|truncatewords:15 }}</p>
+                        <div class="flex items-center text-xs font-bold text-gray-400 uppercase tracking-widest">
+                            {{ category.threads.count }} {% trans "Discussions" %}
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-8">
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">{% trans "Discussions Récentes" %}</h3>
+                    <div class="space-y-6">
+                        {% for thread in recent_threads %}
+                        <div class="relative pl-4 border-l-2 border-green-200 hover:border-green-500 transition-colors">
+                            <a href="{% url 'community:thread_detail' thread.pk %}" class="block">
+                                <h4 class="font-bold text-gray-800 hover:text-green-600 transition-colors line-clamp-1">{{ thread.title }}</h4>
+                                <p class="text-xs text-gray-400 mt-1">{% trans "Par" %} {{ thread.author.username }} • {{ thread.created_at|timesince }}</p>
+                            </a>
+                        </div>
+                        {% empty %}
+                        <p class="text-gray-400 text-sm italic">{% trans "Aucune discussion récente." %}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-green-600 to-green-800 rounded-2xl shadow-lg p-8 text-white">
+                    <h3 class="text-xl font-bold mb-4">{% trans "Faites entendre votre voix" %}</h3>
+                    <p class="opacity-90 text-sm mb-6">{% trans "Posez des questions, partagez vos retours d'expérience ou proposez de nouvelles initiatives." %}</p>
+                    <div class="text-center">
+                        <i class="fas fa-bullhorn text-5xl opacity-20 transform -rotate-12"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -12,6 +12,16 @@ def register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            
+            # Send welcome email
+            from apps.core.utils import send_pcc_email
+            send_pcc_email(
+                subject='Bienvenue sur PCC !',
+                template_name='emails/welcome.html',
+                context={'user': user},
+                recipient_list=[user.email],
+            )
+            
             login(request, user)
             messages.success(request, 'Inscription réussie ! Bienvenue sur PCC.')
             return redirect('accounts:dashboard')

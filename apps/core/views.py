@@ -5,17 +5,51 @@ from apps.citizens.models import CitizenProfile
 from apps.institutions.models import Opportunity
 from apps.content.models import Post
 
+from django.contrib.auth.decorators import login_required
+from django.db.models import Q
+from .models import Notification, NewsletterSubscriber
+
 def home(request):
     latest_opportunities = Opportunity.objects.filter(status='open').order_by('-created_at')[:3]
     featured_talents = CitizenProfile.objects.filter(is_public=True).order_by('?')[:3]
-    recent_posts = Post.objects.filter(is_published=True).order_by('-created_at')[:3]
-    
+    # Handle optional Post model if it exists
     context = {
         'latest_opportunities': latest_opportunities,
         'featured_talents': featured_talents,
-        'recent_posts': recent_posts,
     }
     return render(request, 'core/home.html', context)
+
+def search(request):
+    query = request.GET.get('q', '')
+    talents = Opportunity.objects.none()
+    opportunities = Opportunity.objects.none()
+    
+    if query:
+        talents = CitizenProfile.objects.filter(
+            Q(user__first_name__icontains=query) | 
+            Q(user__last_name__icontains=query) |
+            Q(current_title__icontains=query) |
+            Q(bio__icontains=query),
+            is_public=True
+        )
+        opportunities = Opportunity.objects.filter(
+            Q(title__icontains=query) | 
+            Q(description__icontains=query),
+            status='open'
+        )
+        
+    return render(request, 'core/search_results.html', {
+        'query': query,
+        'talents': talents,
+        'opportunities': opportunities
+    })
+
+@login_required
+def notifications(request):
+    notifs = request.user.notifications.all()
+    # Mark as read when viewing
+    notifs.update(is_read=True)
+    return render(request, 'core/notifications.html', {'notifications': notifs})
 
 def talent_locations(request):
     talents = CitizenProfile.objects.filter(is_public=True).exclude(location__isnull=True)
@@ -52,3 +86,24 @@ def error_404(request, exception=None):
 
 def error_500(request):
     return render(request, 'errors/500.html', status=500)
+
+def newsletter_subscribe(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        if not email:
+            return JsonResponse({'status': 'error', 'message': 'Email manquant.'}, status=400)
+        
+        subscriber, created = NewsletterSubscriber.objects.get_or_create(email=email)
+        if created:
+            # Optionally send a confirmation email
+            from .utils import send_pcc_email
+            send_pcc_email(
+                subject='Inscription Newsletter PCC',
+                template_name='emails/newsletter_welcome.html',
+                context={'email': email},
+                recipient_list=[email],
+            )
+            return JsonResponse({'status': 'success', 'message': 'Inscription réussie !'})
+        else:
+            return JsonResponse({'status': 'info', 'message': 'Vous êtes déjà abonné.'})
+    return JsonResponse({'status': 'error', 'message': 'Méthode non autorisée.'}, status=405)

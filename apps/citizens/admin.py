@@ -30,7 +30,13 @@ class CitizenProfileAdmin(admin.ModelAdmin):
     list_filter = ('is_public', 'is_validated', 'location', 'charter_signed')
     search_fields = ('user__username', 'user__first_name', 'user__last_name', 'current_title')
     inlines = [ExperienceInline, EducationInline, DocumentInline]
-    filter_horizontal = ('skills',)
+    filter_horizontal = ('skills', 'interests')
+    actions = ['validate_profiles']
+
+    @admin.action(description="Valider les profils sélectionnés")
+    def validate_profiles(self, request, queryset):
+        queryset.update(is_validated=True)
+        self.message_user(request, f"{queryset.count()} profils ont été validés.")
 
 @admin.register(Experience)
 class ExperienceAdmin(admin.ModelAdmin):
@@ -44,3 +50,9 @@ class EducationAdmin(admin.ModelAdmin):
 class DocumentAdmin(admin.ModelAdmin):
     list_display = ('profile', 'title', 'doc_type', 'is_verified', 'uploaded_at')
     list_filter = ('doc_type', 'is_verified')
+    actions = ['verify_documents']
+
+    @admin.action(description="Vérifier les documents sélectionnés")
+    def verify_documents(self, request, queryset):
+        queryset.update(is_verified=True)
+        self.message_user(request, f"{queryset.count()} documents ont été marqués comme vérifiés.")

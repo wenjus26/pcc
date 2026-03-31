@@ -19,7 +19,7 @@
             </h1>
         </div>
 
-        <form method="post" class="p-8 md:p-12 space-y-10">
+        <form method="post" enctype="multipart/form-data" class="p-8 md:p-12 space-y-10">
             {% csrf_token %}
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -81,6 +81,105 @@
                         {% render_field form.is_public class="sr-only peer" %}
                         <div class="w-14 h-8 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
                     </label>
+                </div>
+                
+                <!-- CV Upload -->
+                <div class="md:col-span-2 space-y-3">
+                    <label class="text-sm font-black uppercase tracking-widest text-slate-400">{% trans "Curriculum Vitae (PDF)" %}</label>
+                    <div class="flex items-center gap-4">
+                        {% if profile.documents.count > 0 %}
+                            {% with cv=profile.documents.first %}
+                            <a href="{{ cv.file.url }}" target="_blank" class="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl text-sm font-bold flex items-center gap-2 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                                <i class="fas fa-file-pdf text-red-500"></i> {% trans "Voir le CV actuel" %}
+                            </a>
+                            {% endwith %}
+                        {% endif %}
+                        <input type="file" name="cv_file" accept=".pdf" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2.5 file:px-6 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 transition-all font-medium cursor-pointer" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience Formset -->
+            <div class="mt-10">
+                <h3 class="text-xl font-black text-slate-900 dark:text-white mb-4">{% trans "Expériences Professionnelles" %}</h3>
+                {{ experience_formset.management_form }}
+                <div class="space-y-6">
+                    {% for exp_form in experience_formset %}
+                    <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 grid grid-cols-1 md:grid-cols-2 gap-4 relative">
+                        {% for hidden in exp_form.hidden_fields %}
+                            {{ hidden }}
+                        {% endfor %}
+                        <div class="space-y-2">
+                            <label class="text-xs font-black uppercase text-slate-400">{% trans "Entreprise" %}</label>
+                            {% render_field exp_form.company class="w-full h-10 px-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:ring-2 focus:ring-primary" %}
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-black uppercase text-slate-400">{% trans "Poste" %}</label>
+                            {% render_field exp_form.position class="w-full h-10 px-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:ring-2 focus:ring-primary" %}
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-black uppercase text-slate-400">{% trans "Date de début" %}</label>
+                            {% render_field exp_form.start_date type="date" class="w-full h-10 px-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:ring-2 focus:ring-primary" %}
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-black uppercase text-slate-400">{% trans "Date de fin" %}</label>
+                            {% render_field exp_form.end_date type="date" class="w-full h-10 px-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:ring-2 focus:ring-primary" %}
+                        </div>
+                        <div class="md:col-span-2 space-y-2">
+                            <label class="text-xs font-black uppercase text-slate-400">{% trans "Description" %}</label>
+                            {% render_field exp_form.description class="w-full h-20 p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:ring-2 focus:ring-primary" %}
+                        </div>
+                        <div class="flex items-center gap-2 mt-2">
+                            {% render_field exp_form.is_current class="rounded border-slate-300 text-primary focus:ring-primary" %}
+                            <label class="text-sm">{% trans "Poste actuel" %}</label>
+                        </div>
+                        {% if exp_form.instance.pk %}
+                        <div class="absolute top-4 right-4 text-xs text-red-500 font-bold">
+                            {% render_field exp_form.DELETE %} <label>Supprimer</label>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Education Formset -->
+            <div class="mt-10">
+                <h3 class="text-xl font-black text-slate-900 dark:text-white mb-4">{% trans "Formations" %}</h3>
+                {{ education_formset.management_form }}
+                <div class="space-y-6">
+                    {% for edu_form in education_formset %}
+                    <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 grid grid-cols-1 md:grid-cols-2 gap-4 relative">
+                        {% for hidden in edu_form.hidden_fields %}
+                            {{ hidden }}
+                        {% endfor %}
+                        <div class="space-y-2">
+                            <label class="text-xs font-black uppercase text-slate-400">{% trans "Établissement" %}</label>
+                            {% render_field edu_form.institution class="w-full h-10 px-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:ring-2 focus:ring-primary" %}
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-black uppercase text-slate-400">{% trans "Diplôme" %}</label>
+                            {% render_field edu_form.degree class="w-full h-10 px-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:ring-2 focus:ring-primary" %}
+                        </div>
+                        <div class="md:col-span-2 space-y-2">
+                            <label class="text-xs font-black uppercase text-slate-400">{% trans "Domaine d'études" %}</label>
+                            {% render_field edu_form.field_of_study class="w-full h-10 px-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:ring-2 focus:ring-primary" %}
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-black uppercase text-slate-400">{% trans "Date de début" %}</label>
+                            {% render_field edu_form.start_date type="date" class="w-full h-10 px-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:ring-2 focus:ring-primary" %}
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-black uppercase text-slate-400">{% trans "Date de fin" %}</label>
+                            {% render_field edu_form.end_date type="date" class="w-full h-10 px-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:ring-2 focus:ring-primary" %}
+                        </div>
+                        {% if edu_form.instance.pk %}
+                        <div class="absolute top-4 right-4 text-xs text-red-500 font-bold">
+                            {% render_field edu_form.DELETE %} <label>Supprimer</label>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
 

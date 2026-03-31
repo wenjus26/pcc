@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Nouvelle Discussion" %} - PCC{% endblock %}
+
+{% block content %}
+<div class="bg-gray-50 min-h-screen py-12">
+    <div class="container mx-auto px-4 max-w-2xl">
+        <div class="mb-12">
+            <a href="{% url 'community:thread_list' category.id %}" class="text-green-600 hover:underline flex items-center mb-6">
+                <i class="fas fa-chevron-left mr-2"></i> {% trans "Annuler et retourner au forum" %}
+            </a>
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-2">{% trans "Lancer un Débat" %}</h1>
+            <p class="text-gray-500 font-bold uppercase tracking-widest text-sm">{% trans "Catégorie" %} : {{ category.name }}</p>
+        </div>
+
+        <div class="bg-white rounded-3xl shadow-xl p-12 border border-gray-100">
+            <form method="POST" class="space-y-8">
+                {% csrf_token %}
+                
+                <div class="space-y-2">
+                    <label class="text-sm font-bold text-gray-400 uppercase tracking-widest">{% trans "Titre de la discussion" %}</label>
+                    <input type="text" name="title" class="w-full p-6 bg-gray-50 border-2 border-gray-50 rounded-2xl focus:border-green-500 focus:bg-white outline-none transition-all placeholder-gray-300" placeholder="{% trans 'Quel est votre sujet ?' %}" required>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-bold text-gray-400 uppercase tracking-widest">{% trans "Votre Message" %}</label>
+                    <textarea name="content" rows="10" class="w-full p-6 bg-gray-50 border-2 border-gray-50 rounded-2xl focus:border-green-500 focus:bg-white outline-none transition-all placeholder-gray-300" placeholder="{% trans 'Détaillez votre pensée, posez vos questions...' %}" required></textarea>
+                </div>
+
+                <div class="pt-6">
+                    <button type="submit" class="w-full bg-green-600 text-white font-extrabold text-lg px-12 py-5 rounded-2xl hover:bg-green-700 transition-all shadow-lg hover:shadow-2xl hover:-translate-y-1">
+                        {% trans "Publier la Discussion" %}
+                    </button>
+                    <p class="text-center text-xs text-gray-400 mt-6 italic">{% trans "Votre contribution sera visible par tous les membres certifiés de la plateforme." %}</p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

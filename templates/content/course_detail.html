@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{{ course.title }} - PCC{% endblock %}
+
+{% block content %}
+<div class="bg-gray-50 min-h-screen">
+    <header class="bg-gradient-to-r from-green-700 to-green-900 h-80 flex items-end">
+        <div class="container mx-auto px-4 pb-12">
+            <h1 class="text-4xl font-extrabold text-white mb-4 animate-fade-in">{{ course.title }}</h1>
+            <div class="flex items-center text-green-100 space-x-6 text-sm font-bold uppercase tracking-widest">
+                <div class="flex items-center">
+                    <i class="fas fa-layer-group mr-2"></i> {{ lessons.count }} {% trans "Chapitres" %}
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-certificate mr-2"></i> {% trans "Certification incluse" %}
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <!-- Main Content: Current Lesson -->
+            <div class="lg:col-span-2 space-y-10">
+                {% if current_lesson %}
+                <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+                    <div class="aspect-video bg-black flex items-center justify-center">
+                        {% if current_lesson.video_url %}
+                        <!-- Responsive Video Embed -->
+                        <div class="relative w-full h-full">
+                            <iframe class="absolute inset-0 w-full h-full" src="{{ current_lesson.video_url|replace:'watch?v=,embed/' }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        {% else %}
+                        <div class="text-white text-center">
+                            <i class="fas fa-play-circle text-6xl mb-4 opacity-50"></i>
+                            <p class="text-xl font-bold uppercase tracking-widest opacity-80">{% trans "Contenu Textuel Uniquement" %}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="p-12">
+                        <h2 class="text-3xl font-extrabold text-gray-900 mb-6">{{ current_lesson.title }}</h2>
+                        <div class="prose prose-lg max-w-none text-gray-600 leading-relaxed space-y-6">
+                            {{ current_lesson.content|safe }}
+                        </div>
+
+                        {% if current_lesson.resources.all %}
+                        <div class="mt-12 bg-gray-50 rounded-2xl p-8">
+                            <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                                <i class="fas fa-paperclip text-green-500 mr-2"></i> {% trans "Ressources à télécharger" %}
+                            </h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                {% for res in current_lesson.resources.all %}
+                                <a href="{{ res.file.url }}" class="flex items-center p-4 bg-white rounded-xl border border-gray-200 hover:border-green-300 hover:shadow-md transition-all group">
+                                    <div class="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center text-green-600 mr-4 group-hover:bg-green-600 group-hover:text-white transition-colors">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <span class="font-medium text-gray-700 truncate">{{ res.title }}</span>
+                                </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% else %}
+                <div class="bg-white rounded-3xl shadow-xl p-20 text-center text-gray-400">
+                    <h2 class="text-2xl font-bold">{% trans "Le contenu arrive bientôt..." %}</h2>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Sidebar: Course Structure -->
+            <div class="space-y-8">
+                <div class="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+                    <div class="p-8 border-b border-gray-50 bg-gray-50">
+                        <h3 class="text-xl font-extrabold text-gray-900 flex items-center">
+                            <i class="fas fa-list-ul text-green-600 mr-2"></i> {% trans "Contenu de la formation" %}
+                        </h3>
+                    </div>
+                    <div class="divide-y divide-gray-100">
+                        {% for lesson in lessons %}
+                        <a href="?lesson={{ lesson.id }}" class="flex items-center p-6 hover:bg-green-50 transition-colors group {% if current_lesson.id == lesson.id %}bg-green-50 border-l-4 border-green-600{% endif %}">
+                            <div class="w-10 h-10 rounded-full border-2 border-gray-100 flex items-center justify-center text-sm font-bold text-gray-400 mr-4 group-hover:border-green-300 group-hover:text-green-600 transition-all">
+                                {{ forloop.counter }}
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold {% if current_lesson.id == lesson.id %}text-green-700{% else %}text-gray-700{% endif %} group-hover:text-green-700">{{ lesson.title }}</h4>
+                                <span class="text-xs text-gray-400 font-bold uppercase tracking-widest">
+                                    {% if lesson.video_url %}<i class="fas fa-video mr-1"></i> Vidéo{% else %}<i class="fas fa-align-left mr-1"></i> Lecture{% endif %}
+                                </span>
+                            </div>
+                            {% if current_lesson.id == lesson.id %}
+                            <i class="fas fa-play text-green-500 text-sm"></i>
+                            {% endif %}
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-green-600 to-green-700 rounded-3xl shadow-xl p-8 text-white">
+                    <h3 class="text-xl font-bold mb-4">{% trans "Besoin d'aide ?" %}</h3>
+                    <p class="opacity-90 text-sm mb-6">{% trans "Un forum dédié est disponible pour poser vos questions à l'instructeur." %}</p>
+                    <a href="#" class="inline-block bg-white text-green-700 font-bold px-8 py-3 rounded-xl hover:bg-green-50 transition-colors shadow-lg">
+                        {% trans "Aller au Forum" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

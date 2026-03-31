@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+{% load i18n static custom_filters %}
+
+{% block title %}{% trans "Carte des Compétences" %} - PCC{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<style>
+    #map {
+        height: 600px;
+        width: 100%;
+        border-radius: 1rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        z-index: 1;
+    }
+    .info {
+        padding: 6px 8px;
+        font: 14px/16px Arial, Helvetica, sans-serif;
+        background: white;
+        background: rgba(255,255,255,0.8);
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        border-radius: 5px;
+    }
+    .info h4 {
+        margin: 0 0 5px;
+        color: #777;
+    }
+    .legend {
+        line-height: 18px;
+        color: #555;
+    }
+    .legend i {
+        width: 18px;
+        height: 18px;
+        float: left;
+        margin-right: 8px;
+        opacity: 0.7;
+    }
+    .stats-card {
+        transition: transform 0.3s ease;
+    }
+    .stats-card:hover {
+        transform: translateY(-5px);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-12">
+    <div class="text-center mb-12">
+        <h1 class="text-4xl font-extrabold text-gray-900 mb-4 animate-fade-in">
+            {% trans "Cartographie des Talents du Bénin" %}
+        </h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            {% trans "Visualisez la répartition géographique de nos experts et compétences certifiées à travers les 12 départements." %}
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Map Column -->
+        <div class="lg:col-span-2">
+            <div id="map" class="bg-gray-100"></div>
+        </div>
+
+        <!-- Stats Column -->
+        <div class="space-y-6">
+            <div class="bg-white rounded-2xl shadow-xl p-6 stats-card border border-green-50">
+                <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                    <i class="fas fa-chart-pie text-green-500 mr-2"></i>
+                    {% trans "Statistiques Globales" %}
+                </h3>
+                <div class="space-y-4">
+                    {% for dept_code, dept_name in departments %}
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-600">{{ dept_name }}</span>
+                        <div class="flex items-center">
+                            <div class="w-32 bg-gray-200 rounded-full h-2 mr-3">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: {% if location_data|get_item:dept_code %}{{ location_data|get_item:dept_code|multiply:10 }}{% else %}0{% endif %}%"></div>
+                            </div>
+                            <span class="font-bold text-gray-800">{{ location_data|get_item:dept_code|default:0 }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-green-600 to-green-700 rounded-2xl shadow-xl p-6 text-white">
+                <h3 class="text-xl font-bold mb-2">{% trans "Prêt à rejoindre l'aventure ?" %}</h3>
+                <p class="mb-4 opacity-90 text-sm">{% trans "Inscrivez vos compétences et apparaissez sur la carte pour être sollicité sur des projets nationaux." %}</p>
+                <a href="{% url 'citizens:talent_register' %}" class="inline-block bg-white text-green-700 font-bold px-6 py-2 rounded-full hover:bg-green-50 transition-colors">
+                    {% trans "S'enregistrer" %}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""></script>
+<script>
+    // Data from Django
+    const locationData = {{ location_data_json|safe }};
+    
+    // Initialize map centered on Benin
+    const map = L.map('map').setView([9.3077, 2.3158], 7);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 20
+    }).addTo(map);
+
+    // Color function based on density
+    function getColor(d) {
+        return d > 50 ? '#065f46' :
+               d > 20 ? '#059669' :
+               d > 10 ? '#10b981' :
+               d > 5  ? '#34d399' :
+               d > 0  ? '#6ee7b7' :
+                        '#ecfdf5';
+    }
+
+    function style(feature) {
+        const deptName = feature.properties.name.toLowerCase();
+        // Simple mapping from GeoJSON name to our codes
+        // This mapping depends on the GeoJSON used
+        const d = locationData[deptName] || 0;
+        return {
+            fillColor: getColor(d),
+            weight: 2,
+            opacity: 1,
+            color: 'white',
+            dashArray: '3',
+            fillOpacity: 0.7
+        };
+    }
+
+    function highlightFeature(e) {
+        var layer = e.target;
+        layer.setStyle({
+            weight: 5,
+            color: '#666',
+            dashArray: '',
+            fillOpacity: 0.9
+        });
+        layer.bringToFront();
+        info.update(layer.feature.properties);
+    }
+
+    var geojson;
+
+    function resetHighlight(e) {
+        geojson.resetStyle(e.target);
+        info.update();
+    }
+
+    function onEachFeature(feature, layer) {
+        layer.on({
+            mouseover: highlightFeature,
+            mouseout: resetHighlight,
+        });
+    }
+
+    // Custom info control
+    var info = L.control();
+
+    info.onAdd = function (map) {
+        this._div = L.DomUtil.create('div', 'info');
+        this.update();
+        return this._div;
+    };
+
+    info.update = function (props) {
+        const count = props ? (locationData[props.name.toLowerCase()] || 0) : 0;
+        this._div.innerHTML = '<h4>{% trans "Densité de Talents" %}</h4>' +  (props ?
+            '<b>' + props.name + '</b><br />' + count + ' {% trans "talents enregistrés" %}'
+            : '{% trans "Survolez un département" %}');
+    };
+
+    info.addTo(map);
+
+    // Fetch Benin Admin1 GeoJSON (using a reliable source)
+    fetch('https://raw.githubusercontent.com/wmgeolab/geoBoundaries/main/releaseData/gbOpen/BEN/ADM1/geoBoundaries-BEN-ADM1.geojson')
+        .then(response => response.json())
+        .then(data => {
+            // Normalize names to lowercase for matching
+            data.features.forEach(f => {
+                f.properties.name = f.properties.shapeName.replace(/é/g, 'e').replace(/ô/g, 'o').toLowerCase();
+            });
+            
+            geojson = L.geoJson(data, {
+                style: style,
+                onEachFeature: onEachFeature
+            }).addTo(map);
+            
+            map.fitBounds(geojson.getBounds());
+        })
+        .catch(err => {
+            console.error("Error loading GeoJSON", err);
+            // Fallback for demo if network is restricted
+        });
+
+</script>
+{% endblock %}
