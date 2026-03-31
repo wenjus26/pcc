@@ -5,113 +5,242 @@
 
 {% block content %}
 <main class="flex-grow w-full">
-    
+
     <!-- Hero Header -->
     <section class="relative bg-slate-900 py-20 lg:py-32 overflow-hidden border-b-8 border-primary">
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=1600')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
+        <div
+            class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600')] bg-cover bg-center opacity-20 mix-blend-overlay">
+        </div>
         <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12 relative z-10">
             <!-- Portrait -->
             <div class="w-64 md:w-96 shrink-0 relative">
                 <div class="absolute inset-0 bg-primary/20 rounded-[3rem] transform rotate-3 scale-105"></div>
-                <img src="{% static 'images/row2.jpg' %}" class="w-full h-auto object-cover rounded-[3rem] shadow-2xl relative z-10 filter grayscale focus:grayscale-0 hover:grayscale-0 transition-all duration-700" alt="Romuald WADAGNI">
-                <div class="absolute -bottom-6 -right-6 bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-xl z-20 hidden md:block border border-slate-100 dark:border-slate-700">
+                <img src="{% static 'images/row2.jpg' %}"
+                    class="w-full h-auto object-cover rounded-[3rem] shadow-2xl relative z-10" alt="Romuald WADAGNI">
+                <div
+                    class="absolute -bottom-6 -right-6 bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-xl z-20 hidden md:block border border-slate-100 dark:border-slate-700">
                     <span class="block text-2xl font-black text-primary">2026</span>
-                    <span class="block text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">Vision & Leadership</span>
+                    <span class="block text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">Vision &
+                        Leadership</span>
                 </div>
             </div>
-            
+
             <div class="text-center md:text-left text-white">
-                <span class="inline-block px-4 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-xs font-black uppercase tracking-widest mb-6 text-primary">
+                <span
+                    class="inline-block px-4 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-xs font-black uppercase tracking-widest mb-6 text-primary">
                     {% trans "Portrait & Parcours" %}
                 </span>
                 <h1 class="text-5xl md:text-7xl font-black tracking-tight mb-6">
-                    Qui est <br/>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">Romuald WADAGNI</span> ?
+                    Qui est <br />
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">Romuald
+                        WADAGNI</span> ?
                 </h1>
-                <p class="text-xl text-slate-300 font-medium max-w-2xl leading-relaxed italic border-l-4 border-primary pl-6">
-                    "Un leadership éprouvé, une vision claire pour l'avenir économique et social de notre nation."
+                <p
+                    class="text-xl text-slate-300 font-medium max-w-2xl leading-relaxed italic border-l-4 border-primary pl-6">
+                    "{% trans "L'avenir de notre nation ne se décrète pas, il se construit avec audace, méthode et une volonté inébranlable de ne laisser personne au bord du chemin." %}"
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Biography & Bibliography Content -->
-    <section class="max-w-7xl mx-auto px-4 py-20 grid grid-cols-1 lg:grid-cols-3 gap-16">
-        
-        <!-- Main Bio -->
-        <div class="lg:col-span-2 space-y-12">
-            <div>
-                <h2 class="text-3xl font-black text-slate-900 dark:text-white mb-6 flex items-center gap-4">
-                    <i class="fas fa-book-open text-primary"></i> Biographie Essentielle
+    <!-- Essential Bio -->
+    <section class="bg-white dark:bg-slate-900 py-20">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="prose prose-xl prose-slate dark:prose-invert max-w-none text-justify">
+                <p class="lead font-bold mb-8">
+                    Né le 20 juin 1976 à Lokossa, Romuald Wadagni incarne l'alliance parfaite entre l'expertise
+                    technique et l'engagement profond pour sa patrie.
+                </p>
+                <p>
+                    Son parcours est celui d'une quête incessante de l'excellence. Formé aux standards les plus
+                    exigeants de la finance mondiale, il a choisi de mettre son talent au service du Bénin, transformant
+                    durablement le paysage économique et financier du pays.
+                </p>
+                <p>
+                    Chaque réforme qu'il porte est animée par une conviction simple : le progrès ne vaut que s'il est
+                    partagé. Son leadership est marqué par une écoute attentive des besoins des citoyens et une capacité
+                    unique à transformer les défis en opportunités de croissance.
+                </p>
+                <p>
+                    Désigné candidat de la coalition présidentielle pour l'élection de 2026, il porte aujourd'hui une
+                    vision ambitieuse de développement et de transformation profonde pour un Bénin résolument tourné
+                    vers l'avenir.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Cards -->
+    <section class="bg-slate-50 dark:bg-slate-800/50 py-20 border-y border-slate-100 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4">En Chiffres & Impact
                 </h2>
-                <div class="prose prose-lg dark:prose-invert text-slate-600 dark:text-slate-400 font-medium leading-relaxed max-w-none">
-                    <p>
-                        [Espace réservé à la biographie officielle du candidat. Le texte détaillant son parcours académique exceptionnel, sa carrière internationale dans de grands cabinets d'audit, et son retour au service de l'État sera inséré ici.]
+                <p class="text-slate-500 dark:text-slate-400 font-medium italic">Un demi-siècle d'excellence, une
+                    décennie de transformations majeures.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div
+                    class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-slate-100 dark:border-slate-700 text-center">
+                    <span class="block text-4xl font-black text-primary mb-2">17</span>
+                    <p class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">Années
+                        d'Excellence chez Deloitte</p>
+                </div>
+                <div
+                    class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-slate-100 dark:border-slate-700 text-center">
+                    <span class="block text-4xl font-black text-primary mb-2">#1</span>
+                    <p class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">Meilleur
+                        Ministre d'Afrique</p>
+                </div>
+                <div
+                    class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-slate-100 dark:border-slate-700 text-center">
+                    <span class="block text-4xl font-black text-primary mb-2">2016</span>
+                    <p class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">Le Début des
+                        Grandes Réformes</p>
+                </div>
+                <div
+                    class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-slate-100 dark:border-slate-700 text-center">
+                    <span class="block text-4xl font-black text-primary mb-2">2026</span>
+                    <p class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">Une Vision pour
+                        l'Avenir</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Itinerary / Timeline -->
+    <section class="py-20 bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
+                <div>
+                    <h2 class="text-4xl font-black text-slate-900 dark:text-white mb-4">L'Itinéraire d'un Leader</h2>
+                    <p class="text-slate-500 dark:text-slate-400 font-medium">Du monde des affaires aux sommets de
+                        l'État.</p>
+                </div>
+                <div class="h-px flex-grow bg-slate-200 dark:bg-slate-800 mx-12 hidden md:block"></div>
+                <i class="fas fa-route text-4xl text-primary/30"></i>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- Step 1 -->
+                <div class="relative pl-12 border-l-2 border-primary/20">
+                    <div
+                        class="absolute -left-3 top-0 w-6 h-6 bg-primary rounded-full border-4 border-white dark:border-slate-900 shadow-lg">
+                    </div>
+                    <span class="block text-xs font-black text-primary uppercase tracking-widest mb-2">L'Exigence
+                        Académique</span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Une base internationale solide
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-justify">
+                        Expert-comptable certifié en France et aux États-Unis (CPA), titulaire d'un Master en Finance.
+                        Son éducation internationale lui a apporté une rigueur et une méthode qui font aujourd'hui sa
+                        force.
                     </p>
-                    <p>
-                        En tant que Ministre d'État en charge de l'Économie et des Finances, il a mené des réformes structurelles profondes qui ont permis de redresser les finances publiques du Bénin, d'assainir le cadre macroéconomique et de mobiliser des ressources inédites pour le financement d'infrastructures majeurs.
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative pl-12 border-l-2 border-primary/20">
+                    <div
+                        class="absolute -left-3 top-0 w-6 h-6 bg-primary rounded-full border-4 border-white dark:border-slate-900 shadow-lg">
+                    </div>
+                    <span class="block text-xs font-black text-primary uppercase tracking-widest mb-2">L'Ascension
+                        Professionnelle</span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Leader chez Deloitte</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-justify">
+                        Associé et dirigeant au sein du prestigieux cabinet mondial. Pendant 17 ans, il a conseillé les
+                        plus grandes institutions financières sur plusieurs continents, forgeant son expertise en
+                        stratégie et gestion complexe.
                     </p>
-                    <h3>Une formation d'excellence</h3>
-                    <p>
-                        Diplômé de... [Détails]. Son parcours académique illustre la rigueur et la quête constante de la performance.
-                    </p>
-                    <h3>Des réformes marquantes</h3>
-                    <p>
-                        Sous son impulsion, de nombreuses innovations ont vu le jour, notamment dans la digitalisation des processus administratifs et fiscaux.
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative pl-12 border-l-2 border-primary/20">
+                    <div
+                        class="absolute -left-3 top-0 w-6 h-6 bg-primary rounded-full border-4 border-white dark:border-slate-900 shadow-lg">
+                    </div>
+                    <span class="block text-xs font-black text-primary uppercase tracking-widest mb-2">Le Service à la
+                        Nation</span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Architecte du Renouveau Économique
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-justify">
+                        Nommé Ministre de l'Économie et des Finances en 2016. Il a piloté avec succès la modernisation
+                        de l'administration, digitalisé les services publics et consolidé la crédibilité financière du
+                        Bénin à l'international.
                     </p>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Sidebar Timeline & Biblio -->
-        <div class="space-y-12">
-            
-            <!-- Bibliographie -->
-            <div class="bg-slate-50 dark:bg-slate-800/50 rounded-[2.5rem] p-8 border border-slate-100 dark:border-slate-700">
-                <h3 class="text-xl font-black text-slate-900 dark:text-white mb-8 border-b border-slate-200 dark:border-slate-700 pb-4">
-                    <i class="fas fa-bookmark text-primary mr-2"></i> Bibliographie & Publications
-                </h3>
-                <ul class="space-y-6">
-                    <li class="group">
-                        <span class="text-xs font-black text-primary uppercase tracking-widest block mb-1">2020</span>
-                        <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Titre de l'ouvrage ou publication</h4>
-                        <p class="text-sm text-slate-500 mt-2">Éditeur / Revue. Court résumé de l'importance de ce texte.</p>
-                    </li>
-                    <li class="group">
-                        <span class="text-xs font-black text-primary uppercase tracking-widest block mb-1">2018</span>
-                        <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Les réformes structurelles au Bénin</h4>
-                        <p class="text-sm text-slate-500 mt-2">Article / Rapport majeur sur la finance publique.</p>
-                    </li>
-                </ul>
-                <button class="w-full mt-8 py-3 bg-primary/10 text-primary font-bold rounded-xl hover:bg-primary hover:text-white transition-all text-sm">
-                    Télécharger le dossier complet
-                </button>
+    <!-- Pillars of Success -->
+    <section class="py-20 bg-slate-900 text-white overflow-hidden relative">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-primary/10 skew-x-12 translate-x-20"></div>
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black mb-4">Piliers de Réussite</h2>
+                <p class="text-slate-400 font-medium">Des actions concrètes au service du développement durable.</p>
             </div>
 
-            <!-- Key Info -->
-            <div class="bg-primary text-white rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden">
-                <div class="absolute -bottom-10 -right-10 text-9xl opacity-10">
-                    <i class="fas fa-quote-right"></i>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="bg-white/5 backdrop-blur-lg p-10 rounded-[2.5rem] border border-white/10 hover:border-primary/50 transition-all group">
+                    <div
+                        class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-microchip text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4">Digitalisation</h3>
+                    <p class="text-slate-400 leading-relaxed text-justify">
+                        Digitalisation complète des régies financières, réduisant la corruption et améliorant
+                        l'efficacité de la collecte des recettes publiques.
+                    </p>
                 </div>
-                <h3 class="text-xl font-black mb-6 relative z-10">À retenir</h3>
-                <ul class="space-y-4 relative z-10 font-medium">
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-check-circle mt-1 opacity-70"></i>
-                        <span>Rigoureux et orienté résultats.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-check-circle mt-1 opacity-70"></i>
-                        <span>Une expérience internationale reconnue.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-check-circle mt-1 opacity-70"></i>
-                        <span>Un engagement panafricain fort.</span>
-                    </li>
-                </ul>
+
+                <div
+                    class="bg-white/5 backdrop-blur-lg p-10 rounded-[2.5rem] border border-white/10 hover:border-primary/50 transition-all group">
+                    <div
+                        class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-users-cog text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4">Social & Inclusion</h3>
+                    <p class="text-slate-400 leading-relaxed text-justify">
+                        Mise en place de mécanismes financiers innovants pour financer les projets à fort impact social
+                        et soutenir les couches vulnérables.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white/5 backdrop-blur-lg p-10 rounded-[2.5rem] border border-white/10 hover:border-primary/50 transition-all group">
+                    <div
+                        class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-globe-africa text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4">Crédibilité Mondiale</h3>
+                    <p class="text-slate-400 leading-relaxed text-justify">
+                        Positionnement du Bénin comme l'un des pays les plus réformateurs au monde selon les
+                        institutions internationales de Bretton Woods.
+                    </p>
+                </div>
             </div>
-
         </div>
+    </section>
 
+    <!-- Footer Quote -->
+    <section class="py-24 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <div class="mb-12">
+                <span class="text-primary text-6xl opacity-20"><i class="fas fa-quote-left"></i></span>
+            </div>
+            <h2 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight mb-8">
+                "L'avenir de notre nation ne se décrète pas, il se construit avec audace, méthode et une volonté
+                inébranlable de ne laisser personne au bord du chemin."
+            </h2>
+            <div class="flex flex-col items-center">
+                <div class="h-1 w-20 bg-primary mb-6"></div>
+                <span class="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tighter">ROMUALD
+                    WADAGNI</span>
+            </div>
+        </div>
     </section>
 </main>
 {% endblock %}

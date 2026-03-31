@@ -3,10 +3,14 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
-def send_pcc_email(subject, template_name, context, recipient_list):
+def send_pcc_email(subject, template_name, context, recipient_list, request=None):
     """
     Helper function to send branded HTML emails for PCC Platform.
     """
+    if request:
+        context['domain'] = request.get_host()
+        context['protocol'] = request.scheme
+        
     html_message = render_to_string(template_name, context)
     plain_message = strip_tags(html_message)
     from_email = settings.DEFAULT_FROM_EMAIL

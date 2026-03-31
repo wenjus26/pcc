@@ -102,6 +102,7 @@ def newsletter_subscribe(request):
                 template_name='emails/newsletter_welcome.html',
                 context={'email': email},
                 recipient_list=[email],
+                request=request,
             )
             return JsonResponse({'status': 'success', 'message': 'Inscription réussie !'})
         else:

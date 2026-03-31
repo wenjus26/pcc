@@ -5,7 +5,7 @@
 <p>Nous sommes ravis de vous compter parmi les membres de la <strong>Plateforme Citoyenne des Compétences</strong>.</p>
 <p>Votre inscription a été validée avec succès. Vous pouvez désormais explorer les talents, postuler à des projets stratégiques et contribuer activement au développement de notre nation.</p>
 <div style="text-align: center;">
-    <a href="http://127.0.0.1:8000/accounts/dashboard/" class="button">Accéder à mon espace</a>
+    <a href="{{ protocol }}://{{ domain }}{% url 'accounts:dashboard' %}" class="button">Accéder à mon espace</a>
 </div>
 <p style="margin-top: 30px;">À très bientôt sur la plateforme !</p>
 <p>Cordialement,<br>L'équipe PCC</p>

@@ -38,6 +38,7 @@ def apply_to_opportunity(request, uuid):
                 'opportunity': opportunity
             },
             recipient_list=[request.user.email],
+            request=request,
         )
 
         messages.success(request, f"Votre candidature pour '{opportunity.title}' a été envoyée avec succès !")

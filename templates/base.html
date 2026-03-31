@@ -11,7 +11,7 @@
         content="Plateforme Citoyenne de Compétences - La vitrine digitale des talents pour bâtir l'avenir du Bénin.">
     <meta property="og:title" content="PCC - Plateforme Citoyenne de Compétences">
     <meta property="og:description" content="Connectez-vous aux projets stratégiques du Bénin.">
-    <meta property="og:image" content="{% static 'images/logo.jpeg' %}">
+    <meta property="og:image" content="{% static 'images/logo-pcc.png' %}">
     <meta property="og:type" content="website">
     {% endblock %}
 
@@ -118,7 +118,7 @@
                 style="animation-duration: 1s;"></div>
             <div class="absolute inset-2 border-4 border-transparent border-b-accent-yellow border-l-accent-yellow rounded-full animate-spin"
                 style="animation-direction: reverse; animation-duration: 1.5s;"></div>
-            <img src="{% static 'images/logo.jpeg' %}" alt="PCC Preloader"
+            <img src="{% static 'images/logo-pcc.png' %}" alt="PCC Preloader"
                 class="size-12 rounded-lg object-contain animate-pulse">
         </div>
         <p class="text-[10px] font-black tracking-[0.3em] uppercase text-primary animate-pulse">{% trans "Chargement" %}
@@ -131,7 +131,7 @@
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <div class="flex items-center gap-2">
                 <a href="{% url 'core:home' %}" class="flex items-center gap-2 group">
-                    <img src="{% static 'images/logo.jpeg' %}" alt="Logo PCC"
+                    <img src="{% static 'images/logo-pcc.png' %}" alt="Logo PCC"
                         class="h-10 w-auto object-contain group-hover:scale-110 transition-transform rounded-lg" />
                     <h1 class="text-xl font-extrabold tracking-tight text-primary">PCC</h1>
                 </a>
@@ -247,11 +247,13 @@
                     {% if user.is_authenticated %}
                     <div class="flex items-center gap-4">
                         <a href="{% url 'accounts:dashboard' %}"
-                            class="text-slate-600 dark:text-slate-400 font-bold text-sm hover:text-primary transition-colors">{% trans "Mon Espace" %}</a>
+                            class="text-slate-600 dark:text-slate-400 font-bold text-sm hover:text-primary transition-colors">{%
+                            trans "Mon Espace" %}</a>
                         <form action="{% url 'accounts:logout' %}" method="post" class="inline">
                             {% csrf_token %}
                             <button type="submit"
-                                class="px-5 py-2 text-sm font-bold text-accent-red hover:bg-accent-red/10 rounded-xl transition-all">{%trans "Déconnexion" %}</button>
+                                class="px-5 py-2 text-sm font-bold text-accent-red hover:bg-accent-red/10 rounded-xl transition-all">{%trans
+                                "Déconnexion" %}</button>
                         </form>
                     </div>
                     {% else %}
@@ -302,7 +304,7 @@
 
         <!-- Mobile Menu (Compact Card Style) -->
         <div id="mobile-menu"
-            class="hidden absolute top-16 right-4 z-[60] w-64 bg-white/95 dark:bg-background-dark/95 backdrop-blur-md rounded-2xl shadow-2xl border border-primary/10 overflow-hidden transform origin-top-right transition-all duration-300 scale-95 opacity-0">
+            class="hidden absolute top-16 right-4 z-[60] w-64 max-h-[calc(100vh-5rem)] overflow-y-auto bg-white/95 dark:bg-background-dark/95 backdrop-blur-md rounded-2xl shadow-2xl border border-primary/10 transform origin-top-right transition-all duration-300 scale-95 opacity-0">
             <div class="p-6 flex flex-col gap-4">
                 <nav class="flex flex-col gap-1 font-bold text-sm">
                     <!-- Home -->
@@ -425,7 +427,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-16 border-b border-slate-800 pb-16">
                 <div class="col-span-1">
                     <div class="flex items-center gap-2 mb-8">
-                        <img src="{% static 'images/logo.jpeg' %}" alt="Logo PCC"
+                        <img src="{% static 'images/logo-pcc.png' %}" alt="Logo PCC"
                             class="h-10 w-auto object-contain group-hover:-translate-y-1 transition-transform rounded-xl" />
                         <h1 class="text-2xl font-black tracking-tight">PCC</h1>
                     </div>
@@ -454,7 +456,8 @@
                         </li>
                         <li><a class="hover:text-white transition-colors" href="{% url 'citizens:talent_list' %}">{% trans "Talents" %}</a>
                         </li>
-                        <li><a class="hover:text-white transition-colors" href="{% url 'content:contributions' %}">{%trans "Vos Contributions" %}</a>
+                        <li><a class="hover:text-white transition-colors"
+                                href="{% url 'content:contributions' %}">{%trans "Vos Contributions" %}</a>
                         </li>
                     </ul>
                 </div>

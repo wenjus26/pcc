@@ -63,7 +63,7 @@
                 <div class="space-y-6">
                     <div class="bg-white dark:bg-slate-800 p-4 rounded-3xl shadow-2xl border border-primary/5">
                         <img class="rounded-2xl"
-                            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600" alt="">
+                            src="{% static 'images/sage.png' %}" alt="">
                     </div>
                     <div class="bg-primary p-8 rounded-3xl shadow-2xl text-white">
                         <p class="text-4xl font-black mb-1">98%</p>
@@ -73,7 +73,7 @@
                 <div class="space-y-6 pt-12">
                     <div class="bg-white dark:bg-slate-800 p-4 rounded-3xl shadow-2xl border border-primary/5">
                         <img class="rounded-2xl"
-                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600" alt="">
+                            src="{% static 'images/rejuste.jpg' %}" alt="">
                     </div>
                     <div class="bg-slate-900 p-8 rounded-3xl shadow-2xl text-white">
                         <div class="size-10 bg-primary/20 rounded-xl flex items-center justify-center mb-4">
@@ -162,8 +162,7 @@
                         <div class="flex flex-wrap justify-center gap-2 mb-8">
                             {% for skill in talent.skills.all|slice:":2" %}
                             <span
-                                class="px-4 py-1.5 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700 rounded-full text-[10px] font-black text-slate-400 lowercase">{{
-                                skill.name }}</span>
+                                class="px-4 py-1.5 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700 rounded-full text-[10px] font-black text-slate-400 lowercase">{{skill.name }}</span>
                             {% endfor %}
                         </div>
                         <a href="{% url 'citizens:profile_detail' talent.uuid %}"

@@ -44,4 +44,4 @@ jobs:
             # 6. Clean up unused images
             docker image prune -f
             
-            echo "✅ PCC (pcc.beninsoya.com) Deployment Successfully Completed!"
+            echo "✅ PCC (pcc-benin.org) Deployment Successfully Completed!"

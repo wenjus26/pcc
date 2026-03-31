@@ -1,5 +1,11 @@
 from django.contrib import admin
-from .models import Post, Event, Resource, GalleryImage
+from .models import Post, Event, Resource, GalleryImage, EventRegistration
+
+@admin.register(EventRegistration)
+class EventRegistrationAdmin(admin.ModelAdmin):
+    list_display = ('full_name', 'email', 'phone', 'event', 'created_at')
+    list_filter = ('event', 'created_at')
+    search_fields = ('full_name', 'email', 'phone')
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):

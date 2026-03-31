@@ -91,10 +91,10 @@ Collez le contenu suivant dans le fichier. **Modifiez les mots de passe** par de
 DEBUG=False
 SECRET_KEY=REMPLACEZ_MOI_PAR_UNE_CLE_TRES_LONGUE_ET_SANS_ESPACES
 DATABASE_URL=mysql://pcc_user:VOTRE_MOT_DE_PASSE_SQL_ICI@db:3306/pcc_db
-ALLOWED_HOSTS=localhost,127.0.0.1,pcc.beninsoya.com
+ALLOWED_HOSTS=localhost,127.0.0.1,pcc-benin.org
 
 # --- Security Settings (HTTPS) ---
-CSRF_TRUSTED_ORIGINS=https://pcc.beninsoya.com
+CSRF_TRUSTED_ORIGINS=https://pcc-benin.org
 SECURE_SSL_REDIRECT=True
 SESSION_COOKIE_SECURE=True
 CSRF_COOKIE_SECURE=True
@@ -128,7 +128,7 @@ git push origin main
 >
 > ```bash
 > cd /var/www/pcc
-> docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d pcc.beninsoya.com --email VOTRE_ADRESSE_EMAIL_PERSO@GMAIL.COM --agree-tos --no-eff-email
+> docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d pcc-benin.org --email VOTRE_ADRESSE_EMAIL_PERSO@GMAIL.COM --agree-tos --no-eff-email
 > docker compose restart nginx
 > ```
 

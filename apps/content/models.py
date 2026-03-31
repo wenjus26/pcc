@@ -31,6 +31,8 @@ class Event(models.Model):
         (CONFERENCE, _('Conférence')),
     ]
     
+    import uuid
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     title = models.CharField(max_length=255)
     event_type = models.CharField(max_length=20, choices=EVENT_TYPES, default=MASTERCLASS)
     date = models.DateTimeField()
@@ -115,3 +117,18 @@ class GalleryImage(models.Model):
 
     def __str__(self):
         return self.title
+
+class EventRegistration(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='registrations')
+    full_name = models.CharField(max_length=255)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _('Inscription Événement')
+        verbose_name_plural = _('Inscriptions Événements')
+        unique_together = ('event', 'email')
+
+    def __str__(self):
+        return f"{self.full_name} - {self.event.title}"

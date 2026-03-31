@@ -20,6 +20,7 @@ def register(request):
                 template_name='emails/welcome.html',
                 context={'user': user},
                 recipient_list=[user.email],
+                request=request,
             )
             
             login(request, user)

@@ -1,0 +1,23 @@
+{% extends "emails/base_email.html" %}
+{% load i18n %}
+
+{% block content %}
+<h2>{% trans "Confirmation d'inscription à l'événement" %}</h2>
+<p>{% trans "Bonjour" %} <strong>{{ full_name }}</strong>,</p>
+<p>{% trans "Nous vous confirmons votre inscription avec succès à l'événement suivant :" %}</p>
+
+<div style="background-color: #f8fafc; padding: 20px; border-radius: 12px; margin: 25px 0; border: 1px solid #e2e8f0;">
+    <h3 style="margin-top: 0; color: #1e293b;">{{ event.title }}</h3>
+    <p style="margin-bottom: 5px;"><strong>📅 {% trans "Date" %} :</strong> {{ event.date|date:"l d F Y" }}</p>
+    <p style="margin-bottom: 5px;"><strong>⏰ {% trans "Heure" %} :</strong> {{ event.date|date:"H:i" }}</p>
+    <p style="margin-bottom: 0;"><strong>📍 {% trans "Lieu" %} :</strong> {{ event.location }}</p>
+</div>
+
+<p>{% trans "Votre participation a bien été enregistrée. Nous avons hâte de vous retrouver pour ce moment d'échange et de partage." %}</p>
+
+<div style="text-align: center; margin-top: 30px;">
+    <a href="{{ protocol }}://{{ domain }}{% url 'content:event_detail' event.uuid %}" class="button">{% trans "Voir les détails de l'événement" %}</a>
+</div>
+
+<p style="margin-top: 30px;">{% trans "Cordialement," %}<br>{% trans "L'équipe PCC" %}</p>
+{% endblock %}

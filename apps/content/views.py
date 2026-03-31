@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Event, Course, Lesson
+from django.contrib import messages
+from .models import Event, Course, Lesson, EventRegistration
+from apps.core.utils import send_pcc_email
 
 def course_list(request):
     courses = Course.objects.filter(is_published=True).order_by('-created_at')
@@ -36,6 +38,41 @@ def gallery(request):
 
 def biography(request):
     return render(request, 'content/biography.html')
+
+def event_detail(request, uuid):
+    event = get_object_or_404(Event, uuid=uuid, is_active=True)
+    
+    if request.method == 'POST':
+        full_name = request.POST.get('full_name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        
+        if full_name and email and phone:
+            # Check if already registered
+            if EventRegistration.objects.filter(event=event, email=email).exists():
+                messages.info(request, "Vous êtes déjà inscrit à cet événement.")
+            else:
+                registration = EventRegistration.objects.create(
+                    event=event,
+                    full_name=full_name,
+                    email=email,
+                    phone=phone
+                )
+                
+                # Send confirmation email
+                subject = f"Confirmation d'inscription : {event.title}"
+                context = {
+                    'full_name': full_name,
+                    'event': event,
+                    'registration': registration,
+                }
+                send_pcc_email(subject, 'emails/event_registration_confirmation.html', context, [email], request=request)
+                
+                messages.success(request, f"Félicitations {full_name}, votre inscription à '{event.title}' a été enregistrée ! Un email de confirmation vous a été envoyé.")
+        else:
+            messages.error(request, "Veuillez remplir tous les champs du formulaire.")
+            
+    return render(request, 'content/event_detail.html', {'event': event})
 
 def contributions(request):
     if request.method == 'POST':

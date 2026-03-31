@@ -61,13 +61,25 @@
                 <div class="bg-gradient-to-br from-primary/10 to-transparent p-10 rounded-[3rem] border border-primary/20 hover:border-primary/50 transition-all hover:-translate-y-2 group">
                     <h3 class="text-3xl font-black text-slate-900 dark:text-white mb-4 group-hover:text-primary transition-colors">🎤 Leadership & Vision Stratégique</h3>
                     <p class="text-slate-600 dark:text-slate-400 font-medium mb-6">Découvrez les piliers d'un leadership efficace et comment inspirer une organisation vers l'atteinte d'objectifs ambitieux.</p>
-                    <a href="#" class="text-primary font-bold uppercase tracking-widest text-sm flex items-center gap-2">{% trans "En savoir plus" %} <i class="fas fa-chevron-right text-[10px]"></i></a>
+                    {% with masterclass=events|first %}
+                        {% if masterclass %}
+                            <a href="{% url 'content:event_detail' masterclass.uuid %}" class="text-primary font-bold uppercase tracking-widest text-sm flex items-center gap-2">{% trans "En savoir plus" %} <i class="fas fa-chevron-right text-[10px]"></i></a>
+                        {% else %}
+                            <a href="{% url 'content:event_list' %}" class="text-primary font-bold uppercase tracking-widest text-sm flex items-center gap-2">{% trans "Voir les détails" %} <i class="fas fa-chevron-right text-[10px]"></i></a>
+                        {% endif %}
+                    {% endwith %}
                 </div>
                 
                 <div class="bg-gradient-to-br from-accent-yellow/10 to-transparent p-10 rounded-[3rem] border border-accent-yellow/20 hover:border-accent-yellow/50 transition-all hover:-translate-y-2 group">
                     <h3 class="text-3xl font-black text-slate-900 dark:text-white mb-4 group-hover:text-accent-yellow transition-colors">📈 Finance Globale & Développement</h3>
                     <p class="text-slate-600 dark:text-slate-400 font-medium mb-6">Master class technique sur la structuration des financements pour les grands projets structurants.</p>
-                    <a href="#" class="text-accent-yellow font-bold uppercase tracking-widest text-sm flex items-center gap-2">{% trans "En savoir plus" %} <i class="fas fa-chevron-right text-[10px]"></i></a>
+                    {% if events.count > 1 %}
+                        {% with second_masterclass=events.1 %}
+                            <a href="{% url 'content:event_detail' second_masterclass.uuid %}" class="text-accent-yellow font-bold uppercase tracking-widest text-sm flex items-center gap-2">{% trans "En savoir plus" %} <i class="fas fa-chevron-right text-[10px]"></i></a>
+                        {% endwith %}
+                    {% else %}
+                        <a href="{% url 'content:event_list' %}" class="text-accent-yellow font-bold uppercase tracking-widest text-sm flex items-center gap-2">{% trans "Voir les détails" %} <i class="fas fa-chevron-right text-[10px]"></i></a>
+                    {% endif %}
                 </div>
             </div>
         </section>
@@ -172,9 +184,9 @@
                         <p class="text-slate-500 dark:text-slate-400 text-sm font-medium line-clamp-2 mb-6 flex-grow">
                             {{ event.description }}
                         </p>
-                        <button class="w-full py-3 bg-primary/10 text-primary hover:bg-primary hover:text-white font-bold rounded-xl transition-all text-sm">
+                        <a href="{% url 'content:event_detail' event.uuid %}" class="w-full py-3 bg-primary/10 text-primary hover:bg-primary hover:text-white font-bold rounded-xl transition-all text-sm text-center">
                             {% trans "Détails" %}
-                        </button>
+                        </a>
                     </div>
                 </div>
                 {% empty %}
