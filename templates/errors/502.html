@@ -1,0 +1,7 @@
+{% extends 'errors/base_error.html' %} {% load i18n %}
+
+{% block title %}502 - Bad Gateway - PCC{% endblock %}
+
+{% with code='502' icon='fa-server' title='Passerelle incorrecte (Bad Gateway)' message='Le serveur a rencontré une erreur temporaire et n\'a pas pu traiter votre requête. Veuillez réessayer dans quelques instants.' %}
+    {{ block.super }}
+{% endwith %}
