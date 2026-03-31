@@ -247,13 +247,11 @@
                     {% if user.is_authenticated %}
                     <div class="flex items-center gap-4">
                         <a href="{% url 'accounts:dashboard' %}"
-                            class="text-slate-600 dark:text-slate-400 font-bold text-sm hover:text-primary transition-colors">{%
-                            trans "Mon Espace" %}</a>
+                            class="text-slate-600 dark:text-slate-400 font-bold text-sm hover:text-primary transition-colors">{% trans "Mon Espace" %}</a>
                         <form action="{% url 'accounts:logout' %}" method="post" class="inline">
                             {% csrf_token %}
                             <button type="submit"
-                                class="px-5 py-2 text-sm font-bold text-accent-red hover:bg-accent-red/10 rounded-xl transition-all">{%trans
-                                "Déconnexion" %}</button>
+                                class="px-5 py-2 text-sm font-bold text-accent-red hover:bg-accent-red/10 rounded-xl transition-all">{%trans "Déconnexion" %}</button>
                         </form>
                     </div>
                     {% else %}
