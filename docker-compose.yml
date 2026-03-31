@@ -27,7 +27,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./static:/app/static
+      - ./staticfiles:/app/staticfiles
       - ./media:/app/media
     networks:
       - pcc_vps_network
