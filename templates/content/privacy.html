@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Confidentialité & Cookies" %} - PCC{% endblock %}
+
+{% block content %}
+<!-- Decorative Background -->
+<div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none opacity-20">
+    <div
+        class="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2">
+    </div>
+    <div
+        class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-accent-yellow/5 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2">
+    </div>
+</div>
+
+<main class="flex-grow max-w-5xl mx-auto w-full px-4 py-16 md:py-24 relative z-10">
+
+    <!-- Header -->
+    <div class="text-center mb-20 space-y-6">
+        <div
+            class="inline-flex items-center gap-3 px-6 py-2 bg-primary/10 text-primary rounded-full border border-primary/20 text-[10px] font-black uppercase tracking-[0.2em] animate-fade-in">
+            <i class="fas fa-shield-alt"></i> {% trans "Cadre Juridique & Confiance" %}
+        </div>
+        <h1 class="text-4xl md:text-6xl font-black text-slate-900 dark:text-white tracking-tight">
+            {% trans "Politique de" %} <span class="text-primary italic">{% trans "Confidentialité" %}</span>
+        </h1>
+        <p class="text-lg text-slate-500 font-medium max-w-3xl mx-auto leading-relaxed">
+            {% trans "PCC s'engage à protéger vos données personnelles et à assurer la transparence totale sur l'utilisation de vos informations." %}
+        </p>
+    </div>
+
+    <!-- Navigation Tabs / Anchor Links -->
+    <div class="flex justify-center gap-4 mb-20">
+        <a href="#privacy"
+            class="px-8 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl font-black text-xs uppercase tracking-widest shadow-xl hover:border-primary transition-all">
+            {% trans "1. Confidentialité" %}
+        </a>
+        <a href="#cookies"
+            class="px-8 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl font-black text-xs uppercase tracking-widest shadow-xl hover:border-primary transition-all">
+            {% trans "2. Cookies" %}
+        </a>
+    </div>
+
+    <div class="space-y-12">
+
+        <!-- Section 1: Privacy -->
+        <section id="privacy"
+            class="bg-white dark:bg-slate-800 p-10 md:p-16 rounded-[3rem] shadow-2xl border border-slate-100 dark:border-slate-700 relative overflow-hidden group">
+            <div
+                class="absolute -right-20 -top-20 size-80 bg-primary/5 rounded-full group-hover:scale-110 transition-transform duration-700">
+            </div>
+
+            <div class="relative z-10">
+                <div
+                    class="size-16 bg-primary rounded-2xl flex items-center justify-center text-white text-2xl mb-10 shadow-xl shadow-primary/20">
+                    <i class="fas fa-user-lock"></i>
+                </div>
+
+                <h2 class="text-3xl font-black text-slate-900 dark:text-white mb-10">{% trans "Protection de vos données" %}</h2>
+
+                <div class="space-y-12 text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+                    <div>
+                        <h3 class="text-slate-900 dark:text-white font-black text-lg mb-4 flex items-center gap-3">
+                            <span class="size-2 rounded-full bg-primary"></span>
+                            {% trans "Quelles données collectons-nous ?" %}
+                        </h3>
+                        <p>{% trans "Nous collectons les informations que vous nous fournissez lors de votre inscription : nom, prénom, email, profession, expériences professionnelles et documents (CV). Ces données sont essentielles pour vous proposer les meilleures opportunités." %}</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-slate-900 dark:text-white font-black text-lg mb-4 flex items-center gap-3">
+                            <span class="size-2 rounded-full bg-primary"></span>
+                            {% trans "Comment utilisons-nous vos données ?" %}
+                        </h3>
+                        <p>{% trans "Vos données sont utilisées exclusivement pour :" %}</p>
+                        <ul class="mt-4 space-y-3 pl-5 list-disc italic">
+                            <li>{% trans "Faciliter votre recrutement par les institutions publiques et privées." %}
+                            </li>
+                            <li>{% trans "Personnaliser vos suggestions d'opportunités via notre IA." %}</li>
+                            <li>{% trans "Vous envoyer des notifications cruciales sur votre compte." %}</li>
+                        </ul>
+                    </div>
+
+                    <div
+                        class="bg-slate-50 dark:bg-slate-900/50 p-8 rounded-2xl border border-slate-100 dark:border-slate-800 italic">
+                        <p class="text-sm font-black text-primary mb-2 uppercase tracking-widest">{% trans "Sécurité Maximale" %}</p>
+                        {% trans "Conformément à la législation en vigueur au Bénin sur la protection des données à caractère personnel, vos informations sont stockées de manière sécurisée et ne sont jamais vendues à des services tiers." %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Cookies -->
+        <section id="cookies"
+            class="bg-slate-900 p-10 md:p-16 rounded-[3rem] shadow-2xl text-white relative overflow-hidden group">
+            <div
+                class="absolute -left-20 -bottom-20 size-80 bg-accent-yellow/5 rounded-full group-hover:scale-110 transition-transform duration-700">
+            </div>
+
+            <div class="relative z-10">
+                <div
+                    class="size-16 bg-accent-yellow rounded-2xl flex items-center justify-center text-slate-900 text-2xl mb-10 shadow-xl shadow-accent-yellow/20">
+                    <i class="fas fa-cookie-bite"></i>
+                </div>
+
+                <h2 class="text-3xl font-black mb-10">{% trans "Gestion des Cookies" %}</h2>
+
+                <div class="space-y-10 text-slate-400 font-medium leading-relaxed">
+                    <p>{% trans "Les cookies sont de petits fichiers texte déposés sur votre appareil pour améliorer votre navigation sur PCC." %}</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="p-8 bg-white/5 rounded-3xl border border-white/10">
+                            <h4 class="text-white font-black mb-3">{% trans "Cookies Essentiels" %}</h4>
+                            <p class="text-sm italic">{% trans "Indispensables pour rester connecté à votre session et naviguer en toute sécurité." %}</p>
+                        </div>
+                        <div class="p-8 bg-white/5 rounded-3xl border border-white/10">
+                            <h4 class="text-white font-black mb-3">{% trans "Cookies Analytiques" %}</h4>
+                            <p class="text-sm italic">{% trans "Nous permettent de comprendre comment vous utilisez le site pour l'améliorer constamment." %}</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4 pt-6">
+                        <button
+                            class="px-8 py-4 bg-accent-yellow text-slate-900 font-black rounded-2xl shadow-xl hover:scale-105 transition-all text-xs uppercase tracking-widest">
+                            {% trans "Accepter tous les cookies" %}
+                        </button>
+                        <button
+                            class="px-8 py-4 bg-white/10 text-white font-bold rounded-2xl hover:bg-white/20 transition-all text-xs uppercase tracking-widest">
+                            {% trans "En savoir plus" %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Contact CTA -->
+    <div
+        class="mt-20 text-center p-12 bg-white dark:bg-slate-800 rounded-[3rem] border border-slate-100 dark:border-slate-700 shadow-xl">
+        <h3 class="text-xl font-black text-slate-900 dark:text-white mb-4">{% trans "Une question sur vos droits ?" %}
+        </h3>
+        <p class="text-slate-500 mb-8 italic">{% trans "Contactez directement notre service de protection des données." %}</p>
+        <a href="mailto:info@pcc-benin.org"
+            class="text-primary font-black text-lg hover:underline decoration-2 underline-offset-8">info@pcc-benin.org</a>
+    </div>
+
+</main>
+{% endblock %}

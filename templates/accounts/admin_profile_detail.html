@@ -29,12 +29,23 @@
         <div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-16">
             <!-- Sidebar with Photo & Bio -->
             <div class="space-y-12">
-                <div class="size-48 md:size-64 rounded-[3rem] overflow-hidden bg-slate-50 dark:bg-slate-900 ring-8 ring-primary/5 shadow-2xl flex items-center justify-center">
-                    {% if profile.photo %}
-                        <img src="{{ profile.photo.url }}" class="w-full h-full object-cover">
-                    {% else %}
-                        <i class="fas fa-user text-6xl text-slate-200"></i>
-                    {% endif %}
+                <div class="relative group/avatar">
+                    <div class="size-48 md:size-64 rounded-[3rem] overflow-hidden bg-primary/10 text-primary font-black text-6xl ring-8 ring-primary/5 shadow-2xl flex items-center justify-center relative z-10">
+                        {% if profile.photo %}
+                            <img src="{{ profile.photo.url }}" class="w-full h-full object-cover">
+                        {% else %}
+                            {{ profile.initials }}
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Admin Photo Edit Button -->
+                    <form action="{% url 'accounts:admin_update_profile_photo' profile.uuid %}" method="POST" enctype="multipart/form-data" class="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover/avatar:opacity-100 transition-all">
+                        {% csrf_token %}
+                        <label class="size-16 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-primary/20 flex items-center justify-center text-primary text-xl cursor-pointer hover:scale-110 active:scale-95 transition-all">
+                            <i class="fas fa-camera"></i>
+                            <input type="file" name="photo" class="hidden" onchange="this.form.submit()">
+                        </label>
+                    </form>
                 </div>
 
                 <div class="space-y-6">

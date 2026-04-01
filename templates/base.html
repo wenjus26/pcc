@@ -37,6 +37,9 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/all.min.css' %}" />
+    
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js"></script>
 
     <script id="tailwind-config">
         tailwind.config = {
@@ -409,10 +412,15 @@
 
                 <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2">
                     {% if user.is_authenticated %}
+                    <a href="{% url 'accounts:dashboard' %}" 
+                       class="w-full flex items-center justify-between p-4 bg-primary/10 text-primary font-black text-sm rounded-2xl hover:bg-primary hover:text-white transition-all shadow-sm">
+                        {% trans "Mon Espace" %}
+                        <i class="fas fa-user-cog text-xs opacity-50"></i>
+                    </a>
                     <form action="{% url 'accounts:logout' %}" method="post">
                         {% csrf_token %}
                         <button type="submit"
-                            class="w-full flex items-center justify-between p-3 text-accent-red font-bold text-sm rounded-xl hover:bg-accent-red/5">
+                            class="w-full flex items-center justify-between p-4 text-accent-red font-bold text-sm rounded-2xl hover:bg-accent-red/5">
                             {% trans "Déconnexion" %}
                             <i class="fas fa-sign-out-alt text-[10px] opacity-50"></i>
                         </button>
@@ -515,13 +523,13 @@
                 class="flex flex-col md:flex-row justify-between items-center text-[10px] font-bold uppercase tracking-widest text-slate-500 gap-8">
                 <p>© 2026 PCC. {% trans "Tous droits réservés." %}</p>
                 <div class="flex gap-8 items-center">
-                    <a href="#" class="hover:text-white transition-colors">{% trans "Confidentialité" %}</a>
-                    <a href="#" class="hover:text-white transition-colors">{% trans "Cookies" %}</a>
+                    <a href="{% url 'content:privacy_policy' %}" class="hover:text-white transition-colors">{% trans "Confidentialité" %}</a>
+                    <a href="{% url 'content:privacy_policy' %}#cookies" class="hover:text-white transition-colors">{% trans "Cookies" %}</a>
                     <div class="flex items-center gap-3 bg-slate-800 px-4 py-2 rounded-full border border-slate-700">
                         <img alt="Drapeau du Bénin" class="rounded-sm shadow-sm"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEwnTrapCO6lQo9FMQP6i2RlQMe6q1f2rUpN0KHg5D6g9CnDUy_ZaHsu_Tjv6Q515lDeM7LCUZv0xoh_12Cy5NH9zZZUm_GpWToYDfULHdJWPeAFH6fXfOtqT2lv7cd17Ja-aa-ZZi_7SLgY56oi_GRZ8gnqjh_q8oM00SejcIW01aP05nPAUIsU1_jT2mwLwMf5LmpR0NbTI2beS6jq8c43urLSQsgo9h9Jt9sAT2t10wAm2z9ZpTIOGodoDh9a6MnBAbMl_J5c0"
+                            src="{% static 'images/bn.png' %}"
                             width="22" />
-                        <span class="text-xs">{% trans "République du Bénin" %}</span>
+                        <span class="text-xs">{% trans "Drapeau du Bénin - République du Bénin" %}</span>
                     </div>
                 </div>
             </div>

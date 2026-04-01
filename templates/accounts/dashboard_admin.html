@@ -4,58 +4,78 @@
 {% block title %}{% trans "Administration PCC" %} - Dashboards{% endblock %}
 
 {% block content %}
-<div class="flex h-screen bg-slate-50 dark:bg-slate-900 overflow-hidden" x-data="{ sidebarOpen: true }">
+<div class="flex h-screen bg-slate-50 dark:bg-slate-900 overflow-hidden relative" x-data="{ sidebarOpen: window.matchMedia('(min-width: 1024px)').matches }">
     
+    <!-- Mobile Sidebar Overlay -->
+    <div x-show="sidebarOpen && window.innerWidth < 1024" 
+         @click="sidebarOpen = false"
+         class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300"
+         x-cloak>
+    </div>
+
     <!-- Sidebar -->
-    <div :class="sidebarOpen ? 'w-80' : 'w-20'" class="bg-slate-900 h-full flex flex-col transition-all duration-300 relative z-40">
+    <div :class="[
+            sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0 lg:w-20',
+            sidebarOpen && window.innerWidth >= 1024 ? 'lg:w-80' : ''
+         ]" 
+         class="fixed lg:static inset-y-0 left-0 bg-slate-900 h-full flex flex-col transition-all duration-300 z-50 transform lg:transform-none shadow-2xl lg:shadow-none">
+        
         <div class="p-8 flex items-center justify-between">
-            <h2 x-show="sidebarOpen" class="text-white font-black uppercase tracking-widest text-xs">{% trans "Menu Admin" %}</h2>
-            <button @click="sidebarOpen = !sidebarOpen" class="text-white opacity-40 hover:opacity-100 transition-opacity">
+            <h2 x-show="sidebarOpen || window.innerWidth < 1024" class="text-white font-black uppercase tracking-widest text-xs">{% trans "Menu Admin" %}</h2>
+            <button @click="sidebarOpen = !sidebarOpen" class="text-white opacity-40 hover:opacity-100 transition-opacity hidden lg:block">
                 <i :class="sidebarOpen ? 'fa-angle-double-left' : 'fa-bars'" class="fas"></i>
+            </button>
+            <button @click="sidebarOpen = false" class="text-white opacity-40 hover:opacity-100 transition-opacity lg:hidden">
+                <i class="fas fa-times"></i>
             </button>
         </div>
 
         <nav class="flex-1 px-4 space-y-2 py-4 overflow-y-auto">
             <a href="{% url 'accounts:admin_dashboard' %}" class="flex items-center gap-4 px-6 py-4 bg-primary text-white rounded-2xl shadow-xl shadow-primary/20 transition-all font-black text-sm">
-                <i class="fas fa-th-large"></i> <span x-show="sidebarOpen">{% trans "Vue d'ensemble" %}</span>
+                <i class="fas fa-th-large"></i> <span x-show="sidebarOpen || window.innerWidth < 1024">{% trans "Vue d'ensemble" %}</span>
             </a>
             <div class="h-px bg-white/5 my-4 mx-4"></div>
             
-            <p x-show="sidebarOpen" class="text-[9px] font-black tracking-widest text-slate-500 uppercase px-6 mb-2">{% trans "Créations Rapides" %}</p>
+            <p x-show="sidebarOpen || window.innerWidth < 1024" class="text-[9px] font-black tracking-widest text-slate-500 uppercase px-6 mb-2">{% trans "Créations Rapides" %}</p>
             <a href="{% url 'accounts:admin_create_event' %}" class="flex items-center gap-4 px-6 py-4 text-slate-400 hover:text-white hover:bg-slate-800 rounded-2xl transition-all font-bold text-sm group">
-                <i class="fas fa-calendar-plus group-hover:text-primary"></i> <span x-show="sidebarOpen">{% trans "+ Événement" %}</span>
+                <i class="fas fa-calendar-plus group-hover:text-primary"></i> <span x-show="sidebarOpen || window.innerWidth < 1024">{% trans "+ Événement" %}</span>
             </a>
             <a href="{% url 'accounts:admin_create_institution' %}" class="flex items-center gap-4 px-6 py-4 text-slate-400 hover:text-white hover:bg-slate-800 rounded-2xl transition-all font-bold text-sm group">
-                <i class="fas fa-building group-hover:text-primary"></i> <span x-show="sidebarOpen">{% trans "+ Institution" %}</span>
+                <i class="fas fa-building group-hover:text-primary"></i> <span x-show="sidebarOpen || window.innerWidth < 1024">{% trans "+ Institution" %}</span>
             </a>
             <a href="{% url 'accounts:admin_create_citizen' %}" class="flex items-center gap-4 px-6 py-4 text-slate-400 hover:text-white hover:bg-slate-800 rounded-2xl transition-all font-bold text-sm group">
-                <i class="fas fa-user-plus group-hover:text-primary"></i> <span x-show="sidebarOpen">{% trans "+ Talent" %}</span>
+                <i class="fas fa-user-plus group-hover:text-primary"></i> <span x-show="sidebarOpen || window.innerWidth < 1024">{% trans "+ Talent" %}</span>
             </a>
 
             <div class="h-px bg-white/5 my-4 mx-4"></div>
-            <p x-show="sidebarOpen" class="text-[9px] font-black tracking-widest text-slate-500 uppercase px-6 mb-2">{% trans "Analyse & Rapports" %}</p>
+            <p x-show="sidebarOpen || window.innerWidth < 1024" class="text-[9px] font-black tracking-widest text-slate-500 uppercase px-6 mb-2">{% trans "Analyse & Rapports" %}</p>
             <a href="{% url 'citizens:talent_list' %}" class="flex items-center gap-4 px-6 py-4 text-slate-400 hover:text-white hover:bg-slate-800 rounded-2xl transition-all font-bold text-sm group">
-                <i class="fas fa-users group-hover:text-primary"></i> <span x-show="sidebarOpen">{% trans "Base des Talents" %}</span>
+                <i class="fas fa-users group-hover:text-primary"></i> <span x-show="sidebarOpen || window.innerWidth < 1024">{% trans "Base des Talents" %}</span>
             </a>
         </nav>
 
         <div class="p-8 border-t border-white/10">
              <a href="{% url 'accounts:logout' %}" class="flex items-center gap-4 text-slate-500 hover:text-red-500 font-bold text-xs">
-                <i class="fas fa-power-off"></i> <span x-show="sidebarOpen">{% trans "Déconnexion" %}</span>
+                <i class="fas fa-power-off"></i> <span x-show="sidebarOpen || window.innerWidth < 1024">{% trans "Déconnexion" %}</span>
             </a>
         </div>
     </div>
 
     <!-- Main Content Area -->
     <div class="flex-1 overflow-y-auto w-full">
-        <header class="bg-white dark:bg-slate-800 h-24 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between px-10 sticky top-0 z-30">
-            <h1 class="text-2xl font-black text-slate-900 dark:text-white">{% trans "Bienvenue, Administrateur" %}</h1>
-            <div class="flex items-center gap-6">
-                <div class="hidden md:flex flex-col text-right">
-                    <p class="text-xs font-black uppercase text-slate-400">01 Avril 2026</p>
-                    <p class="text-sm font-bold text-slate-900 dark:text-white">Status: En Ligne</p>
+        <header class="bg-white dark:bg-slate-800 h-20 md:h-24 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between px-6 md:px-10 sticky top-0 z-30">
+            <div class="flex items-center gap-4">
+                <button @click="sidebarOpen = true" class="lg:hidden p-2 text-slate-600 dark:text-slate-400">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <h1 class="text-lg md:text-2xl font-black text-slate-900 dark:text-white truncate">{% trans "Administration" %}</h1>
+            </div>
+            <div class="flex items-center gap-3 md:gap-6">
+                <div class="hidden sm:flex flex-col text-right">
+                    <p class="text-[9px] font-black uppercase text-slate-400">01 Avril 2026</p>
+                    <p class="text-xs font-bold text-primary">Status: En Ligne</p>
                 </div>
-                <div class="size-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary font-black">A</div>
+                <div class="size-10 md:size-12 bg-primary/10 rounded-xl md:rounded-2xl flex items-center justify-center text-primary font-black">A</div>
             </div>
         </header>
 
@@ -119,11 +139,11 @@
                                     <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-900/20 transition-all group">
                                         <td class="py-6 pr-6">
                                             <div class="flex items-center gap-5">
-                                                <div class="size-12 rounded-xl bg-slate-100 dark:bg-slate-900/50 flex items-center justify-center font-black overflow-hidden ring-2 ring-primary/5 shadow-sm">
+                                                <div class="size-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary font-black overflow-hidden text-sm">
                                                     {% if profile.photo %}
                                                         <img src="{{ profile.photo.url }}" class="w-full h-full object-cover">
                                                     {% else %}
-                                                        {{ profile.user.get_full_name|slice:":1"|default:profile.user.username|slice:":1" }}
+                                                        {{ profile.initials }}
                                                     {% endif %}
                                                 </div>
                                                 <div>

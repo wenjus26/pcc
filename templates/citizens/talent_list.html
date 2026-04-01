@@ -80,11 +80,11 @@
         {% for talent in talents %}
         <div class="bg-white dark:bg-slate-800 rounded-[2.5rem] p-8 shadow-sm border border-primary/5 hover:border-primary/20 hover:shadow-2xl hover:-translate-y-2 transition-all group flex flex-col h-full">
             <div class="flex gap-6 items-start mb-8">
-                <div class="size-24 rounded-3xl overflow-hidden shrink-0 ring-8 ring-slate-50 dark:ring-slate-900 group-hover:ring-primary/10 transition-all shadow-lg flex-center">
+                <div class="size-24 rounded-3xl overflow-hidden shrink-0 border-2 border-slate-50 dark:ring-slate-900 group-hover:ring-primary/10 transition-all shadow-lg flex items-center justify-center bg-primary/10 text-primary font-black text-3xl">
                     {% if talent.photo %}
                         <img class="w-full h-full object-cover" src="{{ talent.photo.url }}" alt="{{ talent.user.username }}">
                     {% else %}
-                        <img class="w-full h-full object-cover" src="https://ui-avatars.com/api/?name={{ talent.user.get_full_name|urlencode }}&background=33a50d&color=fff&size=200" alt="{{ talent.user.username }}">
+                        {{ talent.initials }}
                     {% endif %}
                 </div>
                 <div class="flex-1 min-w-0 pt-2">

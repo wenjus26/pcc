@@ -4,7 +4,19 @@ from .models import Opportunity
 
 def opportunity_list(request):
     query = request.GET.get('q', '')
-    queryset = Opportunity.objects.filter(status='open')
+    selected_status = request.GET.getlist('status')
+    
+    # Base queryset
+    queryset = Opportunity.objects.all()
+    
+    # Filter by status if selected, otherwise show 'open' by default
+    if selected_status and any(selected_status):
+        queryset = queryset.filter(status__in=selected_status)
+    else:
+        # If no filter selected at all, we show ONLY 'open' (Ouvert)
+        # However, if this is a first visit, selected_status will be empty
+        queryset = queryset.filter(status='open')
+        selected_status = ['open']
     
     if query:
         from django.db.models import Q
@@ -24,6 +36,7 @@ def opportunity_list(request):
         'opportunities': page_obj,
         'page_obj': page_obj,
         'is_paginated': page_obj.has_other_pages(),
+        'selected_status': selected_status,
     }
     return render(request, 'institutions/opportunity_list.html', context)
 

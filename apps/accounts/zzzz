@@ -1,0 +1,66 @@
+# --- Bloc Port 80 (Redirection HTTP vers HTTPS) ---
+server {
+    listen 80;
+    server_name pcc-benin.org www.pcc-benin.org pcc.beninsoya.com www.pcc.beninsoya.com;
+
+    # Nécessaire pour le renouvellement auto Certbot
+    location /.well-known/acme-challenge/ {
+        root /var/www/pcc/certbot-challenge;
+    }
+
+    # Redirection universelle vers HTTPS
+    return 301 https://$host$request_uri;
+}
+
+# --- Bloc Port 443 (HTTPS / Application principale) ---
+server {
+    listen 443 ssl http2;
+    server_name pcc-benin.org www.pcc-benin.org pcc.beninsoya.com www.pcc.beninsoya.com;
+
+    # Certificats SSL (Gérés par Certbot)
+    ssl_certificate /etc/letsencrypt/live/pcc-benin.org/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/pcc-benin.org/privkey.pem;
+
+    # Optimisations SSL
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers on;
+
+    # Gestion de la page d'erreur 502 (Bad Gateway)
+    error_page 502 /502.html;
+    location = /502.html {
+        root /var/www/pcc/static; # Doit contenir votre fichier static 502.html
+        internal;
+    }
+
+    # Favicon
+    location = /favicon.ico { 
+        access_log off; 
+        log_not_found off; 
+    }
+
+    # Fichiers Statiques (CSS, JS, Images du thème)
+    location /static/ {
+        alias /var/www/pcc/static/;
+        expires 30d;
+        add_header Cache-Control "public, no-transform";
+    }
+
+    # Fichiers Media (Uploads utilisateurs)
+    location /media/ {
+        alias /var/www/pcc/media/;
+    }
+
+    # Proxy vers l'application Django (Docker)
+    location / {
+        proxy_pass http://127.0.0.1:8013;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        
+        # Paramètres de timeout pour éviter les 504 trop rapides
+        proxy_connect_timeout 60s;
+        proxy_read_timeout 60s;
+    }
+}

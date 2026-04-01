@@ -193,3 +193,18 @@ def admin_create_citizen(request):
         'title': "Créer un Talent (Citoyen)",
         'icon': 'fa-user-plus'
     })
+
+@login_required
+def admin_update_profile_photo(request, uuid):
+    if request.user.role != 'admin':
+        return redirect('accounts:dashboard')
+    
+    from apps.citizens.models import CitizenProfile
+    profile = get_object_or_404(CitizenProfile, uuid=uuid)
+    
+    if request.method == 'POST' and request.FILES.get('photo'):
+        profile.photo = request.FILES['photo']
+        profile.save()
+        messages.success(request, f"La photo de {profile.user.get_full_name()} a été mise à jour.")
+        
+    return redirect('accounts:admin_profile_detail', uuid=uuid)

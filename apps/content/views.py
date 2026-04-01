@@ -1,7 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
+from django.views.decorators.clickjacking import xframe_options_sameorigin
 from .models import Event, Course, Lesson, EventRegistration
 from apps.core.utils import send_pcc_email
+
+def privacy_policy(request):
+    """View to display privacy policy and cookies information."""
+    return render(request, 'content/privacy.html')
 
 def course_list(request):
     courses = Course.objects.filter(is_published=True).order_by('-created_at')
@@ -49,8 +54,11 @@ def event_list(request):
         'featured_event': featured_event
     })
 
+@xframe_options_sameorigin
 def programme_societe(request):
-    return render(request, 'content/programme_societe.html')
+    from .models import Video
+    videos = Video.objects.order_by('-created_at')[:2]
+    return render(request, 'content/programme_societe.html', {'videos': videos})
 
 def gallery(request):
     from .models import GalleryImage

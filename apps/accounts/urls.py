@@ -19,6 +19,7 @@ urlpatterns = [
     path('admin/create/event/', views.admin_create_event, name='admin_create_event'),
     path('admin/create/institution/', views.admin_create_institution, name='admin_create_institution'),
     path('admin/create/citizen/', views.admin_create_citizen, name='admin_create_citizen'),
+    path('admin/profile/<uuid:uuid>/update-photo/', views.admin_update_profile_photo, name='admin_update_profile_photo'),
     
     # Password Change
     path('password-change/', auth_views.PasswordChangeView.as_view(template_name='accounts/password_change.html', success_url='/accounts/password-change/done/'), name='password_change'),

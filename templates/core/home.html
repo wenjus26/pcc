@@ -167,10 +167,12 @@
                 <div
                     class="bg-white dark:bg-slate-800 p-8 rounded-[3rem] shadow-xl border border-primary/5 relative z-10 hover:-translate-y-4 transition-all duration-500">
                     <div
-                        class="size-32 rounded-[2.5rem] overflow-hidden mb-8 ring-8 ring-slate-50 dark:ring-slate-900 group-hover:ring-primary/10 transition-all mx-auto shadow-2xl">
-                        <img class="w-full h-full object-cover"
-                            src="https://ui-avatars.com/api/?name={{ talent.user.get_full_name|urlencode }}&background=33a50d&color=fff&size=512"
-                            alt="">
+                        class="size-32 rounded-[2.5rem] overflow-hidden mb-8 ring-8 ring-slate-50 dark:ring-slate-900 group-hover:ring-primary/10 transition-all mx-auto shadow-2xl flex items-center justify-center bg-primary/10 text-primary font-black text-4xl">
+                        {% if talent.photo %}
+                            <img class="w-full h-full object-cover" src="{{ talent.photo.url }}" alt="{{ talent.user.username }}">
+                        {% else %}
+                            {{ talent.initials }}
+                        {% endif %}
                     </div>
                     <div class="text-center">
                         <h4 class="text-2xl font-black mb-2 group-hover:text-primary transition-colors">{{ talent.user.get_full_name|default:talent.user.username }}</h4>

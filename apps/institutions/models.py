@@ -27,11 +27,13 @@ class InstitutionProfile(models.Model):
 class Opportunity(models.Model):
     DRAFT = 'draft'
     OPEN = 'open'
+    UPCOMING = 'upcoming'
     CLOSED = 'closed'
     
     STATUS_CHOICES = [
         (DRAFT, _('Brouillon')),
         (OPEN, _('Ouvert')),
+        (UPCOMING, _('À venir')),
         (CLOSED, _('Clôturé')),
     ]
     

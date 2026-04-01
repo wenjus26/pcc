@@ -53,7 +53,6 @@ class CitizenProfile(models.Model):
     interests = models.ManyToManyField(Category, related_name='interested_citizens', blank=True, verbose_name=_("Domaines d'intérêt"))
     
     # Career summary
-    # Career summary
     current_title = models.CharField(max_length=255, blank=True)
     years_of_experience = models.PositiveIntegerField(default=0)
     
@@ -68,6 +67,15 @@ class CitizenProfile(models.Model):
     class Meta:
         verbose_name = _('Profil Citoyen')
         verbose_name_plural = _('Profils Citoyens')
+
+    @property
+    def initials(self):
+        """Returns the first characters of first name and last name."""
+        first = self.user.first_name[:1].upper() if self.user.first_name else ""
+        last = self.user.last_name[:1].upper() if self.user.last_name else ""
+        if not first and not last:
+            return self.user.username[:2].upper()
+        return f"{first}{last}"
 
     def __str__(self):
         return f"Profile - {self.user.username}"

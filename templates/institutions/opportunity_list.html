@@ -13,6 +13,9 @@
         
         <!-- Search Bar -->
         <form method="get" action="." class="w-full md:max-w-md shrink-0">
+            {% for s in selected_status %}
+                <input type="hidden" name="status" value="{{ s }}">
+            {% endfor %}
             <div class="relative group">
                 <div class="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
                     <i class="fas fa-search text-primary opacity-50 group-focus-within:opacity-100 transition-opacity"></i>
@@ -27,33 +30,51 @@
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
         <!-- Sidebar Filters -->
         <div class="lg:col-span-1 space-y-8">
-            <div class="bg-white dark:bg-slate-800 p-8 rounded-[2rem] border border-primary/10 shadow-xl shadow-primary/5 sticky top-24">
-                <h3 class="text-xl font-black mb-8 flex items-center gap-3">
-                    <div class="size-8 bg-primary/10 rounded-lg flex items-center justify-center text-primary text-xs">
-                        <i class="fas fa-filter"></i>
-                    </div>
-                    {% trans "Filtrer" %}
-                </h3>
-                
-                <div class="space-y-10">
-                    <div class="space-y-4">
-                        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">{% trans "Statut du projet" %}</p>
-                        <div class="flex flex-col gap-2">
-                            <label class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors cursor-pointer group">
-                                <input type="checkbox" class="size-5 rounded-lg border-2 border-slate-200 text-primary focus:ring-primary/20 transition-all" checked>
-                                <span class="text-sm font-bold text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">{% trans "Ouvert" %}</span>
-                            </label>
-                            <label class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors cursor-pointer group">
-                                <input type="checkbox" class="size-5 rounded-lg border-2 border-slate-200 text-primary focus:ring-primary/20 transition-all">
-                                <span class="text-sm font-bold text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">{% trans "À venir" %}</span>
-                            </label>
+            <div class="bg-white dark:bg-slate-800 p-8 rounded-[2rem] border border-primary/10 shadow-xl shadow-primary/5 sticky top-24 transition-all">
+                <form method="get" action=".">
+                    <!-- Preserve search query -->
+                    <input type="hidden" name="q" value="{{ request.GET.q|default:'' }}">
+                    
+                    <h3 class="text-xl font-black mb-8 flex items-center gap-3">
+                        <div class="size-8 bg-primary/10 rounded-lg flex items-center justify-center text-primary text-xs">
+                            <i class="fas fa-filter"></i>
                         </div>
-                    </div>
+                        {% trans "Filtrer" %}
+                    </h3>
+                    
+                    <div class="space-y-10">
+                        <div class="space-y-4">
+                            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">{% trans "Statut du projet" %}</p>
+                            <div class="flex flex-col gap-2">
+                                <label class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors cursor-pointer group">
+                                    <input type="checkbox" name="status" value="open" 
+                                           onchange="this.form.submit()"
+                                           class="size-5 rounded-lg border-2 border-slate-200 text-primary focus:ring-primary/20 transition-all"
+                                           {% if 'open' in selected_status %}checked{% endif %}>
+                                    <span class="text-sm font-bold text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">{% trans "Ouvert" %}</span>
+                                </label>
+                                <label class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors cursor-pointer group">
+                                    <input type="checkbox" name="status" value="upcoming" 
+                                           onchange="this.form.submit()"
+                                           class="size-5 rounded-lg border-2 border-slate-200 text-primary focus:ring-primary/20 transition-all"
+                                           {% if 'upcoming' in selected_status %}checked{% endif %}>
+                                    <span class="text-sm font-bold text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">{% trans "À venir" %}</span>
+                                </label>
+                                <label class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors cursor-pointer group">
+                                    <input type="checkbox" name="status" value="closed" 
+                                           onchange="this.form.submit()"
+                                           class="size-5 rounded-lg border-2 border-slate-200 text-primary focus:ring-primary/20 transition-all"
+                                           {% if 'closed' in selected_status %}checked{% endif %}>
+                                    <span class="text-sm font-bold text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">{% trans "Clôturé" %}</span>
+                                </label>
+                            </div>
+                        </div>
 
-                    <button class="w-full py-4 bg-slate-900 dark:bg-primary text-white font-black rounded-2xl shadow-lg hover:scale-105 transition-all text-sm">
-                        {% trans "Appliquer les filtres" %}
-                    </button>
-                </div>
+                        <button type="submit" class="w-full py-4 bg-slate-900 dark:bg-primary text-white font-black rounded-2xl shadow-lg hover:scale-105 transition-all text-sm">
+                            {% trans "Appliquer les filtres" %}
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
 
