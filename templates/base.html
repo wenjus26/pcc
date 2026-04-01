@@ -6,20 +6,37 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>{% block title %}PCC - Plate-Forme Citoyenne des Compétences{% endblock %}</title>
+    <link rel="shortcut icon" href="{% static 'images/logo-pcc.png' %}" type="image/x-icon">
     {% block meta %}
-    <meta name="description"
-        content="Plateforme Citoyenne de Compétences - La vitrine digitale des talents pour bâtir l'avenir du Bénin.">
-    <meta property="og:title" content="PCC - Plateforme Citoyenne de Compétences">
-    <meta property="og:description" content="Connectez-vous aux projets stratégiques du Bénin.">
-    <meta property="og:image" content="{% static 'images/logo-pcc.png' %}">
+    <meta name="description" content="PCC - Plateforme Citoyenne de Compétences : Unir les compétences et les talents. Inspirer le changement. Bâtir l'avenir.">
+    <meta name="keywords" content="Bénin, Compétences, Talents, Développement, Projets Citoyens, PCC, Romuald Wadagni">
+    
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:title" content="PCC - Plateforme Citoyenne de Compétences">
+    <meta property="og:description" content="Unir les compétences et les talents. Inspirer le changement. Bâtir l'avenir. Rejoignez le réseau des compétences béninoises.">
+    <meta property="og:image" content="{% static 'images/logo-pcc.png' %}">
+    <meta property="og:site_name" content="PCC">
+    <meta property="og:locale" content="fr_FR">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ request.build_absolute_uri }}">
+    <meta name="twitter:title" content="PCC - Plateforme Citoyenne de Compétences">
+    <meta name="twitter:description" content="Unir les compétences et les talents. Inspirer le changement. Bâtir l'avenir.">
+    <meta name="twitter:image" content="{% static 'images/logo-pcc.png' %}">
     {% endblock %}
 
     <!-- Scripts & Styles -->
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- Offline Scripts & Styles -->
+    <script src="{% static 'vendor/tailwind/tailwind.js' %}"></script>
+    <script>
+        // Check for plugins in local tailwind
+        // No extra plugin loading needed if tailwind.js is full build
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/all.min.css' %}" />
 
     <script id="tailwind-config">
         tailwind.config = {
@@ -229,6 +246,11 @@
                             <i class="fas fa-images text-xs opacity-50 group-hover/item:opacity-100"></i>
                             {% trans "Galerie" %}
                         </a>
+                        <a href="{% url 'content:video_list' %}"
+                            class="flex items-center gap-3 px-5 py-3 hover:bg-primary/10 hover:text-primary transition-colors group/item {% if request.resolver_match.url_name == 'video_list' %}text-primary bg-primary/5{% endif %}">
+                            <i class="fab fa-youtube text-xs opacity-50 group-hover/item:opacity-100"></i>
+                            {% trans "Vidéos" %}
+                        </a>
                         <a href="{% url 'community:forum_home' %}"
                             class="flex items-center gap-3 px-5 py-3 hover:bg-primary/10 hover:text-primary transition-colors group/item">
                             <i class="fas fa-comments text-xs opacity-50 group-hover/item:opacity-100"></i>
@@ -365,6 +387,11 @@
                         <i class="fas fa-images text-[10px] opacity-30"></i>
                     </a>
                     <a class="flex items-center justify-between p-3 rounded-xl hover:bg-primary/5 text-slate-600 dark:text-slate-400 text-xs"
+                        href="{% url 'content:video_list' %}">
+                        {% trans "Vidéos" %}
+                        <i class="fab fa-youtube text-[10px] opacity-30"></i>
+                    </a>
+                    <a class="flex items-center justify-between p-3 rounded-xl hover:bg-primary/5 text-slate-600 dark:text-slate-400 text-xs"
                         href="{% url 'community:forum_home' %}">
                         {% trans "Forums / Groupes" %}
                         <i class="fas fa-comments text-[10px] opacity-30"></i>
@@ -462,8 +489,8 @@
                     <h6 class="font-black mb-8 text-primary uppercase text-xs tracking-[0.2em]">{% trans "Support" %}
                     </h6>
                     <ul class="space-y-5 text-sm font-bold text-slate-400">
-                        <li><a class="hover:text-white transition-colors" href="#">{% trans "Aide & FAQ" %}</a></li>
-                        <li><a class="hover:text-white transition-colors" href="#">{% trans "Contact" %}</a></li>
+                        <li><a class="hover:text-white transition-colors" href="{% url 'core:contact' %}">{% trans "Aide & FAQ" %}</a></li>
+                        <li><a class="hover:text-white transition-colors" href="{% url 'core:contact' %}">{% trans "Contact" %}</a></li>
                     </ul>
                 </div>
                 <div class="bg-slate-800/50 p-8 rounded-3xl border border-slate-700">

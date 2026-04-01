@@ -27,5 +27,18 @@ class NewsletterSubscriber(models.Model):
         verbose_name = _('Abonné Newsletter')
         verbose_name_plural = _('Abonnés Newsletter')
 
+class ContactMessage(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    subject = models.CharField(max_length=255)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_processed = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = _('Message de Contact')
+        verbose_name_plural = _('Messages de Contact')
+        ordering = ['-created_at']
+
     def __str__(self):
-        return self.email
+        return f"{self.subject} - {self.name}"

@@ -1,0 +1,45 @@
+{% extends "emails/base_email.html" %}
+{% load i18n %}
+
+{% block content %}
+<div style="padding: 20px; text-align: left; background-color: #ffffff;">
+    <h1 style="color: #33a50d; font-size: 24px; font-weight: 800; margin-bottom: 20px;">
+        {% trans "Profil Citoyen Mis à Jour" %}
+    </h1>
+    
+    <p style="font-size: 16px; line-height: 1.6; color: #4b5563;">
+        {% blocktrans with name=user.get_full_name|default:user.username %}
+        Bonjour {{ name }},
+        {% endblocktrans %}
+    </p>
+    
+    <p style="font-size: 16px; line-height: 1.6; color: #4b5563;">
+        {% trans "Félicitations ! Votre profil citoyen sur la Plateforme Citoyenne des Compétences (PCC) a été mis à jour avec succès." %}
+    </p>
+
+    <div style="background-color: #f9fafb; border-radius: 12px; padding: 20px; margin: 25px 0; border: 1px solid #e5e7eb;">
+        <h3 style="margin-top: 0; color: #111827; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">{% trans "Résumé des modifications" %}</h3>
+        <ul style="padding-left: 20px; margin-bottom: 0; color: #374151;">
+            <li><strong>{% trans "Titre actuel" %} :</strong> {{ profile.current_title }}</li>
+            <li><strong>{% trans "Expérience" %} :</strong> {{ profile.years_of_experience }} {% trans "ans" %}</li>
+            <li><strong>{% trans "Localisation" %} :</strong> {{ profile.get_location_display }}</li>
+        </ul>
+    </div>
+
+    <p style="font-size: 14px; line-height: 1.6; color: #6b7280; font-style: italic;">
+        {% trans "Note : Conformément à nos protocoles de sécurité, votre profil a été temporairement placé en attente de re-validation par nos services pour garantir l'intégrité du réseau des talents. Il redeviendra public dès confirmation." %}
+    </p>
+
+    <div style="text-align: center; margin-top: 35px;">
+        <a href="{{ protocol }}://{{ domain }}{% url 'citizens:profile_detail' profile.uuid %}" 
+           style="background-color: #33a50d; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">
+            {% trans "Consulter mon profil" %}
+        </a>
+    </div>
+
+    <p style="font-size: 16px; line-height: 1.6; color: #4b5563; margin-top: 30px;">
+        {% trans "Merci de votre engagement pour le développement du Bénin." %}<br>
+        <strong>{% trans "L'équipe PCC" %}</strong>
+    </p>
+</div>
+{% endblock %}

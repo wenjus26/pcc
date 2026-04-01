@@ -10,13 +10,10 @@
         <span class="mx-4">🔥 {% trans "Ne manquez pas notre prochain événement majeur le 04 Avril !" %}</span>
         <span class="mx-4">🌟 {% trans "Inscriptions ouvertes pour les Master Classes." %}</span>
         <span class="mx-4">📢 {% trans "Rejoignez le réseau des compétences ! Validez votre profil dès aujourd'hui." %}</span>
-        <span class="mx-4">🔥 {% trans "Ne manquez pas notre prochain événement majeur le 04 Avril !" %}</span>
-        <span class="mx-4">🌟 {% trans "Inscriptions ouvertes pour les Master Classes." %}</span>
     </div>
 </div>
 
 <main class="flex-grow w-full">
-    
     <!-- Hero / Main Event Announcement -->
     <section class="relative bg-background-dark min-h-[70vh] flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
@@ -29,14 +26,34 @@
             <h1 class="text-6xl md:text-8xl font-black text-white tracking-tight mb-8 drop-shadow-2xl">
                 {% trans "FORUM" %} <span class="text-primary">04/04</span>
             </h1>
+            
+            <!-- Global Search for Events -->
+            <form method="get" action="." class="max-w-2xl mx-auto mb-12">
+                <div class="relative group">
+                    <div class="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
+                        <i class="fas fa-search text-primary opacity-50 group-focus-within:opacity-100 transition-opacity"></i>
+                    </div>
+                    <input type="text" name="q" value="{{ request.GET.q|default:'' }}" 
+                           class="w-full pl-14 pr-6 py-5 bg-white/10 dark:bg-slate-900/50 border-2 border-white/20 rounded-[2rem] text-white placeholder-slate-400 focus:ring-4 focus:ring-primary/20 focus:border-primary outline-none transition-all backdrop-blur-xl font-bold" 
+                           placeholder="{% trans 'Rechercher une conférence, masterclass...' %}">
+                </div>
+            </form>
+
             <p class="text-xl md:text-2xl text-slate-300 font-medium max-w-3xl mx-auto leading-relaxed mb-12">
                 {% trans "Préparez-vous à une journée de conférences, d'échanges et de networking intensif. Réservez votre place dès maintenant !" %}
             </p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#" class="w-full sm:w-auto px-10 py-5 bg-primary text-white font-black rounded-2xl shadow-[0_0_40px_rgba(51,165,13,0.4)] hover:scale-[1.05] transition-all flex items-center justify-center gap-3">
+                {% if featured_event %}
+                <a href="{% url 'content:event_detail' featured_event.uuid %}" class="w-full sm:w-auto px-10 py-5 bg-primary text-white font-black rounded-2xl shadow-[0_0_40px_rgba(51,165,13,0.4)] hover:scale-[1.05] transition-all flex items-center justify-center gap-3">
                     {% trans "S'inscrire à l'événement" %}
                     <i class="fas fa-arrow-right"></i>
                 </a>
+                {% else %}
+                <a href="{% url 'accounts:register' %}" class="w-full sm:w-auto px-10 py-5 bg-primary text-white font-black rounded-2xl shadow-[0_0_40px_rgba(51,165,13,0.4)] hover:scale-[1.05] transition-all flex items-center justify-center gap-3">
+                    {% trans "S'inscrire à la plateforme" %}
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                {% endif %}
                 <a href="#programme" class="w-full sm:w-auto px-10 py-5 bg-white/10 text-white font-black rounded-2xl hover:bg-white/20 backdrop-blur-md transition-all">
                     {% trans "Voir le programme" %}
                 </a>

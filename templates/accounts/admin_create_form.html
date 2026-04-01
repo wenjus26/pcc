@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load i18n widget_tweaks %}
+
+{% block title %}{{ title }} - PCC{% endblock %}
+
+{% block content %}
+<main class="flex-grow max-w-4xl mx-auto w-full px-4 py-12 md:py-20">
+    <nav class="mb-12">
+        <a href="{% url 'accounts:admin_dashboard' %}" class="text-slate-400 font-black uppercase tracking-widest text-[10px] hover:text-primary transition-colors flex items-center gap-2">
+            <i class="fas fa-arrow-left"></i> {% trans "Annuler et retourner au dashboard" %}
+        </a>
+    </nav>
+
+    <div class="bg-white dark:bg-slate-800 rounded-[3rem] p-10 md:p-16 shadow-2xl border border-slate-100 dark:border-slate-700">
+        <div class="flex items-center gap-6 mb-12 border-b border-slate-100 dark:border-slate-700 pb-8">
+            <div class="size-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary text-2xl">
+                <i class="fas {{ icon }}"></i>
+            </div>
+            <div>
+                <h1 class="text-3xl font-black text-slate-900 dark:text-white">{{ title }}</h1>
+                <p class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">{% trans "Outil d'administration PCC" %}</p>
+            </div>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data" class="space-y-8">
+            {% csrf_token %}
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {% for field in form %}
+                    <div class="{% if field.field.widget.input_type == 'textarea' or field.name == 'description' %}md:col-span-2{% endif %} flex flex-col gap-2">
+                        <label for="{{ field.id_for_label }}" class="text-[10px] font-black uppercase tracking-widest text-slate-500">
+                            {{ field.label }}
+                        </label>
+                        {% render_field field class="w-full px-6 py-4 bg-slate-50 dark:bg-slate-900 border-2 border-transparent rounded-2xl outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all font-bold text-slate-900 dark:text-white" %}
+                        {% if field.help_text %}
+                            <p class="text-[10px] text-slate-400 italic">{{ field.help_text }}</p>
+                        {% endif %}
+                        {% for error in field.errors %}
+                            <p class="text-[10px] text-red-500 font-bold uppercase">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="pt-8 border-t border-slate-100 dark:border-slate-700 flex justify-end">
+                <button type="submit" class="px-12 py-5 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all text-sm uppercase tracking-widest">
+                    {% trans "Confirmer la création" %}
+                </button>
+            </div>
+        </form>
+    </div>
+</main>
+{% endblock %}

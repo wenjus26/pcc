@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from apps.citizens.models import CitizenProfile
 from apps.institutions.models import Opportunity
-from apps.content.models import Post
+from apps.content.models import Post, Event, Video, Course
 
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -21,10 +21,14 @@ def home(request):
 
 def search(request):
     query = request.GET.get('q', '')
-    talents = Opportunity.objects.none()
+    talents = CitizenProfile.objects.none()
     opportunities = Opportunity.objects.none()
+    events = Event.objects.none()
+    videos = Video.objects.none()
+    courses = Course.objects.none()
     
     if query:
+        # Search Talents
         talents = CitizenProfile.objects.filter(
             Q(user__first_name__icontains=query) | 
             Q(user__last_name__icontains=query) |
@@ -32,16 +36,38 @@ def search(request):
             Q(bio__icontains=query),
             is_public=True
         )
+        # Search Opportunities
         opportunities = Opportunity.objects.filter(
             Q(title__icontains=query) | 
             Q(description__icontains=query),
             status='open'
         )
+        # Search Events
+        events = Event.objects.filter(
+            Q(title__icontains=query) | 
+            Q(description__icontains=query) |
+            Q(location__icontains=query),
+            is_active=True
+        )
+        # Search Videos
+        videos = Video.objects.filter(
+            Q(title__icontains=query) | 
+            Q(description__icontains=query)
+        )
+        # Search Courses (MOOCs)
+        courses = Course.objects.filter(
+            Q(title__icontains=query) | 
+            Q(description__icontains=query),
+            is_published=True
+        )
         
     return render(request, 'core/search_results.html', {
         'query': query,
         'talents': talents,
-        'opportunities': opportunities
+        'opportunities': opportunities,
+        'events': events,
+        'videos': videos,
+        'courses': courses,
     })
 
 @login_required
@@ -108,3 +134,27 @@ def newsletter_subscribe(request):
         else:
             return JsonResponse({'status': 'info', 'message': 'Vous êtes déjà abonné.'})
     return JsonResponse({'status': 'error', 'message': 'Méthode non autorisée.'}, status=405)
+
+def contact(request):
+    if request.method == 'POST':
+        from .models import ContactMessage
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        
+        if name and email and message:
+            ContactMessage.objects.create(
+                name=name,
+                email=email,
+                subject=subject or 'Contact PCC',
+                message=message
+            )
+            from django.contrib import messages
+            messages.success(request, "Votre message a été envoyé avec succès !")
+            # Optional: Send email to admin
+        else:
+            from django.contrib import messages
+            messages.error(request, "Veuillez remplir tous les champs obligatoires.")
+            
+    return render(request, 'core/contact.html')

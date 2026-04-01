@@ -1,0 +1,42 @@
+{% extends "emails/base_email.html" %}
+{% load i18n %}
+
+{% block content %}
+<div style="padding: 20px; text-align: left; background-color: #ffffff;">
+    <h1 style="color: #33a50d; font-size: 24px; font-weight: 800; margin-bottom: 20px;">
+        {% trans "Votre Profil PCC a été Validé !" %}
+    </h1>
+    
+    <p style="font-size: 16px; line-height: 1.6; color: #4b5563;">
+        {% blocktrans with name=user.get_full_name|default:user.username %}
+        Félicitations {{ name }},
+        {% endblocktrans %}
+    </p>
+    
+    <p style="font-size: 16px; line-height: 1.6; color: #4b5563;">
+        {% trans "C'est avec plaisir que nous vous informons que votre profil citoyen a été officiellement validé par l'administration de la Plateforme Citoyenne des Compétences (PCC)." %}
+    </p>
+
+    <div style="background-color: #f9fafb; border-radius: 12px; padding: 20px; margin: 25px 0; border: 1px solid #e5e7eb; border-left: 5px solid #33a50d;">
+        <p style="margin: 0; color: #374151; font-weight: bold; font-size: 15px;">
+            {% trans "Vous pouvez maintenant accéder à toutes les fonctionnalités de votre espace et être sollicité par les institutions partenaires pour des projets stratégiques." %}
+        </p>
+    </div>
+
+    <p style="font-size: 16px; line-height: 1.6; color: #4b5563;">
+        {% trans "Pour maximiser vos chances d'être sélectionné, nous vous invitons vivement à vous connecter pour compléter l'intégralité de vos informations (expériences détaillées, diplômes, compétences spécifiques)." %}
+    </p>
+
+    <div style="text-align: center; margin-top: 35px;">
+        <a href="{{ protocol }}://{{ domain }}{% url 'accounts:dashboard' %}" 
+           style="background-color: #33a50d; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">
+            {% trans "Accéder à mon espace" %}
+        </a>
+    </div>
+
+    <p style="font-size: 16px; line-height: 1.6; color: #4b5563; margin-top: 30px;">
+        {% trans "Bienvenue officiellement dans le réseau des talents du Bénin !" %}<br>
+        <strong>{% trans "L'équipe PCC" %}</strong>
+    </p>
+</div>
+{% endblock %}

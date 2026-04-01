@@ -10,6 +10,16 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('mon-espace/', views.dashboard, name='dashboard'),
     
+    # Administration PCC
+    path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
+    path('admin/profile/<uuid:uuid>/', views.admin_profile_detail, name='admin_profile_detail'),
+    path('admin/profile/<uuid:uuid>/validate/', views.validate_profile, name='validate_profile'),
+    
+    # Création Admin
+    path('admin/create/event/', views.admin_create_event, name='admin_create_event'),
+    path('admin/create/institution/', views.admin_create_institution, name='admin_create_institution'),
+    path('admin/create/citizen/', views.admin_create_citizen, name='admin_create_citizen'),
+    
     # Password Change
     path('password-change/', auth_views.PasswordChangeView.as_view(template_name='accounts/password_change.html', success_url='/accounts/password-change/done/'), name='password_change'),
     path('password-change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='accounts/password_change_done.html'), name='password_change_done'),

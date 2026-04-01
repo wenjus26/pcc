@@ -3,7 +3,18 @@ from django.core.paginator import Paginator
 from .models import Opportunity
 
 def opportunity_list(request):
-    queryset = Opportunity.objects.filter(status='open').order_by('-created_at')
+    query = request.GET.get('q', '')
+    queryset = Opportunity.objects.filter(status='open')
+    
+    if query:
+        from django.db.models import Q
+        queryset = queryset.filter(
+            Q(title__icontains=query) | 
+            Q(description__icontains=query) |
+            Q(institution__name__icontains=query)
+        )
+        
+    queryset = queryset.order_by('-created_at')
     
     paginator = Paginator(queryset, 10)
     page_number = request.GET.get('page')

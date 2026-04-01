@@ -12,5 +12,6 @@ urlpatterns = [
     path('galerie/', views.gallery, name='gallery'),
     path('romuald-wadagni/', views.biography, name='biography'),
     path('contributions/', views.contributions, name='contributions'),
+    path('videos/', views.video_list, name='video_list'),
 ]
 

@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Vérification de Profil" %} - PCC{% endblock %}
+
+{% block content %}
+<main class="flex-grow max-w-5xl mx-auto w-full px-4 py-12 md:py-20">
+    
+    <nav class="mb-12 flex items-center justify-between">
+        <a href="{% url 'accounts:admin_dashboard' %}" class="flex items-center gap-3 text-slate-400 font-black uppercase tracking-widest text-[10px] hover:text-primary transition-colors">
+            <i class="fas fa-arrow-left"></i> {% trans "Retour à l'administration" %}
+        </a>
+        <div class="flex gap-4">
+            <form action="{% url 'accounts:validate_profile' profile.uuid %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="px-8 py-3 bg-primary text-white font-black rounded-xl shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all text-sm flex items-center gap-2">
+                    <i class="fas fa-user-check"></i> {% trans "Valider le profil" %}
+                </button>
+            </form>
+            <button class="px-8 py-3 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-black rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-all text-sm flex items-center gap-2">
+                <i class="fas fa-times-circle"></i> {% trans "Rejeter" %}
+            </button>
+        </div>
+    </nav>
+
+    <div class="bg-white dark:bg-slate-800 rounded-[3rem] p-10 md:p-16 shadow-2xl border border-slate-100 dark:border-slate-700 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-slate-50 dark:bg-slate-900 rounded-bl-[10rem] -mr-10 -mt-10"></div>
+        
+        <div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-16">
+            <!-- Sidebar with Photo & Bio -->
+            <div class="space-y-12">
+                <div class="size-48 md:size-64 rounded-[3rem] overflow-hidden bg-slate-50 dark:bg-slate-900 ring-8 ring-primary/5 shadow-2xl flex items-center justify-center">
+                    {% if profile.photo %}
+                        <img src="{{ profile.photo.url }}" class="w-full h-full object-cover">
+                    {% else %}
+                        <i class="fas fa-user text-6xl text-slate-200"></i>
+                    {% endif %}
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="text-[10px] font-black uppercase tracking-widest text-primary italic border-b border-primary/20 pb-2">{% trans "À propos" %}</h3>
+                    <p class="text-slate-600 dark:text-slate-400 font-medium leading-relaxed italic text-sm">
+                        "{{ profile.bio|default:"Aucune biographie fournie." }}"
+                    </p>
+                </div>
+
+                <!-- Verified Status Card -->
+                <div class="bg-slate-50 dark:bg-slate-900 p-8 rounded-[2rem] border border-slate-100 dark:border-slate-700">
+                    <p class="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-4 text-center">{% trans "Expertise certifiée" %}</p>
+                    <div class="flex flex-col items-center gap-4">
+                        <span class="text-4xl font-black text-primary">{{ profile.years_of_experience }}ans</span>
+                        <p class="text-[10px] font-black uppercase text-slate-500">{% trans "D'expérience terrain" %}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="md:col-span-2 space-y-16">
+                <!-- Header -->
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-3">
+                        {{ profile.user.get_full_name|default:profile.user.username }}
+                    </h1>
+                    <p class="text-xl text-primary font-black uppercase tracking-widest italic leading-tight">
+                        {{ profile.current_title|default:"Candidat PCC" }}
+                    </p>
+                    <div class="flex gap-4 mt-8">
+                        <span class="px-4 py-2 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-black uppercase tracking-widest rounded-xl">
+                            <i class="fas fa-map-marker-alt text-primary mr-2"></i> {{ profile.get_location_display|default:"Localisation non spécifiée" }}
+                        </span>
+                        <span class="px-4 py-2 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-black uppercase tracking-widest rounded-xl">
+                            <i class="fas fa-envelope text-primary mr-2"></i> {{ profile.user.email }}
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Detailed Content sections could continue here... but focus on UI for now -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <section class="space-y-6">
+                        <h3 class="text-lg font-black text-slate-900 dark:text-white flex items-center gap-3">
+                            <i class="fas fa-tools text-primary"></i> {% trans "Compétences" %}
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            {% for skill in profile.skills.all %}
+                                <span class="px-4 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700 text-[11px] font-black text-slate-500 rounded-xl leading-none">
+                                    {{ skill.name }}
+                                </span>
+                            {% empty %}
+                                <p class="text-slate-400 italic text-sm">{% trans "Aucune compétence listée." %}</p>
+                            {% endfor %}
+                        </div>
+                    </section>
+
+                    <section class="space-y-6">
+                        <h3 class="text-lg font-black text-slate-900 dark:text-white flex items-center gap-3">
+                            <i class="fas fa-file-pdf text-primary"></i> {% trans "Documents" %}
+                        </h3>
+                        {% if profile.documents.all %}
+                            {% for doc in profile.documents.all %}
+                                <a href="{{ doc.file.url }}" target="_blank" class="p-4 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700 rounded-2xl flex items-center justify-between group hover:border-primary/30 transition-all">
+                                    <div class="flex items-center gap-4">
+                                        <div class="size-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                                            <i class="fas fa-file-alt"></i>
+                                        </div>
+                                        <p class="text-sm font-black text-slate-900 dark:text-white">{{ doc.get_doc_type_display }}</p>
+                                    </div>
+                                    <i class="fas fa-download text-slate-300 group-hover:text-primary"></i>
+                                </a>
+                            {% endfor %}
+                        {% else %}
+                            <p class="text-slate-400 italic text-sm">{% trans "Aucun document téléversé." %}</p>
+                        {% endif %}
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

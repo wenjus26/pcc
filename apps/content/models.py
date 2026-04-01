@@ -49,6 +49,26 @@ class Event(models.Model):
     def __str__(self):
         return f"{self.get_event_type_display()} - {self.title}"
 
+class Video(models.Model):
+    title = models.CharField(max_length=255)
+    youtube_url = models.URLField(help_text="Lien YouTube complet")
+    description = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _('Vidéo')
+        verbose_name_plural = _('Vidéos')
+
+    def __str__(self):
+        return self.title
+
+    def get_youtube_id(self):
+        # Helper to extract ID from URL
+        import re
+        regex = r'(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})'
+        match = re.search(regex, self.youtube_url)
+        return match.group(1) if match else None
+
 class Resource(models.Model):
     RESOURCE_TYPES = [
         ('file', _('Fichier')),

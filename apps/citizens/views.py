@@ -68,6 +68,12 @@ def profile_edit(request, uuid):
     if profile.user != request.user:
         return redirect('citizens:profile_detail', uuid=uuid)
 
+    # Access restricted to validated profiles only (per user's audio request)
+    if not profile.is_validated:
+        from django.contrib import messages
+        messages.warning(request, "Votre profil doit être validé par un administrateur avant de pouvoir modifier vos informations détaillées.")
+        return redirect('citizens:profile_detail', uuid=uuid)
+
     if request.method == 'POST':
         form = CitizenProfileForm(request.POST, request.FILES, instance=profile)
         experience_formset = ExperienceFormSet(request.POST, request.FILES, instance=profile)
@@ -76,20 +82,12 @@ def profile_edit(request, uuid):
         if form.is_valid() and experience_formset.is_valid() and education_formset.is_valid():
             # Automatically require re-validation when sensitive info matches
             profile = form.save(commit=False)
-            profile.is_validated = False  # Set to unvalidated upon modification
+            profile.is_validated = False  # Set to unvalidated upon modification for re-verification
             profile.save()
             
             experience_formset.save()
             education_formset.save()
             
-            if 'photo' in request.FILES:
-                profile.photo = request.FILES['photo']
-                profile.save()
-                
-            if request.POST.get('charter_signed') == 'on':
-                profile.charter_signed = True
-                profile.save()
-
             if 'cv_file' in request.FILES:
                 from .models import Document
                 Document.objects.create(
@@ -99,8 +97,17 @@ def profile_edit(request, uuid):
                     file=request.FILES['cv_file']
                 )
 
+            # Send Email Confirmation
+            from apps.core.utils import send_pcc_email
+            subject = "Mise à jour de votre profil PCC réussie"
+            context = {
+                'user': request.user,
+                'profile': profile,
+            }
+            send_pcc_email(subject, 'emails/profile_updated_confirmation.html', context, [request.user.email], request=request)
+
             from django.contrib import messages
-            messages.success(request, "Profil mis à jour avec succès. Il a été soumis pour re-validation.")
+            messages.success(request, "Votre profil a été mis à jour avec succès. Un email de confirmation vous a été envoyé.")
             return redirect('citizens:profile_detail', uuid=uuid)
     else:
         form = CitizenProfileForm(instance=profile)

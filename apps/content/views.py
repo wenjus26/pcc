@@ -25,15 +25,46 @@ def course_detail(request, slug):
     })
 
 def event_list(request):
-    events = Event.objects.filter(is_active=True).order_by('date')
-    return render(request, 'content/event_list.html', {'events': events})
+    query = request.GET.get('q', '')
+    events = Event.objects.filter(is_active=True)
+    
+    if query:
+        from django.db.models import Q
+        events = events.filter(
+            Q(title__icontains=query) | 
+            Q(description__icontains=query) |
+            Q(location__icontains=query)
+        )
+        
+    events = events.order_by('date')
+    
+    # Identify the featured April 4th event if it exists
+    from django.utils import timezone
+    import datetime
+    target_date = datetime.date(2026, 4, 4)
+    featured_event = events.filter(date__date=target_date).first()
+    
+    return render(request, 'content/event_list.html', {
+        'events': events,
+        'featured_event': featured_event
+    })
 
 def programme_societe(request):
     return render(request, 'content/programme_societe.html')
 
 def gallery(request):
     from .models import GalleryImage
-    images = GalleryImage.objects.all().order_by('-created_at')
+    query = request.GET.get('q', '')
+    images = GalleryImage.objects.all()
+    
+    if query:
+        from django.db.models import Q
+        images = images.filter(
+            Q(title__icontains=query) | 
+            Q(description__icontains=query)
+        )
+        
+    images = images.order_by('-created_at')
     return render(request, 'content/gallery.html', {'images': images})
 
 def biography(request):
@@ -80,3 +111,18 @@ def contributions(request):
         from django.contrib import messages
         messages.success(request, "Votre suggestion a été reçue. Merci pour votre contribution.")
     return render(request, 'content/contributions.html')
+
+def video_list(request):
+    from .models import Video
+    query = request.GET.get('q', '')
+    videos = Video.objects.all()
+    
+    if query:
+        from django.db.models import Q
+        videos = videos.filter(
+            Q(title__icontains=query) | 
+            Q(description__icontains=query)
+        )
+        
+    videos = videos.order_by('-created_at')
+    return render(request, 'content/video_list.html', {'videos': videos})

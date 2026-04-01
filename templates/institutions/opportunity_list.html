@@ -5,9 +5,23 @@
 
 {% block content %}
 <main class="flex-grow max-w-7xl mx-auto w-full px-4 py-8 md:py-12">
-    <div class="mb-12">
-        <h1 class="text-4xl font-black mb-4 tracking-tight">{% trans "Dernières Opportunités" %}</h1>
-        <p class="text-slate-500 font-medium">{% trans "Découvrez les projets stratégiques et appels à expertise des institutions du Bénin." %}</p>
+    <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-8">
+        <div class="max-w-2xl">
+            <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tight text-slate-900 dark:text-white">{% trans "Dernières" %} <span class="text-primary italic">{% trans "Opportunités" %}</span></h1>
+            <p class="text-slate-500 dark:text-slate-400 font-medium text-lg italic leading-relaxed">{% trans "Découvrez les projets stratégiques et appels à expertise des institutions du Bénin." %}</p>
+        </div>
+        
+        <!-- Search Bar -->
+        <form method="get" action="." class="w-full md:max-w-md shrink-0">
+            <div class="relative group">
+                <div class="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
+                    <i class="fas fa-search text-primary opacity-50 group-focus-within:opacity-100 transition-opacity"></i>
+                </div>
+                <input type="text" name="q" value="{{ request.GET.q|default:'' }}" 
+                       class="w-full pl-14 pr-6 py-5 bg-white dark:bg-slate-800 border-2 border-transparent rounded-[2rem] text-slate-900 dark:text-white placeholder-slate-400 focus:ring-4 focus:ring-primary/10 focus:border-primary outline-none transition-all shadow-xl shadow-slate-200/50 dark:shadow-none font-bold" 
+                       placeholder="{% trans 'Rechercher un projet...' %}">
+            </div>
+        </form>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">

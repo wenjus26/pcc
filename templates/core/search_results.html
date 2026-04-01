@@ -9,7 +9,7 @@
         <div class="mb-12">
             <h1 class="text-3xl font-extrabold text-gray-900 mb-2">{% trans "Recherche pour" %} : <span class="text-green-600">"{{ query }}"</span></h1>
             <p class="text-gray-500 font-bold uppercase tracking-widest text-sm">
-                {{ talents.count|add:opportunities.count }} {% trans "résultats trouvés" %}
+                {{ talents.count|add:opportunities.count|add:events.count|add:videos.count|add:courses.count }} {% trans "résultats trouvés" %}
             </p>
         </div>
 
@@ -22,7 +22,7 @@
                     </h2>
                     <div class="space-y-4">
                         {% for talent in talents %}
-                        <a href="{% url 'citizens:talent_detail' talent.uuid %}" class="block bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                        <a href="{% url 'citizens:profile_detail' talent.uuid %}" class="block bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                             <div class="flex items-center">
                                 <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center text-green-600 font-bold mr-4">
                                     {{ talent.user.username.0|upper }}
@@ -39,18 +39,70 @@
                     </div>
                 </section>
 
+                <!-- Opportunities Section -->
                 <section>
                     <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center pt-8">
                         <i class="fas fa-briefcase text-green-500 mr-3"></i> {% trans "Opportunités" %}
                     </h2>
                     <div class="space-y-4">
                         {% for opp in opportunities %}
-                        <a href="{% url 'institutions:opportunity_detail' opp.id %}" class="block bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                        <a href="{% url 'institutions:opportunity_detail' opp.uuid %}" class="block bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                             <h3 class="font-bold text-gray-900 mb-1">{{ opp.title }}</h3>
                             <p class="text-xs text-gray-400 font-bold">{% trans "Par" %} {{ opp.institution.name }}</p>
                         </a>
                         {% empty %}
-                        <p class="text-gray-400 italic">{% trans "Aucune opportunité trouvée." %}</p>
+                        <p class="text-gray-400 italic text-sm">{% trans "Aucune opportunité trouvée." %}</p>
+                        {% endfor %}
+                    </div>
+                </section>
+
+                <!-- Events Section -->
+                <section>
+                    <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center pt-8">
+                        <i class="fas fa-calendar-alt text-green-500 mr-3"></i> {% trans "Événements" %}
+                    </h2>
+                    <div class="space-y-4">
+                        {% for event in events %}
+                        <a href="{% url 'content:event_detail' event.uuid %}" class="block bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                            <h3 class="font-bold text-gray-900 mb-1">{{ event.title }}</h3>
+                            <p class="text-xs text-gray-400 font-bold italic">{{ event.date|date:"d M Y" }} - {{ event.location }}</p>
+                        </a>
+                        {% empty %}
+                        <p class="text-gray-400 italic text-sm">{% trans "Aucun événement trouvé." %}</p>
+                        {% endfor %}
+                    </div>
+                </section>
+
+                <!-- Videos Section -->
+                <section>
+                    <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center pt-8">
+                        <i class="fab fa-youtube text-green-500 mr-3"></i> {% trans "Vidéos & Interventions" %}
+                    </h2>
+                    <div class="space-y-4">
+                        {% for video in videos %}
+                        <a href="{% url 'content:video_list' %}" class="block bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                            <h3 class="font-bold text-gray-900 mb-1">{{ video.title }}</h3>
+                            <p class="text-xs text-slate-500 line-clamp-1 italic">{{ video.description }}</p>
+                        </a>
+                        {% empty %}
+                        <p class="text-gray-400 italic text-sm">{% trans "Aucune vidéo trouvée." %}</p>
+                        {% endfor %}
+                    </div>
+                </section>
+
+                <!-- Courses Section -->
+                <section>
+                    <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center pt-8">
+                        <i class="fas fa-graduation-cap text-green-500 mr-3"></i> {% trans "Formations (MOOCs)" %}
+                    </h2>
+                    <div class="space-y-4">
+                        {% for course in courses %}
+                        <a href="{% url 'content:course_detail' course.slug %}" class="block bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                            <h3 class="font-bold text-gray-900 mb-1">{{ course.title }}</h3>
+                            <p class="text-xs text-slate-500 line-clamp-1 italic">{{ course.description }}</p>
+                        </a>
+                        {% empty %}
+                        <p class="text-gray-400 italic text-sm">{% trans "Aucune formation trouvée." %}</p>
                         {% endfor %}
                     </div>
                 </section>
