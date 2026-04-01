@@ -262,8 +262,8 @@
                     </div>
                 </div>
 
-                <a class="{% if request.resolver_match.url_name == 'biography' %}text-primary{% else %}text-slate-500 dark:text-slate-400 hover:text-primary{% endif %} transition-colors"
-                    href="{% url 'content:biography' %}">{% trans "À propos" %}</a>
+                <a class="{% if request.resolver_match.url_name == 'about' %}text-primary{% else %}text-slate-500 dark:text-slate-400 hover:text-primary{% endif %} transition-colors"
+                    href="{% url 'content:about' %}">{% trans "À propos" %}</a>
             </nav>
 
             <div class="flex items-center gap-3">
@@ -404,7 +404,7 @@
                     <p class="text-[9px] uppercase tracking-[0.2em] text-slate-400 mt-4 mb-1 pl-3">{% trans "Info" %}
                     </p>
                     <a class="flex items-center justify-between p-3 rounded-xl hover:bg-primary/5 text-slate-600 dark:text-slate-400 text-xs"
-                        href="{% url 'content:biography' %}">
+                        href="{% url 'content:about' %}">
                         {% trans "À propos" %}
                         <i class="fas fa-info-circle text-[10px] opacity-30"></i>
                     </a>
@@ -463,17 +463,25 @@
                             class="h-10 w-auto object-contain group-hover:-translate-y-1 transition-transform rounded-xl" />
                         <h1 class="text-2xl font-black tracking-tight">PCC</h1>
                     </div>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-8">
-                        {% trans "La Plate-Forme Citoyenne des Compétences est une initiative citoyenne un Think Tank Citoyen pour valoriser les talents béninois." %}
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6 font-medium">
+                        {% trans "Plateforme Citoyenne des Compétences pour un Bénin Prospère." %}
                     </p>
-                    <div class="flex gap-4">
-                        <a class="size-11 rounded-xl bg-slate-800 flex items-center justify-center hover:bg-primary hover:-translate-y-1 transition-all"
-                            href="#">
+                    <div class="flex flex-wrap gap-3">
+                        <a class="size-11 rounded-xl bg-slate-800 text-white flex items-center justify-center hover:bg-[#1877F2] hover:-translate-y-1 transition-all shadow-lg"
+                            href="https://web.facebook.com/pccbeninprospere" target="_blank" title="Suivez-nous sur Facebook !">
                             <i class="fab fa-facebook-f text-lg"></i>
                         </a>
-                        <a class="size-11 rounded-xl bg-slate-800 flex items-center justify-center hover:bg-primary hover:-translate-y-1 transition-all"
-                            href="#">
+                        <a class="size-11 rounded-xl bg-slate-800 text-white flex items-center justify-center hover:bg-black hover:-translate-y-1 transition-all shadow-lg border border-transparent hover:border-slate-700"
+                            href="https://x.com/pccbenin" target="_blank" title="Suivez-nous sur X !">
                             <i class="fab fa-twitter text-lg"></i>
+                        </a>
+                        <a class="size-11 rounded-xl bg-slate-800 text-white flex items-center justify-center hover:bg-[#FF0000] hover:-translate-y-1 transition-all shadow-lg"
+                            href="https://www.youtube.com/@pccbeninprospere" target="_blank" title="Abonnez-vous à notre chaîne !">
+                            <i class="fab fa-youtube text-lg"></i>
+                        </a>
+                        <a class="size-11 rounded-xl bg-slate-800 text-white flex items-center justify-center hover:bg-gradient-to-tr hover:from-[#00f2fe] hover:to-[#fe0979] hover:-translate-y-1 transition-all shadow-lg"
+                            href="https://www.tiktok.com/@pccbeninprospere" target="_blank" title="Suivez-nous sur TikTok !">
+                            <i class="fab fa-tiktok text-lg"></i>
                         </a>
                     </div>
                 </div>
@@ -485,6 +493,8 @@
                                 href="{% url 'content:programme_societe' %}">{% trans "Projet de Société" %}</a>
                         </li>
                         <li><a class="hover:text-white transition-colors" href="{% url 'content:biography' %}">{% trans "Qui est R. Wadagni ?" %}</a>
+                        </li>
+                        <li><a class="hover:text-white transition-colors" href="{% url 'content:about' %}">{% trans "À propos de la PCC" %}</a>
                         </li>
                         <li><a class="hover:text-white transition-colors" href="{% url 'citizens:talent_list' %}">{% trans "Talents" %}</a>
                         </li>

@@ -42,6 +42,7 @@ def event_list(request):
         )
         
     events = events.order_by('date')
+    masterclasses = events.filter(event_type='masterclass')[:2]
     
     # Identify the featured April 4th event if it exists
     from django.utils import timezone
@@ -51,13 +52,14 @@ def event_list(request):
     
     return render(request, 'content/event_list.html', {
         'events': events,
+        'masterclasses': masterclasses,
         'featured_event': featured_event
     })
 
 @xframe_options_sameorigin
 def programme_societe(request):
     from .models import Video
-    videos = Video.objects.order_by('-created_at')[:2]
+    videos = Video.objects.order_by('-created_at')[:1]
     return render(request, 'content/programme_societe.html', {'videos': videos})
 
 def gallery(request):
@@ -77,6 +79,9 @@ def gallery(request):
 
 def biography(request):
     return render(request, 'content/biography.html')
+
+def about(request):
+    return render(request, 'content/about.html')
 
 def event_detail(request, uuid):
     event = get_object_or_404(Event, uuid=uuid, is_active=True)

@@ -11,6 +11,7 @@ urlpatterns = [
     path('programme-societe/', views.programme_societe, name='programme_societe'),
     path('galerie/', views.gallery, name='gallery'),
     path('romuald-wadagni/', views.biography, name='biography'),
+    path('a-propos/', views.about, name='about'),
     path('contributions/', views.contributions, name='contributions'),
     path('videos/', views.video_list, name='video_list'),
     path('confidentialite/', views.privacy_policy, name='privacy_policy'),

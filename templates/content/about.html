@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans "À Propos de la PCC" %} - PCC{% endblock %}
+
+{% block content %}
+<main class="flex-grow">
+    <!-- Hero Header with Logo -->
+    <header class="bg-slate-900 pt-20 pb-24 md:pt-32 md:pb-40 relative overflow-hidden">
+        <div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-72 h-72 bg-accent-yellow/10 rounded-full blur-[100px] pointer-events-none"></div>
+        
+        <div class="max-w-5xl mx-auto px-4 relative z-10 text-center flex flex-col items-center">
+            <!-- Logo in Header -->
+            <div class="mb-8 p-4 bg-white/5 backdrop-blur-xl rounded-[2rem] border border-white/10 shadow-2xl inline-flex animate-[bounce_3s_infinite]">
+                <img src="{% static 'images/logo-pcc.png' %}" alt="Logo PCC" class="h-24 md:h-32 w-auto object-contain" />
+            </div>
+            
+            <span class="inline-block px-5 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-xs font-black uppercase tracking-[0.3em] text-white mb-8 shadow-xl">
+                {% trans "Qui sommes-nous ?" %}
+            </span>
+            <h1 class="text-5xl md:text-7xl font-black text-white mb-8 tracking-tight leading-tight">
+                Plate-Forme Citoyenne des <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-green-400">Compétences</span>
+            </h1>
+            <p class="text-slate-300 text-xl md:text-2xl max-w-3xl mx-auto font-medium leading-relaxed italic border-l-4 border-primary pl-6 text-left shadow-sm">
+                "Unir les compétences et les talents. Inspirer le changement. Bâtir l'avenir."
+            </p>
+        </div>
+    </header>
+
+    <!-- Detailed Section 1: Origine & Vision -->
+    <section class="py-24 bg-background-light dark:bg-background-dark relative">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="relative">
+                    <div class="absolute -top-10 -left-10 w-full h-full bg-primary/5 rounded-[3rem] -z-10"></div>
+                    <!-- Large Logo displaying in content -->
+                    <div class="bg-white dark:bg-slate-800 p-12 rounded-[3.5rem] shadow-2xl border border-slate-100 dark:border-slate-700 flex justify-center items-center aspect-square">
+                        <img src="{% static 'images/logo-pcc.png' %}" alt="PCC Identité" class="w-full max-w-xs md:max-w-md drop-shadow-2xl opacity-90 object-contain hover:scale-105 transition-transform duration-500" />
+                    </div>
+                    
+                    <!-- Floating Stat Card -->
+                    <div class="absolute bottom-10 -right-5 bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-2xl border border-slate-100 dark:border-slate-700 animate-[pulse_4s_infinite]">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center text-primary text-xl">
+                                <i class="fas fa-flag"></i>
+                            </div>
+                            <div>
+                                <p class="text-3xl font-black text-slate-900 dark:text-white">100%</p>
+                                <p class="text-xs font-bold text-slate-500 uppercase tracking-widest">Engagement Citoyen</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="space-y-8">
+                    <div class="inline-flex items-center gap-3 px-4 py-2 bg-primary/10 rounded-full text-primary font-bold text-sm">
+                        <i class="fas fa-rocket"></i> Notre Vision
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight">
+                        Construire le Bénin de Demain par <span class="text-primary italic">l'Excellence</span>
+                    </h2>
+                    <div class="prose prose-lg dark:prose-invert text-slate-600 dark:text-slate-400 font-medium">
+                        <p>
+                            La <strong>Plate-Forme Citoyenne des Compétences (PCC)</strong> est née d'une volonté commune : celle de fédérer l'intelligence collective béninoise. Face aux défis contemporains, nous avons compris que notre plus grande richesse résidait dans le talent inexploité de nos citoyens, qu'ils soient sur le territoire national ou dans la diaspora.
+                        </p>
+                        <p>
+                            Nous sommes un think-tank, un laboratoire d'idées, mais surtout un <strong>catalyseur d'actions</strong>. Notre plateforme s'articule autour du rassemblement stratégique des compétences pour élaborer des propositions pragmatiques, et participer activement aux réformes structurelles.
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-6 pt-6 border-t border-slate-200 dark:border-slate-700">
+                        <div class="border-l-2 border-primary pl-4">
+                            <h4 class="font-black text-slate-900 dark:text-white text-xl">Innovation</h4>
+                            <p class="text-sm text-slate-500 mt-2 font-medium">Repenser nos méthodes avec agilité.</p>
+                        </div>
+                        <div class="border-l-2 border-primary pl-4">
+                            <h4 class="font-black text-slate-900 dark:text-white text-xl">Solidarité</h4>
+                            <p class="text-sm text-slate-500 mt-2 font-medium">Agir ensemble pour un impact inclusif.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values with Glassmorphism Cards -->
+    <section class="py-24 bg-slate-900 relative overflow-hidden text-center z-0 border-y border-slate-800">
+        <!-- Background Ornaments -->
+        <div class="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[150px] -z-10"></div>
+        <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[150px] -z-10"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <h2 class="text-4xl font-black text-white mb-4">Nos Piliers Fondamentaux</h2>
+            <p class="text-slate-400 font-medium max-w-2xl mx-auto mb-16 text-lg">
+                La méthodologie de la PCC repose sur un socle de valeurs inébranlables qui guident chacune de nos initiatives :
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white/5 backdrop-blur-lg border border-white/10 p-10 rounded-[3rem] hover:-translate-y-2 transition-transform duration-300 shadow-2xl flex flex-col items-center group">
+                    <div class="w-20 h-20 bg-gradient-to-br from-primary to-green-600 rounded-2xl flex items-center justify-center text-white text-3xl mb-8 shadow-lg group-hover:scale-110 transition-transform">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-white mb-4">Intelligence Collective</h3>
+                    <p class="text-slate-400 font-medium leading-relaxed">
+                        Croiser les savoir-faire, les expériences et les disciplines pour faire émerger des solutions innovantes adaptées aux réalités locales.
+                    </p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white/5 backdrop-blur-lg border border-white/10 p-10 rounded-[3rem] hover:-translate-y-2 transition-transform duration-300 shadow-2xl flex flex-col items-center group">
+                    <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center text-white text-3xl mb-8 shadow-lg group-hover:scale-110 transition-transform">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-white mb-4">Inclusion Sociale</h3>
+                    <p class="text-slate-400 font-medium leading-relaxed">
+                        Mobiliser les acteurs à tous les niveaux (jeunes, femmes, cadres sociaux et diasporas) pour un développement qui ne laisse personne de côté.
+                    </p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white/5 backdrop-blur-lg border border-white/10 p-10 rounded-[3rem] hover:-translate-y-2 transition-transform duration-300 shadow-2xl flex flex-col items-center group">
+                    <div class="w-20 h-20 bg-gradient-to-br from-accent-yellow to-orange-500 rounded-2xl flex items-center justify-center text-white text-3xl mb-8 shadow-lg group-hover:scale-110 transition-transform">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-white mb-4">Actions Concrètes</h3>
+                    <p class="text-slate-400 font-medium leading-relaxed">
+                        Aller au-delà des mots par la structuration de programmes (MOOCs, incubations, débats) permettant des avancées mesurables.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join The Movement -->
+    <section class="py-24 bg-white dark:bg-slate-800">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <div class="bg-gradient-to-br from-primary/5 to-slate-100 dark:from-slate-700 dark:to-slate-800/80 border border-slate-200 dark:border-slate-700 p-12 md:p-20 rounded-[4rem] shadow-2xl relative overflow-hidden">
+                <i class="fas fa-quote-right absolute top-10 right-10 text-6xl text-slate-200 dark:text-slate-700"></i>
+                
+                <div class="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center text-primary text-4xl mx-auto mb-8 shadow-inner">
+                    <i class="fas fa-users"></i>
+                </div>
+
+                <h2 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-8">
+                    Le Bénin se bâtit avec <span class="text-primary italic">Vous</span>
+                </h2>
+                <p class="text-xl text-slate-600 dark:text-slate-400 font-medium max-w-2xl mx-auto mb-10 leading-relaxed">
+                    Nous avons besoin de vos compétences techniques, de votre esprit critique et de votre détermination. Le changement est l'affaire de tous et le moment de s'engager est venu.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                    <a href="{% url 'accounts:register' %}" class="px-8 py-5 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/30 hover:-translate-y-1 transition-transform w-full sm:w-auto">
+                        <i class="fas fa-user-plus mr-2"></i> Rejoindre la PCC
+                    </a>
+                    <a href="{% url 'content:contributions' %}" class="px-8 py-5 bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-black rounded-2xl hover:border-primary transition-all w-full sm:w-auto shadow-sm tracking-wide">
+                        <i class="fas fa-lightbulb mr-2"></i> Proposer une idée
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+{% endblock %}

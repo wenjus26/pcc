@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PCC 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 13:35+0100\n"
+"POT-Creation-Date: 2026-04-01 20:00+0100\n"
 "PO-Revision-Date: 2026-03-24 13:35+0100\n"
 "Last-Translator: PCC Team\n"
 "Language-Team: English\n"
@@ -14,6 +14,29 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\apps\accounts\admin_forms.py:18 .\templates\accounts\login.html:33
+msgid "Nom d'utilisateur"
+msgstr "Username"
+
+#: .\apps\accounts\admin_forms.py:19
+#: .\templates\accounts\password_reset.html:24
+#: .\templates\content\contributions.html:43
+#: .\templates\content\event_detail.html:59 .\templates\core\contact.html:44
+#: .\templates\core\contact.html:75
+msgid "Email"
+msgstr ""
+
+#: .\apps\accounts\admin_forms.py:20 .\templates\accounts\login.html:42
+msgid "Mot de passe"
+msgstr "Password"
+
+#: .\apps\accounts\admin_forms.py:22
+#, fuzzy
+#| msgid "Profil Institutionnel"
+msgid "Nom de l'Institution"
+msgstr "Institutional Profile"
+
 #: .\apps\accounts\models.py:11
 msgid "Citoyen / Membre"
 msgstr "Citizen / Member"
@@ -34,7 +57,8 @@ msgstr "User"
 msgid "Utilisateurs"
 msgstr "Users"
 
-#: .\apps\citizens\models.py:12
+#: .\apps\citizens\models.py:12 .\templates\community\thread_form.html:14
+#: .\templates\content\event_detail.html:128
 msgid "Catégorie"
 msgstr "Category"
 
@@ -42,61 +66,100 @@ msgstr "Category"
 msgid "Catégories"
 msgstr "Categories"
 
-#: .\apps\citizens\models.py:23 .\templates\citizens\talent_list.html:28
+#: .\apps\citizens\models.py:23
 msgid "Compétence"
 msgstr "Skill"
 
 #: .\apps\citizens\models.py:24
+#: .\templates\accounts\admin_profile_detail.html:92
+#: .\templates\accounts\dashboard_citizen.html:236 .\templates\base.html:170
+#: .\templates\base.html:341
 msgid "Compétences"
 msgstr "Skills"
 
-#: .\apps\citizens\models.py:48
+#: .\apps\citizens\models.py:53
+msgid "Domaines d'intérêt"
+msgstr ""
+
+#: .\apps\citizens\models.py:61
+msgid "Charte d'éthique signée"
+msgstr ""
+
+#: .\apps\citizens\models.py:62
+#, fuzzy
+#| msgid "Profil Vérifié"
+msgid "Profil Validé"
+msgstr "Verified Profile"
+
+#: .\apps\citizens\models.py:68
 msgid "Profil Citoyen"
 msgstr "Citizen Profile"
 
-#: .\apps\citizens\models.py:49
+#: .\apps\citizens\models.py:69
 msgid "Profils Citoyens"
 msgstr "Citizen Profiles"
 
-#: .\apps\citizens\models.py:64
+#: .\apps\citizens\models.py:93
+#: .\templates\emails\profile_updated_confirmation.html:24
 msgid "Expérience"
 msgstr "Experience"
 
-#: .\apps\citizens\models.py:65
+#: .\apps\citizens\models.py:94
 msgid "Expériences"
 msgstr "Experiences"
 
-#: .\apps\citizens\models.py:79
+#: .\apps\citizens\models.py:108
 msgid "Éducation"
 msgstr "Education"
 
-#: .\apps\citizens\models.py:80
+#: .\apps\citizens\models.py:109
 msgid "Éducations"
 msgstr "Education Records"
 
-#: .\apps\citizens\models.py:92
+#: .\apps\citizens\models.py:121
 msgid "Curriculum Vitae"
 msgstr "Resume"
 
-#: .\apps\citizens\models.py:93
+#: .\apps\citizens\models.py:122 .\templates\citizens\profile_form.html:161
 msgid "Diplôme"
 msgstr "Diploma"
 
-#: .\apps\citizens\models.py:94
+#: .\apps\citizens\models.py:123
 msgid "Certificat"
 msgstr "Certificate"
 
-#: .\apps\citizens\models.py:95
+#: .\apps\citizens\models.py:124
 msgid "Autre"
 msgstr "Other"
 
-#: .\apps\citizens\models.py:106
+#: .\apps\citizens\models.py:135
 msgid "Document"
 msgstr "Document"
 
-#: .\apps\citizens\models.py:107
+#: .\apps\citizens\models.py:136
+#: .\templates\accounts\admin_profile_detail.html:107
 msgid "Documents"
 msgstr "Documents"
+
+#: .\apps\community\models.py:16
+msgid "Discussion"
+msgstr ""
+
+#: .\apps\community\models.py:17 .\templates\community\forum_home.html:28
+msgid "Discussions"
+msgstr ""
+
+#: .\apps\community\models.py:30
+#, fuzzy
+#| msgid "Comment ça marche"
+msgid "Commentaire"
+msgstr "How it works"
+
+#: .\apps\community\models.py:31
+#, fuzzy
+#| msgid "Comment ça marche"
+msgid "Commentaires"
+msgstr "How it works"
 
 #: .\apps\content\models.py:17 .\templates\content\post_list.html:57
 msgid "Article"
@@ -118,22 +181,112 @@ msgstr "Masterclass"
 msgid "Conférence"
 msgstr "Conference"
 
-#: .\apps\content\models.py:44
+#: .\apps\content\models.py:46
 msgid "Événement"
 msgstr "Event"
 
-#: .\apps\content\models.py:45 .\templates\base.html:63
-#: .\templates\base.html:131
+#: .\apps\content\models.py:47 .\templates\accounts\dashboard_admin.html:190
+#: .\templates\base.html:245 .\templates\base.html:384
+#: .\templates\core\search_results.html:62
 msgid "Événements"
 msgstr "Events"
 
-#: .\apps\content\models.py:58
+#: .\apps\content\models.py:59
+msgid "Vidéo"
+msgstr ""
+
+#: .\apps\content\models.py:60 .\templates\base.html:255
+#: .\templates\base.html:394
+msgid "Vidéos"
+msgstr ""
+
+#: .\apps\content\models.py:74
+msgid "Fichier"
+msgstr ""
+
+#: .\apps\content\models.py:75
+msgid "Vidéo (URL)"
+msgstr ""
+
+#: .\apps\content\models.py:76
+msgid "Lien Externe"
+msgstr ""
+
+#: .\apps\content\models.py:88
 msgid "Ressource"
 msgstr "Resource"
 
-#: .\apps\content\models.py:59
+#: .\apps\content\models.py:89 .\templates\base.html:220
 msgid "Ressources"
 msgstr "Resources"
+
+#: .\apps\content\models.py:106
+msgid "Cours / MOOC"
+msgstr ""
+
+#: .\apps\content\models.py:107
+msgid "Cours / MOOCs"
+msgstr ""
+
+#: .\apps\content\models.py:121
+msgid "Leçon"
+msgstr ""
+
+#: .\apps\content\models.py:122 .\templates\content\course_list.html:36
+msgid "Leçons"
+msgstr ""
+
+#: .\apps\content\models.py:135
+msgid "Image Galerie"
+msgstr ""
+
+#: .\apps\content\models.py:136
+msgid "Images Galerie"
+msgstr ""
+
+#: .\apps\content\models.py:149
+#, fuzzy
+#| msgid "Événement"
+msgid "Inscription Événement"
+msgstr "Event"
+
+#: .\apps\content\models.py:150
+#, fuzzy
+#| msgid "Événements"
+msgid "Inscriptions Événements"
+msgstr "Events"
+
+#: .\apps\core\models.py:14
+#, fuzzy
+#| msgid "Certificat"
+msgid "Notification"
+msgstr "Certificate"
+
+#: .\apps\core\models.py:15 .\templates\core\notifications.html:11
+#, fuzzy
+#| msgid "Certificat"
+msgid "Notifications"
+msgstr "Certificate"
+
+#: .\apps\core\models.py:27
+#, fuzzy
+#| msgid "Newsletter"
+msgid "Abonné Newsletter"
+msgstr "Newsletter"
+
+#: .\apps\core\models.py:28
+#, fuzzy
+#| msgid "Newsletter"
+msgid "Abonnés Newsletter"
+msgstr "Newsletter"
+
+#: .\apps\core\models.py:39
+msgid "Message de Contact"
+msgstr ""
+
+#: .\apps\core\models.py:40
+msgid "Messages de Contact"
+msgstr ""
 
 #: .\apps\institutions\models.py:21
 msgid "Profil Institutionnel"
@@ -143,28 +296,34 @@ msgstr "Institutional Profile"
 msgid "Profils Institutionnels"
 msgstr "Institutional Profiles"
 
-#: .\apps\institutions\models.py:33
+#: .\apps\institutions\models.py:34
 msgid "Brouillon"
 msgstr "Draft"
 
-#: .\apps\institutions\models.py:34
-#: .\templates\institutions\opportunity_list.html:30
+#: .\apps\institutions\models.py:35
+#: .\templates\institutions\opportunity_list.html:54
 msgid "Ouvert"
 msgstr "Open"
 
-#: .\apps\institutions\models.py:35
+#: .\apps\institutions\models.py:36
+#: .\templates\institutions\opportunity_list.html:61
+msgid "À venir"
+msgstr "Upcoming"
+
+#: .\apps\institutions\models.py:37
+#: .\templates\institutions\opportunity_list.html:68
 msgid "Clôturé"
 msgstr "Closed"
 
-#: .\apps\institutions\models.py:53
+#: .\apps\institutions\models.py:55
 msgid "Opportunité / Projet"
 msgstr "Opportunity / Project"
 
-#: .\apps\institutions\models.py:54
+#: .\apps\institutions\models.py:56
 msgid "Opportunités / Projets"
 msgstr "Opportunities / Projects"
 
-#: .\apps\matching\models.py:13
+#: .\apps\matching\models.py:13 .\templates\accounts\dashboard_citizen.html:200
 msgid "En attente"
 msgstr "Pending"
 
@@ -180,8 +339,8 @@ msgstr "Rejected"
 msgid "Candidature"
 msgstr "Application"
 
-#: .\apps\matching\models.py:29
-#: .\templates\institutions\opportunity_detail.html:100
+#: .\apps\matching\models.py:29 .\templates\accounts\dashboard_citizen.html:112
+#: .\templates\institutions\opportunity_detail.html:101
 msgid "Candidatures"
 msgstr "Applications"
 
@@ -193,12 +352,446 @@ msgstr "Match"
 msgid "Matchs"
 msgstr "Matches"
 
-#: .\templates\accounts\login.html:4 .\templates\base.html:81
-#: .\templates\base.html:146
+#: .\templates\accounts\admin_create_form.html:10
+msgid "Annuler et retourner au dashboard"
+msgstr ""
+
+#: .\templates\accounts\admin_create_form.html:21
+msgid "Outil d'administration PCC"
+msgstr ""
+
+#: .\templates\accounts\admin_create_form.html:47
+msgid "Confirmer la création"
+msgstr ""
+
+#: .\templates\accounts\admin_profile_detail.html:4
+msgid "Vérification de Profil"
+msgstr ""
+
+#: .\templates\accounts\admin_profile_detail.html:11
+#, fuzzy
+#| msgid "Retour à l'accueil"
+msgid "Retour à l'administration"
+msgstr "Back to Home"
+
+#: .\templates\accounts\admin_profile_detail.html:17
+#, fuzzy
+#| msgid "Voir le profil"
+msgid "Valider le profil"
+msgstr "View profile"
+
+#: .\templates\accounts\admin_profile_detail.html:21
+msgid "Rejeter"
+msgstr ""
+
+#: .\templates\accounts\admin_profile_detail.html:52 .\templates\base.html:266
+#: .\templates\base.html:408
+msgid "À propos"
+msgstr ""
+
+#: .\templates\accounts\admin_profile_detail.html:60
+msgid "Expertise certifiée"
+msgstr ""
+
+#: .\templates\accounts\admin_profile_detail.html:63
+#, fuzzy
+#| msgid "ans d'expérience"
+msgid "D'expérience terrain"
+msgstr "years of experience"
+
+#: .\templates\accounts\admin_profile_detail.html:100
+#: .\templates\citizens\profile_detail.html:142
+msgid "Aucune compétence listée."
+msgstr "No skills listed."
+
+#: .\templates\accounts\admin_profile_detail.html:122
+#, fuzzy
+#| msgid "Aucun document partagé."
+msgid "Aucun document téléversé."
+msgstr "No documents shared."
+
+#: .\templates\accounts\dashboard_admin.html:4
+#, fuzzy
+#| msgid "Administrateur"
+msgid "Administration PCC"
+msgstr "Administrator"
+
+#: .\templates\accounts\dashboard_admin.html:24
+msgid "Menu Admin"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:35
+msgid "Vue d'ensemble"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:39
+msgid "Créations Rapides"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:41
+#, fuzzy
+#| msgid "Événement"
+msgid "+ Événement"
+msgstr "Event"
+
+#: .\templates\accounts\dashboard_admin.html:44
+#, fuzzy
+#| msgid "Profil Institutionnel"
+msgid "+ Institution"
+msgstr "Institutional Profile"
+
+#: .\templates\accounts\dashboard_admin.html:47
+#, fuzzy
+#| msgid "Talents"
+msgid "+ Talent"
+msgstr "Talents"
+
+#: .\templates\accounts\dashboard_admin.html:51
+msgid "Analyse & Rapports"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:53
+#, fuzzy
+#| msgid "Explorer les Talents"
+msgid "Base des Talents"
+msgstr "Explore Talents"
+
+#: .\templates\accounts\dashboard_admin.html:59 .\templates\base.html:279
+#: .\templates\base.html:424
+msgid "Déconnexion"
+msgstr "Logout"
+
+#: .\templates\accounts\dashboard_admin.html:71
+#, fuzzy
+#| msgid "Administrateur"
+msgid "Administration"
+msgstr "Administrator"
+
+#: .\templates\accounts\dashboard_admin.html:90
+#, fuzzy
+#| msgid "Profils Citoyens"
+msgid "Citoyens"
+msgstr "Citizen Profiles"
+
+#: .\templates\accounts\dashboard_admin.html:93
+msgid "Actif"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:102
+#, fuzzy
+#| msgid "Profils Institutionnels"
+msgid "Institutions"
+msgstr "Institutional Profiles"
+
+#: .\templates\accounts\dashboard_admin.html:111
+#: .\templates\accounts\dashboard_citizen.html:94 .\templates\base.html:363
+#: .\templates\core\search_results.html:45
+#: .\templates\institutions\opportunity_list.html:4
+#: .\templates\institutions\opportunity_list.html:10
+msgid "Opportunités"
+msgstr "Opportunities"
+
+#: .\templates\accounts\dashboard_admin.html:118
+msgid "Attente Validation"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:132
+msgid "Profils à Valider"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:133
+msgid "Priorité"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:160
+msgid "Examiner"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:163
+msgid "Valider"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:171
+msgid "Rien à valider !"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:185
+#, fuzzy
+#| msgid "Réservé aux profils citoyens."
+msgid "Réseau Citoyen"
+msgstr "Reserved for citizen profiles."
+
+#: .\templates\accounts\dashboard_admin.html:194
+msgid "Médiathèque (Vidéos)"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:198
+msgid "Experts Certifiés"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:205
+msgid "Distribution Talent"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:214
+msgid "6 Principaux Départements"
+msgstr ""
+
+#: .\templates\accounts\dashboard_citizen.html:4 .\templates\base.html:275
+#: .\templates\base.html:417
+msgid "Mon Espace"
+msgstr "My Account"
+
+#: .\templates\accounts\dashboard_citizen.html:36
+msgid "Bonjour,"
+msgstr ""
+
+#: .\templates\accounts\dashboard_citizen.html:45
+#, fuzzy
+#| msgid "Certificat"
+msgid "Certifié"
+msgstr "Certificate"
+
+#: .\templates\accounts\dashboard_citizen.html:49
+#, fuzzy
+#| msgid "En attente"
+msgid "Attente"
+msgstr "Pending"
+
+#: .\templates\accounts\dashboard_citizen.html:54
+msgid "Charte"
+msgstr ""
+
+#: .\templates\accounts\dashboard_citizen.html:64
+msgid "Modifier"
+msgstr ""
+
+#: .\templates\accounts\dashboard_citizen.html:67
+msgid "Public"
+msgstr ""
+
+#: .\templates\accounts\dashboard_citizen.html:89
+msgid "IA Suggest"
+msgstr ""
+
+#: .\templates\accounts\dashboard_citizen.html:107
+msgid "Activité"
+msgstr ""
+
+#: .\templates\accounts\dashboard_citizen.html:126
+msgid "Suggestions IA"
+msgstr ""
+
+#: .\templates\accounts\dashboard_citizen.html:128
+msgid "Les projets qui matchent votre profil."
+msgstr ""
+
+#: .\templates\accounts\dashboard_citizen.html:156
+msgid "L'IA n'a pas encore trouvé de match parfait."
+msgstr ""
+
+#: .\templates\accounts\dashboard_citizen.html:157
+msgid ""
+"Améliorez votre profil en ajoutant plus de compétences et vos expériences "
+"professionnelles."
+msgstr ""
+
+#: .\templates\accounts\dashboard_citizen.html:170
+#, fuzzy
+#| msgid "Candidatures"
+msgid "Historique des Candidatures"
+msgstr "Applications"
+
+#: .\templates\accounts\dashboard_citizen.html:179
+#, fuzzy
+#| msgid "Opportunités"
+msgid "Opportunité"
+msgstr "Opportunities"
+
+#: .\templates\accounts\dashboard_citizen.html:180
+msgid "Date d'envoi"
+msgstr ""
+
+#: .\templates\accounts\dashboard_citizen.html:181
+#: .\templates\evaluations\evaluation_result.html:41
+msgid "Statut"
+msgstr ""
+
+#: .\templates\accounts\dashboard_citizen.html:204
+msgid "Sélectionné"
+msgstr ""
+
+#: .\templates\accounts\dashboard_citizen.html:208
+#, fuzzy
+#| msgid "Bon retour !"
+msgid "Non retenu"
+msgstr "Welcome back!"
+
+#: .\templates\accounts\dashboard_citizen.html:219
+msgid "Vous n'avez pas encore postulé à des projets."
+msgstr ""
+
+#: .\templates\accounts\dashboard_citizen.html:221
+#, fuzzy
+#| msgid "Explorer les Talents"
+msgid "Explorer les offres"
+msgstr "Explore Talents"
+
+#: .\templates\accounts\dashboard_citizen.html:247
+#, fuzzy
+#| msgid "Aucune expérience renseignée."
+msgid "Aucune compétence renseignée."
+msgstr "No experience listed."
+
+#: .\templates\accounts\dashboard_citizen.html:252
+msgid "Ajouter des Skills"
+msgstr ""
+
+#: .\templates\accounts\dashboard_citizen.html:266
+#, fuzzy
+#| msgid "Formation Académique"
+msgid "Information Premium"
+msgstr "Academic Background"
+
+#: .\templates\accounts\dashboard_citizen.html:271
+msgid "Voir les exclusivités"
+msgstr ""
+
+#: .\templates\accounts\dashboard_citizen.html:278
+#, fuzzy
+#| msgid "Documents"
+msgid "Documents joints"
+msgstr "Documents"
+
+#: .\templates\accounts\dashboard_citizen.html:294
+#, fuzzy
+#| msgid "Aucun document partagé."
+msgid "Aucun document (CV) téléversé."
+msgstr "No documents shared."
+
+#: .\templates\accounts\dashboard_institution.html:4
+#, fuzzy
+#| msgid "Profil Institutionnel"
+msgid "Tableau de Bord Institutionnel"
+msgstr "Institutional Profile"
+
+#: .\templates\accounts\dashboard_institution.html:24
+msgid "Partenaire Stratégique de la Plateforme"
+msgstr ""
+
+#: .\templates\accounts\dashboard_institution.html:29
+#, fuzzy
+#| msgid "Institution / Entreprise"
+msgid "Institution Certifiée"
+msgstr "Institution / Company"
+
+#: .\templates\accounts\dashboard_institution.html:33
+msgid "Vérification en cours"
+msgstr ""
+
+#: .\templates\accounts\dashboard_institution.html:42
+msgid "Publier un appel"
+msgstr ""
+
+#: .\templates\accounts\dashboard_institution.html:45
+#, fuzzy
+#| msgid "Paramètres du Profil"
+msgid "Paramètres"
+msgstr "Profile Settings"
+
+#: .\templates\accounts\dashboard_institution.html:50
+#: .\templates\accounts\password_change.html:13
+#: .\templates\accounts\password_reset_confirm.html:31
+#, fuzzy
+#| msgid "Mot de passe"
+msgid "Changer le mot de passe"
+msgstr "Password"
+
+#: .\templates\accounts\dashboard_institution.html:58
+msgid "Appels Actifs"
+msgstr ""
+
+#: .\templates\accounts\dashboard_institution.html:62
+#, fuzzy
+#| msgid "Candidatures"
+msgid "Candidats Reçus"
+msgstr "Applications"
+
+#: .\templates\accounts\dashboard_institution.html:69
+msgid "Experts Qualifiés"
+msgstr ""
+
+#: .\templates\accounts\dashboard_institution.html:82
+#, fuzzy
+#| msgid "Appel à expertise"
+msgid "Mes Appels à Projets"
+msgstr "Call for expertise"
+
+#: .\templates\accounts\dashboard_institution.html:84
+#, fuzzy
+#| msgid "Voir tout"
+msgid "Gérer tout"
+msgstr "See all"
+
+#: .\templates\accounts\dashboard_institution.html:97
+#, fuzzy
+#| msgid "Candidatures"
+msgid "candidatures reçues"
+msgstr "Applications"
+
+#: .\templates\accounts\dashboard_institution.html:103
+msgid "Deadline"
+msgstr ""
+
+#: .\templates\accounts\dashboard_institution.html:113
+msgid "Vous n'avez pas encore publié d'opportunité."
+msgstr ""
+
+#: .\templates\accounts\dashboard_institution.html:114
+#, fuzzy
+#| msgid "Rejoindre maintenant"
+msgid "Créer maintenant"
+msgstr "Join now"
+
+#: .\templates\accounts\dashboard_institution.html:127
+#, fuzzy
+#| msgid "Candidatures"
+msgid "Dernières Candidatures"
+msgstr "Applications"
+
+#: .\templates\accounts\dashboard_institution.html:137
+msgid "pour"
+msgstr ""
+
+#: .\templates\accounts\dashboard_institution.html:144
+#, fuzzy
+#| msgid "Candidature"
+msgid "Aucune candidature"
+msgstr "Application"
+
+#: .\templates\accounts\dashboard_institution.html:148
+#, fuzzy
+#| msgid "Déposer ma candidature"
+msgid "Gérer les candidats"
+msgstr "Submit my application"
+
+#: .\templates\accounts\dashboard_institution.html:154
+#: .\templates\content\course_detail.html:103
+msgid "Besoin d'aide ?"
+msgstr ""
+
+#: .\templates\accounts\dashboard_institution.html:159
+#, fuzzy
+#| msgid "Contacter"
+msgid "Contact Support"
+msgstr "Contact"
+
+#: .\templates\accounts\login.html:4 .\templates\base.html:285
 msgid "Connexion"
 msgstr "Login"
 
 #: .\templates\accounts\login.html:12
+#: .\templates\content\programme_societe.html:11
 msgid "Retour à l'accueil"
 msgstr "Back to Home"
 
@@ -210,19 +803,12 @@ msgstr "Welcome back!"
 msgid "Connectez-vous à votre espace PCC"
 msgstr "Log in to your PCC account"
 
-#: .\templates\accounts\login.html:33
-msgid "Nom d'utilisateur"
-msgstr "Username"
-
-#: .\templates\accounts\login.html:42
-msgid "Mot de passe"
-msgstr "Password"
-
 #: .\templates\accounts\login.html:43
 msgid "Oublié ?"
 msgstr "Forgot?"
 
 #: .\templates\accounts\login.html:57
+#: .\templates\accounts\password_reset_complete.html:18
 msgid "Se connecter"
 msgstr "Sign in"
 
@@ -234,178 +820,396 @@ msgstr "Or"
 msgid "Pas encore de compte ?"
 msgstr "Don't have an account?"
 
-#: .\templates\accounts\login.html:74
+#: .\templates\accounts\login.html:74 .\templates\accounts\register.html:4
+#: .\templates\accounts\register.html:42
 msgid "S'inscrire"
 msgstr "Sign up"
 
-#: .\templates\base.html:59 .\templates\base.html:115
+#: .\templates\accounts\password_change.html:4
+#, fuzzy
+#| msgid "Mot de passe"
+msgid "Changer de mot de passe"
+msgstr "Password"
+
+#: .\templates\accounts\password_change.html:31
+#: .\templates\citizens\profile_form.html:187
+msgid "Annuler"
+msgstr "Cancel"
+
+#: .\templates\accounts\password_change.html:33
+msgid "Enregistrer"
+msgstr ""
+
+#: .\templates\accounts\password_change_done.html:4
+#, fuzzy
+#| msgid "Mot de passe"
+msgid "Mot de passe modifié"
+msgstr "Password"
+
+#: .\templates\accounts\password_change_done.html:12
+#, fuzzy
+#| msgid "Mot de passe"
+msgid "Mot de passe mis à jour !"
+msgstr "Password"
+
+#: .\templates\accounts\password_change_done.html:14
+msgid ""
+"Votre mot de passe a été modifié avec succès. Ce changement prend effet "
+"immédiatement."
+msgstr ""
+
+#: .\templates\accounts\password_change_done.html:17
+#, fuzzy
+#| msgid "Retour au blog"
+msgid "Retour au tableau de bord"
+msgstr "Back to blog"
+
+#: .\templates\accounts\password_reset.html:4
+#, fuzzy
+#| msgid "Mot de passe"
+msgid "Mot de passe oublié"
+msgstr "Password"
+
+#: .\templates\accounts\password_reset.html:12
+#: .\templates\accounts\password_reset_done.html:18
+#, fuzzy
+#| msgid "Retour à l'accueil"
+msgid "Retour à la connexion"
+msgstr "Back to Home"
+
+#: .\templates\accounts\password_reset.html:17
+#, fuzzy
+#| msgid "Mot de passe"
+msgid "Mot de passe oublié ?"
+msgstr "Password"
+
+#: .\templates\accounts\password_reset.html:18
+msgid ""
+"Entrez votre adresse email ci-dessous et nous vous enverrons les "
+"instructions pour réinitialiser votre mot de passe."
+msgstr ""
+
+#: .\templates\accounts\password_reset.html:28
+#, fuzzy
+#| msgid "Explorer les Talents"
+msgid "Envoyer le lien"
+msgstr "Explore Talents"
+
+#: .\templates\accounts\password_reset_complete.html:4
+#, fuzzy
+#| msgid "Mot de passe"
+msgid "Mot de passe réinitialisé"
+msgstr "Password"
+
+#: .\templates\accounts\password_reset_complete.html:13
+#, fuzzy
+#| msgid "Mot de passe"
+msgid "Mot de passe modifié !"
+msgstr "Password"
+
+#: .\templates\accounts\password_reset_complete.html:15
+msgid ""
+"Votre mot de passe a été réinitialisé avec succès. Vous pouvez maintenant "
+"vous connecter avec votre nouveau mot de passe."
+msgstr ""
+
+#: .\templates\accounts\password_reset_confirm.html:4
+#: .\templates\accounts\password_reset_confirm.html:12
+#, fuzzy
+#| msgid "Mot de passe"
+msgid "Nouveau mot de passe"
+msgstr "Password"
+
+#: .\templates\accounts\password_reset_confirm.html:13
+msgid "Veuillez entrer votre nouveau mot de passe deux fois pour confirmation."
+msgstr ""
+
+#: .\templates\accounts\password_reset_confirm.html:39
+msgid "Lien invalide"
+msgstr ""
+
+#: .\templates\accounts\password_reset_confirm.html:40
+msgid ""
+"Le lien de réinitialisation du mot de passe est invalide, peut-être parce "
+"qu'il a déjà été utilisé. Veuillez redemander une nouvelle réinitialisation."
+msgstr ""
+
+#: .\templates\accounts\password_reset_confirm.html:42
+msgid "Redemander un lien"
+msgstr ""
+
+#: .\templates\accounts\password_reset_done.html:4
+msgid "Email envoyé"
+msgstr ""
+
+#: .\templates\accounts\password_reset_done.html:13
+msgid "Vérifiez votre boîte mail"
+msgstr ""
+
+#: .\templates\accounts\password_reset_done.html:15
+msgid ""
+"Nous venons de vous envoyer un email contenant les instructions pour "
+"réinitialiser votre mot de passe. Si vous ne le trouvez pas, pensez à "
+"vérifier vos courriers indésirables."
+msgstr ""
+
+#: .\templates\accounts\register.html:13
+msgid "Créer un compte"
+msgstr ""
+
+#: .\templates\accounts\register.html:14
+#, fuzzy
+#| msgid "Plateforme Citoyenne de Compétences"
+msgid "Rejoignez la Plate-Forme Citoyenne des Compétences"
+msgstr "Citizen Skills Platform"
+
+#: .\templates\accounts\register.html:47
+msgid "Vous avez déjà un compte ?"
+msgstr ""
+
+#: .\templates\accounts\register.html:48
+msgid "Connectez-vous"
+msgstr ""
+
+#: .\templates\admin\index.html:12
+#, python-format
+msgid "Models in the %(name)s application"
+msgstr ""
+
+#: .\templates\admin\index.html:26
+msgid "Add"
+msgstr ""
+
+#: .\templates\admin\index.html:29
+msgid "Change"
+msgstr ""
+
+#: .\templates\admin\index.html:38
+msgid "You don't have permission to view or edit anything."
+msgstr ""
+
+#: .\templates\admin\index.html:47
+msgid "Recent actions"
+msgstr ""
+
+#: .\templates\admin\index.html:50
+msgid "My actions"
+msgstr ""
+
+#: .\templates\admin\index.html:54
+msgid "None available"
+msgstr ""
+
+#: .\templates\base.html:144
+msgid "Chargement"
+msgstr ""
+
+#: .\templates\base.html:164 .\templates\base.html:336
 msgid "Accueil"
 msgstr "Home"
 
-#: .\templates\base.html:60 .\templates\base.html:119
-msgid "Talents"
-msgstr "Talents"
+#: .\templates\base.html:179 .\templates\base.html:344
+msgid "Explorer les talents"
+msgstr "Explore talents"
 
-#: .\templates\base.html:61 .\templates\base.html:123
-#: .\templates\institutions\opportunity_list.html:4
-msgid "Opportunités"
-msgstr "Opportunities"
+#: .\templates\base.html:184 .\templates\base.html:349
+#, fuzzy
+#| msgid "Compétences"
+msgid "Carte des compétences"
+msgstr "Skills"
 
-#: .\templates\base.html:62 .\templates\base.html:127
-msgid "Blog"
-msgstr "Blog"
+#: .\templates\base.html:189 .\templates\base.html:354
+#, fuzzy
+#| msgid "Éducations"
+msgid "Évaluations"
+msgstr "Education Records"
 
-#: .\templates\base.html:74
-msgid "Mon Espace"
-msgstr "My Account"
-
-#: .\templates\base.html:77 .\templates\base.html:141
-msgid "Déconnexion"
-msgstr "Logout"
-
-#: .\templates\base.html:82 .\templates\base.html:147
-msgid "Rejoindre"
-msgstr "Join"
-
-#: .\templates\base.html:113
-msgid "Navigation"
-msgstr "Navigation"
-
-#: .\templates\base.html:178
-msgid ""
-"La Plate-Forme Citoyenne des Compétences est une initiative citoyenne un Think Tank Citoyen "
-"pour valoriser les talents béninois."
+#: .\templates\base.html:198 .\templates\base.html:359
+msgid "Projets"
 msgstr ""
 
-#: .\templates\base.html:190
+#: .\templates\base.html:207
+#, fuzzy
+#| msgid "Opportunités / Projets"
+msgid "Opportunités & Appels"
+msgstr "Opportunities / Projects"
+
+#: .\templates\base.html:212 .\templates\base.html:368
+msgid "Initiatives Citoyennes"
+msgstr ""
+
+#: .\templates\base.html:226 .\templates\base.html:374
+#: .\templates\core\search_results.html:96
+msgid "Formations (MOOCs)"
+msgstr ""
+
+#: .\templates\base.html:236 .\templates\base.html:380
+#: .\templates\citizens\talent_register.html:10
+msgid "Réseau"
+msgstr ""
+
+#: .\templates\base.html:250 .\templates\base.html:389
+#: .\templates\content\gallery.html:10
+msgid "Galerie"
+msgstr ""
+
+#: .\templates\base.html:260 .\templates\base.html:399
+msgid "Forums / Groupes"
+msgstr ""
+
+#: .\templates\base.html:404
+msgid "Info"
+msgstr ""
+
+#: .\templates\base.html:467
+#, fuzzy
+#| msgid "Plateforme Citoyenne de Compétences"
+msgid "Plateforme Citoyenne des Compétences pour un Bénin Prospère."
+msgstr "Citizen Skills Platform"
+
+#: .\templates\base.html:489
 msgid "Plateforme"
 msgstr "Platform"
 
-#: .\templates\base.html:192
-msgid "Comment ça marche"
-msgstr "How it works"
+#: .\templates\base.html:493
+msgid "Projet de Société"
+msgstr ""
 
-#: .\templates\base.html:193
-msgid "Talents à la une"
-msgstr "Featured Talents"
+#: .\templates\base.html:495
+msgid "Qui est R. Wadagni ?"
+msgstr ""
 
-#: .\templates\base.html:194
-msgid "Offres d'emploi"
-msgstr "Job Offers"
+#: .\templates\base.html:497
+msgid "À propos de la PCC"
+msgstr ""
 
-#: .\templates\base.html:198
+#: .\templates\base.html:499
+msgid "Talents"
+msgstr "Talents"
+
+#: .\templates\base.html:502
+#, fuzzy
+#| msgid "Profils Institutionnels"
+msgid "Vos Contributions"
+msgstr "Institutional Profiles"
+
+#: .\templates\base.html:507
 msgid "Support"
 msgstr "Support"
 
-#: .\templates\base.html:200
+#: .\templates\base.html:510
 msgid "Aide & FAQ"
 msgstr "Help & FAQ"
 
-#: .\templates\base.html:201
+#: .\templates\base.html:511
 msgid "Contact"
 msgstr "Contact"
 
-#: .\templates\base.html:205
+#: .\templates\base.html:515
 msgid "Newsletter"
 msgstr "Newsletter"
 
-#: .\templates\base.html:206
+#: .\templates\base.html:517
 msgid "Restez informé des dernières opportunités nationales."
 msgstr "Stay informed about the latest national opportunities."
 
-#: .\templates\base.html:216
+#: .\templates\base.html:534
 msgid "Tous droits réservés."
 msgstr "All rights reserved."
 
-#: .\templates\base.html:218
+#: .\templates\base.html:536 .\templates\content\privacy.html:26
 msgid "Confidentialité"
 msgstr "Privacy"
 
-#: .\templates\base.html:219
+#: .\templates\base.html:537
 msgid "Cookies"
 msgstr "Cookies"
 
-#: .\templates\base.html:222
+#: .\templates\base.html:542
 msgid "République du Bénin"
 msgstr "Republic of Benin"
+
+#: .\templates\base.html:614
+msgid "Veuillez entrer une adresse email."
+msgstr ""
+
+#: .\templates\base.html:647
+msgid "Une erreur est survenue."
+msgstr ""
 
 #: .\templates\citizens\profile_detail.html:14
 #: .\templates\citizens\profile_form.html:4
 msgid "Modifier mon profil"
 msgstr "Edit my profile"
 
-#: .\templates\citizens\profile_detail.html:30
+#: .\templates\citizens\profile_detail.html:34
 msgid "Profil Vérifié"
 msgstr "Verified Profile"
 
-#: .\templates\citizens\profile_detail.html:35
+#: .\templates\citizens\profile_detail.html:39
 msgid "Profession non spécifiée"
 msgstr "Profession not specified"
 
-#: .\templates\citizens\profile_detail.html:37
-#: .\templates\citizens\talent_list.html:69
+#: .\templates\citizens\profile_detail.html:42
+#: .\templates\citizens\talent_list.html:97 .\templates\core\contact.html:16
 #: .\templates\institutions\opportunity_detail.html:24
-#: .\templates\institutions\opportunity_list.html:68
+#: .\templates\institutions\opportunity_list.html:103
 msgid "Bénin"
 msgstr "Benin"
 
-#: .\templates\citizens\profile_detail.html:38
+#: .\templates\citizens\profile_detail.html:44
 msgid "ans d'expérience"
 msgstr "years of experience"
 
-#: .\templates\citizens\profile_detail.html:39
+#: .\templates\citizens\profile_detail.html:45
 msgid "Disponible"
 msgstr "Available"
 
-#: .\templates\citizens\profile_detail.html:46
+#: .\templates\citizens\profile_detail.html:53
 msgid "Contacter"
 msgstr "Contact"
 
-#: .\templates\citizens\profile_detail.html:61
+#: .\templates\citizens\profile_detail.html:68
 msgid "Biographie & Objectifs"
 msgstr "Biography & Goals"
 
-#: .\templates\citizens\profile_detail.html:64
+#: .\templates\citizens\profile_detail.html:70
 msgid "Aucune biographie disponible pour le moment."
 msgstr "No biography available at this time."
 
-#: .\templates\citizens\profile_detail.html:74
+#: .\templates\citizens\profile_detail.html:82
 msgid "Expériences & Projets"
 msgstr "Experiences & Projects"
 
-#: .\templates\citizens\profile_detail.html:84
+#: .\templates\citizens\profile_detail.html:92
 msgid "Présent"
 msgstr "Present"
 
-#: .\templates\citizens\profile_detail.html:89
+#: .\templates\citizens\profile_detail.html:97
 msgid "Aucune expérience renseignée."
 msgstr "No experience listed."
 
-#: .\templates\citizens\profile_detail.html:100
+#: .\templates\citizens\profile_detail.html:108
 msgid "Formation Académique"
 msgstr "Academic Background"
 
-#: .\templates\citizens\profile_detail.html:110
+#: .\templates\citizens\profile_detail.html:118
 msgid "Aucun diplôme renseigné."
 msgstr "No diploma listed."
 
-#: .\templates\citizens\profile_detail.html:121
+#: .\templates\citizens\profile_detail.html:129
 msgid "Expertise & Compétences"
 msgstr "Expertise & Skills"
 
-#: .\templates\citizens\profile_detail.html:134
-msgid "Aucune compétence listée."
-msgstr "No skills listed."
-
-#: .\templates\citizens\profile_detail.html:142
+#: .\templates\citizens\profile_detail.html:150
 msgid "Documents vérifiés"
 msgstr "Verified Documents"
 
-#: .\templates\citizens\profile_detail.html:155
+#: .\templates\citizens\profile_detail.html:163
 msgid "Document Vérifié"
 msgstr "Verified Document"
 
-#: .\templates\citizens\profile_detail.html:159
+#: .\templates\citizens\profile_detail.html:167
 msgid "Aucun document partagé."
 msgstr "No documents shared."
 
@@ -425,140 +1229,775 @@ msgstr "Professional biography"
 msgid "Parlez-nous de votre parcours et de vos ambitions..."
 msgstr "Tell us about your background and ambitions..."
 
-#: .\templates\citizens\profile_form.html:37
+#: .\templates\citizens\profile_form.html:38
 msgid "Intitulé du poste actuel"
 msgstr "Current job title"
 
-#: .\templates\citizens\profile_form.html:46
+#: .\templates\citizens\profile_form.html:47
+#: .\templates\emails\profile_updated_confirmation.html:25
 msgid "Localisation"
 msgstr "Location"
 
-#: .\templates\citizens\profile_form.html:47
+#: .\templates\citizens\profile_form.html:48
 msgid "Ville, Pays"
 msgstr "City, Country"
 
-#: .\templates\citizens\profile_form.html:55
+#: .\templates\citizens\profile_form.html:57
+#: .\templates\citizens\talent_register.html:43
 msgid "Années d'expérience"
 msgstr "Years of experience"
 
-#: .\templates\citizens\profile_form.html:64
+#: .\templates\citizens\profile_form.html:66
 msgid "Disponibilité"
 msgstr "Availability"
 
-#: .\templates\citizens\profile_form.html:65
+#: .\templates\citizens\profile_form.html:67
 msgid "Immédiate, 1 mois..."
 msgstr "Immediate, 1 month..."
 
-#: .\templates\citizens\profile_form.html:74
+#: .\templates\citizens\profile_form.html:77
 msgid "Visibilité publique"
 msgstr "Public visibility"
 
-#: .\templates\citizens\profile_form.html:75
+#: .\templates\citizens\profile_form.html:78
 msgid "Votre profil sera visible par les recruteurs et institutions."
 msgstr "Your profile will be visible to recruiters and institutions."
 
-#: .\templates\citizens\profile_form.html:85
-msgid "Annuler"
-msgstr "Cancel"
+#: .\templates\citizens\profile_form.html:88
+#, fuzzy
+#| msgid "Curriculum Vitae"
+msgid "Curriculum Vitae (PDF)"
+msgstr "Resume"
 
-#: .\templates\citizens\profile_form.html:87
+#: .\templates\citizens\profile_form.html:93
+msgid "Voir le CV actuel"
+msgstr ""
+
+#: .\templates\citizens\profile_form.html:104
+#, fuzzy
+#| msgid "Expériences & Projets"
+msgid "Expériences Professionnelles"
+msgstr "Experiences & Projects"
+
+#: .\templates\citizens\profile_form.html:113
+msgid "Entreprise"
+msgstr ""
+
+#: .\templates\citizens\profile_form.html:117
+msgid "Poste"
+msgstr ""
+
+#: .\templates\citizens\profile_form.html:121
+#: .\templates\citizens\profile_form.html:169
+msgid "Date de début"
+msgstr ""
+
+#: .\templates\citizens\profile_form.html:125
+#: .\templates\citizens\profile_form.html:173
+msgid "Date de fin"
+msgstr ""
+
+#: .\templates\citizens\profile_form.html:129
+#, fuzzy
+#| msgid "Description du Projet"
+msgid "Description"
+msgstr "Project Description"
+
+#: .\templates\citizens\profile_form.html:134
+#, fuzzy
+#| msgid "Toute l'actualité"
+msgid "Poste actuel"
+msgstr "All news"
+
+#: .\templates\citizens\profile_form.html:148
+msgid "Formations"
+msgstr ""
+
+#: .\templates\citizens\profile_form.html:157
+msgid "Établissement"
+msgstr ""
+
+#: .\templates\citizens\profile_form.html:165
+msgid "Domaine d'études"
+msgstr ""
+
+#: .\templates\citizens\profile_form.html:189
 msgid "Enregistrer les modifications"
 msgstr "Save changes"
+
+#: .\templates\citizens\skill_map.html:4
+#, fuzzy
+#| msgid "Expertise & Compétences"
+msgid "Carte des Compétences"
+msgstr "Expertise & Skills"
+
+#: .\templates\citizens\skill_map.html:52
+msgid "Cartographie des Talents du Bénin"
+msgstr ""
+
+#: .\templates\citizens\skill_map.html:55
+msgid ""
+"Visualisez la répartition géographique de nos experts et compétences "
+"certifiées à travers les 12 départements."
+msgstr ""
+
+#: .\templates\citizens\skill_map.html:70
+msgid "Statistiques Globales"
+msgstr ""
+
+#: .\templates\citizens\skill_map.html:88
+msgid "Prêt à rejoindre l'aventure ?"
+msgstr ""
+
+#: .\templates\citizens\skill_map.html:89
+msgid ""
+"Inscrivez vos compétences et apparaissez sur la carte pour être sollicité "
+"sur des projets nationaux."
+msgstr ""
+
+#: .\templates\citizens\skill_map.html:91
+msgid "S'enregistrer"
+msgstr ""
+
+#: .\templates\citizens\skill_map.html:176
+#, fuzzy
+#| msgid "L'Actualité du Talent"
+msgid "Densité de Talents"
+msgstr "Talent News"
+
+#: .\templates\citizens\skill_map.html:177
+msgid "talents enregistrés"
+msgstr ""
+
+#: .\templates\citizens\skill_map.html:178
+msgid "Survolez un département"
+msgstr ""
 
 #: .\templates\citizens\talent_list.html:4
 msgid "Explorer les Talents"
 msgstr "Explore Talents"
 
-#: .\templates\citizens\talent_list.html:10
-msgid "Explorer les talents"
-msgstr "Explore talents"
+#: .\templates\citizens\talent_list.html:11
+msgid "Notre Réseau de"
+msgstr ""
 
-#: .\templates\citizens\talent_list.html:17
-msgid "Nom, rôle, biographie..."
+#: .\templates\citizens\talent_list.html:14
+msgid ""
+"Découvrez les talents béninois prêts à contribuer au développement national. "
+"Une communauté d'experts engagés pour 2026-2033."
+msgstr ""
+
+#: .\templates\citizens\talent_list.html:19
+#, fuzzy
+#| msgid "Rejoindre"
+msgid "Rejoindre le réseau"
+msgstr "Join"
+
+#: .\templates\citizens\talent_list.html:32
+#, fuzzy
+#| msgid "Nom, rôle, biographie..."
+msgid "Nom, rôle, biographie ou mots-clés..."
 msgstr "Name, role, biography..."
 
-#: .\templates\citizens\talent_list.html:23
-msgid "Ville / Pays"
-msgstr "City / Country"
+#: .\templates\citizens\talent_list.html:43
+msgid "Localisation (ex: Cotonou, Parakou...)"
+msgstr ""
 
-#: .\templates\citizens\talent_list.html:33
-msgid "Actualiser"
-msgstr "Refresh"
+#: .\templates\citizens\talent_list.html:52
+msgid "Compétence spécifique (ex: Finance, IT...)"
+msgstr ""
 
-#: .\templates\citizens\talent_list.html:42
+#: .\templates\citizens\talent_list.html:57
+#: .\templates\institutions\opportunity_list.html:74
+msgid "Appliquer les filtres"
+msgstr "Apply filters"
+
+#: .\templates\citizens\talent_list.html:66
 msgid "Talents disponibles"
 msgstr "Available talents"
 
-#: .\templates\citizens\talent_list.html:47
+#: .\templates\citizens\talent_list.html:71
 msgid "Trier par"
 msgstr "Sort by"
 
-#: .\templates\citizens\talent_list.html:48
+#: .\templates\citizens\talent_list.html:72
 msgid "Pertinence"
 msgstr "Relevance"
 
-#: .\templates\citizens\talent_list.html:50
+#: .\templates\citizens\talent_list.html:74
 msgid "Nouveauté"
 msgstr "Newest"
 
-#: .\templates\citizens\talent_list.html:66
+#: .\templates\citizens\talent_list.html:94
 msgid "Expert"
 msgstr "Expert"
 
-#: .\templates\citizens\talent_list.html:66
+#: .\templates\citizens\talent_list.html:94
 msgid "Senior"
 msgstr "Senior"
 
-#: .\templates\citizens\talent_list.html:76
+#: .\templates\citizens\talent_list.html:104
 msgid "Consultant Indépendant"
 msgstr "Independent Consultant"
 
-#: .\templates\citizens\talent_list.html:88
+#: .\templates\citizens\talent_list.html:118
 msgid "Voir le profil"
 msgstr "View profile"
 
-#: .\templates\citizens\talent_list.html:97
+#: .\templates\citizens\talent_list.html:127
 msgid "Aucun talent trouvé"
 msgstr "No talents found"
 
-#: .\templates\citizens\talent_list.html:98
+#: .\templates\citizens\talent_list.html:128
 msgid "Essayez d'ajuster vos filtres de recherche."
 msgstr "Try adjusting your search filters."
+
+#: .\templates\citizens\talent_register.html:4
+#, fuzzy
+#| msgid "Expertise & Compétences"
+msgid "Inscription Compétences"
+msgstr "Expertise & Skills"
+
+#: .\templates\citizens\talent_register.html:10
+#, fuzzy
+#| msgid "Rejoindre"
+msgid "Rejoindre le"
+msgstr "Join"
+
+#: .\templates\citizens\talent_register.html:13
+msgid ""
+"Enregistrez vos compétences et mettez votre expertise au service du "
+"développement."
+msgstr ""
+
+#: .\templates\citizens\talent_register.html:27
+msgid "Ajouter une photo portrait"
+msgstr ""
+
+#: .\templates\citizens\talent_register.html:35
+msgid "Modèle simplifié de CV"
+msgstr ""
+
+#: .\templates\citizens\talent_register.html:38
+#, fuzzy
+#| msgid "Biographie professionnelle"
+msgid "Titre professionnel actuel"
+msgstr "Professional biography"
+
+#: .\templates\citizens\talent_register.html:48
+msgid "Biographie & Résumé des compétences"
+msgstr ""
+
+#: .\templates\citizens\talent_register.html:55
+msgid "CV Complet"
+msgstr ""
+
+#: .\templates\citizens\talent_register.html:60
+msgid "Cliquez pour téléverser"
+msgstr ""
+
+#: .\templates\citizens\talent_register.html:60
+msgid "ou glissez un fichier"
+msgstr ""
+
+#: .\templates\citizens\talent_register.html:71
+msgid "Charte d'Éthique & Engagement"
+msgstr ""
+
+#: .\templates\citizens\talent_register.html:83
+msgid "J'ai lu et j'accepte la charte d'éthique du réseau PCC."
+msgstr ""
+
+#: .\templates\citizens\talent_register.html:89
+msgid "Soumettre mon profil pour validation (1 clic)"
+msgstr ""
+
+#: .\templates\citizens\talent_register.html:92
+msgid ""
+"Votre profil sera vérifié par notre équipe avant d'être intégré "
+"automatiquement à la base de données consultable."
+msgstr ""
+
+#: .\templates\community\forum_home.html:4
+msgid "Communauté et Forum"
+msgstr ""
+
+#: .\templates\community\forum_home.html:11
+msgid "Espace Communautaire"
+msgstr ""
+
+#: .\templates\community\forum_home.html:12
+msgid "Échangez avec d'autres experts par domaine de compétence."
+msgstr ""
+
+#: .\templates\community\forum_home.html:38
+msgid "Discussions Récentes"
+msgstr ""
+
+#: .\templates\community\forum_home.html:44
+#: .\templates\core\search_results.html:51
+msgid "Par"
+msgstr ""
+
+#: .\templates\community\forum_home.html:48
+msgid "Aucune discussion récente."
+msgstr ""
+
+#: .\templates\community\forum_home.html:54
+msgid "Faites entendre votre voix"
+msgstr ""
+
+#: .\templates\community\forum_home.html:55
+msgid ""
+"Posez des questions, partagez vos retours d'expérience ou proposez de "
+"nouvelles initiatives."
+msgstr ""
+
+#: .\templates\community\thread_detail.html:11
+msgid "Toutes les discussions en"
+msgstr ""
+
+#: .\templates\community\thread_detail.html:25
+msgid "Auteur de la discussion"
+msgstr ""
+
+#: .\templates\community\thread_detail.html:44
+#: .\templates\community\thread_list.html:53
+msgid "Réponses"
+msgstr ""
+
+#: .\templates\community\thread_detail.html:65
+msgid "Soyez le premier à répondre à cette discussion !"
+msgstr ""
+
+#: .\templates\community\thread_detail.html:72
+msgid "Ajouter une réponse"
+msgstr ""
+
+#: .\templates\community\thread_detail.html:76
+msgid "Contribuez au débat..."
+msgstr ""
+
+#: .\templates\community\thread_detail.html:80
+msgid "Envoyer ma réponse"
+msgstr ""
+
+#: .\templates\community\thread_form.html:4
+#: .\templates\community\thread_list.html:25
+msgid "Nouvelle Discussion"
+msgstr ""
+
+#: .\templates\community\thread_form.html:11
+msgid "Annuler et retourner au forum"
+msgstr ""
+
+#: .\templates\community\thread_form.html:13
+msgid "Lancer un Débat"
+msgstr ""
+
+#: .\templates\community\thread_form.html:22
+msgid "Titre de la discussion"
+msgstr ""
+
+#: .\templates\community\thread_form.html:23
+msgid "Quel est votre sujet ?"
+msgstr ""
+
+#: .\templates\community\thread_form.html:27
+msgid "Votre Message"
+msgstr ""
+
+#: .\templates\community\thread_form.html:28
+msgid "Détaillez votre pensée, posez vos questions..."
+msgstr ""
+
+#: .\templates\community\thread_form.html:33
+msgid "Publier la Discussion"
+msgstr ""
+
+#: .\templates\community\thread_form.html:35
+msgid ""
+"Votre contribution sera visible par tous les membres certifiés de la "
+"plateforme."
+msgstr ""
+
+#: .\templates\community\thread_list.html:12
+msgid "Tout le forum"
+msgstr ""
+
+#: .\templates\community\thread_list.html:20
+msgid "Discussions en cours"
+msgstr ""
+
+#: .\templates\community\thread_list.html:44
+msgid "Initié par"
+msgstr ""
+
+#: .\templates\community\thread_list.html:62
+#, fuzzy
+#| msgid "Pas encore de compte ?"
+msgid "Pas encore de discussion ici."
+msgstr "Don't have an account?"
+
+#: .\templates\community\thread_list.html:63
+msgid "Soyez le premier à lancer le débat !"
+msgstr ""
+
+#: .\templates\content\about.html:4
+msgid "À Propos de la PCC"
+msgstr ""
+
+#: .\templates\content\about.html:21
+msgid "Qui sommes-nous ?"
+msgstr ""
+
+#: .\templates\content\biography.html:4
+msgid "Qui est Romuald WADAGNI ?"
+msgstr ""
+
+#: .\templates\content\biography.html:31
+msgid "Portrait & Parcours"
+msgstr ""
+
+#: .\templates\content\biography.html:40
+msgid ""
+"L'avenir de notre nation ne se décrète pas, il se construit avec audace, "
+"méthode et une volonté inébranlable de ne laisser personne au bord du chemin."
+msgstr ""
+
+#: .\templates\content\contributions.html:4
+msgid "Contributions & Sponsoring"
+msgstr ""
+
+#: .\templates\content\contributions.html:12
+msgid "Ensemble, Bâtissons l'Avenir"
+msgstr ""
+
+#: .\templates\content\contributions.html:15
+msgid "Vos Idées & Votre"
+msgstr ""
+
+#: .\templates\content\contributions.html:15
+msgid "Soutien"
+msgstr ""
+
+#: .\templates\content\contributions.html:18
+msgid ""
+"Que ce soit par vos suggestions innovantes ou votre soutien financier, "
+"chaque contribution compte pour la réalisation du projet de société "
+"2026-2033."
+msgstr ""
+
+#: .\templates\content\contributions.html:29
+msgid "Boîte à Suggestions"
+msgstr ""
+
+#: .\templates\content\contributions.html:32
+msgid ""
+"Avez-vous une proposition pour améliorer notre plateforme ou enrichir notre "
+"programme ? N'hésitez pas à nous la soumettre."
+msgstr ""
+
+#: .\templates\content\contributions.html:39
+msgid "Nom (Optionnel)"
+msgstr ""
+
+#: .\templates\content\contributions.html:49
+msgid "Thématique"
+msgstr ""
+
+#: .\templates\content\contributions.html:59
+msgid "Votre Suggestion"
+msgstr ""
+
+#: .\templates\content\contributions.html:64
+msgid "Soumettre ma proposition"
+msgstr ""
+
+#: .\templates\content\contributions.html:73
+msgid "Soutenir la Dynamique"
+msgstr ""
+
+#: .\templates\content\contributions.html:76
+msgid ""
+"Vos contributions financières et dons en nature sont essentiels pour mener à "
+"bien nos actions sur le terrain."
+msgstr ""
+
+#: .\templates\content\contributions.html:89
+#: .\templates\content\contributions.html:102
+#: .\templates\content\contributions.html:115
+#: .\templates\content\contributions.html:128
+msgid "Numéro de compte"
+msgstr ""
+
+#: .\templates\content\contributions.html:139
+msgid "Dons en Nature & Partenariats"
+msgstr ""
+
+#: .\templates\content\contributions.html:140
+msgid ""
+"Pour tout autre type de contribution, veuillez contacter la coordination."
+msgstr ""
+
+#: .\templates\content\contributions.html:143
+#: .\templates\content\programme_societe.html:183
+#, fuzzy
+#| msgid "Contacter"
+msgid "Nous Contacter"
+msgstr "Contact"
+
+#: .\templates\content\course_detail.html:13
+msgid "Chapitres"
+msgstr ""
+
+#: .\templates\content\course_detail.html:16
+#, fuzzy
+#| msgid "Certificat"
+msgid "Certification incluse"
+msgstr "Certificate"
+
+#: .\templates\content\course_detail.html:37
+msgid "Contenu Textuel Uniquement"
+msgstr ""
+
+#: .\templates\content\course_detail.html:51
+msgid "Ressources à télécharger"
+msgstr ""
+
+#: .\templates\content\course_detail.html:69
+msgid "Le contenu arrive bientôt..."
+msgstr ""
+
+#: .\templates\content\course_detail.html:79
+msgid "Contenu de la formation"
+msgstr ""
+
+#: .\templates\content\course_detail.html:104
+msgid "Un forum dédié est disponible pour poser vos questions à l'instructeur."
+msgstr ""
+
+#: .\templates\content\course_detail.html:106
+msgid "Aller au Forum"
+msgstr ""
+
+#: .\templates\content\course_list.html:4
+msgid "Formations et MOOCs"
+msgstr ""
+
+#: .\templates\content\course_list.html:11
+msgid "Développez votre Potentiel"
+msgstr ""
+
+#: .\templates\content\course_list.html:14
+msgid ""
+"Accédez à des parcours de formation structurés pour renforcer vos "
+"compétences techniques et professionnelles."
+msgstr ""
+
+#: .\templates\content\course_list.html:30
+#, fuzzy
+#| msgid "Voir le profil"
+msgid "Voir le cours"
+msgstr "View profile"
+
+#: .\templates\content\course_list.html:58
+#, fuzzy
+#| msgid "Revenez bientôt pour de nouveaux projets."
+msgid "Bientôt de nouveaux cours..."
+msgstr "Come back soon for new projects."
+
+#: .\templates\content\event_detail.html:38
+#, fuzzy
+#| msgid "S'inscrire à l'événement"
+msgid "À propos de l'événement"
+msgstr "Register for event"
+
+#: .\templates\content\event_detail.html:48
+#, fuzzy
+#| msgid "S'inscrire à l'événement"
+msgid "S'inscrire à cet événement"
+msgstr "Register for event"
+
+#: .\templates\content\event_detail.html:55
+#, fuzzy
+#| msgid "Profil complet"
+msgid "Nom Complet"
+msgstr "Full profile"
+
+#: .\templates\content\event_detail.html:65
+msgid "Numéro de téléphone"
+msgstr ""
+
+#: .\templates\content\event_detail.html:70
+msgid "Confirmer mon inscription"
+msgstr ""
+
+#: .\templates\content\event_detail.html:79
+#, fuzzy
+#| msgid "Comment ça marche"
+msgid "Comment participer ?"
+msgstr "How it works"
+
+#: .\templates\content\event_detail.html:81
+msgid ""
+"Les inscriptions pour cette session sont actuellement ouvertes. Ne manquez "
+"pas cette opportunité unique de renforcer vos compétences."
+msgstr ""
+
+#: .\templates\content\event_detail.html:85
+#, fuzzy
+#| msgid "S'inscrire gratuitement"
+msgid "S'inscrire maintenant"
+msgstr "Sign up for free"
+
+#: .\templates\content\event_detail.html:88
+#, fuzzy
+#| msgid "Retour à l'accueil"
+msgid "Retour à la liste"
+msgstr "Back to Home"
+
+#: .\templates\content\event_detail.html:98
+msgid "Détails Logistiques"
+msgstr ""
+
+#: .\templates\content\event_detail.html:107
+msgid "Date & Heure"
+msgstr ""
+
+#: .\templates\content\event_detail.html:118
+#: .\templates\emails\event_registration_confirmation.html:13
+msgid "Lieu"
+msgstr ""
+
+#: .\templates\content\event_detail.html:136
+msgid ""
+"Pour toute question spécifique concernant cet événement, veuillez contacter "
+"notre équipe de coordination."
+msgstr ""
+
+#: .\templates\content\event_detail.html:144
+#: .\templates\content\post_detail.html:49
+#: .\templates\institutions\opportunity_detail.html:127
+msgid "Partager"
+msgstr "Share"
 
 #: .\templates\content\event_list.html:4
 msgid "Événements & Masterclasses"
 msgstr "Events & Masterclasses"
 
-#: .\templates\content\event_list.html:10
-msgid "Forums &"
-msgstr "Forums &"
-
-#: .\templates\content\event_list.html:10
-msgid "Masterclasses"
-msgstr "Masterclasses"
-
-#: .\templates\content\event_list.html:13
-msgid ""
-"Rejoignez nos sessions exclusives de formation expert et nos forums de "
-"discussion thématiques pour booster votre impact."
+#: .\templates\content\event_list.html:11
+msgid "Bandeau d\\"
 msgstr ""
 
-#: .\templates\content\event_list.html:48
+#: .\templates\content\event_list.html:12
+msgid "Ne manquez pas notre prochain événement majeur le 04 Avril !"
+msgstr ""
+
+#: .\templates\content\event_list.html:13
+msgid "Inscriptions ouvertes pour les Master Classes."
+msgstr ""
+
+#: .\templates\content\event_list.html:30
+#, fuzzy
+#| msgid "Événement"
+msgid "Événement Principal"
+msgstr "Event"
+
+#: .\templates\content\event_list.html:33
+msgid "FORUM"
+msgstr ""
+
+#: .\templates\content\event_list.html:45
+msgid "Rechercher une conférence, masterclass..."
+msgstr ""
+
+#: .\templates\content\event_list.html:50
+msgid ""
+"Préparez-vous à une journée de conférences, d'échanges et de networking "
+"intensif. Réservez votre place dès maintenant !"
+msgstr ""
+
+#: .\templates\content\event_list.html:56
 msgid "S'inscrire à l'événement"
 msgstr "Register for event"
 
-#: .\templates\content\event_list.html:55
-msgid "Aucun événement prévu pour le moment."
-msgstr "No events scheduled at this time."
+#: .\templates\content\event_list.html:62
+#, fuzzy
+#| msgid "S'inscrire à l'événement"
+msgid "S'inscrire à la plateforme"
+msgstr "Register for event"
+
+#: .\templates\content\event_list.html:68
+#, fuzzy
+#| msgid "Voir le profil"
+msgid "Voir le programme"
+msgstr "View profile"
+
+#: .\templates\content\event_list.html:80
+msgid "Nos Master"
+msgstr ""
+
+#: .\templates\content\event_list.html:83
+msgid "Autres Événanimées par nos experts reconnus."
+msgstr ""
+
+#: .\templates\content\event_list.html:99 .\templates\content\privacy.html:130
+#: .\templates\core\home.html:283
+msgid "En savoir plus"
+msgstr "Learn more"
+
+#: .\templates\content\event_list.html:103
+#, fuzzy
+#| msgid "Aucun article publié pour le moment."
+msgid "Aucune Master Class annoncée pour le moment."
+msgstr "No articles published yet."
+
+#: .\templates\content\event_list.html:116
+msgid "Chronogramme de déroulement"
+msgstr ""
+
+#: .\templates\content\event_list.html:231
+#, fuzzy
+#| msgid "Événements"
+msgid "Autres Événements à Venir"
+msgstr "Events"
+
+#: .\templates\content\event_list.html:232 .\templates\core\home.html:119
+msgid "Voir tout"
+msgstr "See all"
+
+#: .\templates\content\event_list.html:271
+msgid "Détails"
+msgstr ""
+
+#: .\templates\content\gallery.html:4
+msgid "Galerie d'Images"
+msgstr ""
+
+#: .\templates\content\gallery.html:10
+msgid "Officielle"
+msgstr ""
+
+#: .\templates\content\gallery.html:13
+msgid ""
+"Revivez les moments forts de nos activités, forums et master classes en "
+"images."
+msgstr ""
+
+#: .\templates\content\gallery.html:24
+msgid "Rechercher une photo, un événement..."
+msgstr ""
+
+#: .\templates\content\gallery.html:48
+#, fuzzy
+#| msgid "Aucun article publié pour le moment."
+msgid "Aucune image publiée pour le moment."
+msgstr "No articles published yet."
 
 #: .\templates\content\post_detail.html:21
 msgid "Retour au blog"
 msgstr "Back to blog"
-
-#: .\templates\content\post_detail.html:49
-#: .\templates\institutions\opportunity_detail.html:123
-msgid "Partager"
-msgstr "Share"
 
 #: .\templates\content\post_detail.html:63
 msgid "Sauvegarder"
@@ -586,7 +2025,7 @@ msgstr ""
 msgid "À la une"
 msgstr "Featured"
 
-#: .\templates\content\post_list.html:36 .\templates\core\home.html:175
+#: .\templates\content\post_list.html:36
 msgid "Lire l'article"
 msgstr "Read article"
 
@@ -594,196 +2033,875 @@ msgstr "Read article"
 msgid "Aucun article publié pour le moment."
 msgstr "No articles published yet."
 
-#: .\templates\core\home.html:14
+#: .\templates\content\privacy.html:4
+#, fuzzy
+#| msgid "Confidentialité"
+msgid "Confidentialité & Cookies"
+msgstr "Privacy"
+
+#: .\templates\content\privacy.html:23
+msgid "Cadre Juridique & Confiance"
+msgstr ""
+
+#: .\templates\content\privacy.html:26
+msgid "Politique de"
+msgstr ""
+
+#: .\templates\content\privacy.html:29
+msgid ""
+"PCC s'engage à protéger vos données personnelles et à assurer la "
+"transparence totale sur l'utilisation de vos informations."
+msgstr ""
+
+#: .\templates\content\privacy.html:37
+#, fuzzy
+#| msgid "Confidentialité"
+msgid "1. Confidentialité"
+msgstr "Privacy"
+
+#: .\templates\content\privacy.html:41
+#, fuzzy
+#| msgid "Cookies"
+msgid "2. Cookies"
+msgstr "Cookies"
+
+#: .\templates\content\privacy.html:60
+msgid "Protection de vos données"
+msgstr ""
+
+#: .\templates\content\privacy.html:66
+msgid "Quelles données collectons-nous ?"
+msgstr ""
+
+#: .\templates\content\privacy.html:68
+msgid ""
+"Nous collectons les informations que vous nous fournissez lors de votre "
+"inscription : nom, prénom, email, profession, expériences professionnelles "
+"et documents (CV). Ces données sont essentielles pour vous proposer les "
+"meilleures opportunités."
+msgstr ""
+
+#: .\templates\content\privacy.html:74
+msgid "Comment utilisons-nous vos données ?"
+msgstr ""
+
+#: .\templates\content\privacy.html:76
+msgid "Vos données sont utilisées exclusivement pour :"
+msgstr ""
+
+#: .\templates\content\privacy.html:78
+msgid "Faciliter votre recrutement par les institutions publiques et privées."
+msgstr ""
+
+#: .\templates\content\privacy.html:80
+msgid "Personnaliser vos suggestions d'opportunités via notre IA."
+msgstr ""
+
+#: .\templates\content\privacy.html:81
+msgid "Vous envoyer des notifications cruciales sur votre compte."
+msgstr ""
+
+#: .\templates\content\privacy.html:87
+msgid "Sécurité Maximale"
+msgstr ""
+
+#: .\templates\content\privacy.html:88
+msgid ""
+"Conformément à la législation en vigueur au Bénin sur la protection des "
+"données à caractère personnel, vos informations sont stockées de manière "
+"sécurisée et ne sont jamais vendues à des services tiers."
+msgstr ""
+
+#: .\templates\content\privacy.html:107
+msgid "Gestion des Cookies"
+msgstr ""
+
+#: .\templates\content\privacy.html:110
+msgid ""
+"Les cookies sont de petits fichiers texte déposés sur votre appareil pour "
+"améliorer votre navigation sur PCC."
+msgstr ""
+
+#: .\templates\content\privacy.html:114
+msgid "Cookies Essentiels"
+msgstr ""
+
+#: .\templates\content\privacy.html:115
+msgid ""
+"Indispensables pour rester connecté à votre session et naviguer en toute "
+"sécurité."
+msgstr ""
+
+#: .\templates\content\privacy.html:118
+msgid "Cookies Analytiques"
+msgstr ""
+
+#: .\templates\content\privacy.html:119
+msgid ""
+"Nous permettent de comprendre comment vous utilisez le site pour l'améliorer "
+"constamment."
+msgstr ""
+
+#: .\templates\content\privacy.html:126
+msgid "Accepter tous les cookies"
+msgstr ""
+
+#: .\templates\content\privacy.html:142
+msgid "Une question sur vos droits ?"
+msgstr ""
+
+#: .\templates\content\privacy.html:144
+msgid "Contactez directement notre service de protection des données."
+msgstr ""
+
+#: .\templates\content\programme_societe.html:4
+msgid "Programme de Société"
+msgstr ""
+
+#: .\templates\content\programme_societe.html:76
+msgid "Version PDF Complète"
+msgstr ""
+
+#: .\templates\content\programme_societe.html:77
+#, fuzzy
+#| msgid "Documents"
+msgid "Document de 68 pages"
+msgstr "Documents"
+
+#: .\templates\content\programme_societe.html:82
+msgid "Télécharger le programme"
+msgstr ""
+
+#: .\templates\content\programme_societe.html:115
+msgid "Médiathèque & Interventions"
+msgstr ""
+
+#: .\templates\content\programme_societe.html:184
+msgid "Envoyez-nous vos propositions et suggestions."
+msgstr ""
+
+#: .\templates\content\programme_societe.html:192
+#, fuzzy
+#| msgid "Rejoindre maintenant"
+msgid "Rejoindre la dynamique"
+msgstr "Join now"
+
+#: .\templates\content\programme_societe.html:193
+msgid ""
+"Le programme 2026-2033 requiert l'engagement de tous. Mettez vos compétences "
+"au service de la nation."
+msgstr ""
+
+#: .\templates\content\programme_societe.html:196
+msgid "Je m'engage"
+msgstr ""
+
+#: .\templates\content\video_list.html:4
+#: .\templates\core\search_results.html:79
+msgid "Vidéos & Interventions"
+msgstr ""
+
+#: .\templates\content\video_list.html:14
+msgid "Médiathèque"
+msgstr ""
+
+#: .\templates\content\video_list.html:17
+msgid "Vidéos &"
+msgstr ""
+
+#: .\templates\content\video_list.html:17
+msgid "Interventions"
+msgstr ""
+
+#: .\templates\content\video_list.html:33
+msgid "Rechercher une vidéo, un thème..."
+msgstr ""
+
+#: .\templates\content\video_list.html:90
+#, fuzzy
+#| msgid "Aucune biographie disponible pour le moment."
+msgid "Aucune vidéo disponible pour le moment."
+msgstr "No biography available at this time."
+
+#: .\templates\content\video_list.html:113
+msgid "S'abonner sur YouTube"
+msgstr ""
+
+#: .\templates\core\contact.html:4
+#, fuzzy
+#| msgid "Contacter"
+msgid "Contactez-nous"
+msgstr "Contact"
+
+#: .\templates\core\contact.html:13
+msgid "Support & Contact"
+msgstr ""
+
+#: .\templates\core\contact.html:16
+msgid "Parlons du"
+msgstr ""
+
+#: .\templates\core\contact.html:19
+msgid ""
+"Vous avez une question, une suggestion ou souhaitez rejoindre l'initiative ? "
+"Notre équipe citoyenne est à votre écoute."
+msgstr ""
+
+#: .\templates\core\contact.html:33
+msgid "Siège Social"
+msgstr ""
+
+#: .\templates\core\contact.html:52
+msgid "Discutons en direct"
+msgstr ""
+
+#: .\templates\core\contact.html:53
+msgid ""
+"Rejoignez notre communauté sur les réseaux sociaux pour des échanges rapides."
+msgstr ""
+
+#: .\templates\core\contact.html:65
+msgid "Envoyez un message"
+msgstr ""
+
+#: .\templates\core\contact.html:71
+msgid "Prénom & Nom"
+msgstr ""
+
+#: .\templates\core\contact.html:81
+msgid "Sujet"
+msgstr ""
+
+#: .\templates\core\contact.html:86
+msgid "Votre message"
+msgstr ""
+
+#: .\templates\core\contact.html:91
+msgid "Envoyer le message"
+msgstr ""
+
+#: .\templates\core\home.html:16
 msgid "Plateforme Citoyenne de Compétences"
 msgstr "Citizen Skills Platform"
 
-#: .\templates\core\home.html:17
+#: .\templates\core\home.html:20
 msgid "Propulsez votre"
 msgstr "Propel your"
 
-#: .\templates\core\home.html:18
+#: .\templates\core\home.html:21
 msgid "expertise"
 msgstr "expertise"
 
-#: .\templates\core\home.html:18
+#: .\templates\core\home.html:21
 msgid "béninoise"
 msgstr "from Benin"
 
-#: .\templates\core\home.html:21
+#: .\templates\core\home.html:25
 msgid ""
-"La vitrine digitale des talents pour bâtir l'avenir du Bénin. Connectez-vous "
-"aux projets stratégiques de la nation."
+"Unir les compétences et les talents. Inspirer le changement. Bâtir l'avenir"
 msgstr ""
 
-#: .\templates\core\home.html:25
+#: .\templates\core\home.html:35
+msgid "Rechercher un talent, un expert ou un projet..."
+msgstr ""
+
+#: .\templates\core\home.html:39
+#, fuzzy
+#| msgid "Ouvert"
+msgid "Trouver"
+msgstr "Open"
+
+#: .\templates\core\home.html:48
 msgid "S'inscrire gratuitement"
 msgstr "Sign up for free"
 
-#: .\templates\core\home.html:29
+#: .\templates\core\home.html:53
 msgid "Découvrir les talents"
 msgstr "Discover talents"
 
-#: .\templates\core\home.html:40
+#: .\templates\core\home.html:69
 msgid "Experts déjà inscrits"
 msgstr "Experts already registered"
 
-#: .\templates\core\home.html:55
-msgid "Satisfaction Client"
+#: .\templates\core\home.html:88
+#, fuzzy
+#| msgid "Satisfaction Client"
+msgid "Satisfaction"
 msgstr "Client Satisfaction"
 
-#: .\templates\core\home.html:66
+#: .\templates\core\home.html:100
 msgid "Profils vérifiés par les instances nationales"
 msgstr "Profiles verified by national authorities"
 
-#: .\templates\core\home.html:79
+#: .\templates\core\home.html:113
 msgid "Impact Direct"
 msgstr "Direct Impact"
 
-#: .\templates\core\home.html:80
+#: .\templates\core\home.html:114
 msgid "Dernières Opportunités Nationales"
 msgstr "Latest National Opportunities"
 
-#: .\templates\core\home.html:81
+#: .\templates\core\home.html:115
 msgid ""
 "Répondez aux appels à projets stratégiques du gouvernement et des "
 "institutions."
 msgstr ""
 
-#: .\templates\core\home.html:84
-msgid "Voir tout"
-msgstr "See all"
-
-#: .\templates\core\home.html:109
+#: .\templates\core\home.html:148
 msgid "Chargement des opportunités..."
 msgstr "Loading opportunities..."
 
-#: .\templates\core\home.html:119
+#: .\templates\core\home.html:159
 msgid "Élite Béninoise"
 msgstr "Beninese Elite"
 
-#: .\templates\core\home.html:120
+#: .\templates\core\home.html:160
 msgid "Portraits d'Experts"
 msgstr "Expert Portraits"
 
-#: .\templates\core\home.html:133
+#: .\templates\core\home.html:179
 msgid "Consultant"
 msgstr "Consultant"
 
-#: .\templates\core\home.html:140
+#: .\templates\core\home.html:190
 msgid "Profil complet"
 msgstr "Full profile"
 
-#: .\templates\core\home.html:155
-msgid "L'Actualité du Talent"
-msgstr "Talent News"
+#: .\templates\core\home.html:207
+msgid "Impact Géographique"
+msgstr ""
 
-#: .\templates\core\home.html:157
-msgid "Toute l'actualité"
-msgstr "All news"
+#: .\templates\core\home.html:208
+msgid "Où sont nos experts ?"
+msgstr ""
 
-#: .\templates\core\home.html:182
-msgid "News"
-msgstr "News"
+#: .\templates\core\home.html:209
+msgid ""
+"Visualisez la répartition des compétences citoyennes sur tout le territoire "
+"national."
+msgstr ""
 
-#: .\templates\core\home.html:201
+#: .\templates\core\home.html:274
 msgid "Prêt à contribuer à l'essor"
 msgstr "Ready to contribute to the growth"
 
-#: .\templates\core\home.html:201
+#: .\templates\core\home.html:274
 msgid "du Bénin ?"
 msgstr "of Benin?"
 
-#: .\templates\core\home.html:205
+#: .\templates\core\home.html:279
 msgid "Rejoindre maintenant"
 msgstr "Join now"
 
-#: .\templates\core\home.html:208
-msgid "En savoir plus"
-msgstr "Learn more"
+#: .\templates\core\notifications.html:4
+#, fuzzy
+#| msgid "Enregistrer les modifications"
+msgid "Centre de Notifications"
+msgstr "Save changes"
+
+#: .\templates\core\notifications.html:13
+msgid "alertes"
+msgstr ""
+
+#: .\templates\core\notifications.html:26
+#, fuzzy
+#| msgid "Consultant"
+msgid "Consulter"
+msgstr "Consultant"
+
+#: .\templates\core\notifications.html:35
+#, fuzzy
+#| msgid "Aucun événement prévu pour le moment."
+msgid "Rien à signaler pour le moment."
+msgstr "No events scheduled at this time."
+
+#: .\templates\core\notifications.html:36
+msgid ""
+"Nous vous avertirons dès qu'une nouvelle opportunité ou interaction vous "
+"concernera."
+msgstr ""
+
+#: .\templates\core\search_results.html:4
+msgid "Résultats de recherche"
+msgstr ""
+
+#: .\templates\core\search_results.html:10
+msgid "Recherche pour"
+msgstr ""
+
+#: .\templates\core\search_results.html:12
+#, fuzzy
+#| msgid "Aucun talent trouvé"
+msgid "résultats trouvés"
+msgstr "No talents found"
+
+#: .\templates\core\search_results.html:21
+#, fuzzy
+#| msgid "Explorer les Talents"
+msgid "Experts & Talents"
+msgstr "Explore Talents"
+
+#: .\templates\core\search_results.html:37
+#, fuzzy
+#| msgid "Aucun talent trouvé"
+msgid "Aucun talent trouvé."
+msgstr "No talents found"
+
+#: .\templates\core\search_results.html:54
+#, fuzzy
+#| msgid "Aucune opportunité disponible"
+msgid "Aucune opportunité trouvée."
+msgstr "No opportunities available"
+
+#: .\templates\core\search_results.html:71
+#, fuzzy
+#| msgid "Aucun talent trouvé"
+msgid "Aucun événement trouvé."
+msgstr "No talents found"
+
+#: .\templates\core\search_results.html:88
+#, fuzzy
+#| msgid "Aucun talent trouvé"
+msgid "Aucune vidéo trouvée."
+msgstr "No talents found"
+
+#: .\templates\core\search_results.html:105
+#, fuzzy
+#| msgid "Aucun talent trouvé"
+msgid "Aucune formation trouvée."
+msgstr "No talents found"
+
+#: .\templates\core\search_results.html:114
+msgid "Affiner votre recherche"
+msgstr ""
+
+#: .\templates\emails\event_registration_confirmation.html:5
+#, fuzzy
+#| msgid "S'inscrire à l'événement"
+msgid "Confirmation d'inscription à l'événement"
+msgstr "Register for event"
+
+#: .\templates\emails\event_registration_confirmation.html:6
+msgid "Bonjour"
+msgstr ""
+
+#: .\templates\emails\event_registration_confirmation.html:7
+msgid ""
+"Nous vous confirmons votre inscription avec succès à l'événement suivant :"
+msgstr ""
+
+#: .\templates\emails\event_registration_confirmation.html:11
+#: .\templates\evaluations\evaluation_result.html:37
+msgid "Date"
+msgstr ""
+
+#: .\templates\emails\event_registration_confirmation.html:12
+msgid "Heure"
+msgstr ""
+
+#: .\templates\emails\event_registration_confirmation.html:16
+msgid ""
+"Votre participation a bien été enregistrée. Nous avons hâte de vous "
+"retrouver pour ce moment d'échange et de partage."
+msgstr ""
+
+#: .\templates\emails\event_registration_confirmation.html:19
+#, fuzzy
+#| msgid "S'inscrire à l'événement"
+msgid "Voir les détails de l'événement"
+msgstr "Register for event"
+
+#: .\templates\emails\event_registration_confirmation.html:22
+msgid "Cordialement,"
+msgstr ""
+
+#: .\templates\emails\event_registration_confirmation.html:22
+#: .\templates\emails\password_reset_email.html:11
+#: .\templates\emails\profile_updated_confirmation.html:42
+#: .\templates\emails\profile_validated.html:39
+msgid "L'équipe PCC"
+msgstr ""
+
+#: .\templates\emails\newsletter_welcome.html:5
+msgid "Bienvenue dans la newsletter PCC !"
+msgstr ""
+
+#: .\templates\emails\newsletter_welcome.html:6
+msgid ""
+"Merci de vous être inscrit. Vous recevrez désormais les dernières "
+"opportunités et actualités de la Plateforme Citoyenne des Compétences."
+msgstr ""
+
+#: .\templates\emails\newsletter_welcome.html:7
+msgid "Ensemble, bâtissons l'avenir du Bénin."
+msgstr ""
+
+#: .\templates\emails\password_reset_email.html:2
+msgid ""
+"Quelqu'un a demandé une réinitialisation du mot de passe pour le compte "
+"associé à cet email sur le site"
+msgstr ""
+
+#: .\templates\emails\password_reset_email.html:5
+msgid "Si c'était vous, vous pouvez configurer un nouveau mot de passe ici :"
+msgstr ""
+
+#: .\templates\emails\password_reset_email.html:9
+msgid ""
+"Si vous n'avez pas demandé de réinitialisation, veuillez ignorer ce message."
+msgstr ""
+
+#: .\templates\emails\profile_updated_confirmation.html:7
+#, fuzzy
+#| msgid "Profils Citoyens"
+msgid "Profil Citoyen Mis à Jour"
+msgstr "Citizen Profiles"
+
+#: .\templates\emails\profile_updated_confirmation.html:11
+#, python-format
+msgid ""
+"\n"
+"        Bonjour %(name)s,\n"
+"        "
+msgstr ""
+
+#: .\templates\emails\profile_updated_confirmation.html:17
+msgid ""
+"Félicitations ! Votre profil citoyen sur la Plateforme Citoyenne des "
+"Compétences (PCC) a été mis à jour avec succès."
+msgstr ""
+
+#: .\templates\emails\profile_updated_confirmation.html:21
+#, fuzzy
+#| msgid "Enregistrer les modifications"
+msgid "Résumé des modifications"
+msgstr "Save changes"
+
+#: .\templates\emails\profile_updated_confirmation.html:23
+#, fuzzy
+#| msgid "Toute l'actualité"
+msgid "Titre actuel"
+msgstr "All news"
+
+#: .\templates\emails\profile_updated_confirmation.html:24
+#, fuzzy
+#| msgid "Talents"
+msgid "ans"
+msgstr "Talents"
+
+#: .\templates\emails\profile_updated_confirmation.html:30
+msgid ""
+"Note : Conformément à nos protocoles de sécurité, votre profil a été "
+"temporairement placé en attente de re-validation par nos services pour "
+"garantir l'intégrité du réseau des talents. Il redeviendra public dès "
+"confirmation."
+msgstr ""
+
+#: .\templates\emails\profile_updated_confirmation.html:36
+#, fuzzy
+#| msgid "Modifier mon profil"
+msgid "Consulter mon profil"
+msgstr "Edit my profile"
+
+#: .\templates\emails\profile_updated_confirmation.html:41
+msgid "Merci de votre engagement pour le développement du Bénin."
+msgstr ""
+
+#: .\templates\emails\profile_validated.html:7
+msgid "Votre Profil PCC a été Validé !"
+msgstr ""
+
+#: .\templates\emails\profile_validated.html:11
+#, python-format
+msgid ""
+"\n"
+"        Félicitations %(name)s,\n"
+"        "
+msgstr ""
+
+#: .\templates\emails\profile_validated.html:17
+msgid ""
+"C'est avec plaisir que nous vous informons que votre profil citoyen a été "
+"officiellement validé par l'administration de la Plateforme Citoyenne des "
+"Compétences (PCC)."
+msgstr ""
+
+#: .\templates\emails\profile_validated.html:22
+msgid ""
+"Vous pouvez maintenant accéder à toutes les fonctionnalités de votre espace "
+"et être sollicité par les institutions partenaires pour des projets "
+"stratégiques."
+msgstr ""
+
+#: .\templates\emails\profile_validated.html:27
+msgid ""
+"Pour maximiser vos chances d'être sélectionné, nous vous invitons vivement à "
+"vous connecter pour compléter l'intégralité de vos informations (expériences "
+"détaillées, diplômes, compétences spécifiques)."
+msgstr ""
+
+#: .\templates\emails\profile_validated.html:33
+msgid "Accéder à mon espace"
+msgstr ""
+
+#: .\templates\emails\profile_validated.html:38
+msgid "Bienvenue officiellement dans le réseau des talents du Bénin !"
+msgstr ""
 
 #: .\templates\errors\base_error.html:1
 msgid "Retour Ã  l'accueil"
+msgstr ""
+
+#: .\templates\evaluations\evaluation_list.html:4
+#, fuzzy
+#| msgid "Plateforme Citoyenne de Compétences"
+msgid "évaluations des Compétences"
+msgstr "Citizen Skills Platform"
+
+#: .\templates\evaluations\evaluation_list.html:10
+#, fuzzy
+#| msgid "Expertise & Compétences"
+msgid "Certifiez vos Compétences"
+msgstr "Expertise & Skills"
+
+#: .\templates\evaluations\evaluation_list.html:12
+msgid ""
+"Passez nos tests d'évaluation pour valider votre expertise et obtenir des "
+"badges de reconnaissance sur votre profil."
+msgstr ""
+
+#: .\templates\evaluations\evaluation_list.html:31
+msgid "Validez vos connaissances en"
+msgstr ""
+
+#: .\templates\evaluations\evaluation_list.html:32
+msgid "Score requis"
+msgstr ""
+
+#: .\templates\evaluations\evaluation_list.html:39
+msgid "Réussi"
+msgstr ""
+
+#: .\templates\evaluations\evaluation_list.html:42
+#, fuzzy
+#| msgid "Mot de passe"
+msgid "Repasser"
+msgstr "Password"
+
+#: .\templates\evaluations\evaluation_list.html:46
+msgid "Commencer le test"
+msgstr ""
+
+#: .\templates\evaluations\evaluation_list.html:57
+#, fuzzy
+#| msgid "Aucune biographie disponible pour le moment."
+msgid "Aucune évaluation disponible pour le moment."
+msgstr "No biography available at this time."
+
+#: .\templates\evaluations\evaluation_result.html:4
+#, fuzzy
+#| msgid "Consultant"
+msgid "Résultat"
+msgstr "Consultant"
+
+#: .\templates\evaluations\evaluation_result.html:14
+msgid "Félicitations !"
+msgstr ""
+
+#: .\templates\evaluations\evaluation_result.html:16
+msgid "Vous avez réussi l'évaluation"
+msgstr ""
+
+#: .\templates\evaluations\evaluation_result.html:17
+#, fuzzy
+#| msgid "expertise"
+msgid "Votre expertise en"
+msgstr "expertise"
+
+#: .\templates\evaluations\evaluation_result.html:17
+msgid "est maintenant certifiée."
+msgstr ""
+
+#: .\templates\evaluations\evaluation_result.html:23
+msgid "Presque !"
+msgstr ""
+
+#: .\templates\evaluations\evaluation_result.html:25
+msgid "Vous n'avez pas atteint le score minimum de"
+msgstr ""
+
+#: .\templates\evaluations\evaluation_result.html:26
+msgid "N'hésitez pas à réviser et à retenter l'évaluation."
+msgstr ""
+
+#: .\templates\evaluations\evaluation_result.html:33
+msgid "Votre Score"
+msgstr ""
+
+#: .\templates\evaluations\evaluation_result.html:43
+msgid "RÉUSSI"
+msgstr ""
+
+#: .\templates\evaluations\evaluation_result.html:43
+msgid "ÉCHEC"
+msgstr ""
+
+#: .\templates\evaluations\evaluation_result.html:47
+msgid "Badge Obtenu"
+msgstr ""
+
+#: .\templates\evaluations\evaluation_result.html:61
+#, fuzzy
+#| msgid "Retour à l'accueil"
+msgid "Retourner à la liste"
+msgstr "Back to Home"
+
+#: .\templates\evaluations\evaluation_result.html:65
+msgid "Réessayer"
+msgstr ""
+
+#: .\templates\evaluations\evaluation_result.html:69
+msgid "Mon Tableau de Bord"
+msgstr ""
+
+#: .\templates\evaluations\take_evaluation.html:32
+#, fuzzy
+#| msgid "Retour au blog"
+msgid "Retour aux évaluations"
+msgstr "Back to blog"
+
+#: .\templates\evaluations\take_evaluation.html:37
+msgid "Domaine"
+msgstr ""
+
+#: .\templates\evaluations\take_evaluation.html:41
+msgid "Temps Restant"
+msgstr ""
+
+#: .\templates\evaluations\take_evaluation.html:77
+msgid "Précédent"
+msgstr ""
+
+#: .\templates\evaluations\take_evaluation.html:85
+msgid "Suivant"
+msgstr ""
+
+#: .\templates\evaluations\take_evaluation.html:89
+msgid "Terminer et Soumettre"
+msgstr ""
+
+#: .\templates\evaluations\take_evaluation.html:132
+msgid "Veuillez sélectionner une réponse avant de continuer."
+msgstr ""
+
+#: .\templates\evaluations\take_evaluation.html:158
+msgid "Le temps est écoulé ! Vos réponses vont être envoyées."
 msgstr ""
 
 #: .\templates\institutions\opportunity_detail.html:14
 msgid "Appel à expertise"
 msgstr "Call for expertise"
 
-#: .\templates\institutions\opportunity_detail.html:44
+#: .\templates\institutions\opportunity_detail.html:45
 msgid "Description du Projet"
 msgstr "Project Description"
 
-#: .\templates\institutions\opportunity_detail.html:57
+#: .\templates\institutions\opportunity_detail.html:58
 msgid "Exigences & Compétences"
 msgstr "Requirements & Skills"
 
-#: .\templates\institutions\opportunity_detail.html:65
+#: .\templates\institutions\opportunity_detail.html:66
 msgid "Domaines prioritaires"
 msgstr "Priority areas"
 
-#: .\templates\institutions\opportunity_detail.html:90
+#: .\templates\institutions\opportunity_detail.html:91
 msgid "Date limite"
 msgstr "Deadline"
 
-#: .\templates\institutions\opportunity_detail.html:101
+#: .\templates\institutions\opportunity_detail.html:102
 msgid "expertises"
 msgstr "expertise areas"
 
-#: .\templates\institutions\opportunity_detail.html:110
+#: .\templates\institutions\opportunity_detail.html:113
 msgid "Déposer ma candidature"
 msgstr "Submit my application"
 
-#: .\templates\institutions\opportunity_detail.html:114
+#: .\templates\institutions\opportunity_detail.html:118
 msgid "Réservé aux profils citoyens."
 msgstr "Reserved for citizen profiles."
 
-#: .\templates\institutions\opportunity_detail.html:117
+#: .\templates\institutions\opportunity_detail.html:121
 msgid "Se connecter pour postuler"
 msgstr "Log in to apply"
 
-#: .\templates\institutions\opportunity_list.html:9
-msgid "Dernières Opportunités"
-msgstr "Latest Opportunities"
-
 #: .\templates\institutions\opportunity_list.html:10
+msgid "Dernières"
+msgstr ""
+
+#: .\templates\institutions\opportunity_list.html:11
 msgid ""
 "Découvrez les projets stratégiques et appels à expertise des institutions du "
 "Bénin."
 msgstr ""
 
-#: .\templates\institutions\opportunity_list.html:21
+#: .\templates\institutions\opportunity_list.html:25
+msgid "Rechercher un projet..."
+msgstr ""
+
+#: .\templates\institutions\opportunity_list.html:42
 msgid "Filtrer"
 msgstr "Filter"
 
-#: .\templates\institutions\opportunity_list.html:26
+#: .\templates\institutions\opportunity_list.html:47
 msgid "Statut du projet"
 msgstr "Project status"
 
-#: .\templates\institutions\opportunity_list.html:34
-msgid "À venir"
-msgstr "Upcoming"
-
-#: .\templates\institutions\opportunity_list.html:40
-msgid "Appliquer les filtres"
-msgstr "Apply filters"
-
-#: .\templates\institutions\opportunity_list.html:81
+#: .\templates\institutions\opportunity_list.html:117
 msgid "Clôture"
 msgstr "Closing"
 
-#: .\templates\institutions\opportunity_list.html:82
+#: .\templates\institutions\opportunity_list.html:118
 msgid "candidats"
 msgstr "candidates"
 
-#: .\templates\institutions\opportunity_list.html:88
+#: .\templates\institutions\opportunity_list.html:124
 msgid "Consulter & Postuler"
 msgstr "View & Apply"
 
-#: .\templates\institutions\opportunity_list.html:98
+#: .\templates\institutions\opportunity_list.html:134
 msgid "Aucune opportunité disponible"
 msgstr "No opportunities available"
 
-#: .\templates\institutions\opportunity_list.html:99
+#: .\templates\institutions\opportunity_list.html:135
 msgid "Revenez bientôt pour de nouveaux projets."
 msgstr "Come back soon for new projects."
+
+#~ msgid "Blog"
+#~ msgstr "Blog"
+
+#~ msgid "Navigation"
+#~ msgstr "Navigation"
+
+#~ msgid "Talents à la une"
+#~ msgstr "Featured Talents"
+
+#~ msgid "Offres d'emploi"
+#~ msgstr "Job Offers"
+
+#~ msgid "Ville / Pays"
+#~ msgstr "City / Country"
+
+#~ msgid "Actualiser"
+#~ msgstr "Refresh"
+
+#~ msgid "Forums &"
+#~ msgstr "Forums &"
+
+#~ msgid "Masterclasses"
+#~ msgstr "Masterclasses"
+
+#~ msgid "News"
+#~ msgstr "News"
+
+#~ msgid "Dernières Opportunités"
+#~ msgstr "Latest Opportunities"
