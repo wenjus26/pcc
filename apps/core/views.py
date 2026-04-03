@@ -10,8 +10,8 @@ from django.db.models import Q
 from .models import Notification, NewsletterSubscriber
 
 def home(request):
-    latest_opportunities = Opportunity.objects.filter(status='open').order_by('-created_at')[:3]
-    featured_talents = CitizenProfile.objects.filter(is_public=True).order_by('?')[:3]
+    latest_opportunities = Opportunity.objects.filter(status='open').order_by('-created_at')[:6]
+    featured_talents = CitizenProfile.objects.filter(is_public=True).order_by('?')[:6]
     # Handle optional Post model if it exists
     context = {
         'latest_opportunities': latest_opportunities,
