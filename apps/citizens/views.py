@@ -168,3 +168,70 @@ def talent_register(request):
         return redirect('citizens:talent_list')
 
     return render(request, 'citizens/talent_register.html', {'profile': profile})
+
+
+from django.http import HttpResponse
+from .services import generate_excel_template
+
+@login_required # Ou `staff_member_required` idéalement, selon votre système
+def download_template(request):
+    """
+    Génère et télécharge un modèle Excel vierge pour l'import massif d'utilisateurs.
+    """
+    if not request.user.is_staff:
+        from django.core.exceptions import PermissionDenied
+        raise PermissionDenied("Seuls les administrateurs peuvent télécharger ce modèle.")
+        
+    wb = generate_excel_template()
+    
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition'] = 'attachment; filename="PCC_Import_Template.xlsx"'
+    
+    wb.save(response)
+    return response
+
+from .services import process_excel_import
+
+@login_required
+def import_data(request):
+    """
+    Gère l'upload du fichier Excel d'import et renvoie le rapport Word.
+    """
+    if not request.user.is_staff:
+        from django.core.exceptions import PermissionDenied
+        raise PermissionDenied("Seuls les administrateurs peuvent importer des données.")
+        
+    if request.method == 'POST' and request.FILES.get('excel_file'):
+        excel_file = request.FILES['excel_file']
+        
+        # Validation d'extension
+        if not excel_file.name.endswith('.xlsx'):
+            from django.contrib import messages
+            messages.error(request, "Veuillez uploader un fichier Excel (.xlsx) valide.")
+            # Normalement on redirige vers le dashboard
+            return redirect('accounts:admin_dashboard')
+            
+        # Traitement et récupération du rapport Word
+        try:
+            from django.utils import timezone
+            report_io = process_excel_import(excel_file)
+            
+            # Envoi en tant que téléchargement
+            response = HttpResponse(
+                report_io.read(),
+                content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+            )
+            timestamp = timezone.now().strftime("%Y%m%d_%H%M%S")
+            admin_username = request.user.username
+            filename = f"Rapport_Import_{admin_username}_{timestamp}.docx"
+            response['Content-Disposition'] = f'attachment; filename="{filename}"'
+            return response
+        except Exception as e:
+            from django.contrib import messages
+            messages.error(request, f"Une erreur s'est produite: {str(e)}")
+            return redirect('accounts:admin_dashboard')
+            
+    # Si GET ou erreur, rediriger
+    return redirect('accounts:admin_dashboard')

@@ -10,3 +10,5 @@ django-widget-tweaks
 whiteNoise
 gunicorn
 python-dotenv
+openpyxl==3.1.5
+python-docx==1.2.0

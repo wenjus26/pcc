@@ -46,6 +46,17 @@
             <a href="{% url 'accounts:admin_create_citizen' %}" class="flex items-center gap-4 px-6 py-4 text-slate-400 hover:text-white hover:bg-slate-800 rounded-2xl transition-all font-bold text-sm group">
                 <i class="fas fa-user-plus group-hover:text-primary"></i> <span x-show="sidebarOpen || window.innerWidth < 1024">{% trans "+ Talent" %}</span>
             </a>
+            <a href="{% url 'citizens:download_template' %}" class="flex items-center gap-4 px-6 py-4 text-slate-400 hover:text-white hover:bg-slate-800 rounded-2xl transition-all font-bold text-sm group">
+                <i class="fas fa-file-excel group-hover:text-primary"></i> <span x-show="sidebarOpen || window.innerWidth < 1024">{% trans "Template Import" %}</span>
+            </a>
+            
+            <form action="{% url 'citizens:import_data' %}" method="POST" enctype="multipart/form-data" class="hidden" id="importForm">
+                {% csrf_token %}
+                <input type="file" name="excel_file" id="excelFileInput" accept=".xlsx" onchange="document.getElementById('importForm').submit();">
+            </form>
+            <button onclick="document.getElementById('excelFileInput').click();" class="w-full flex items-center gap-4 px-6 py-4 text-slate-400 hover:text-white hover:bg-slate-800 rounded-2xl transition-all font-bold text-sm group text-left">
+                <i class="fas fa-file-import group-hover:text-primary"></i> <span x-show="sidebarOpen || window.innerWidth < 1024">{% trans "Lancer l'Import" %}</span>
+            </button>
 
             <div class="h-px bg-white/5 my-4 mx-4"></div>
             <p x-show="sidebarOpen || window.innerWidth < 1024" class="text-[9px] font-black tracking-widest text-slate-500 uppercase px-6 mb-2">{% trans "Analyse & Rapports" %}</p>
