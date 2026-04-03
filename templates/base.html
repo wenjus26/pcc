@@ -8,24 +8,59 @@
     <title>{% block title %}PCC - Plate-Forme Citoyenne des Compétences{% endblock %}</title>
     <link rel="shortcut icon" href="{% static 'images/logo-pcc.png' %}" type="image/x-icon">
     {% block meta %}
-    <meta name="description" content="PCC - Plateforme Citoyenne de Compétences : Unir les compétences et les talents. Inspirer le changement. Bâtir l'avenir.">
-    <meta name="keywords" content="Bénin, Compétences, Talents, Développement, Projets Citoyens, PCC, Romuald Wadagni">
-    
-    <!-- Open Graph / Facebook -->
+    <!-- SEO de Base -->
+    <meta name="description"
+        content="Plateforme Citoyenne des Compétences (PCC) au Bénin. Unissez vos compétences et talents pour bâtir l'avenir et inspirer le changement au cœur du développement national.">
+    <meta name="keywords"
+        content="Plateforme Citoyenne des Compétences, PCC Bénin, Talents, Développement, Projets Citoyens, Opportunités, Emploi Bénin, Romuald Wadagni, Réseau Professionnel">
+    <meta name="author" content="PCC - Plateforme Citoyenne des Compétences">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+    <!-- URL Canonique -->
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+    <!-- Open Graph (Facebook / LinkedIn) -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
-    <meta property="og:title" content="PCC - Plateforme Citoyenne de Compétences">
-    <meta property="og:description" content="Unir les compétences et les talents. Inspirer le changement. Bâtir l'avenir. Rejoignez le réseau des compétences béninoises.">
+    <meta property="og:title" content="PCC - Plateforme Citoyenne des Compétences">
+    <meta property="og:description"
+        content="Rejoignez le réseau des compétences béninoises. Unissez talents et savoir-faire pour participer activement au développement de la nation.">
     <meta property="og:image" content="{% static 'images/logo-pcc.png' %}">
-    <meta property="og:site_name" content="PCC">
-    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Plateforme Citoyenne des Compétences">
+    <meta property="og:locale" content="{{ LANGUAGE_CODE|default:'fr_FR' }}">
 
-    <!-- Twitter -->
+    <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@pccbenin">
+    <meta name="twitter:creator" content="@pccbenin">
     <meta name="twitter:url" content="{{ request.build_absolute_uri }}">
-    <meta name="twitter:title" content="PCC - Plateforme Citoyenne de Compétences">
-    <meta name="twitter:description" content="Unir les compétences et les talents. Inspirer le changement. Bâtir l'avenir.">
+    <meta name="twitter:title" content="PCC - Plateforme Citoyenne des Compétences">
+    <meta name="twitter:description"
+        content="Unissez talents et savoir-faire pour participer activement au développement de la nation béninoise.">
     <meta name="twitter:image" content="{% static 'images/logo-pcc.png' %}">
+
+    <!-- Structured Data (JSON-LD) - Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Plateforme Citoyenne des Compétences (PCC)",
+      "url": "{{ request.scheme }}://{{ request.get_host }}/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ request.scheme }}://{{ request.get_host }}/talents/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "PCC",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ request.scheme }}://{{ request.get_host }}{% static 'images/logo-pcc.png' %}"
+        }
+      }
+    }
+    </script>
     {% endblock %}
 
     <!-- Scripts & Styles -->
@@ -35,9 +70,10 @@
         // Check for plugins in local tailwind
         // No extra plugin loading needed if tailwind.js is full build
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
     <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/all.min.css' %}" />
-    
+
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js"></script>
 
@@ -412,8 +448,8 @@
 
                 <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2">
                     {% if user.is_authenticated %}
-                    <a href="{% url 'accounts:dashboard' %}" 
-                       class="w-full flex items-center justify-between p-4 bg-primary/10 text-primary font-black text-sm rounded-2xl hover:bg-primary hover:text-white transition-all shadow-sm">
+                    <a href="{% url 'accounts:dashboard' %}"
+                        class="w-full flex items-center justify-between p-4 bg-primary/10 text-primary font-black text-sm rounded-2xl hover:bg-primary hover:text-white transition-all shadow-sm">
                         {% trans "Mon Espace" %}
                         <i class="fas fa-user-cog text-xs opacity-50"></i>
                     </a>
@@ -427,11 +463,9 @@
                     </form>
                     {% else %}
                     <a href="{% url 'accounts:login' %}"
-                        class="flex items-center justify-center p-3 border border-primary/20 text-primary rounded-xl text-sm font-bold hover:bg-primary/5 transition-colors">{%
-                        trans "Connexion" %}</a>
+                        class="flex items-center justify-center p-3 border border-primary/20 text-primary rounded-xl text-sm font-bold hover:bg-primary/5 transition-colors">{% trans "Connexion" %}</a>
                     <a href="{% url 'accounts:register' %}"
-                        class="flex items-center justify-center p-3 bg-primary text-white rounded-xl text-sm font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">{%
-                        trans "Rejoindre" %}</a>
+                        class="flex items-center justify-center p-3 bg-primary text-white rounded-xl text-sm font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">{% trans "Rejoindre" %}</a>
                     {% endif %}
                 </div>
             </div>
@@ -468,7 +502,8 @@
                     </p>
                     <div class="flex flex-wrap gap-3">
                         <a class="size-11 rounded-xl bg-slate-800 text-white flex items-center justify-center hover:bg-[#1877F2] hover:-translate-y-1 transition-all shadow-lg"
-                            href="https://web.facebook.com/pccbeninprospere" target="_blank" title="Suivez-nous sur Facebook !">
+                            href="https://web.facebook.com/pccbeninprospere" target="_blank"
+                            title="Suivez-nous sur Facebook !">
                             <i class="fab fa-facebook-f text-lg"></i>
                         </a>
                         <a class="size-11 rounded-xl bg-slate-800 text-white flex items-center justify-center hover:bg-black hover:-translate-y-1 transition-all shadow-lg border border-transparent hover:border-slate-700"
@@ -476,11 +511,13 @@
                             <i class="fab fa-twitter text-lg"></i>
                         </a>
                         <a class="size-11 rounded-xl bg-slate-800 text-white flex items-center justify-center hover:bg-[#FF0000] hover:-translate-y-1 transition-all shadow-lg"
-                            href="https://www.youtube.com/@pccbeninprospere" target="_blank" title="Abonnez-vous à notre chaîne !">
+                            href="https://www.youtube.com/@pccbeninprospere" target="_blank"
+                            title="Abonnez-vous à notre chaîne !">
                             <i class="fab fa-youtube text-lg"></i>
                         </a>
                         <a class="size-11 rounded-xl bg-slate-800 text-white flex items-center justify-center hover:bg-gradient-to-tr hover:from-[#00f2fe] hover:to-[#fe0979] hover:-translate-y-1 transition-all shadow-lg"
-                            href="https://www.tiktok.com/@pccbeninprospere" target="_blank" title="Suivez-nous sur TikTok !">
+                            href="https://www.tiktok.com/@pccbeninprospere" target="_blank"
+                            title="Suivez-nous sur TikTok !">
                             <i class="fab fa-tiktok text-lg"></i>
                         </a>
                     </div>
@@ -536,8 +573,7 @@
                     <a href="{% url 'content:privacy_policy' %}" class="hover:text-white transition-colors">{% trans "Confidentialité" %}</a>
                     <a href="{% url 'content:privacy_policy' %}#cookies" class="hover:text-white transition-colors">{% trans "Cookies" %}</a>
                     <div class="flex items-center gap-3 bg-slate-800 px-4 py-2 rounded-full border border-slate-700">
-                        <img alt="Drapeau du Bénin" class="rounded-sm shadow-sm"
-                            src="{% static 'images/bn.png' %}"
+                        <img alt="Drapeau du Bénin" class="rounded-sm shadow-sm" src="{% static 'images/bn.png' %}"
                             width="22" />
                         <span class="text-xs">{% trans "République du Bénin" %}</span>
                     </div>

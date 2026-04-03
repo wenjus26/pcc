@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PCC 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-03 06:26+0100\n"
+"POT-Creation-Date: 2026-04-03 13:21+0100\n"
 "PO-Revision-Date: 2026-03-24 13:35+0100\n"
 "Last-Translator: PCC Team\n"
 "Language-Team: French\n"
@@ -70,8 +70,8 @@ msgstr ""
 
 #: .\apps\citizens\models.py:24
 #: .\templates\accounts\admin_profile_detail.html:92
-#: .\templates\accounts\dashboard_citizen.html:236 .\templates\base.html:170
-#: .\templates\base.html:341
+#: .\templates\accounts\dashboard_citizen.html:236 .\templates\base.html:206
+#: .\templates\base.html:377
 msgid "Compétences"
 msgstr ""
 
@@ -177,8 +177,8 @@ msgstr ""
 msgid "Événement"
 msgstr ""
 
-#: .\apps\content\models.py:47 .\templates\accounts\dashboard_admin.html:190
-#: .\templates\base.html:245 .\templates\base.html:384
+#: .\apps\content\models.py:47 .\templates\accounts\dashboard_admin.html:201
+#: .\templates\base.html:281 .\templates\base.html:420
 #: .\templates\core\search_results.html:62
 msgid "Événements"
 msgstr ""
@@ -187,8 +187,8 @@ msgstr ""
 msgid "Vidéo"
 msgstr ""
 
-#: .\apps\content\models.py:60 .\templates\base.html:255
-#: .\templates\base.html:394
+#: .\apps\content\models.py:60 .\templates\base.html:291
+#: .\templates\base.html:430
 msgid "Vidéos"
 msgstr ""
 
@@ -208,7 +208,7 @@ msgstr ""
 msgid "Ressource"
 msgstr ""
 
-#: .\apps\content\models.py:89 .\templates\base.html:220
+#: .\apps\content\models.py:89 .\templates\base.html:256
 msgid "Ressources"
 msgstr ""
 
@@ -360,8 +360,8 @@ msgstr ""
 msgid "Rejeter"
 msgstr ""
 
-#: .\templates\accounts\admin_profile_detail.html:52 .\templates\base.html:266
-#: .\templates\base.html:408
+#: .\templates\accounts\admin_profile_detail.html:52 .\templates\base.html:302
+#: .\templates\base.html:444
 msgid "À propos"
 msgstr ""
 
@@ -410,89 +410,97 @@ msgstr ""
 msgid "+ Talent"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:51
+#: .\templates\accounts\dashboard_admin.html:50
+msgid "Template Import"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:58
+msgid "Lancer l'Import"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:62
 msgid "Analyse & Rapports"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:53
+#: .\templates\accounts\dashboard_admin.html:64
 msgid "Base des Talents"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:59 .\templates\base.html:279
-#: .\templates\base.html:424
+#: .\templates\accounts\dashboard_admin.html:70 .\templates\base.html:315
+#: .\templates\base.html:460
 msgid "Déconnexion"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:71
+#: .\templates\accounts\dashboard_admin.html:82
 msgid "Administration"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:90
+#: .\templates\accounts\dashboard_admin.html:101
 msgid "Citoyens"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:93
+#: .\templates\accounts\dashboard_admin.html:104
 msgid "Actif"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:102
+#: .\templates\accounts\dashboard_admin.html:113
 msgid "Institutions"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:111
-#: .\templates\accounts\dashboard_citizen.html:94 .\templates\base.html:363
+#: .\templates\accounts\dashboard_admin.html:122
+#: .\templates\accounts\dashboard_citizen.html:94 .\templates\base.html:399
 #: .\templates\core\search_results.html:45
 #: .\templates\institutions\opportunity_list.html:4
 #: .\templates\institutions\opportunity_list.html:10
 msgid "Opportunités"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:118
+#: .\templates\accounts\dashboard_admin.html:129
 msgid "Attente Validation"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:132
+#: .\templates\accounts\dashboard_admin.html:143
 msgid "Profils à Valider"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:133
+#: .\templates\accounts\dashboard_admin.html:144
 msgid "Priorité"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:160
+#: .\templates\accounts\dashboard_admin.html:171
 msgid "Examiner"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:163
+#: .\templates\accounts\dashboard_admin.html:174
 msgid "Valider"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:171
+#: .\templates\accounts\dashboard_admin.html:182
 msgid "Rien à valider !"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:185
+#: .\templates\accounts\dashboard_admin.html:196
 msgid "Réseau Citoyen"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:194
+#: .\templates\accounts\dashboard_admin.html:205
 msgid "Médiathèque (Vidéos)"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:198
+#: .\templates\accounts\dashboard_admin.html:209
 msgid "Experts Certifiés"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:205
+#: .\templates\accounts\dashboard_admin.html:216
 msgid "Distribution Talent"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:214
+#: .\templates\accounts\dashboard_admin.html:225
 msgid "6 Principaux Départements"
 msgstr ""
 
-#: .\templates\accounts\dashboard_citizen.html:4 .\templates\base.html:275
-#: .\templates\base.html:417
+#: .\templates\accounts\dashboard_citizen.html:4 .\templates\base.html:311
+#: .\templates\base.html:453
 msgid "Mon Espace"
 msgstr ""
 
@@ -694,7 +702,8 @@ msgstr ""
 msgid "Contact Support"
 msgstr ""
 
-#: .\templates\accounts\login.html:4 .\templates\base.html:285
+#: .\templates\accounts\login.html:4 .\templates\base.html:321
+#: .\templates\base.html:466
 msgid "Connexion"
 msgstr ""
 
@@ -884,130 +893,134 @@ msgstr ""
 msgid "None available"
 msgstr ""
 
-#: .\templates\base.html:144
+#: .\templates\base.html:180
 msgid "Chargement"
 msgstr ""
 
-#: .\templates\base.html:164 .\templates\base.html:336
+#: .\templates\base.html:200 .\templates\base.html:372
 msgid "Accueil"
 msgstr ""
 
-#: .\templates\base.html:179 .\templates\base.html:344
+#: .\templates\base.html:215 .\templates\base.html:380
 msgid "Explorer les talents"
 msgstr ""
 
-#: .\templates\base.html:184 .\templates\base.html:349
+#: .\templates\base.html:220 .\templates\base.html:385
 msgid "Carte des compétences"
 msgstr ""
 
-#: .\templates\base.html:189 .\templates\base.html:354
+#: .\templates\base.html:225 .\templates\base.html:390
 msgid "Évaluations"
 msgstr ""
 
-#: .\templates\base.html:198 .\templates\base.html:359
+#: .\templates\base.html:234 .\templates\base.html:395
 msgid "Projets"
 msgstr ""
 
-#: .\templates\base.html:207
+#: .\templates\base.html:243
 msgid "Opportunités & Appels"
 msgstr ""
 
-#: .\templates\base.html:212 .\templates\base.html:368
+#: .\templates\base.html:248 .\templates\base.html:404
 msgid "Initiatives Citoyennes"
 msgstr ""
 
-#: .\templates\base.html:226 .\templates\base.html:374
+#: .\templates\base.html:262 .\templates\base.html:410
 #: .\templates\core\search_results.html:96
 msgid "Formations (MOOCs)"
 msgstr ""
 
-#: .\templates\base.html:236 .\templates\base.html:380
+#: .\templates\base.html:272 .\templates\base.html:416
 #: .\templates\citizens\talent_register.html:10
 msgid "Réseau"
 msgstr ""
 
-#: .\templates\base.html:250 .\templates\base.html:389
+#: .\templates\base.html:286 .\templates\base.html:425
 #: .\templates\content\gallery.html:10
 msgid "Galerie"
 msgstr ""
 
-#: .\templates\base.html:260 .\templates\base.html:399
+#: .\templates\base.html:296 .\templates\base.html:435
 msgid "Forums / Groupes"
 msgstr ""
 
-#: .\templates\base.html:404
+#: .\templates\base.html:440
 msgid "Info"
 msgstr ""
 
-#: .\templates\base.html:467
+#: .\templates\base.html:468
+msgid "Rejoindre"
+msgstr ""
+
+#: .\templates\base.html:501
 msgid "Plateforme Citoyenne des Compétences pour un Bénin Prospère."
 msgstr ""
 
-#: .\templates\base.html:489
+#: .\templates\base.html:526
 msgid "Plateforme"
 msgstr ""
 
-#: .\templates\base.html:493
+#: .\templates\base.html:530
 msgid "Projet de Société"
 msgstr ""
 
-#: .\templates\base.html:495
+#: .\templates\base.html:532
 msgid "Qui est R. Wadagni ?"
 msgstr ""
 
-#: .\templates\base.html:497
+#: .\templates\base.html:534
 msgid "À propos de la PCC"
 msgstr ""
 
-#: .\templates\base.html:499
+#: .\templates\base.html:536
 msgid "Talents"
 msgstr ""
 
-#: .\templates\base.html:502
+#: .\templates\base.html:539
 msgid "Vos Contributions"
 msgstr ""
 
-#: .\templates\base.html:507
+#: .\templates\base.html:544
 msgid "Support"
 msgstr ""
 
-#: .\templates\base.html:510
+#: .\templates\base.html:547
 msgid "Aide & FAQ"
 msgstr ""
 
-#: .\templates\base.html:511
+#: .\templates\base.html:548
 msgid "Contact"
 msgstr ""
 
-#: .\templates\base.html:515
+#: .\templates\base.html:552
 msgid "Newsletter"
 msgstr ""
 
-#: .\templates\base.html:517
+#: .\templates\base.html:554
 msgid "Restez informé des dernières opportunités nationales."
 msgstr ""
 
-#: .\templates\base.html:534
+#: .\templates\base.html:571
 msgid "Tous droits réservés."
 msgstr ""
 
-#: .\templates\base.html:536 .\templates\content\privacy.html:26
+#: .\templates\base.html:573 .\templates\content\privacy.html:26
 msgid "Confidentialité"
 msgstr ""
 
-#: .\templates\base.html:537
+#: .\templates\base.html:574
 msgid "Cookies"
 msgstr ""
 
-#: .\templates\base.html:542
+#: .\templates\base.html:578
 msgid "République du Bénin"
 msgstr ""
 
-#: .\templates\base.html:614
+#: .\templates\base.html:650
 msgid "Veuillez entrer une adresse email."
 msgstr ""
 
-#: .\templates\base.html:647
+#: .\templates\base.html:683
 msgid "Une erreur est survenue."
 msgstr ""
 
