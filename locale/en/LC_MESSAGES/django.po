@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PCC 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-01 20:00+0100\n"
+"POT-Creation-Date: 2026-04-03 06:26+0100\n"
 "PO-Revision-Date: 2026-03-24 13:35+0100\n"
 "Last-Translator: PCC Team\n"
 "Language-Team: English\n"
@@ -1939,11 +1939,11 @@ msgid "Nos Master"
 msgstr ""
 
 #: .\templates\content\event_list.html:83
-msgid "Autres Événanimées par nos experts reconnus."
+msgid "Autres Événements animées par nos experts reconnus."
 msgstr ""
 
 #: .\templates\content\event_list.html:99 .\templates\content\privacy.html:130
-#: .\templates\core\home.html:283
+#: .\templates\core\home.html:281
 msgid "En savoir plus"
 msgstr "Learn more"
 
@@ -1963,7 +1963,7 @@ msgstr ""
 msgid "Autres Événements à Venir"
 msgstr "Events"
 
-#: .\templates\content\event_list.html:232 .\templates\core\home.html:119
+#: .\templates\content\event_list.html:232 .\templates\core\home.html:117
 msgid "Voir tout"
 msgstr "See all"
 
@@ -2213,17 +2213,39 @@ msgstr ""
 msgid "Interventions"
 msgstr ""
 
-#: .\templates\content\video_list.html:33
+#: .\templates\content\video_list.html:20
+msgid ""
+"Suivez les moments forts, les masterclass et les interventions citoyennes du "
+"PCC pour un Bénin meilleur."
+msgstr ""
+
+#: .\templates\content\video_list.html:32
 msgid "Rechercher une vidéo, un thème..."
 msgstr ""
 
-#: .\templates\content\video_list.html:90
+#: .\templates\content\video_list.html:89
 #, fuzzy
 #| msgid "Aucune biographie disponible pour le moment."
 msgid "Aucune vidéo disponible pour le moment."
 msgstr "No biography available at this time."
 
-#: .\templates\content\video_list.html:113
+#: .\templates\content\video_list.html:91
+#, fuzzy
+#| msgid "Revenez bientôt pour de nouveaux projets."
+msgid "Revenez bientôt pour suivre nos actualités."
+msgstr "Come back soon for new projects."
+
+#: .\templates\content\video_list.html:103
+msgid "Ne manquez aucune intervention"
+msgstr ""
+
+#: .\templates\content\video_list.html:105
+msgid ""
+"Abonnez-vous à notre chaîne officielle pour être notifié dès la mise en "
+"ligne d'un nouveau contenu citoyen."
+msgstr ""
+
+#: .\templates\content\video_list.html:109
 msgid "S'abonner sur YouTube"
 msgstr ""
 
@@ -2284,112 +2306,107 @@ msgstr ""
 msgid "Plateforme Citoyenne de Compétences"
 msgstr "Citizen Skills Platform"
 
-#: .\templates\core\home.html:20
-msgid "Propulsez votre"
-msgstr "Propel your"
+#: .\templates\core\home.html:19
+msgid ""
+"Plateforme <br /> <span class=\"text-primary italic\">Citoyenne de</span> "
+"Compétences"
+msgstr ""
+"Citizen <br /> <span class=\"text-primary italic\">Skills</span> Platform"
 
-#: .\templates\core\home.html:21
-msgid "expertise"
-msgstr "expertise"
-
-#: .\templates\core\home.html:21
-msgid "béninoise"
-msgstr "from Benin"
-
-#: .\templates\core\home.html:25
+#: .\templates\core\home.html:23
 msgid ""
 "Unir les compétences et les talents. Inspirer le changement. Bâtir l'avenir"
-msgstr ""
+msgstr "Unite skills and talents. Inspire change. Build the future."
 
-#: .\templates\core\home.html:35
+#: .\templates\core\home.html:33
 msgid "Rechercher un talent, un expert ou un projet..."
 msgstr ""
 
-#: .\templates\core\home.html:39
+#: .\templates\core\home.html:37
 #, fuzzy
 #| msgid "Ouvert"
 msgid "Trouver"
 msgstr "Open"
 
-#: .\templates\core\home.html:48
+#: .\templates\core\home.html:46
 msgid "S'inscrire gratuitement"
 msgstr "Sign up for free"
 
-#: .\templates\core\home.html:53
+#: .\templates\core\home.html:51
 msgid "Découvrir les talents"
 msgstr "Discover talents"
 
-#: .\templates\core\home.html:69
+#: .\templates\core\home.html:67
 msgid "Experts déjà inscrits"
 msgstr "Experts already registered"
 
-#: .\templates\core\home.html:88
+#: .\templates\core\home.html:86
 #, fuzzy
 #| msgid "Satisfaction Client"
 msgid "Satisfaction"
 msgstr "Client Satisfaction"
 
-#: .\templates\core\home.html:100
+#: .\templates\core\home.html:98
 msgid "Profils vérifiés par les instances nationales"
 msgstr "Profiles verified by national authorities"
 
-#: .\templates\core\home.html:113
+#: .\templates\core\home.html:111
 msgid "Impact Direct"
 msgstr "Direct Impact"
 
-#: .\templates\core\home.html:114
+#: .\templates\core\home.html:112
 msgid "Dernières Opportunités Nationales"
 msgstr "Latest National Opportunities"
 
-#: .\templates\core\home.html:115
+#: .\templates\core\home.html:113
 msgid ""
 "Répondez aux appels à projets stratégiques du gouvernement et des "
 "institutions."
 msgstr ""
 
-#: .\templates\core\home.html:148
+#: .\templates\core\home.html:146
 msgid "Chargement des opportunités..."
 msgstr "Loading opportunities..."
 
-#: .\templates\core\home.html:159
+#: .\templates\core\home.html:157
 msgid "Élite Béninoise"
 msgstr "Beninese Elite"
 
-#: .\templates\core\home.html:160
+#: .\templates\core\home.html:158
 msgid "Portraits d'Experts"
 msgstr "Expert Portraits"
 
-#: .\templates\core\home.html:179
+#: .\templates\core\home.html:177
 msgid "Consultant"
 msgstr "Consultant"
 
-#: .\templates\core\home.html:190
+#: .\templates\core\home.html:188
 msgid "Profil complet"
 msgstr "Full profile"
 
-#: .\templates\core\home.html:207
+#: .\templates\core\home.html:205
 msgid "Impact Géographique"
 msgstr ""
 
-#: .\templates\core\home.html:208
+#: .\templates\core\home.html:206
 msgid "Où sont nos experts ?"
 msgstr ""
 
-#: .\templates\core\home.html:209
+#: .\templates\core\home.html:207
 msgid ""
 "Visualisez la répartition des compétences citoyennes sur tout le territoire "
 "national."
 msgstr ""
 
-#: .\templates\core\home.html:274
+#: .\templates\core\home.html:272
 msgid "Prêt à contribuer à l'essor"
 msgstr "Ready to contribute to the growth"
 
-#: .\templates\core\home.html:274
+#: .\templates\core\home.html:272
 msgid "du Bénin ?"
 msgstr "of Benin?"
 
-#: .\templates\core\home.html:279
+#: .\templates\core\home.html:277
 msgid "Rejoindre maintenant"
 msgstr "Join now"
 
@@ -2875,6 +2892,15 @@ msgstr "No opportunities available"
 #: .\templates\institutions\opportunity_list.html:135
 msgid "Revenez bientôt pour de nouveaux projets."
 msgstr "Come back soon for new projects."
+
+#~ msgid "Propulsez votre"
+#~ msgstr "Propel your"
+
+#~ msgid "expertise"
+#~ msgstr "expertise"
+
+#~ msgid "béninoise"
+#~ msgstr "from Benin"
 
 #~ msgid "Blog"
 #~ msgstr "Blog"
