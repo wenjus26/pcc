@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PCC 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-03 16:07+0100\n"
+"POT-Creation-Date: 2026-04-04 00:09+0100\n"
 "PO-Revision-Date: 2026-03-24 13:35+0100\n"
 "Last-Translator: PCC Team\n"
 "Language-Team: English\n"
@@ -15,11 +15,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\apps\accounts\admin_forms.py:18 .\templates\accounts\login.html:33
+#: .\apps\accounts\admin_forms.py:18 .\apps\accounts\admin_forms.py:42
+#: .\templates\accounts\login.html:33
 msgid "Nom d'utilisateur"
 msgstr "Username"
 
-#: .\apps\accounts\admin_forms.py:19
+#: .\apps\accounts\admin_forms.py:19 .\apps\accounts\admin_forms.py:43
 #: .\templates\accounts\password_reset.html:24
 #: .\templates\content\contributions.html:43
 #: .\templates\content\event_detail.html:59 .\templates\core\contact.html:44
@@ -27,7 +28,8 @@ msgstr "Username"
 msgid "Email"
 msgstr ""
 
-#: .\apps\accounts\admin_forms.py:20 .\templates\accounts\login.html:42
+#: .\apps\accounts\admin_forms.py:20 .\apps\accounts\admin_forms.py:44
+#: .\templates\accounts\login.html:42
 msgid "Mot de passe"
 msgstr "Password"
 
@@ -37,41 +39,68 @@ msgstr "Password"
 msgid "Nom de l'Institution"
 msgstr "Institutional Profile"
 
-#: .\apps\accounts\forms.py:16 .\apps\accounts\models.py:18
+#: .\apps\accounts\admin_forms.py:46
+msgid "Prénom"
+msgstr ""
+
+#: .\apps\accounts\admin_forms.py:47
+msgid "Nom"
+msgstr ""
+
+#: .\apps\accounts\admin_forms.py:48
+#: .\templates\emails\profile_updated_confirmation.html:23
+#, fuzzy
+#| msgid "Toute l'actualité"
+msgid "Titre actuel"
+msgstr "All news"
+
+#: .\apps\accounts\admin_forms.py:52
+#, fuzzy
+#| msgid "Administrateur"
+msgid "Segmentation / Rôle"
+msgstr "Administrator"
+
+#: .\apps\accounts\forms.py:16 .\apps\accounts\models.py:19
 msgid "Talent & Compétence (Local)"
 msgstr "Talent & Skill (Local)"
 
-#: .\apps\accounts\forms.py:17 .\apps\accounts\models.py:19
+#: .\apps\accounts\forms.py:17 .\apps\accounts\models.py:20
 msgid "Talent & Compétence (Diaspora)"
 msgstr "Talent & Skill (Diaspora)"
 
-#: .\apps\accounts\models.py:15
+#: .\apps\accounts\models.py:16
 msgid "Soutien Participatif (Ministres/Hauts Cadres)"
 msgstr "Participatory Support (Ministers/High Officials)"
 
-#: .\apps\accounts\models.py:16
+#: .\apps\accounts\models.py:17
 msgid "Expert - Conseil d’Administration PCC"
 msgstr "Expert - PCC Board of Directors"
 
-#: .\apps\accounts\models.py:17
+#: .\apps\accounts\models.py:18
 msgid "Expert - Hors Conseil d’Administration PCC"
 msgstr "Expert - Outside PCC Board"
 
-#: .\apps\accounts\models.py:20
+#: .\apps\accounts\models.py:21
+#, fuzzy
+#| msgid "Institution / Entreprise"
+msgid "Institution / Organisation"
+msgstr "Institution / Company"
+
+#: .\apps\accounts\models.py:22
 msgid "Administrateur Système"
 msgstr "System Administrator"
 
-#: .\apps\accounts\models.py:27
+#: .\apps\accounts\models.py:29 .\templates\accounts\dashboard_admin.html:356
 #, fuzzy
 #| msgid "Administrateur"
 msgid "Segmentation"
 msgstr "Administrator"
 
-#: .\apps\accounts\models.py:37
+#: .\apps\accounts\models.py:39 .\templates\accounts\dashboard_admin.html:169
 msgid "Utilisateur"
 msgstr "User"
 
-#: .\apps\accounts\models.py:38
+#: .\apps\accounts\models.py:40
 msgid "Utilisateurs"
 msgstr "Users"
 
@@ -203,7 +232,7 @@ msgstr "Conference"
 msgid "Événement"
 msgstr "Event"
 
-#: .\apps\content\models.py:47 .\templates\accounts\dashboard_admin.html:201
+#: .\apps\content\models.py:47 .\templates\accounts\dashboard_admin.html:402
 #: .\templates\base.html:281 .\templates\base.html:420
 #: .\templates\core\search_results.html:62
 msgid "Événements"
@@ -213,8 +242,8 @@ msgstr "Events"
 msgid "Vidéo"
 msgstr ""
 
-#: .\apps\content\models.py:60 .\templates\base.html:291
-#: .\templates\base.html:430
+#: .\apps\content\models.py:60 .\templates\accounts\dashboard_admin.html:409
+#: .\templates\base.html:291 .\templates\base.html:430
 msgid "Vidéos"
 msgstr ""
 
@@ -304,6 +333,18 @@ msgstr ""
 
 #: .\apps\core\models.py:40
 msgid "Messages de Contact"
+msgstr ""
+
+#: .\apps\institutions\forms.py:13
+msgid "Ex: Expert en Cybersécurité pour le Gouvernement"
+msgstr ""
+
+#: .\apps\institutions\forms.py:18
+msgid "Décrivez le projet et ses objectifs..."
+msgstr ""
+
+#: .\apps\institutions\forms.py:23
+msgid "Listez les qualifications requises..."
 msgstr ""
 
 #: .\apps\institutions\models.py:21
@@ -504,6 +545,7 @@ msgid "Actif"
 msgstr ""
 
 #: .\templates\accounts\dashboard_admin.html:113
+#: .\templates\accounts\dashboard_admin.html:148
 #, fuzzy
 #| msgid "Profils Institutionnels"
 msgid "Institutions"
@@ -521,47 +563,163 @@ msgstr "Opportunities"
 msgid "Attente Validation"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:143
-msgid "Profils à Valider"
+#: .\templates\accounts\dashboard_admin.html:142
+msgid "À Valider"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:144
-msgid "Priorité"
+#: .\templates\accounts\dashboard_admin.html:145
+#, fuzzy
+#| msgid "Explorer les Talents"
+msgid "Liste des Talents"
+msgstr "Explore Talents"
+
+#: .\templates\accounts\dashboard_admin.html:151
+msgid "Positions / Matchs"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:163
+#, fuzzy
+#| msgid "Profils Citoyens"
+msgid "Profils en attente"
+msgstr "Citizen Profiles"
+
+#: .\templates\accounts\dashboard_admin.html:170
+#: .\templates\emails\event_registration_confirmation.html:11
+#: .\templates\evaluations\evaluation_result.html:37
+msgid "Date"
 msgstr ""
 
 #: .\templates\accounts\dashboard_admin.html:171
+#, fuzzy
+#| msgid "Éducations"
+msgid "Actions"
+msgstr "Education Records"
+
+#: .\templates\accounts\dashboard_admin.html:194
 msgid "Examiner"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:174
+#: .\templates\accounts\dashboard_admin.html:197
 msgid "Valider"
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:182
-msgid "Rien à valider !"
+#: .\templates\accounts\dashboard_admin.html:203
+msgid "Rien à valider."
 msgstr ""
 
-#: .\templates\accounts\dashboard_admin.html:196
+#: .\templates\accounts\dashboard_admin.html:215
+#, fuzzy
+#| msgid "Explorer les Talents"
+msgid "Base des Experts"
+msgstr "Explore Talents"
+
+#: .\templates\accounts\dashboard_admin.html:216
+#, fuzzy
+#| msgid "Profils Citoyens"
+msgid "Profils"
+msgstr "Citizen Profiles"
+
+#: .\templates\accounts\dashboard_admin.html:222
+#: .\templates\accounts\dashboard_admin.html:317
+#, fuzzy
+#| msgid "Expert"
+msgid "Expert"
+msgstr "Expert"
+
+#: .\templates\accounts\dashboard_admin.html:223
+#, fuzzy
+#| msgid "Administrateur"
+msgid "Segment"
+msgstr "Administrator"
+
+#: .\templates\accounts\dashboard_admin.html:224
+msgid "Score"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:265
+#, fuzzy
+#| msgid "Partager"
+msgid "Partenaires"
+msgstr "Share"
+
+#: .\templates\accounts\dashboard_admin.html:266
+msgid "Nouvelle"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:272
+#: .\templates\accounts\dashboard_admin.html:318
+#, fuzzy
+#| msgid "Profils Institutionnels"
+msgid "Institution"
+msgstr "Institutional Profiles"
+
+#: .\templates\accounts\dashboard_admin.html:273
+#: .\templates\citizens\profile_form.html:47
+#: .\templates\citizens\talent_list.html:43
+#: .\templates\emails\profile_updated_confirmation.html:25
+msgid "Localisation"
+msgstr "Location"
+
+#: .\templates\accounts\dashboard_admin.html:274
+#, fuzzy
+#| msgid "Profil Vérifié"
+msgid "Vérifiée"
+msgstr "Verified Profile"
+
+#: .\templates\accounts\dashboard_admin.html:311
+#, fuzzy
+#| msgid "Talents disponibles"
+msgid "Talents Positionnés"
+msgstr "Available talents"
+
+#: .\templates\accounts\dashboard_admin.html:319
+#, fuzzy
+#| msgid "Match"
+msgid "Score Match"
+msgstr "Match"
+
+#: .\templates\accounts\dashboard_admin.html:341
+msgid "Aucun match actif."
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:361
+#: .\templates\content\contributions.html:15
+msgid "Soutien"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:365
+#, fuzzy
+#| msgid "Expert"
+msgid "Experts CA"
+msgstr "Expert"
+
+#: .\templates\accounts\dashboard_admin.html:369
+#, fuzzy
+#| msgid "Expert"
+msgid "Experts HCA"
+msgstr "Expert"
+
+#: .\templates\accounts\dashboard_admin.html:373 .\templates\base.html:536
+msgid "Talents"
+msgstr "Talents"
+
+#: .\templates\accounts\dashboard_admin.html:377
+msgid "Diaspora"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:383
+msgid "Indicateurs Clés"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:386
+msgid "Taux de Validation"
+msgstr ""
+
+#: .\templates\accounts\dashboard_admin.html:397
 #, fuzzy
 #| msgid "Réservé aux profils citoyens."
 msgid "Réseau Citoyen"
 msgstr "Reserved for citizen profiles."
-
-#: .\templates\accounts\dashboard_admin.html:205
-msgid "Médiathèque (Vidéos)"
-msgstr ""
-
-#: .\templates\accounts\dashboard_admin.html:209
-msgid "Experts Certifiés"
-msgstr ""
-
-#: .\templates\accounts\dashboard_admin.html:216
-msgid "Distribution Talent"
-msgstr ""
-
-#: .\templates\accounts\dashboard_admin.html:225
-msgid "6 Principaux Départements"
-msgstr ""
 
 #: .\templates\accounts\dashboard_citizen.html:4 .\templates\base.html:311
 #: .\templates\base.html:453
@@ -860,6 +1018,7 @@ msgstr "Password"
 
 #: .\templates\accounts\password_change.html:31
 #: .\templates\citizens\profile_form.html:187
+#: .\templates\institutions\opportunity_form.html:46
 msgid "Annuler"
 msgstr "Cancel"
 
@@ -886,6 +1045,7 @@ msgid ""
 msgstr ""
 
 #: .\templates\accounts\password_change_done.html:17
+#: .\templates\institutions\opportunity_form.html:10
 #, fuzzy
 #| msgid "Retour au blog"
 msgid "Retour au tableau de bord"
@@ -1114,10 +1274,6 @@ msgstr ""
 msgid "À propos de la PCC"
 msgstr "About PCC"
 
-#: .\templates\base.html:536
-msgid "Talents"
-msgstr "Talents"
-
 #: .\templates\base.html:539
 #, fuzzy
 #| msgid "Profils Institutionnels"
@@ -1264,12 +1420,6 @@ msgstr "Tell us about your background and ambitions..."
 msgid "Intitulé du poste actuel"
 msgstr "Current job title"
 
-#: .\templates\citizens\profile_form.html:47
-#: .\templates\citizens\talent_list.html:43
-#: .\templates\emails\profile_updated_confirmation.html:25
-msgid "Localisation"
-msgstr "Location"
-
 #: .\templates\citizens\profile_form.html:48
 msgid "Ville, Pays"
 msgstr "City, Country"
@@ -1354,6 +1504,7 @@ msgid "Domaine d'études"
 msgstr ""
 
 #: .\templates\citizens\profile_form.html:189
+#: .\templates\institutions\opportunity_form.html:43
 msgid "Enregistrer les modifications"
 msgstr "Save changes"
 
@@ -1699,10 +1850,6 @@ msgstr ""
 
 #: .\templates\content\contributions.html:15
 msgid "Vos Idées & Votre"
-msgstr ""
-
-#: .\templates\content\contributions.html:15
-msgid "Soutien"
 msgstr ""
 
 #: .\templates\content\contributions.html:18
@@ -2550,11 +2697,6 @@ msgid ""
 "Nous vous confirmons votre inscription avec succès à l'événement suivant :"
 msgstr ""
 
-#: .\templates\emails\event_registration_confirmation.html:11
-#: .\templates\evaluations\evaluation_result.html:37
-msgid "Date"
-msgstr ""
-
 #: .\templates\emails\event_registration_confirmation.html:12
 msgid "Heure"
 msgstr ""
@@ -2636,12 +2778,6 @@ msgstr ""
 #| msgid "Enregistrer les modifications"
 msgid "Résumé des modifications"
 msgstr "Save changes"
-
-#: .\templates\emails\profile_updated_confirmation.html:23
-#, fuzzy
-#| msgid "Toute l'actualité"
-msgid "Titre actuel"
-msgstr "All news"
 
 #: .\templates\emails\profile_updated_confirmation.html:24
 #, fuzzy
@@ -2894,6 +3030,18 @@ msgstr "Reserved for citizen profiles."
 msgid "Se connecter pour postuler"
 msgstr "Log in to apply"
 
+#: .\templates\institutions\opportunity_form.html:16
+msgid ""
+"Remplissez les détails ci-dessous pour mobiliser les meilleurs experts "
+"béninois."
+msgstr ""
+
+#: .\templates\institutions\opportunity_form.html:43
+#, fuzzy
+#| msgid "Opportunités"
+msgid "Publier l'opportunité"
+msgstr "Opportunities"
+
 #: .\templates\institutions\opportunity_list.html:10
 msgid "Dernières"
 msgstr "Latest"
@@ -2950,12 +3098,6 @@ msgstr "Expertise & Skills"
 
 #~ msgid "Citoyen / Membre"
 #~ msgstr "Citizen / Member"
-
-#~ msgid "Institution / Entreprise"
-#~ msgstr "Institution / Company"
-
-#~ msgid "Expert"
-#~ msgstr "Expert"
 
 #~ msgid "Senior"
 #~ msgstr "Senior"

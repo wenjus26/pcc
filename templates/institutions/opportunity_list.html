@@ -119,10 +119,19 @@
                         </div>
                     </div>
                     
-                    <div class="flex flex-col justify-end">
-                        <a href="{% url 'institutions:opportunity_detail' opportunity.uuid %}" class="px-10 py-4 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all text-center whitespace-nowrap">
-                            {% trans "Consulter & Postuler" %}
+                    <div class="flex flex-col justify-center gap-3">
+                        <a href="{% url 'institutions:opportunity_detail' opportunity.uuid %}" class="px-8 py-3 bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 font-bold rounded-xl transition-all text-center border-2 border-transparent hover:border-primary/20">
+                            {% trans "Consulter" %}
                         </a>
+                        
+                        {% if user.is_authenticated and user.role != 'admin' and user.role != 'institution' %}
+                            <form action="{% url 'matching:apply_to_opportunity' opportunity.uuid %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="w-full px-8 py-3 bg-primary text-white font-black rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.03] transition-all whitespace-nowrap">
+                                    {% trans "Postuler" %} <i class="fas fa-paper-plane text-[10px] ml-1 opacity-60"></i>
+                                </button>
+                            </form>
+                        {% endif %}
                     </div>
                 </div>
             </div>

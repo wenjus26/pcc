@@ -328,7 +328,7 @@
                     <a href="{% url 'core:notifications' %}"
                         class="relative p-2 text-slate-500 hover:text-primary transition-colors">
                         <i class="fas fa-bell text-sm"></i>
-                        {% if user.notifications.filter.is_read|length > 0 %}
+                        {% if user.unread_notifications_count > 0 %}
                         <span
                             class="absolute top-1.5 right-1.5 size-2 bg-accent-red rounded-full border-2 border-white dark:border-slate-900"></span>
                         {% endif %}

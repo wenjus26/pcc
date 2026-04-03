@@ -81,7 +81,7 @@
                     {% trans "Les inscriptions pour cette session sont actuellement ouvertes. Ne manquez pas cette opportunité unique de renforcer vos compétences." %}
                 </p>
                 <div class="flex flex-wrap gap-4 relative z-10">
-                    <a href="mailto:contact@pcc-benin.com?subject=Inscription : {{ event.title|urlencode }}" class="px-10 py-5 bg-white text-primary font-black rounded-2xl shadow-2xl hover:scale-[1.05] transition-all">
+                    <a href="mailto:info@pcc-benin.org?subject=Inscription : {{ event.title|urlencode }}" class="px-10 py-5 bg-white text-primary font-black rounded-2xl shadow-2xl hover:scale-[1.05] transition-all">
                         {% trans "S'inscrire maintenant" %}
                     </a>
                     <a href="{% url 'content:event_list' %}" class="px-10 py-5 bg-slate-900/20 backdrop-blur-md border border-white/30 text-white font-black rounded-2xl hover:bg-white/10 transition-all">

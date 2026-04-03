@@ -30,23 +30,28 @@ class AdminInstitutionCreateForm(forms.Form):
             password=self.cleaned_data['password'],
             role=CustomUser.INSTITUTION
         )
-        InstitutionProfile.objects.create(
-            user=user,
-            name=self.cleaned_data['name'],
-            description=self.cleaned_data['description'],
-            website=self.cleaned_data['website']
-        )
+        # Récupérer le profil créé par le signal et le mettre à jour
+        profile, created = InstitutionProfile.objects.get_or_create(user=user)
+        profile.name = self.cleaned_data['name']
+        profile.description = self.cleaned_data['description']
+        profile.website = self.cleaned_data['website']
+        profile.save()
         return user
 
 class AdminCitizenCreateForm(forms.Form):
-    username = forms.CharField(max_length=150)
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(max_length=150, label=_("Nom d'utilisateur"))
+    email = forms.EmailField(label=_("Email"))
+    password = forms.CharField(widget=forms.PasswordInput, label=_("Mot de passe"))
     
-    first_name = forms.CharField(max_length=150)
-    last_name = forms.CharField(max_length=150)
-    current_title = forms.CharField(max_length=255, required=False)
+    first_name = forms.CharField(max_length=150, label=_("Prénom"))
+    last_name = forms.CharField(max_length=150, label=_("Nom"))
+    current_title = forms.CharField(max_length=255, required=False, label=_("Titre actuel"))
     
+    segment = forms.ChoiceField(
+        choices=CustomUser.SEGMENT_CHOICES[:-1], # Exclure 'admin'
+        label=_("Segmentation / Rôle")
+    )
+
     def save(self):
         user = CustomUser.objects.create_user(
             username=self.cleaned_data['username'],
@@ -54,11 +59,11 @@ class AdminCitizenCreateForm(forms.Form):
             password=self.cleaned_data['password'],
             first_name=self.cleaned_data['first_name'],
             last_name=self.cleaned_data['last_name'],
-            role=CustomUser.CITIZEN
+            role=self.cleaned_data['segment']
         )
-        CitizenProfile.objects.create(
-            user=user,
-            current_title=self.cleaned_data['current_title'],
-            is_validated=True  # Usually admin created is pre-validated
-        )
+        # Récupérer le profil créé par le signal et le mettre à jour
+        profile, created = CitizenProfile.objects.get_or_create(user=user)
+        profile.current_title = self.cleaned_data['current_title']
+        profile.is_validated = True
+        profile.save()
         return user

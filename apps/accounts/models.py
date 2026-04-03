@@ -9,6 +9,7 @@ class CustomUser(AbstractUser):
     EXPERT_HCA = 'expert_hca'
     TALENT = 'talent'
     DIASPORA = 'diaspora'
+    INSTITUTION = 'institution'
     ADMIN = 'admin'
     
     SEGMENT_CHOICES = [
@@ -17,6 +18,7 @@ class CustomUser(AbstractUser):
         (EXPERT_HCA, _('Expert - Hors Conseil d’Administration PCC')),
         (TALENT, _('Talent & Compétence (Local)')),
         (DIASPORA, _('Talent & Compétence (Diaspora)')),
+        (INSTITUTION, _('Institution / Organisation')),
         (ADMIN, _('Administrateur Système')),
     ]
     
@@ -29,6 +31,10 @@ class CustomUser(AbstractUser):
     
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     is_verified = models.BooleanField(default=False)
+    
+    @property
+    def unread_notifications_count(self):
+        return self.notifications.filter(is_read=False).count()
     
     def __str__(self):
         return f"{self.username} ({self.get_role_display()})"
