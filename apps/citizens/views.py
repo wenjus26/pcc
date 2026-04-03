@@ -23,12 +23,15 @@ def skill_map(request):
     }
     return render(request, 'citizens/skill_map.html', context)
 
+from django.db.models import Case, When, Value, IntegerField, Q, Count
+
 def talent_list(request):
     query = request.GET.get('q', '')
     location = request.GET.get('location', '')
     skill_query = request.GET.get('skill', '')
+    segment = request.GET.get('segment', '')
 
-    queryset = CitizenProfile.objects.filter(is_public=True, is_validated=True)
+    queryset = CitizenProfile.objects.filter(is_public=True, is_validated=True).select_related('user')
 
     if query:
         queryset = queryset.filter(
@@ -43,17 +46,36 @@ def talent_list(request):
 
     if skill_query:
         queryset = queryset.filter(skills__name__icontains=skill_query)
+        
+    if segment:
+        queryset = queryset.filter(user__role=segment)
 
-    queryset = queryset.distinct().order_by('-created_at')
+    # Hierarchical ordering (same as homepage)
+    priority_order = Case(
+        When(user__role='soutien', then=Value(1)),
+        When(user__role='expert_ca', then=Value(2)),
+        When(user__role='expert_hca', then=Value(3)),
+        When(user__role='talent', then=Value(4)),
+        When(user__role='diaspora', then=Value(5)),
+        default=Value(6),
+        output_field=IntegerField(),
+    )
+
+    queryset = queryset.annotate(priority=priority_order).order_by('priority', '-created_at').distinct()
 
     paginator = Paginator(queryset, 9)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
+    from apps.accounts.models import CustomUser
+    # Exclure l'administrateur des options de filtrage pour la liste des talents
+    segment_choices = [c for c in CustomUser.SEGMENT_CHOICES if c[0] != 'admin']
+    
     context = {
         'talents': page_obj,
         'page_obj': page_obj,
         'is_paginated': page_obj.has_other_pages(),
+        'segments': segment_choices,
     }
     return render(request, 'citizens/talent_list.html', context)
 

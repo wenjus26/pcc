@@ -6,16 +6,20 @@ from apps.institutions.models import Opportunity
 from apps.content.models import Post, Event, Video, Course
 
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
-from .models import Notification, NewsletterSubscriber
+from django.db.models import Case, When, Value, IntegerField, Q
 
 def home(request):
     latest_opportunities = Opportunity.objects.filter(status='open').order_by('-created_at')[:6]
-    featured_talents = CitizenProfile.objects.filter(is_public=True).order_by('?')[:6]
-    # Handle optional Post model if it exists
+    
+    all_featured = CitizenProfile.objects.filter(is_public=True).select_related('user')
+    
     context = {
         'latest_opportunities': latest_opportunities,
-        'featured_talents': featured_talents,
+        'soutiens': all_featured.filter(user__role='soutien')[:6],
+        'experts_ca': all_featured.filter(user__role='expert_ca')[:12],
+        'experts_hca': all_featured.filter(user__role='expert_hca')[:12],
+        'talents': all_featured.filter(user__role='talent')[:12],
+        'diaspora': all_featured.filter(user__role='diaspora')[:12],
     }
     return render(request, 'core/home.html', context)
 

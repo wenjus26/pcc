@@ -32,7 +32,7 @@ def generate_excel_template():
         ["6. Supprimez les lignes d'exemple avant d'importer vos données."],
         [""],
         ["Comment remplir chaque feuille ?"],
-        ["- USERS : Crée l'utilisateur. Role possibles: 'citizen', 'institution', 'admin'."],
+        ["- USERS : Crée l'utilisateur. Role possibles: 'soutien', 'expert_ca', 'expert_hca', 'talent', 'diaspora', 'admin'."],
         ["- PROFILES : Ajoute les détails du profil citoyen. Le 'Location' doit être l'un des départements du Bénin."],
         ["- SKILLS : Vous pouvez ajouter plusieurs compétences par utilisateur (1 ligne = 1 compétence)."],
         ["- EXPERIENCES : 1 ligne = 1 expérience. Si 'En cours' est True, 'Date fin' peut être vide."],
@@ -49,11 +49,11 @@ def generate_excel_template():
     ws_users = wb.create_sheet(title="USERS")
     headers_users = ["Username", "Email", "Password", "First Name", "Last Name", "Is Active", "Is Staff", "Role", "Phone Number", "Is Verified"]
     ws_users.append(headers_users)
-    ws_users.append(["user1", "user1@email.com", "ChangeMe123!", "Jean", "Dupont", "True", "False", "citizen", "+22900000000", "True"])
+    ws_users.append(["user1", "user1@email.com", "ChangeMe123!", "Jean", "Dupont", "True", "False", "talent", "+22900000000", "True"])
     
     ws_users['A1'].comment = Comment("Clé unique, sans espace", "Admin")
     ws_users['F1'].comment = Comment("True ou False", "Admin")
-    ws_users['H1'].comment = Comment("'citizen', 'institution', ou 'admin'", "Admin")
+    ws_users['H1'].comment = Comment("'soutien', 'expert_ca', 'expert_hca', 'talent', 'diaspora', ou 'admin'", "Admin")
     
     # --- 3. PROFILES ---
     ws_profiles = wb.create_sheet(title="PROFILES")
@@ -163,7 +163,7 @@ def process_excel_import(excel_file):
                         last_name=last_name if last_name else '',
                         is_active=str(is_active).strip().lower() == 'true',
                         is_staff=str(is_staff).strip().lower() == 'true',
-                        role=role if role else 'citizen',
+                        role=role if role else 'talent',
                         phone_number=phone_number if phone_number else '',
                         is_verified=str(is_verified).strip().lower() == 'true'
                     )

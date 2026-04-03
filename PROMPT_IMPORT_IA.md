@@ -19,7 +19,7 @@ Règles :
 - 'Password' : Mets "ChangeMe123!" par défaut.
 - 'Is Active' : True (toujours en anglais)
 - 'Is Staff' : False (toujours en anglais)
-- 'Role' : Doit être obligatoirement "citizen", "institution" ou "admin" (mets "citizen" par défaut).
+- 'Role' : Doit être obligatoirement l'un de ces segments : "soutien", "expert_ca", "expert_hca", "talent", "diaspora" ou "admin" (mets "talent" par défaut).
 - 'Is Verified' : True
 
 ---

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PCC 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-03 13:40+0100\n"
+"POT-Creation-Date: 2026-04-03 16:07+0100\n"
 "PO-Revision-Date: 2026-03-24 13:35+0100\n"
 "Last-Translator: PCC Team\n"
 "Language-Team: English\n"
@@ -37,23 +37,41 @@ msgstr "Password"
 msgid "Nom de l'Institution"
 msgstr "Institutional Profile"
 
-#: .\apps\accounts\models.py:11
-msgid "Citoyen / Membre"
-msgstr "Citizen / Member"
+#: .\apps\accounts\forms.py:16 .\apps\accounts\models.py:18
+msgid "Talent & Compétence (Local)"
+msgstr "Talent & Skill (Local)"
 
-#: .\apps\accounts\models.py:12
-msgid "Institution / Entreprise"
-msgstr "Institution / Company"
+#: .\apps\accounts\forms.py:17 .\apps\accounts\models.py:19
+msgid "Talent & Compétence (Diaspora)"
+msgstr "Talent & Skill (Diaspora)"
 
-#: .\apps\accounts\models.py:13
-msgid "Administrateur"
+#: .\apps\accounts\models.py:15
+msgid "Soutien Participatif (Ministres/Hauts Cadres)"
+msgstr "Participatory Support (Ministers/High Officials)"
+
+#: .\apps\accounts\models.py:16
+msgid "Expert - Conseil d’Administration PCC"
+msgstr "Expert - PCC Board of Directors"
+
+#: .\apps\accounts\models.py:17
+msgid "Expert - Hors Conseil d’Administration PCC"
+msgstr "Expert - Outside PCC Board"
+
+#: .\apps\accounts\models.py:20
+msgid "Administrateur Système"
+msgstr "System Administrator"
+
+#: .\apps\accounts\models.py:27
+#, fuzzy
+#| msgid "Administrateur"
+msgid "Segmentation"
 msgstr "Administrator"
 
-#: .\apps\accounts\models.py:29
+#: .\apps\accounts\models.py:37
 msgid "Utilisateur"
 msgstr "User"
 
-#: .\apps\accounts\models.py:30
+#: .\apps\accounts\models.py:38
 msgid "Utilisateurs"
 msgstr "Users"
 
@@ -66,7 +84,7 @@ msgstr "Category"
 msgid "Catégories"
 msgstr "Categories"
 
-#: .\apps\citizens\models.py:23
+#: .\apps\citizens\models.py:23 .\templates\citizens\talent_list.html:52
 msgid "Compétence"
 msgstr "Skill"
 
@@ -1164,7 +1182,7 @@ msgid "Profession non spécifiée"
 msgstr "Profession not specified"
 
 #: .\templates\citizens\profile_detail.html:42
-#: .\templates\citizens\talent_list.html:97 .\templates\core\contact.html:16
+#: .\templates\citizens\talent_list.html:113 .\templates\core\contact.html:16
 #: .\templates\institutions\opportunity_detail.html:24
 #: .\templates\institutions\opportunity_list.html:103
 msgid "Bénin"
@@ -1247,6 +1265,7 @@ msgid "Intitulé du poste actuel"
 msgstr "Current job title"
 
 #: .\templates\citizens\profile_form.html:47
+#: .\templates\citizens\talent_list.html:43
 #: .\templates\emails\profile_updated_confirmation.html:25
 msgid "Localisation"
 msgstr "Location"
@@ -1398,7 +1417,9 @@ msgstr "Our Network of"
 msgid ""
 "Découvrez les talents béninois prêts à contribuer au développement national. "
 "Une communauté d'experts engagés pour 2026-2033."
-msgstr "Discover Beninese talents ready to contribute to national development. A community of experts committed for 2026-2033."
+msgstr ""
+"Discover Beninese talents ready to contribute to national development. A "
+"community of experts committed for 2026-2033."
 
 #: .\templates\citizens\talent_list.html:19
 msgid "Rejoindre le réseau"
@@ -1410,56 +1431,48 @@ msgstr "Join the network"
 msgid "Nom, rôle, biographie ou mots-clés..."
 msgstr "Name, role, biography..."
 
-#: .\templates\citizens\talent_list.html:43
-msgid "Localisation (ex: Cotonou, Parakou...)"
-msgstr ""
+#: .\templates\citizens\talent_list.html:61
+#, fuzzy
+#| msgid "Catégories"
+msgid "Toutes les catégories"
+msgstr "Categories"
 
-#: .\templates\citizens\talent_list.html:52
-msgid "Compétence spécifique (ex: Finance, IT...)"
-msgstr ""
-
-#: .\templates\citizens\talent_list.html:57
-#: .\templates\institutions\opportunity_list.html:74
-msgid "Appliquer les filtres"
+#: .\templates\citizens\talent_list.html:73
+#, fuzzy
+#| msgid "Appliquer les filtres"
+msgid "Appliquer"
 msgstr "Apply filters"
 
-#: .\templates\citizens\talent_list.html:66
+#: .\templates\citizens\talent_list.html:82
 msgid "Talents disponibles"
 msgstr "Available talents"
 
-#: .\templates\citizens\talent_list.html:71
+#: .\templates\citizens\talent_list.html:87
 msgid "Trier par"
 msgstr "Sort by"
 
-#: .\templates\citizens\talent_list.html:72
+#: .\templates\citizens\talent_list.html:88
 msgid "Pertinence"
 msgstr "Relevance"
 
-#: .\templates\citizens\talent_list.html:74
+#: .\templates\citizens\talent_list.html:90
 msgid "Nouveauté"
 msgstr "Newest"
 
-#: .\templates\citizens\talent_list.html:94
-msgid "Expert"
-msgstr "Expert"
-
-#: .\templates\citizens\talent_list.html:94
-msgid "Senior"
-msgstr "Senior"
-
-#: .\templates\citizens\talent_list.html:104
+#: .\templates\citizens\talent_list.html:120
 msgid "Consultant Indépendant"
 msgstr "Independent Consultant"
 
-#: .\templates\citizens\talent_list.html:118
+#: .\templates\citizens\talent_list.html:134
+#: .\templates\snippets\talent_card_home.html:33
 msgid "Voir le profil"
 msgstr "View profile"
 
-#: .\templates\citizens\talent_list.html:127
+#: .\templates\citizens\talent_list.html:143
 msgid "Aucun talent trouvé"
 msgstr "No talents found"
 
-#: .\templates\citizens\talent_list.html:128
+#: .\templates\citizens\talent_list.html:144
 msgid "Essayez d'ajuster vos filtres de recherche."
 msgstr "Try adjusting your search filters."
 
@@ -1954,7 +1967,7 @@ msgid "Autres Événements animées par nos experts reconnus."
 msgstr ""
 
 #: .\templates\content\event_list.html:99 .\templates\content\privacy.html:130
-#: .\templates\core\home.html:281
+#: .\templates\core\home.html:322
 msgid "En savoir plus"
 msgstr "Learn more"
 
@@ -1974,7 +1987,7 @@ msgstr ""
 msgid "Autres Événements à Venir"
 msgstr "Events"
 
-#: .\templates\content\event_list.html:232 .\templates\core\home.html:117
+#: .\templates\content\event_list.html:232 .\templates\core\home.html:116
 msgid "Voir tout"
 msgstr "See all"
 
@@ -2317,35 +2330,35 @@ msgstr ""
 msgid "Plateforme Citoyenne de Compétences"
 msgstr "Citizen Skills Platform"
 
-#: .\templates\core\home.html:19
+#: .\templates\core\home.html:20
 msgid ""
 "Plateforme <br /> <span class=\"text-primary italic\">Citoyenne de</span> "
 "Compétences"
 msgstr ""
 "Citizen <br /> <span class=\"text-primary italic\">Skills</span> Platform"
 
-#: .\templates\core\home.html:23
+#: .\templates\core\home.html:24
 msgid ""
 "Unir les compétences et les talents. Inspirer le changement. Bâtir l'avenir"
 msgstr "Unite skills and talents. Inspire change. Build the future."
 
-#: .\templates\core\home.html:33
+#: .\templates\core\home.html:34
 msgid "Rechercher un talent, un expert ou un projet..."
 msgstr "Search for a talent, an expert or a project..."
 
-#: .\templates\core\home.html:37
+#: .\templates\core\home.html:38
 msgid "Trouver"
 msgstr "Find"
 
-#: .\templates\core\home.html:46
+#: .\templates\core\home.html:47
 msgid "S'inscrire gratuitement"
 msgstr "Sign up for free"
 
-#: .\templates\core\home.html:51
+#: .\templates\core\home.html:52
 msgid "Découvrir les talents"
 msgstr "Discover talents"
 
-#: .\templates\core\home.html:67
+#: .\templates\core\home.html:68
 msgid "Experts déjà inscrits"
 msgstr "Experts already registered"
 
@@ -2353,54 +2366,74 @@ msgstr "Experts already registered"
 msgid "Satisfaction"
 msgstr "Satisfaction"
 
-#: .\templates\core\home.html:98
+#: .\templates\core\home.html:97
 msgid "Profils vérifiés par les instances nationales"
 msgstr "Profiles verified by national authorities"
 
-#: .\templates\core\home.html:111
+#: .\templates\core\home.html:110
 msgid "Impact Direct"
 msgstr "Direct Impact"
 
-#: .\templates\core\home.html:112
+#: .\templates\core\home.html:111
 msgid "Dernières Opportunités Nationales"
 msgstr "Latest National Opportunities"
 
-#: .\templates\core\home.html:113
+#: .\templates\core\home.html:112
 msgid ""
 "Répondez aux appels à projets stratégiques du gouvernement et des "
 "institutions."
 msgstr ""
 "Respond to strategic project calls from the government and institutions."
 
-#: .\templates\core\home.html:146
+#: .\templates\core\home.html:145
 msgid "Chargement des opportunités..."
 msgstr "Loading opportunities..."
 
+#: .\templates\core\home.html:156
+#, fuzzy
+#| msgid "Plateforme Citoyenne de Compétences"
+msgid "Réseau de Compétences"
+msgstr "Citizen Skills Platform"
+
 #: .\templates\core\home.html:157
-msgid "Élite Béninoise"
+msgid "Communauté PCC"
+msgstr ""
+
+#: .\templates\core\home.html:165
+msgid "Soutien Participatif"
+msgstr ""
+
+#: .\templates\core\home.html:180
+#, fuzzy
+#| msgid "Administrateur"
+msgid "Conseil d'Administration PCC"
+msgstr "Administrator"
+
+#: .\templates\core\home.html:195
+msgid "Experts du Forum PCC"
+msgstr ""
+
+#: .\templates\core\home.html:210
+#, fuzzy
+#| msgid "Exigences & Compétences"
+msgid "Talents & Compétences"
+msgstr "Requirements & Skills"
+
+#: .\templates\core\home.html:225
+#, fuzzy
+#| msgid "Élite Béninoise"
+msgid "Diaspora Béninoise"
 msgstr "Beninese Elite"
 
-#: .\templates\core\home.html:158
-msgid "Portraits d'Experts"
-msgstr "Expert Portraits"
-
-#: .\templates\core\home.html:177
-msgid "Consultant"
-msgstr "Consultant"
-
-#: .\templates\core\home.html:188
-msgid "Profil complet"
-msgstr "Full profile"
-
-#: .\templates\core\home.html:205
+#: .\templates\core\home.html:244
 msgid "Impact Géographique"
 msgstr "Geographic Impact"
 
-#: .\templates\core\home.html:206
+#: .\templates\core\home.html:245
 msgid "Où sont nos experts ?"
 msgstr "Where are our experts?"
 
-#: .\templates\core\home.html:207
+#: .\templates\core\home.html:246
 msgid ""
 "Visualisez la répartition des compétences citoyennes sur tout le territoire "
 "national."
@@ -2408,15 +2441,15 @@ msgstr ""
 "Visualize the distribution of citizen skills across the entire national "
 "territory."
 
-#: .\templates\core\home.html:272
+#: .\templates\core\home.html:313
 msgid "Prêt à contribuer à l'essor"
 msgstr "Ready to contribute to the growth"
 
-#: .\templates\core\home.html:272
+#: .\templates\core\home.html:313
 msgid "du Bénin ?"
 msgstr "of Benin?"
 
-#: .\templates\core\home.html:277
+#: .\templates\core\home.html:318
 msgid "Rejoindre maintenant"
 msgstr "Join now"
 
@@ -2869,7 +2902,9 @@ msgstr "Latest"
 msgid ""
 "Découvrez les projets stratégiques et appels à expertise des institutions du "
 "Bénin."
-msgstr "Discover strategic projects and calls for expertise from Beninese institutions."
+msgstr ""
+"Discover strategic projects and calls for expertise from Beninese "
+"institutions."
 
 #: .\templates\institutions\opportunity_list.html:25
 msgid "Rechercher un projet..."
@@ -2882,6 +2917,10 @@ msgstr "Filter"
 #: .\templates\institutions\opportunity_list.html:47
 msgid "Statut du projet"
 msgstr "Project status"
+
+#: .\templates\institutions\opportunity_list.html:74
+msgid "Appliquer les filtres"
+msgstr "Apply filters"
 
 #: .\templates\institutions\opportunity_list.html:117
 msgid "Clôture"
@@ -2902,6 +2941,33 @@ msgstr "No opportunities available"
 #: .\templates\institutions\opportunity_list.html:135
 msgid "Revenez bientôt pour de nouveaux projets."
 msgstr "Come back soon for new projects."
+
+#: .\templates\snippets\talent_card_home.html:20
+#, fuzzy
+#| msgid "Expertise & Compétences"
+msgid "Source de Compétence"
+msgstr "Expertise & Skills"
+
+#~ msgid "Citoyen / Membre"
+#~ msgstr "Citizen / Member"
+
+#~ msgid "Institution / Entreprise"
+#~ msgstr "Institution / Company"
+
+#~ msgid "Expert"
+#~ msgstr "Expert"
+
+#~ msgid "Senior"
+#~ msgstr "Senior"
+
+#~ msgid "Portraits d'Experts"
+#~ msgstr "Expert Portraits"
+
+#~ msgid "Consultant"
+#~ msgstr "Consultant"
+
+#~ msgid "Profil complet"
+#~ msgstr "Full profile"
 
 #~ msgid "Propulsez votre"
 #~ msgstr "Propel your"

@@ -1,0 +1,24 @@
+{% load i18n %}
+<a href="{% url 'citizens:profile_detail' talent.uuid %}" class="bg-white dark:bg-slate-800 p-6 rounded-[2.5rem] shadow-sm border border-primary/5 hover:border-primary/20 hover:shadow-xl transition-all group flex items-center gap-6">
+    <div class="size-16 rounded-2xl overflow-hidden shrink-0 bg-primary/5 text-primary flex items-center justify-center font-black text-xl shadow-lg ring-4 ring-slate-50 dark:ring-slate-900 group-hover:ring-primary/10 transition-all">
+        {% if talent.photo %}
+            <img class="w-full h-full object-cover" src="{{ talent.photo.url }}" alt="{{ talent.user.username }}">
+        {% else %}
+            {{ talent.initials }}
+        {% endif %}
+    </div>
+    <div class="flex-grow min-w-0">
+        <h4 class="text-lg font-black text-slate-800 dark:text-white truncate mb-1 group-hover:text-primary transition-colors">{{ talent.user.get_full_name|default:talent.user.username }}</h4>
+        <div class="flex items-center gap-3">
+            <span class="text-[9px] font-black uppercase tracking-widest text-primary bg-primary/5 px-2 py-0.5 rounded-lg border border-primary/5">
+                {{ talent.user.get_role_display }}
+            </span>
+            <span class="text-slate-400 text-[10px] font-bold italic truncate">
+                {{ talent.current_title|default:"Expert" }}
+            </span>
+        </div>
+    </div>
+    <div class="size-10 rounded-xl bg-slate-50 dark:bg-slate-900 flex items-center justify-center text-slate-300 group-hover:bg-primary group-hover:text-white transition-all">
+        <i class="fas fa-chevron-right text-xs"></i>
+    </div>
+</a>

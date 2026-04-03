@@ -39,29 +39,17 @@ def dashboard(request):
     if user.role == 'admin':
         return redirect('accounts:admin_dashboard')
     
-    context = {'user': user}
-    
-    if user.role == 'citizen':
+    # All other segments currently use the citizen/expert dashboard
+    if user.role in ['soutien', 'expert_ca', 'expert_hca', 'talent', 'diaspora']:
         try:
             profile = user.citizen_profile
-            context['profile'] = profile
+            context = {'user': user, 'profile': profile}
             context['applications'] = profile.applications.all().order_by('-created_at')[:5]
             context['matches'] = Match.objects.filter(citizen=profile).order_by('-score')[:5]
+            return render(request, 'accounts/dashboard_citizen.html', context)
         except CitizenProfile.DoesNotExist:
-            messages.warning(request, "Veuillez compléter votre profil citoyen.")
+            messages.warning(request, "Veuillez compléter votre profil pour accéder à votre espace.")
             return redirect('core:home')
-        return render(request, 'accounts/dashboard_citizen.html', context)
-    
-    elif user.role == 'institution':
-        try:
-            profile = user.institution_profile
-            context['profile'] = profile
-            context['opportunities'] = profile.opportunities.all().order_by('-created_at')
-            context['received_applications'] = Application.objects.filter(opportunity__institution=profile).order_by('-created_at')[:10]
-        except InstitutionProfile.DoesNotExist:
-            messages.warning(request, "Veuillez compléter votre profil institutionnel.")
-            return redirect('core:home')
-        return render(request, 'accounts/dashboard_institution.html', context)
     
     return redirect('core:home')
 
@@ -80,12 +68,18 @@ def admin_dashboard(request):
     stats = {
         'total_users': CustomUser.objects.count(),
         'total_citizens': CitizenProfile.objects.count(),
-        'total_institutions': InstitutionProfile.objects.count(),
         'total_opportunities': Opportunity.objects.count(),
         'total_events': Event.objects.count(),
         'total_videos': Video.objects.count(),
         'pending_count': pending_profiles.count(),
         'validated_profiles': CitizenProfile.objects.filter(is_validated=True).count(),
+        
+        # Breakdown by segments
+        'soutien': CustomUser.objects.filter(role='soutien').count(),
+        'expert_ca': CustomUser.objects.filter(role='expert_ca').count(),
+        'expert_hca': CustomUser.objects.filter(role='expert_hca').count(),
+        'talent': CustomUser.objects.filter(role='talent').count(),
+        'diaspora': CustomUser.objects.filter(role='diaspora').count(),
     }
     
     # Growth (dummy for now or real if data available)

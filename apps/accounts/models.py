@@ -3,20 +3,28 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 class CustomUser(AbstractUser):
-    CITIZEN = 'citizen'
-    INSTITUTION = 'institution'
+    # Segments
+    SOUTIEN = 'soutien'
+    EXPERT_CA = 'expert_ca'
+    EXPERT_HCA = 'expert_hca'
+    TALENT = 'talent'
+    DIASPORA = 'diaspora'
     ADMIN = 'admin'
     
-    ROLE_CHOICES = [
-        (CITIZEN, _('Citoyen / Membre')),
-        (INSTITUTION, _('Institution / Entreprise')),
-        (ADMIN, _('Administrateur')),
+    SEGMENT_CHOICES = [
+        (SOUTIEN, _('Soutien Participatif (Ministres/Hauts Cadres)')),
+        (EXPERT_CA, _('Expert - Conseil d’Administration PCC')),
+        (EXPERT_HCA, _('Expert - Hors Conseil d’Administration PCC')),
+        (TALENT, _('Talent & Compétence (Local)')),
+        (DIASPORA, _('Talent & Compétence (Diaspora)')),
+        (ADMIN, _('Administrateur Système')),
     ]
     
     role = models.CharField(
         max_length=20,
-        choices=ROLE_CHOICES,
-        default=CITIZEN
+        choices=SEGMENT_CHOICES,
+        default=TALENT,
+        verbose_name=_("Segmentation")
     )
     
     phone_number = models.CharField(max_length=20, blank=True, null=True)
