@@ -60,6 +60,9 @@
             <a href="{% url 'accounts:admin_validate_all_profiles' %}" onclick="return confirm('Voulez-vous vraiment valider TOUS les profils en attente ? cette action est irreversible.')" class="flex items-center gap-4 px-6 py-4 text-amber-400 hover:text-white hover:bg-amber-600/20 rounded-2xl transition-all font-bold text-sm group">
                 <i class="fas fa-check-double group-hover:text-amber-500"></i> <span x-show="sidebarOpen || window.innerWidth < 1024">{% trans "Tout Valider" %}</span>
             </a>
+            <a href="{% url 'accounts:admin_broadcast_email' %}" class="flex items-center gap-4 px-6 py-4 text-emerald-400 hover:text-white hover:bg-emerald-600/20 rounded-2xl transition-all font-bold text-sm group">
+                <i class="fas fa-bullhorn group-hover:text-emerald-500"></i> <span x-show="sidebarOpen || window.innerWidth < 1024">{% trans "Diffusion Mail" %}</span>
+            </a>
 
             <div class="h-px bg-white/5 my-4 mx-4"></div>
             <p x-show="sidebarOpen || window.innerWidth < 1024" class="text-[9px] font-black tracking-widest text-slate-500 uppercase px-6 mb-2">{% trans "Analyse & Rapports" %}</p>

@@ -67,3 +67,11 @@ class AdminCitizenCreateForm(forms.Form):
         profile.is_validated = True
         profile.save()
         return user
+
+class BroadcastEmailForm(forms.Form):
+    target_role = forms.ChoiceField(
+        choices=[('all', _('Tous les Utilisateurs'))] + CustomUser.SEGMENT_CHOICES,
+        label=_("Destinataires (Segment)")
+    )
+    subject = forms.CharField(max_length=200, label=_("Sujet de l'Email"))
+    message = forms.CharField(widget=forms.Textarea(attrs={'rows': 10}), label=_("Message à diffuser"))

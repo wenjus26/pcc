@@ -363,3 +363,44 @@ def admin_validate_all_profiles(request):
     
     return response
 
+@login_required
+def admin_broadcast_email(request):
+    """View to send an email to selected users and return a Word report."""
+    if request.user.role != 'admin':
+        return redirect('accounts:dashboard')
+    
+    from .admin_forms import BroadcastEmailForm
+    from apps.citizens.services import process_broadcast_email_report
+    from django.http import HttpResponse
+    from django.utils import timezone
+    
+    if request.method == 'POST':
+        form = BroadcastEmailForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            target_role = form.cleaned_data['target_role']
+            
+            # Start process (Synchronous to allow direct file return)
+            report_io = process_broadcast_email_report(subject, message, target_role=target_role, request=request)
+            
+            # Return Word File
+            response = HttpResponse(
+                report_io.read(),
+                content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+            )
+            timestamp = timezone.now().strftime("%Y%m%d_%H%M%S")
+            filename = f"Rapport_Diffusion_{target_role}_{timestamp}.docx"
+            response['Content-Disposition'] = f'attachment; filename="{filename}"'
+            
+            return response
+    else:
+        form = BroadcastEmailForm()
+    
+    return render(request, 'accounts/admin_create_form.html', {
+        'form': form,
+        'title': "Diffusion Générale (Mass Mail)",
+        'icon': 'fa-bullhorn',
+        'help_text': "Sélectionnez une catégorie d'utilisateurs. Les emails sont envoyés avec une pause de 5 secondes pour sécuriser le serveur."
+    })
+

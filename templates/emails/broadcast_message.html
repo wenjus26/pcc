@@ -1,0 +1,26 @@
+{% extends "emails/base_email.html" %}
+{% load i18n %}
+
+{% block content %}
+<div
+    style="padding: 30px; background-color: #ffffff; border-radius: 12px; margin-bottom: 20px; border: 1px solid #eef2f7;">
+    <h2 style="color: #003366; font-size: 20px; font-weight: 800; margin-top: 0;">{% trans "Communication Officielle PCC" %}</h2>
+    <p style="color: #475569; font-size: 16px; line-height: 1.6;">{% trans "Bonjour" %} <strong>{{ user.get_full_name|default:user.username }}</strong>,</p>
+
+    <div
+        style="background-color: #f8fafc; padding: 25px; border-radius: 12px; border-left: 4px solid #00c853; margin: 25px 0;">
+        <p style="color: #1e293b; font-size: 15px; margin: 0; white-space: pre-wrap;">{{ message_content }}</p>
+    </div>
+
+    <p style="color: #64748b; font-size: 14px; margin-bottom: 30px;">
+        {% trans "Cette communication s'inscrit dans le cadre du développement de la Plateforme Citoyenne des Compétences." %}
+    </p>
+
+    <div style="text-align: center;">
+        <a href="{{ protocol }}://{{ domain }}/accounts/dashboard/"
+            style="display: inline-block; padding: 14px 30px; background-color: #00c853; color: #ffffff; text-decoration: none; border-radius: 10px; font-weight: 900; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">
+            {% trans "Accéder à mon espace" %}
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -364,3 +364,68 @@ def process_bulk_validation_with_report(pending_profiles, request=None):
 
     doc.add_paragraph(f"\nRésumé : {success_count} réussites, {error_count} erreurs/alertes.")
     return generate_word_bytes(doc)
+
+def process_broadcast_email_report(subject, message, target_role='all', request=None):
+    """
+    Sends an email to selected users with a 5-second delay and returns the Word report.
+    """
+    from apps.accounts.models import CustomUser
+    from apps.core.utils import send_pcc_email
+    import time
+    
+    users = CustomUser.objects.filter(is_active=True).exclude(email='')
+    if target_role != 'all':
+        users = users.filter(role=target_role)
+    
+    doc = DocxDocument()
+    doc.add_heading(f"Rapport de Diffusion Générale - {datetime.datetime.now().strftime('%d/%m/%Y %H:%M')}", level=1)
+    doc.add_paragraph(f"Objet : {subject}")
+    doc.add_paragraph(f"Cible : {target_role}")
+    doc.add_paragraph(f"Nombre de destinataires : {len(users)}")
+    doc.add_paragraph("--------------------------------------------------------")
+    
+    table = doc.add_table(rows=1, cols=3)
+    table.style = 'Table Grid'
+    hdr_cells = table.rows[0].cells
+    hdr_cells[0].text = 'Utilisateur'
+    hdr_cells[1].text = 'Email'
+    hdr_cells[2].text = 'Statut Envoi'
+    
+    success_count = 0
+    error_count = 0
+
+    for user in users:
+        fullname = user.get_full_name() or user.username
+        email = user.email
+        
+        row_cells = table.add_row().cells
+        row_cells[0].text = fullname
+        row_cells[1].text = email
+        
+        try:
+            email_sent = send_pcc_email(
+                subject=subject,
+                template_name='emails/broadcast_message.html',
+                context={'user': user, 'message_content': message, 'subject': subject},
+                recipient_list=[email],
+                request=request
+            )
+            
+            if email_sent:
+                row_cells[2].text = "ENVOYE"
+                success_count += 1
+            else:
+                row_cells[2].text = "ECHEC (SMTP)"
+                error_count += 1
+                
+            # DELAI DE 5 SECONDES DEMANDE PAR L'UTILISATEUR
+            if len(users) > 1:
+                time.sleep(5)
+            
+        except Exception as e:
+            row_cells[2].text = f"ERREUR: {str(e)}"
+            error_count += 1
+
+    doc.add_paragraph(f"\nRésumé Final : {success_count} envoyés, {error_count} erreurs.")
+    
+    return generate_word_bytes(doc)
