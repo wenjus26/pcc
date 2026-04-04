@@ -429,3 +429,75 @@ def process_broadcast_email_report(subject, message, target_role='all', request=
     doc.add_paragraph(f"\nRésumé Final : {success_count} envoyés, {error_count} erreurs.")
     
     return generate_word_bytes(doc)
+
+def process_duplicates_cleanup_report(request=None):
+    """
+    Finds users with duplicate emails, keeps the oldest one, deletes others, and notifies the user.
+    """
+    from apps.accounts.models import CustomUser
+    from apps.core.utils import send_pcc_email
+    from django.db.models import Count
+    import time
+    
+    # 1. Identify duplicate emails
+    duplicate_emails = CustomUser.objects.values('email').annotate(email_count=Count('email')).filter(email_count__gt=1).exclude(email='')
+    
+    doc = DocxDocument()
+    doc.add_heading(f"Rapport de Nettoyage des Doublons - {datetime.datetime.now().strftime('%d/%m/%Y %H:%M')}", level=1)
+    
+    table = doc.add_table(rows=1, cols=3)
+    table.style = 'Table Grid'
+    hdr_cells = table.rows[0].cells
+    hdr_cells[0].text = 'Email'
+    hdr_cells[1].text = 'Comptes Supprimés'
+    hdr_cells[2].text = 'Statut Email'
+    
+    total_deleted = 0
+    _add_log(doc, f"Nombre d'emails en doublons trouvés : {len(duplicate_emails)}")
+
+    for entry in duplicate_emails:
+        email = entry['email']
+        all_users = CustomUser.objects.filter(email=email).order_by('date_joined')
+        
+        # Keep the oldest (first in query)
+        main_user = all_users[0]
+        duplicates_to_delete = list(all_users[1:])
+        
+        row_cells = table.add_row().cells
+        row_cells[0].text = email
+        usernames_deleted = [u.username for u in duplicates_to_delete]
+        row_cells[1].text = ", ".join(usernames_deleted)
+        
+        # 2. Notify the main user
+        subject = "Avis de sécurité : Nettoyage de comptes en doublons sur PCC"
+        message = (
+            f"Bonjour {main_user.get_full_name() or main_user.username},\n\n"
+            "Nous avons détecté que plusieurs comptes ont été créés avec votre adresse email sur la Plateforme Citoyenne des Compétences.\n\n"
+            "Conformément à nos règles de sécurité, nous avons procédé à la suppression des comptes superflus pour ne garder que votre compte principal.\n\n"
+            f"Votre compte restant est : {main_user.username}.\n\n"
+            "Par mesure de sécurité, nous vous prions de vous rendre sur la page de connexion et d'utiliser la fonction 'Mot de passe oublié' afin de définir un nouveau mot de passe pour ce compte.\n\n"
+            "Merci de votre compréhension.\n"
+            "L'Équipe Technique PCC."
+        )
+        
+        email_sent = send_pcc_email(
+            subject=subject,
+            template_name='emails/broadcast_message.html',
+            context={'user': main_user, 'message_content': message, 'subject': subject},
+            recipient_list=[email],
+            request=request
+        )
+        
+        row_cells[2].text = "ENVOYE" if email_sent else "ERREUR"
+        
+        # 3. Perform Deletion
+        for d_user in duplicates_to_delete:
+            d_user.delete()
+            total_deleted += 1
+            
+        # 5s delay for Gmail
+        if len(duplicate_emails) > 1:
+            time.sleep(5)
+
+    doc.add_paragraph(f"\nNettoyage terminé : {total_deleted} comptes supprimés au total.")
+    return generate_word_bytes(doc)

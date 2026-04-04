@@ -404,3 +404,27 @@ def admin_broadcast_email(request):
         'help_text': "Sélectionnez une catégorie d'utilisateurs. Les emails sont envoyés avec une pause de 5 secondes pour sécuriser le serveur."
     })
 
+@login_required
+def admin_cleanup_duplicates(request):
+    """View to identify and clean duplicate accounts by email."""
+    if request.user.role != 'admin':
+        return redirect('accounts:dashboard')
+    
+    from apps.citizens.services import process_duplicates_cleanup_report
+    from django.http import HttpResponse
+    from django.utils import timezone
+    
+    # Run cleanup and generate report
+    report_io = process_duplicates_cleanup_report(request=request)
+    
+    # Return Word File
+    response = HttpResponse(
+        report_io.read(),
+        content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    )
+    timestamp = timezone.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"Rapport_Nettoyage_Doublons_{timestamp}.docx"
+    response['Content-Disposition'] = f'attachment; filename="{filename}"'
+    
+    return response
+

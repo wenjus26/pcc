@@ -18,6 +18,7 @@ urlpatterns = [
     path('admin/export/talents/', views.export_talents_excel, name='export_talents'),
     path('admin/validate-all-profiles/', views.admin_validate_all_profiles, name='admin_validate_all_profiles'),
     path('admin/broadcast/', views.admin_broadcast_email, name='admin_broadcast_email'),
+    path('admin/cleanup-duplicates/', views.admin_cleanup_duplicates, name='admin_cleanup_duplicates'),
 
     
     # Création Admin
