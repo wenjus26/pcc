@@ -329,3 +329,37 @@ def export_talents_excel(request):
     wb.save(response)
     
     return response
+
+@login_required
+def admin_validate_all_profiles(request):
+    """Bulk validate all pending profiles and return a Word report results."""
+    if request.user.role != 'admin':
+        return redirect('accounts:dashboard')
+    
+    from apps.citizens.models import CitizenProfile
+    from apps.citizens.services import process_bulk_validation_with_report
+    from django.http import HttpResponse
+    from django.utils import timezone
+    
+    # Capture profiles
+    pending_profiles = CitizenProfile.objects.filter(is_validated=False)
+    count = pending_profiles.count()
+    
+    if count == 0:
+        messages.info(request, "Aucun profil en attente de validation.")
+        return redirect('accounts:admin_dashboard')
+
+    # Run validation and generate report (Synchronous to provide the file)
+    report_io = process_bulk_validation_with_report(pending_profiles, request=request)
+    
+    # Prepare Response
+    response = HttpResponse(
+        report_io.read(),
+        content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    )
+    timestamp = timezone.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"Rapport_Validation_Massive_{timestamp}.docx"
+    response['Content-Disposition'] = f'attachment; filename="{filename}"'
+    
+    return response
+

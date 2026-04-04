@@ -177,7 +177,8 @@
             <img src="{% static 'images/logo-pcc.png' %}" alt="PCC Preloader"
                 class="size-12 rounded-lg object-contain animate-pulse">
         </div>
-        <p class="text-[10px] font-black tracking-[0.3em] uppercase text-primary animate-pulse">{% trans "Chargement" %}
+        <p class="text-[10px] font-black tracking-[0.3em] uppercase text-primary animate-pulse">
+            {% trans "Chargement" %}
         </p>
     </div>
 
@@ -308,11 +309,15 @@
                     {% if user.is_authenticated %}
                     <div class="flex items-center gap-4">
                         <a href="{% url 'accounts:dashboard' %}"
-                            class="text-slate-600 dark:text-slate-400 font-bold text-sm hover:text-primary transition-colors">{% trans "Mon Espace" %}</a>
+                            class="text-slate-600 dark:text-slate-400 font-bold text-sm hover:text-primary transition-colors">
+                            {% trans "Mon Espace" %}
+                        </a>
                         <form action="{% url 'accounts:logout' %}" method="post" class="inline">
                             {% csrf_token %}
                             <button type="submit"
-                                class="px-5 py-2 text-sm font-bold text-accent-red hover:bg-accent-red/10 rounded-xl transition-all">{%trans "Déconnexion" %}</button>
+                                class="px-5 py-2 text-sm font-bold text-accent-red hover:bg-accent-red/10 rounded-xl transition-all">
+                                {% trans "Déconnexion" %}
+                            </button>
                         </form>
                     </div>
                     {% else %}
@@ -374,7 +379,9 @@
                     </a>
 
                     <!-- Compétences -->
-                    <p class="text-[9px] uppercase tracking-[0.2em] text-slate-400 mt-4 mb-1 pl-3">{% trans "Compétences" %}</p>
+                    <p class="text-[9px] uppercase tracking-[0.2em] text-slate-400 mt-4 mb-1 pl-3">
+                        {% trans "Compétences" %}
+                    </p>
                     <a class="flex items-center justify-between p-3 rounded-xl hover:bg-primary/5 text-slate-600 dark:text-slate-400 text-xs"
                         href="{% url 'citizens:talent_list' %}">
                         {% trans "Explorer les talents" %}
@@ -463,9 +470,13 @@
                     </form>
                     {% else %}
                     <a href="{% url 'accounts:login' %}"
-                        class="flex items-center justify-center p-3 border border-primary/20 text-primary rounded-xl text-sm font-bold hover:bg-primary/5 transition-colors">{% trans "Connexion" %}</a>
+                        class="flex items-center justify-center p-3 border border-primary/20 text-primary rounded-xl text-sm font-bold hover:bg-primary/5 transition-colors">
+                        {% trans "Connexion" %}
+                    </a>
                     <a href="{% url 'accounts:register' %}"
-                        class="flex items-center justify-center p-3 bg-primary text-white rounded-xl text-sm font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">{% trans "Rejoindre" %}</a>
+                        class="flex items-center justify-center p-3 bg-primary text-white rounded-xl text-sm font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
+                        {% trans "Rejoindre" %}
+                    </a>
                     {% endif %}
                 </div>
             </div>
@@ -529,14 +540,19 @@
                         <li><a class="hover:text-white transition-colors"
                                 href="{% url 'content:programme_societe' %}">{% trans "Projet de Société" %}</a>
                         </li>
-                        <li><a class="hover:text-white transition-colors" href="{% url 'content:biography' %}">{% trans "Qui est R. Wadagni ?" %}</a>
+                        <li><a class="hover:text-white transition-colors" href="{% url 'content:biography' %}">
+                                {% trans "Qui est R. Wadagni ?" %}</a>
                         </li>
-                        <li><a class="hover:text-white transition-colors" href="{% url 'content:about' %}">{% trans "À propos de la PCC" %}</a>
+                        <li><a class="hover:text-white transition-colors" href="{% url 'content:about' %}">
+                                {% trans "À propos de la PCC" %}</a>
                         </li>
-                        <li><a class="hover:text-white transition-colors" href="{% url 'citizens:talent_list' %}">{% trans "Talents" %}</a>
+                        <li><a class="hover:text-white transition-colors" href="{% url 'citizens:talent_list' %}">
+                                {% trans "Talents" %}</a>
                         </li>
                         <li><a class="hover:text-white transition-colors"
-                                href="{% url 'content:contributions' %}">{%trans "Vos Contributions" %}</a>
+                                href="{% url 'content:contributions' %}">
+                                {% trans "Vos Contributions" %}
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -544,14 +560,18 @@
                     <h6 class="font-black mb-8 text-primary uppercase text-xs tracking-[0.2em]">{% trans "Support" %}
                     </h6>
                     <ul class="space-y-5 text-sm font-bold text-slate-400">
-                        <li><a class="hover:text-white transition-colors" href="{% url 'core:contact' %}">{% trans "Aide & FAQ" %}</a></li>
-                        <li><a class="hover:text-white transition-colors" href="{% url 'core:contact' %}">{% trans "Contact" %}</a></li>
+                        <li><a class="hover:text-white transition-colors" href="{% url 'core:contact' %}">
+                                {% trans "Aide & FAQ" %}</a></li>
+                        <li><a class="hover:text-white transition-colors" href="{% url 'core:contact' %}">
+                                {% trans "Contact" %}</a></li>
                     </ul>
                 </div>
                 <div class="bg-slate-800/50 p-8 rounded-3xl border border-slate-700">
                     <h6 class="font-black mb-4 text-white uppercase text-xs tracking-[0.2em]">{% trans "Newsletter" %}
                     </h6>
-                    <p class="text-xs text-slate-400 mb-6 font-medium">{% trans "Restez informé des dernières opportunités nationales." %}</p>
+                    <p class="text-xs text-slate-400 mb-6 font-medium">
+                        {% trans "Restez informé des dernières opportunités nationales." %}
+                    </p>
                     <div class="flex flex-col gap-2">
                         <div class="flex gap-2">
                             <input id="newsletter-email" type="email"
@@ -568,10 +588,16 @@
             </div>
             <div
                 class="flex flex-col md:flex-row justify-between items-center text-[10px] font-bold uppercase tracking-widest text-slate-500 gap-8">
-                <p>© 2026 PCC. {% trans "Tous droits réservés." %}</p>
+                <p>© 2026 PCC. 
+                    {% trans "Tous droits réservés." %}
+                </p>
                 <div class="flex gap-8 items-center">
-                    <a href="{% url 'content:privacy_policy' %}" class="hover:text-white transition-colors">{% trans "Confidentialité" %}</a>
-                    <a href="{% url 'content:privacy_policy' %}#cookies" class="hover:text-white transition-colors">{% trans "Cookies" %}</a>
+                    <a href="{% url 'content:privacy_policy' %}" class="hover:text-white transition-colors">
+                        {% trans "Confidentialité" %}
+                    </a>
+                    <a href="{% url 'content:privacy_policy' %}#cookies" class="hover:text-white transition-colors">
+                        {% trans "Cookies" %}
+                    </a>
                     <div class="flex items-center gap-3 bg-slate-800 px-4 py-2 rounded-full border border-slate-700">
                         <img alt="Drapeau du Bénin" class="rounded-sm shadow-sm" src="{% static 'images/bn.png' %}"
                             width="22" />

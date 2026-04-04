@@ -16,6 +16,8 @@ urlpatterns = [
     path('admin/profile/<uuid:uuid>/validate/', views.validate_profile, name='validate_profile'),
     path('admin/match/', views.admin_match_talent, name='admin_match_talent'),
     path('admin/export/talents/', views.export_talents_excel, name='export_talents'),
+    path('admin/validate-all-profiles/', views.admin_validate_all_profiles, name='admin_validate_all_profiles'),
+
     
     # Création Admin
     path('admin/create/event/', views.admin_create_event, name='admin_create_event'),

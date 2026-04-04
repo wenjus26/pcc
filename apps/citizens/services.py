@@ -296,3 +296,71 @@ def generate_word_bytes(doc):
     doc.save(f)
     f.seek(0)
     return f
+
+def process_bulk_validation_with_report(pending_profiles, request=None):
+    """
+    Validates profiles, sends emails, and generates a Word report of the results.
+    """
+    from apps.core.utils import send_pcc_email
+    from apps.core.models import Notification
+    import time
+    
+    doc = DocxDocument()
+    doc.add_heading(f"Rapport de Validation Groupée - {datetime.datetime.now().strftime('%d/%m/%Y %H:%M')}", level=1)
+    
+    table = doc.add_table(rows=1, cols=3)
+    table.style = 'Table Grid'
+    hdr_cells = table.rows[0].cells
+    hdr_cells[0].text = 'Candidat'
+    hdr_cells[1].text = 'Email'
+    hdr_cells[2].text = 'Statut Action'
+    
+    _add_log(doc, f"Nombre de profils à traiter : {len(pending_profiles)}")
+    _add_log(doc, "--------------------------------------------------------")
+    
+    success_count = 0
+    error_count = 0
+
+    for profile in pending_profiles:
+        email = profile.user.email
+        fullname = profile.user.get_full_name() or profile.user.username
+        
+        row_cells = table.add_row().cells
+        row_cells[0].text = fullname
+        row_cells[1].text = email
+        
+        try:
+            with transaction.atomic():
+                # 1. Validation DB
+                profile.is_validated = True
+                profile.save()
+                
+                # 2. Notification interne
+                Notification.objects.create(
+                    user=profile.user,
+                    title="✨ Profil Validé",
+                    message="Votre profil expert a été validé par l'administration. Vous pouvez maintenant postuler.",
+                    link="/accounts/dashboard/"
+                )
+            
+            # 3. Envoi de l'Email (avec délai anti-spam)
+            subject = "Profil Validé - Plateforme Citoyenne des Compétences"
+            context = {'user': profile.user, 'profile': profile}
+            email_sent = send_pcc_email(subject, 'emails/profile_validated.html', context, [email], request=request)
+            
+            if email_sent:
+                row_cells[2].text = "VALIDE & EMAIL ENVOYE"
+                success_count += 1
+            else:
+                row_cells[2].text = "VALIDE (ERREUR ENVOI EMAIL)"
+                error_count += 1
+                
+            # Pause anti-spam si ce n'est pas le dernier
+            time.sleep(1)
+            
+        except Exception as e:
+            row_cells[2].text = f"ERREUR: {str(e)}"
+            error_count += 1
+
+    doc.add_paragraph(f"\nRésumé : {success_count} réussites, {error_count} erreurs/alertes.")
+    return generate_word_bytes(doc)
